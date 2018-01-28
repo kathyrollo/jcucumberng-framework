@@ -2,11 +2,11 @@ package stepdefs;
 
 import java.util.List;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
 
 import com.paulhammant.ngwebdriver.ByAngular;
 
@@ -115,7 +115,7 @@ public class CalculateNetIncomeSteps {
 	public void I_Should_See_Net_Income_Per_Month(String netIncomePerMonth) throws Throwable {
 		By netIncomePerMonthBy = ByAngular.binding("roundDown(monthlyNet())");
 		String netIncomePerMonthText = driver.findElement(netIncomePerMonthBy).getText();
-		Assert.assertEquals(netIncomePerMonthText, netIncomePerMonth);
+		Assert.assertEquals(netIncomePerMonth, netIncomePerMonthText);
 
 		SeleniumUtil.captureScreen(driver);
 	}
@@ -124,7 +124,7 @@ public class CalculateNetIncomeSteps {
 	public void I_Should_See_Net_Income_Per_Year(String netIncomePerYear) throws Throwable {
 		By netIncomePerYearBy = ByAngular.binding("roundDown(monthlyNet()*12)+tallyTransactions()");
 		String netIncomePerYearText = driver.findElement(netIncomePerYearBy).getText();
-		Assert.assertEquals(netIncomePerYearText, netIncomePerYear);
+		Assert.assertEquals(netIncomePerYear, netIncomePerYearText);
 
 		SeleniumUtil.scrollVertical(driver, 500);
 		SeleniumUtil.captureScreen(driver);
