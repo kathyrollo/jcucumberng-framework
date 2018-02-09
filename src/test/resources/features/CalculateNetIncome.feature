@@ -1,16 +1,19 @@
 @netIncome
 Feature: Calculate Net Income
+  As a user
+  I want to enter my income and expenses
+  So that I can see my net income per month and per year
 
   Scenario Outline: Calculate Net Income
     Given I Am At The Home Page
     When I Enter My Start Balance: <startBalance>
-    When I Click Add Regular Income: <incomeCount>
-    When I Enter My Regular Income Sources
+    And I Click Add Regular Income: <incomeCount>
+    And I Enter My Regular Income Sources
       # frequency - daily, work days, weekly, every 2 weeks, monthly
       | name   | amount | frequency     |
       | Salary |  25000 | every 2 weeks |
-    When I Click Add Regular Expenses: <expenseCount>
-    When I Enter My Regular Expenses
+    And I Click Add Regular Expenses: <expenseCount>
+    And I Enter My Regular Expenses
       # frequency - Daily, Business Daily, Weekly, Every 2 Weeks, Monthly
       | name        | amount | frequency     |
       | Electricity |   5500 | Monthly       |
