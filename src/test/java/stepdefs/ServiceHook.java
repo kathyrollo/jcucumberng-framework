@@ -2,6 +2,7 @@ package stepdefs;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -28,6 +29,12 @@ public class ServiceHook {
 		case "chrome":
 			System.setProperty("webdriver.chrome.driver", driverPath + "chromedriver_win32.exe");
 			driver = new ChromeDriver();
+			break;
+		case "chrome-nohead":
+			System.setProperty("webdriver.chrome.driver", driverPath + "chromedriver_win32.exe");
+			ChromeOptions chromeOpts = new ChromeOptions();
+			chromeOpts.addArguments("--headless");
+			driver = new ChromeDriver(chromeOpts);
 			break;
 		case "ff32":
 			System.setProperty("webdriver.gecko.driver", driverPath + "geckodriver_win32.exe");
