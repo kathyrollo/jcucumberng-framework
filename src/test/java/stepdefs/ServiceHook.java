@@ -16,8 +16,6 @@ import utils.ConfigUtil;
 
 public class ServiceHook {
 	private WebDriver driver = null;
-	private FirefoxBinary ffBin = null;
-	private FirefoxOptions ffOpts = null;
 
 	@Before
 	public void setUp() throws Throwable {
@@ -25,6 +23,9 @@ public class ServiceHook {
 		builder.append(System.getProperty("user.dir").replace("\\", "/"));
 		builder.append("/src/test/resources/webdrivers/");
 		String driverPath = builder.toString().trim();
+
+		FirefoxBinary ffBin = new FirefoxBinary();
+		FirefoxOptions ffOpts = new FirefoxOptions();
 
 		String browser = ConfigUtil.readKey("browser").toLowerCase();
 		switch (browser) {
@@ -44,9 +45,7 @@ public class ServiceHook {
 			break;
 		case "ff32-nohead":
 			System.setProperty("webdriver.gecko.driver", driverPath + "geckodriver_win32.exe");
-			ffBin = new FirefoxBinary();
 			ffBin.addCommandLineOptions("--headless");
-			ffOpts = new FirefoxOptions();
 			ffOpts.setBinary(ffBin);
 			ffOpts.setLogLevel(FirefoxDriverLogLevel.INFO);
 			driver = new FirefoxDriver(ffOpts);
@@ -57,9 +56,7 @@ public class ServiceHook {
 			break;
 		case "ff64-nohead":
 			System.setProperty("webdriver.gecko.driver", driverPath + "geckodriver_win64.exe");
-			ffBin = new FirefoxBinary();
 			ffBin.addCommandLineOptions("--headless");
-			ffOpts = new FirefoxOptions();
 			ffOpts.setBinary(ffBin);
 			ffOpts.setLogLevel(FirefoxDriverLogLevel.INFO);
 			driver = new FirefoxDriver(ffOpts);
