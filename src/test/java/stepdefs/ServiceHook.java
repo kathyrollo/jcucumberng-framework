@@ -24,8 +24,8 @@ public class ServiceHook {
 		builder.append("/src/test/resources/webdrivers/");
 		String driverPath = builder.toString().trim();
 
-		FirefoxBinary ffBin = new FirefoxBinary();
-		FirefoxOptions ffOpts = new FirefoxOptions();
+		FirefoxBinary ffBin = null;
+		FirefoxOptions ffOpts = null;
 
 		String browser = ConfigUtil.readKey("browser").toLowerCase();
 		switch (browser) {
@@ -35,8 +35,10 @@ public class ServiceHook {
 			break;
 		case "chrome-nohead":
 			System.setProperty("webdriver.chrome.driver", driverPath + "chromedriver_win32.exe");
+			String nativeRes = ConfigUtil.readKey("native_res");
 			ChromeOptions chromeOpts = new ChromeOptions();
 			chromeOpts.addArguments("--headless");
+			chromeOpts.addArguments("--window-size=" + nativeRes);
 			driver = new ChromeDriver(chromeOpts);
 			break;
 		case "ff32":
@@ -45,7 +47,9 @@ public class ServiceHook {
 			break;
 		case "ff32-nohead":
 			System.setProperty("webdriver.gecko.driver", driverPath + "geckodriver_win32.exe");
+			ffBin = new FirefoxBinary();
 			ffBin.addCommandLineOptions("--headless");
+			ffOpts = new FirefoxOptions();
 			ffOpts.setBinary(ffBin);
 			ffOpts.setLogLevel(FirefoxDriverLogLevel.INFO);
 			driver = new FirefoxDriver(ffOpts);
@@ -56,7 +60,9 @@ public class ServiceHook {
 			break;
 		case "ff64-nohead":
 			System.setProperty("webdriver.gecko.driver", driverPath + "geckodriver_win64.exe");
+			ffBin = new FirefoxBinary();
 			ffBin.addCommandLineOptions("--headless");
+			ffOpts = new FirefoxOptions();
 			ffOpts.setBinary(ffBin);
 			ffOpts.setLogLevel(FirefoxDriverLogLevel.INFO);
 			driver = new FirefoxDriver(ffOpts);
