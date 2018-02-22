@@ -29,7 +29,7 @@ public final class FileUtil {
 	}
 
 	/**
-	 * Checks if a file exists in a specified directory. Set file_directory in
+	 * Checks if a file exists in a specified directory. Set file_dir in
 	 * config.properties.
 	 * 
 	 * @param prefix
@@ -41,7 +41,7 @@ public final class FileUtil {
 	 * @throws IOException
 	 */
 	public static boolean doesFileExist(String prefix, String suffix) throws IOException {
-		String directory = ConfigUtil.readKey("file_directory");
+		String directory = ConfigUtil.readKey("file_dir");
 		File[] files = new File(directory).listFiles();
 
 		String fileName = null;

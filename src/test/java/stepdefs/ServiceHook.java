@@ -3,7 +3,10 @@ package stepdefs;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxDriverLogLevel;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 
 import cucumber.api.java.After;
@@ -26,23 +29,32 @@ public class ServiceHook {
 			System.setProperty("webdriver.chrome.driver", driverPath + "chromedriver_win32.exe");
 			driver = new ChromeDriver();
 			break;
-		case "ff-32":
+		case "ff32":
 			System.setProperty("webdriver.gecko.driver", driverPath + "geckodriver_win32.exe");
 			driver = new FirefoxDriver();
 			break;
-		case "ff-64":
+		case "ff64":
 			System.setProperty("webdriver.gecko.driver", driverPath + "geckodriver_win64.exe");
 			driver = new FirefoxDriver();
+			break;
+		case "ff64-nohead":
+			System.setProperty("webdriver.gecko.driver", driverPath + "geckodriver_win64.exe");
+			FirefoxBinary ffBin = new FirefoxBinary();
+			ffBin.addCommandLineOptions("--headless");
+			FirefoxOptions ffOpts = new FirefoxOptions();
+			ffOpts.setBinary(ffBin);
+			ffOpts.setLogLevel(FirefoxDriverLogLevel.INFO);
+			driver = new FirefoxDriver(ffOpts);
 			break;
 		case "edge":
 			System.setProperty("webdriver.edge.driver", driverPath + "MicrosoftWebDriver.exe");
 			driver = new EdgeDriver();
 			break;
-		case "ie-32":
+		case "ie32":
 			System.setProperty("webdriver.ie.driver", driverPath + "IEDriverServer_win32.exe");
 			driver = new InternetExplorerDriver();
 			break;
-		case "ie-64":
+		case "ie64":
 			System.setProperty("webdriver.ie.driver", driverPath + "IEDriverServer_win64.exe");
 			driver = new InternetExplorerDriver();
 			break;
