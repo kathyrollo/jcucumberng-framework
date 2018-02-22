@@ -14,6 +14,7 @@ import cucumber.api.junit.Cucumber;
 public class MainRunner {
 	// Right-Click > Run As > JUnit Test
 
+	// TODO: Integrate with Jenkins
 	// TODO: Update to Cucumber 2.x
 	// TODO: Add cucumber-reporting
 	// TODO: Add Log4j
