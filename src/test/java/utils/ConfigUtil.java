@@ -18,7 +18,7 @@ public final class ConfigUtil {
 
 	/**
 	 * Reads a config file by passing a specific key. The file must be located in:
-	 * src/test/resources/config.properties
+	 * /src/test/resources/config.properties
 	 * 
 	 * @param key
 	 *            the name corresponding to the value in the key-value pair

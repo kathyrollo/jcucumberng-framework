@@ -135,7 +135,7 @@ public final class SeleniumUtil {
 	 * 
 	 * @param driver
 	 *            the Selenium WebDriver
-	 * @return String - the <body> text of the HTML page
+	 * @return String - the text within HTML body tags
 	 */
 	public static String getBodyText(WebDriver driver) {
 		return driver.findElement(By.tagName("body")).getText();
@@ -244,7 +244,7 @@ public final class SeleniumUtil {
 	}
 
 	/**
-	 * Captures the current screen. Stores images in myproject\screenshots directory
+	 * Captures the current screen. Stores images in /target/cucumber-screenshots/
 	 * in PNG format.
 	 * 
 	 * @param driver
