@@ -48,8 +48,9 @@ public class CalculateNetIncomeSteps {
 		if (0 >= incomeCount) {
 			incomeCount = 1;
 		}
+		By addIncomeBy = By.cssSelector("button[ng-click='addIncome();']");
 		for (int ctr = 0; ctr < incomeCount - 1; ctr++) {
-			SeleniumUtil.clickElement(driver, By.cssSelector("button[ng-click='addIncome();']"));
+			SeleniumUtil.clickElement(driver, addIncomeBy);
 		}
 
 		SeleniumUtil.captureScreen(driver);
@@ -82,8 +83,9 @@ public class CalculateNetIncomeSteps {
 		if (0 >= expenseCount) {
 			expenseCount = 1;
 		}
+		By addExpenseBy = By.cssSelector("button[ng-click='addExpense();']");
 		for (int ctr = 0; ctr < expenseCount - 1; ctr++) {
-			SeleniumUtil.clickElement(driver, By.cssSelector("button[ng-click='addExpense();']"));
+			SeleniumUtil.clickElement(driver, addExpenseBy);
 		}
 
 		SeleniumUtil.captureScreen(driver);
@@ -116,8 +118,6 @@ public class CalculateNetIncomeSteps {
 		By netIncomePerMonthBy = ByAngular.binding("roundDown(monthlyNet())");
 		String netIncomePerMonthText = driver.findElement(netIncomePerMonthBy).getText();
 		Assert.assertEquals(netIncomePerMonth, netIncomePerMonthText);
-
-		SeleniumUtil.captureScreen(driver);
 	}
 
 	@Then("^I Should See Net Income Per Year: (.*)$")
