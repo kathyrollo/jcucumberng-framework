@@ -43,7 +43,7 @@ public final class SeleniumUtil {
 		String parentHandle = driver.getWindowHandle(); // Save parent window
 		WebElement clickableElement = driver.findElement(clickableLocator);
 		clickableElement.click(); // Open child window
-		Thread.sleep(Long.parseLong(ConfigUtil.readKey("window_wait")));
+		Thread.sleep(Long.parseLong(ConfigUtil.readKey("new_window_wait")));
 		Set<String> handles = driver.getWindowHandles();
 		if (1 < handles.size()) { // Check if more than 1 window is open
 			// Switch to child window
@@ -73,7 +73,7 @@ public final class SeleniumUtil {
 	public static String openWindow(WebDriver driver, String url) throws InterruptedException, IOException {
 		String parentHandle = driver.getWindowHandle();
 		driver.get(url);
-		Thread.sleep(Long.parseLong(ConfigUtil.readKey("window_wait")));
+		Thread.sleep(Long.parseLong(ConfigUtil.readKey("new_window_wait")));
 		Set<String> handles = driver.getWindowHandles();
 		if (1 < handles.size()) {
 			for (String handle : handles) {
