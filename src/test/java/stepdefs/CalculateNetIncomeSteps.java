@@ -31,7 +31,6 @@ public class CalculateNetIncomeSteps {
 	public void I_Am_At_The_Home_Page() throws Throwable {
 		driver.get(ConfigUtil.readKey("base_url"));
 		driver.manage().window().maximize();
-
 		SeleniumUtil.captureScreen(driver);
 	}
 
@@ -39,7 +38,6 @@ public class CalculateNetIncomeSteps {
 	public void I_Enter_My_Start_Balance(String startBalance) throws Throwable {
 		By startBalanceBy = ByAngular.model("startBalance");
 		SeleniumUtil.enterInField(driver, startBalanceBy, startBalance);
-
 		SeleniumUtil.captureScreen(driver);
 	}
 
@@ -48,6 +46,7 @@ public class CalculateNetIncomeSteps {
 		if (0 >= incomeCount) {
 			incomeCount = 1;
 		}
+
 		By addIncomeBy = By.cssSelector("button[ng-click='addIncome();']");
 		for (int ctr = 0; ctr < incomeCount - 1; ctr++) {
 			SeleniumUtil.clickElement(driver, addIncomeBy);
@@ -83,6 +82,7 @@ public class CalculateNetIncomeSteps {
 		if (0 >= expenseCount) {
 			expenseCount = 1;
 		}
+
 		By addExpenseBy = By.cssSelector("button[ng-click='addExpense();']");
 		for (int ctr = 0; ctr < expenseCount - 1; ctr++) {
 			SeleniumUtil.clickElement(driver, addExpenseBy);
@@ -125,7 +125,6 @@ public class CalculateNetIncomeSteps {
 		By netIncomePerYearBy = ByAngular.binding("roundDown(monthlyNet()*12)+tallyTransactions()");
 		String netIncomePerYearText = driver.findElement(netIncomePerYearBy).getText();
 		Assert.assertEquals(netIncomePerYear, netIncomePerYearText);
-
 		SeleniumUtil.scrollVertical(driver, 500);
 		SeleniumUtil.captureScreen(driver);
 	}
