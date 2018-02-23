@@ -13,6 +13,7 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import utils.ConfigUtil;
+import utils.SystemUtil;
 
 public class ServiceHook {
 	private WebDriver driver = null;
@@ -35,10 +36,9 @@ public class ServiceHook {
 			break;
 		case "chrome-nohead":
 			System.setProperty("webdriver.chrome.driver", driverPath + "chromedriver_win32.exe");
-			String nativeRes = ConfigUtil.readKey("native_res");
 			ChromeOptions chromeOpts = new ChromeOptions();
 			chromeOpts.addArguments("--headless");
-			chromeOpts.addArguments("--window-size=" + nativeRes);
+			chromeOpts.addArguments("--window-size=" + SystemUtil.getNativeResolution());
 			driver = new ChromeDriver(chromeOpts);
 			break;
 		case "ff32":

@@ -1,12 +1,14 @@
 package utils;
 
 import java.awt.AWTException;
+import java.awt.Dimension;
 import java.awt.Robot;
+import java.awt.Toolkit;
 import java.io.IOException;
 
 /**
- * This class handles actions for generating native system inputs from devices
- * such as mouse or keyboard.
+ * This class handles actions relating to the native system such as screen
+ * resolution, keyboard, or mouse.
  * 
  * @author Katherine Rollo (rollo.katherine@gmail.com)
  */
@@ -14,6 +16,19 @@ public final class SystemUtil {
 
 	private SystemUtil() {
 		// Prevent instantiation
+	}
+
+	/**
+	 * Gets the native resolution of the local machine.
+	 * 
+	 * @return String - the native resolution in WxH (e.g. 1920x1080)
+	 */
+	public static String getNativeResolution() {
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+		String width = String.valueOf((short) dimension.getWidth());
+		String height = String.valueOf((short) dimension.getHeight());
+
+		return width + "x" + height;
 	}
 
 	/**
