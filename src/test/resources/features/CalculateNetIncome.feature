@@ -9,12 +9,10 @@ Feature: Calculate Net Income
     When I Enter My Start Balance: <startBalance>
     And I Click Add Regular Income: <incomeCount>
     And I Enter My Regular Income Sources
-      # frequency - daily, work days, weekly, every 2 weeks, monthly
       | name   | amount | frequency     |
       | Salary |  25000 | every 2 weeks |
     And I Click Add Regular Expenses: <expenseCount>
     And I Enter My Regular Expenses
-      # frequency - Daily, Business Daily, Weekly, Every 2 Weeks, Monthly
       | name        | amount | frequency     |
       | Electricity |   5500 | Monthly       |
       | Water       |    900 | Weekly        |
@@ -24,7 +22,5 @@ Feature: Calculate Net Income
     And I Should See Net Income Per Year: <netIncomePerYear>
 
     Examples: 
-      # netIncomePerMonth - 23769 (default)
-      # netIncomePerYear - 285225 (default)
       | startBalance | incomeCount | expenseCount | netIncomePerMonth | netIncomePerYear |
       |       348000 |           1 |            4 |             23769 |           285225 |
