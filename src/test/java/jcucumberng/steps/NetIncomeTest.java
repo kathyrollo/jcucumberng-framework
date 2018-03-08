@@ -1,4 +1,4 @@
-package jcucumberng.stepdefs;
+package jcucumberng.steps;
 
 import java.util.List;
 
@@ -19,11 +19,11 @@ import jcucumberng.api.Selenium;
 import jcucumberng.pojos.Expense;
 import jcucumberng.pojos.Income;
 
-public class CalculateNetIncomeSteps {
+public class NetIncomeTest {
 	private WebDriver driver = null;
 
 	// PicoContainer injects ServiceHook class
-	public CalculateNetIncomeSteps(ServiceHook serviceHook) {
+	public NetIncomeTest(ServiceHook serviceHook) {
 		this.driver = serviceHook.getDriver();
 	}
 

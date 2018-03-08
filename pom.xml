@@ -116,7 +116,7 @@
 							<projectName>Balance Projector</projectName>
 							<outputDirectory>${project.build.directory}</outputDirectory>
 							<jsonFiles>
-								<param>${project.build.directory}/cucumber-reports/test-report.json</param>
+								<param>${project.build.directory}/cucumber-generated-reports/cucumber-report.json</param>
 							</jsonFiles>
 							<parallelTesting>false</parallelTesting>
 						</configuration>
