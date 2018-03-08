@@ -11,10 +11,8 @@ import org.testng.Assert;
 import com.paulhammant.ngwebdriver.ByAngular;
 
 import cucumber.api.DataTable;
-import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import jcucumberng.api.Configuration;
 import jcucumberng.api.Selenium;
 import jcucumberng.pojos.Expense;
 import jcucumberng.pojos.Income;
@@ -25,13 +23,6 @@ public class NetIncomeTest {
 	// PicoContainer injects ServiceHook class
 	public NetIncomeTest(ServiceHook serviceHook) {
 		this.driver = serviceHook.getDriver();
-	}
-
-	@Given("^I Am At The Home Page$")
-	public void I_Am_At_The_Home_Page() throws Throwable {
-		driver.get(Configuration.readKey("base_url"));
-		driver.manage().window().maximize();
-		Selenium.captureScreen(driver);
 	}
 
 	@When("^I Enter My Start Balance: (.*)$")
