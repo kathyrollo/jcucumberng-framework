@@ -7,14 +7,14 @@ import java.awt.Toolkit;
 import java.io.IOException;
 
 /**
- * This class handles actions relating to the native system such as screen
+ * This class handles actions relating to the local system such as screen
  * resolution, keyboard, or mouse.
  * 
  * @author Katherine Rollo (rollo.katherine@gmail.com)
  */
-public final class SystemUtil {
+public final class LocalSystem {
 
-	private SystemUtil() {
+	private LocalSystem() {
 		// Prevent instantiation
 	}
 
@@ -44,7 +44,7 @@ public final class SystemUtil {
 		Robot robot = new Robot();
 		robot.keyPress(key);
 		robot.keyRelease(key);
-		robot.delay(Integer.parseInt(ConfigUtil.readKey("keypress_wait")));
+		robot.delay(Integer.parseInt(Configuration.readKey("keypress_wait")));
 		robot = null; // Destroy robot
 	}
 
@@ -64,7 +64,7 @@ public final class SystemUtil {
 		for (int ctr = 0; ctr < keys.length; ctr++) {
 			robot.keyPress(keys[ctr]); // Press and hold keys
 		}
-		robot.delay(Integer.parseInt(ConfigUtil.readKey("keypress_wait")));
+		robot.delay(Integer.parseInt(Configuration.readKey("keypress_wait")));
 		for (int ctr = keys.length - 1; ctr > -1; ctr--) {
 			robot.keyRelease(keys[ctr]); // Release keys in reverse order
 		}

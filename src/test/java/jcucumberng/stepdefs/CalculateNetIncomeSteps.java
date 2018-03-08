@@ -14,8 +14,8 @@ import cucumber.api.DataTable;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import jcucumberng.api.ConfigUtil;
-import jcucumberng.api.SeleniumUtil;
+import jcucumberng.api.Configuration;
+import jcucumberng.api.Selenium;
 import jcucumberng.pojos.Expense;
 import jcucumberng.pojos.Income;
 
@@ -29,16 +29,16 @@ public class CalculateNetIncomeSteps {
 
 	@Given("^I Am At The Home Page$")
 	public void I_Am_At_The_Home_Page() throws Throwable {
-		driver.get(ConfigUtil.readKey("base_url"));
+		driver.get(Configuration.readKey("base_url"));
 		driver.manage().window().maximize();
-		SeleniumUtil.captureScreen(driver);
+		Selenium.captureScreen(driver);
 	}
 
 	@When("^I Enter My Start Balance: (.*)$")
 	public void I_Enter_My_Start_Balance(String startBalance) throws Throwable {
 		By startBalanceBy = ByAngular.model("startBalance");
-		SeleniumUtil.enterInField(driver, startBalanceBy, startBalance);
-		SeleniumUtil.captureScreen(driver);
+		Selenium.enterInField(driver, startBalanceBy, startBalance);
+		Selenium.captureScreen(driver);
 	}
 
 	@When("^I Click Add Regular Income: (\\d+)$")
@@ -49,10 +49,10 @@ public class CalculateNetIncomeSteps {
 
 		By addIncomeBy = By.cssSelector("button[ng-click='addIncome();']");
 		for (int ctr = 0; ctr < incomeCount - 1; ctr++) {
-			SeleniumUtil.clickElement(driver, addIncomeBy);
+			Selenium.clickElement(driver, addIncomeBy);
 		}
 
-		SeleniumUtil.captureScreen(driver);
+		Selenium.captureScreen(driver);
 	}
 
 	@When("^I Enter My Regular Income Sources$")
@@ -66,15 +66,15 @@ public class CalculateNetIncomeSteps {
 		List<WebElement> amountFields = driver.findElements(amountFieldBy);
 
 		By freqDropMenuBy = ByAngular.model("income.frequency");
-		List<Select> freqDropMenus = SeleniumUtil.getSelectElements(driver, freqDropMenuBy);
+		List<Select> freqDropMenus = Selenium.getSelectElements(driver, freqDropMenuBy);
 
 		for (int ctr = 0; ctr < incomeList.size(); ctr++) {
-			SeleniumUtil.enterInField(driver, nameFields.get(ctr), incomeList.get(ctr).getName());
-			SeleniumUtil.enterInField(driver, amountFields.get(ctr), incomeList.get(ctr).getAmount());
-			SeleniumUtil.selectFromDropMenuByText(driver, freqDropMenus.get(ctr), incomeList.get(ctr).getFrequency());
+			Selenium.enterInField(driver, nameFields.get(ctr), incomeList.get(ctr).getName());
+			Selenium.enterInField(driver, amountFields.get(ctr), incomeList.get(ctr).getAmount());
+			Selenium.selectFromDropMenuByText(driver, freqDropMenus.get(ctr), incomeList.get(ctr).getFrequency());
 		}
 
-		SeleniumUtil.captureScreen(driver);
+		Selenium.captureScreen(driver);
 	}
 
 	@When("^I Click Add Regular Expenses: (\\d+)$")
@@ -85,10 +85,10 @@ public class CalculateNetIncomeSteps {
 
 		By addExpenseBy = By.cssSelector("button[ng-click='addExpense();']");
 		for (int ctr = 0; ctr < expenseCount - 1; ctr++) {
-			SeleniumUtil.clickElement(driver, addExpenseBy);
+			Selenium.clickElement(driver, addExpenseBy);
 		}
 
-		SeleniumUtil.captureScreen(driver);
+		Selenium.captureScreen(driver);
 	}
 
 	@When("^I Enter My Regular Expenses$")
@@ -102,15 +102,15 @@ public class CalculateNetIncomeSteps {
 		List<WebElement> amountFields = driver.findElements(amountFieldBy);
 
 		By freqDropMenuBy = ByAngular.model("expense.frequency");
-		List<Select> freqDropMenus = SeleniumUtil.getSelectElements(driver, freqDropMenuBy);
+		List<Select> freqDropMenus = Selenium.getSelectElements(driver, freqDropMenuBy);
 
 		for (int ctr = 0; ctr < expenseList.size(); ctr++) {
-			SeleniumUtil.enterInField(driver, nameFields.get(ctr), expenseList.get(ctr).getName());
-			SeleniumUtil.enterInField(driver, amountFields.get(ctr), expenseList.get(ctr).getAmount());
-			SeleniumUtil.selectFromDropMenuByText(driver, freqDropMenus.get(ctr), expenseList.get(ctr).getFrequency());
+			Selenium.enterInField(driver, nameFields.get(ctr), expenseList.get(ctr).getName());
+			Selenium.enterInField(driver, amountFields.get(ctr), expenseList.get(ctr).getAmount());
+			Selenium.selectFromDropMenuByText(driver, freqDropMenus.get(ctr), expenseList.get(ctr).getFrequency());
 		}
 
-		SeleniumUtil.captureScreen(driver);
+		Selenium.captureScreen(driver);
 	}
 
 	@Then("^I Should See Net Income Per Month: (.*)$")
@@ -125,8 +125,8 @@ public class CalculateNetIncomeSteps {
 		By netIncomePerYearBy = ByAngular.binding("roundDown(monthlyNet()*12)+tallyTransactions()");
 		String netIncomePerYearText = driver.findElement(netIncomePerYearBy).getText();
 		Assert.assertEquals(netIncomePerYear, netIncomePerYearText);
-		SeleniumUtil.scrollVertical(driver, 500);
-		SeleniumUtil.captureScreen(driver);
+		Selenium.scrollVertical(driver, 500);
+		Selenium.captureScreen(driver);
 	}
 
 }

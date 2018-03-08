@@ -10,9 +10,9 @@ import java.util.Properties;
  * 
  * @author Katherine Rollo (rollo.katherine@gmail.com)
  */
-public final class ConfigUtil {
+public final class Configuration {
 
-	private ConfigUtil() {
+	private Configuration() {
 		// Prevent instantiation
 	}
 

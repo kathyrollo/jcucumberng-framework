@@ -12,8 +12,8 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
-import jcucumberng.api.ConfigUtil;
-import jcucumberng.api.SystemUtil;
+import jcucumberng.api.Configuration;
+import jcucumberng.api.LocalSystem;
 
 public class ServiceHook {
 	private WebDriver driver = null;
@@ -28,7 +28,7 @@ public class ServiceHook {
 		FirefoxBinary ffBin = null;
 		FirefoxOptions ffOpts = null;
 
-		String browser = ConfigUtil.readKey("browser").toLowerCase();
+		String browser = Configuration.readKey("browser").toLowerCase();
 		switch (browser) {
 		case "chrome":
 			System.setProperty("webdriver.chrome.driver", driverPath + "chromedriver_win32.exe");
@@ -38,7 +38,7 @@ public class ServiceHook {
 			System.setProperty("webdriver.chrome.driver", driverPath + "chromedriver_win32.exe");
 			ChromeOptions chromeOpts = new ChromeOptions();
 			chromeOpts.addArguments("--headless");
-			chromeOpts.addArguments("--window-size=" + SystemUtil.getNativeResolution());
+			chromeOpts.addArguments("--window-size=" + LocalSystem.getNativeResolution());
 			driver = new ChromeDriver(chromeOpts);
 			break;
 		case "ff32":

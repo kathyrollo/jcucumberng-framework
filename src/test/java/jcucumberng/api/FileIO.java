@@ -22,9 +22,9 @@ import com.itextpdf.text.pdf.parser.PdfTextExtractor;
  * 
  * @author Katherine Rollo (rollo.katherine@gmail.com)
  */
-public final class FileUtil {
+public final class FileIO {
 
-	private FileUtil() {
+	private FileIO() {
 		// Prevent instantiation
 	}
 
@@ -41,7 +41,7 @@ public final class FileUtil {
 	 * @throws IOException
 	 */
 	public static boolean doesFileExist(String prefix, String suffix) throws IOException {
-		String directory = ConfigUtil.readKey("file_dir");
+		String directory = Configuration.readKey("file_dir");
 		File[] files = new File(directory).listFiles();
 
 		String fileName = null;
@@ -67,7 +67,7 @@ public final class FileUtil {
 	 * @throws IOException
 	 */
 	public static String extractPdfText() throws IOException {
-		PdfReader pdfReader = new PdfReader(ConfigUtil.readKey("pdf_file_path"));
+		PdfReader pdfReader = new PdfReader(Configuration.readKey("pdf_file_path"));
 		int pages = pdfReader.getNumberOfPages();
 
 		String pdfText = "";
