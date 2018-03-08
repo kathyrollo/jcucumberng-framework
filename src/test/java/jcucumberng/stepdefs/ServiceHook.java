@@ -1,4 +1,4 @@
-package stepdefs;
+package jcucumberng.stepdefs;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -12,8 +12,8 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
-import utils.ConfigUtil;
-import utils.SystemUtil;
+import jcucumberng.api.ConfigUtil;
+import jcucumberng.api.SystemUtil;
 
 public class ServiceHook {
 	private WebDriver driver = null;
