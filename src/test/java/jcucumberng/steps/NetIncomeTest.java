@@ -2,11 +2,11 @@ package jcucumberng.steps;
 
 import java.util.List;
 
-import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 
 import com.paulhammant.ngwebdriver.ByAngular;
 
@@ -117,14 +117,14 @@ public class NetIncomeTest {
 	public void I_Should_See_Net_Income_Per_Month(String netIncomePerMonth) throws Throwable {
 		By netIncomePerMonthBy = ByAngular.binding("roundDown(monthlyNet())");
 		String netIncomePerMonthText = driver.findElement(netIncomePerMonthBy).getText();
-		Assert.assertEquals(netIncomePerMonth, netIncomePerMonthText);
+		Assert.assertEquals(netIncomePerMonthText, netIncomePerMonth);
 	}
 
 	@Then("^I Should See Net Income Per Year: (.*)$")
 	public void I_Should_See_Net_Income_Per_Year(String netIncomePerYear) throws Throwable {
 		By netIncomePerYearBy = ByAngular.binding("roundDown(monthlyNet()*12)+tallyTransactions()");
 		String netIncomePerYearText = driver.findElement(netIncomePerYearBy).getText();
-		Assert.assertEquals(netIncomePerYear, netIncomePerYearText);
+		Assert.assertEquals(netIncomePerYearText, netIncomePerYear);
 		Selenium.scrollVertical(driver, 500);
 		Selenium.captureScreen(driver);
 	}
