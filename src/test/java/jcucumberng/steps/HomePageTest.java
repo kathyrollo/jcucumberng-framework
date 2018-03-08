@@ -24,7 +24,7 @@ public class HomePageTest {
 	}
 
 	@Then("^I Should See Page Title '(.*)'$")
-	public void i_Should_See_Page_Title(String pageTitle) throws Throwable {
+	public void I_Should_See_Page_Title(String pageTitle) throws Throwable {
 		Assert.assertEquals(driver.getTitle(), pageTitle);
 	}
 
