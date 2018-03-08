@@ -13,7 +13,9 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * This class handles actions for interacting with web applications using the
@@ -36,16 +38,15 @@ public final class Selenium {
 	 *            the locator of the clickable element that opens the child window
 	 * @return String - the handle of the parent window before opening the child
 	 *         window
-	 * @throws InterruptedException
-	 * @throws IOException
 	 */
-	public static String openWindow(WebDriver driver, By clickableLocator) throws InterruptedException, IOException {
+	public static String openWindow(WebDriver driver, By clickableLocator) {
 		String parentHandle = driver.getWindowHandle(); // Save parent window
 		WebElement clickableElement = driver.findElement(clickableLocator);
 		clickableElement.click(); // Open child window
-		Thread.sleep(Long.parseLong(Configuration.readKey("new_window_wait")));
-		Set<String> handles = driver.getWindowHandles();
-		if (1 < handles.size()) { // Check if more than 1 window is open
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		boolean isChildWindowOpen = wait.until(ExpectedConditions.numberOfWindowsToBe(2));
+		if (isChildWindowOpen) {
+			Set<String> handles = driver.getWindowHandles();
 			// Switch to child window
 			for (String handle : handles) {
 				driver.switchTo().window(handle);
@@ -67,15 +68,14 @@ public final class Selenium {
 	 *            the String URL that opens the child window
 	 * @return String - the handle of the parent window before opening the child
 	 *         window
-	 * @throws InterruptedException
-	 * @throws IOException
 	 */
-	public static String openWindow(WebDriver driver, String url) throws InterruptedException, IOException {
+	public static String openWindow(WebDriver driver, String url) {
 		String parentHandle = driver.getWindowHandle();
 		driver.get(url);
-		Thread.sleep(Long.parseLong(Configuration.readKey("new_window_wait")));
-		Set<String> handles = driver.getWindowHandles();
-		if (1 < handles.size()) {
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		boolean isChildWindowOpen = wait.until(ExpectedConditions.numberOfWindowsToBe(2));
+		if (isChildWindowOpen) {
+			Set<String> handles = driver.getWindowHandles();
 			for (String handle : handles) {
 				driver.switchTo().window(handle);
 				if (!parentHandle.equals(handle)) {
