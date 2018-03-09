@@ -10,11 +10,12 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 		"junit:target/cucumber-generated-reports/cucumber-report.xml" }, snippets = SnippetType.UNDERSCORE, monochrome = true, dryRun = false)
 
 public class MainRunner extends AbstractTestNGCucumberTests {
-	// Right-Click > Run As > TestNG Test
-
-	// TODO: Implement Log4j 2
-	// TODO: Update to Cucumber 2.x
-	// TODO: Integrate with Selenium Grid
-	// TODO: Integrate with Jenkins
-	// TODO: Update README.md
 }
+
+// Right-Click > Run As > TestNG Test
+
+// TODO: Implement Log4j 2
+// TODO: Update to Cucumber 2.x
+// TODO: Integrate with Selenium Grid
+// TODO: Integrate with Jenkins
+// TODO: Update README.md
