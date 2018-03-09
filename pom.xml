@@ -113,7 +113,7 @@
 							<goal>generate</goal>
 						</goals>
 						<configuration>
-							<projectName>Balance Projector</projectName>
+							<projectName>Simply Do - Balance Projector</projectName>
 							<outputDirectory>${project.build.directory}</outputDirectory>
 							<jsonFiles>
 								<param>${project.build.directory}/cucumber-generated-reports/cucumber-report.json</param>
