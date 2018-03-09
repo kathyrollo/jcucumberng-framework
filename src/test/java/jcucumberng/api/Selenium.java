@@ -164,7 +164,7 @@ public final class Selenium {
 	 * @param text
 	 *            the text to be entered
 	 */
-	public static void enterInField(WebDriver driver, By fieldLocator, String text) {
+	public static void enterText(WebDriver driver, By fieldLocator, String text) {
 		WebElement field = driver.findElement(fieldLocator);
 		field.clear();
 		field.sendKeys(text);
@@ -180,7 +180,7 @@ public final class Selenium {
 	 * @param text
 	 *            the text to be entered
 	 */
-	public static void enterInField(WebDriver driver, WebElement field, String text) {
+	public static void enterText(WebDriver driver, WebElement field, String text) {
 		field.clear();
 		field.sendKeys(text);
 	}

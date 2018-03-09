@@ -28,7 +28,7 @@ public class NetIncomeTest {
 	@When("^I Enter My Start Balance: (.*)$")
 	public void I_Enter_My_Start_Balance(String startBalance) throws Throwable {
 		By startBalanceBy = ByAngular.model("startBalance");
-		Selenium.enterInField(driver, startBalanceBy, startBalance);
+		Selenium.enterText(driver, startBalanceBy, startBalance);
 		Selenium.captureScreen(driver);
 	}
 
@@ -60,8 +60,8 @@ public class NetIncomeTest {
 		List<Select> freqDropMenus = Selenium.getSelectElements(driver, freqDropMenuBy);
 
 		for (int ctr = 0; ctr < incomeList.size(); ctr++) {
-			Selenium.enterInField(driver, nameFields.get(ctr), incomeList.get(ctr).getName());
-			Selenium.enterInField(driver, amountFields.get(ctr), incomeList.get(ctr).getAmount());
+			Selenium.enterText(driver, nameFields.get(ctr), incomeList.get(ctr).getName());
+			Selenium.enterText(driver, amountFields.get(ctr), incomeList.get(ctr).getAmount());
 			Selenium.selectFromDropMenuByText(driver, freqDropMenus.get(ctr), incomeList.get(ctr).getFrequency());
 		}
 
@@ -96,8 +96,8 @@ public class NetIncomeTest {
 		List<Select> freqDropMenus = Selenium.getSelectElements(driver, freqDropMenuBy);
 
 		for (int ctr = 0; ctr < expenseList.size(); ctr++) {
-			Selenium.enterInField(driver, nameFields.get(ctr), expenseList.get(ctr).getName());
-			Selenium.enterInField(driver, amountFields.get(ctr), expenseList.get(ctr).getAmount());
+			Selenium.enterText(driver, nameFields.get(ctr), expenseList.get(ctr).getName());
+			Selenium.enterText(driver, amountFields.get(ctr), expenseList.get(ctr).getAmount());
 			Selenium.selectFromDropMenuByText(driver, freqDropMenus.get(ctr), expenseList.get(ctr).getFrequency());
 		}
 
