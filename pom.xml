@@ -13,6 +13,8 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<timestamp>${maven.build.timestamp}</timestamp>
+		<maven.build.timestamp.format>yyyyMMdd-HHmm</maven.build.timestamp.format>
 
 		<!-- Core Dependencies -->
 		<java.version>1.8</java.version>
@@ -98,6 +100,7 @@
 						<include>**/*Runner.java</include>
 					</includes>
 					<testFailureIgnore>true</testFailureIgnore>
+					<reportsDirectory>./target/test-output/${timestamp}</reportsDirectory>
 				</configuration>
 			</plugin>
 
