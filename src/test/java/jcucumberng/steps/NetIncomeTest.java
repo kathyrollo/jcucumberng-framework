@@ -32,23 +32,15 @@ public class NetIncomeTest {
 		Selenium.captureScreen(driver);
 	}
 
-	@When("^I Click Add Regular Income: (\\d+)$")
-	public void I_Click_Add_Regular_Income(int incomeCount) throws Throwable {
-		if (0 >= incomeCount) {
-			incomeCount = 1;
-		}
-
-		By addIncomeBy = By.cssSelector("button[ng-click='addIncome();']");
-		for (int ctr = 0; ctr < incomeCount - 1; ctr++) {
-			Selenium.clickElement(driver, addIncomeBy);
-		}
-
-		Selenium.captureScreen(driver);
-	}
-
 	@When("^I Enter My Regular Income Sources$")
 	public void I_Enter_My_Regular_Income_Sources(DataTable dataTable) throws Throwable {
 		List<Income> incomeList = dataTable.asList(Income.class);
+
+		int itemCount = incomeList.size();
+		By addIncomeBy = By.cssSelector("button[ng-click='addIncome();']");
+		for (int ctr = 0; ctr < itemCount - 1; ctr++) {
+			Selenium.clickElement(driver, addIncomeBy);
+		}
 
 		By nameFieldBy = ByAngular.model("income.name");
 		List<WebElement> nameFields = driver.findElements(nameFieldBy);
@@ -68,23 +60,15 @@ public class NetIncomeTest {
 		Selenium.captureScreen(driver);
 	}
 
-	@When("^I Click Add Regular Expenses: (\\d+)$")
-	public void I_Click_Add_Regular_Expenses(int expenseCount) throws Throwable {
-		if (0 >= expenseCount) {
-			expenseCount = 1;
-		}
-
-		By addExpenseBy = By.cssSelector("button[ng-click='addExpense();']");
-		for (int ctr = 0; ctr < expenseCount - 1; ctr++) {
-			Selenium.clickElement(driver, addExpenseBy);
-		}
-
-		Selenium.captureScreen(driver);
-	}
-
 	@When("^I Enter My Regular Expenses$")
 	public void I_Enter_My_Regular_Expenses(DataTable dataTable) throws Throwable {
 		List<Expense> expenseList = dataTable.asList(Expense.class);
+
+		int itemCount = expenseList.size();
+		By addExpenseBy = By.cssSelector("button[ng-click='addExpense();']");
+		for (int ctr = 0; ctr < itemCount - 1; ctr++) {
+			Selenium.clickElement(driver, addExpenseBy);
+		}
 
 		By nameFieldBy = ByAngular.model("expense.name");
 		List<WebElement> nameFields = driver.findElements(nameFieldBy);
@@ -104,18 +88,17 @@ public class NetIncomeTest {
 		Selenium.captureScreen(driver);
 	}
 
-	@Then("^I Should See Net Income Per Month: (.*)$")
-	public void I_Should_See_Net_Income_Per_Month(String netIncomePerMonth) throws Throwable {
+	@Then("^I Should See Net Income: (.*) (.*)$")
+	public void I_Should_See_Net_Income(String netIncomePerMonth, String netIncomePerYear) throws Throwable {
 		By netIncomePerMonthBy = ByAngular.binding("roundDown(monthlyNet())");
-		String netIncomePerMonthText = driver.findElement(netIncomePerMonthBy).getText();
-		Assert.assertEquals(netIncomePerMonthText, netIncomePerMonth);
-	}
-
-	@Then("^I Should See Net Income Per Year: (.*)$")
-	public void I_Should_See_Net_Income_Per_Year(String netIncomePerYear) throws Throwable {
 		By netIncomePerYearBy = ByAngular.binding("roundDown(monthlyNet()*12)+tallyTransactions()");
+
+		String netIncomePerMonthText = driver.findElement(netIncomePerMonthBy).getText();
 		String netIncomePerYearText = driver.findElement(netIncomePerYearBy).getText();
+
+		Assert.assertEquals(netIncomePerMonthText, netIncomePerMonth);
 		Assert.assertEquals(netIncomePerYearText, netIncomePerYear);
+
 		Selenium.scrollVertical(driver, 500);
 		Selenium.captureScreen(driver);
 	}
