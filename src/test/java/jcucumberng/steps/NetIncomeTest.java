@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+//import org.testng.Assert;
 import org.testng.Assert;
 
 import com.paulhammant.ngwebdriver.ByAngular;
@@ -41,8 +42,7 @@ public class NetIncomeTest {
 		By amountFieldBy = ByAngular.model("income.amount");
 		By freqDropMenuBy = ByAngular.model("income.frequency");
 
-		int itemCount = incomes.size();
-		for (int ctr = 0; ctr < itemCount - 1; ctr++) {
+		for (int ctr = 0; ctr < incomes.size() - 1; ctr++) {
 			Selenium.clickElement(driver, addIncomeBy);
 		}
 
@@ -68,8 +68,7 @@ public class NetIncomeTest {
 		By amountFieldBy = ByAngular.model("expense.amount");
 		By freqDropMenuBy = ByAngular.model("expense.frequency");
 
-		int itemCount = expenses.size();
-		for (int ctr = 0; ctr < itemCount - 1; ctr++) {
+		for (int ctr = 0; ctr < expenses.size() - 1; ctr++) {
 			Selenium.clickElement(driver, addExpenseBy);
 		}
 
