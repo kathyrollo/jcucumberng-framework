@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.dxc.jcucumberng</groupId>
+	<groupId>krollo.jcucumberng</groupId>
 	<artifactId>jcucumberng-framework</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
@@ -12,20 +12,16 @@
 	<url></url>
 
 	<properties>
+		<!-- Project Properties -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<timestamp>${maven.build.timestamp}</timestamp>
+		<maven.build.timestamp.format>yyyyMMdd-HHmm</maven.build.timestamp.format>
+
 		<!-- Core Dependencies -->
-		<java.version>1.8</java.version>
 		<selenium.version>3.10.0</selenium.version>
 		<ngwebdriver.version>1.1.2</ngwebdriver.version>
 		<cucumber.version>2.3.1</cucumber.version>
-
-		<!-- Project Properties -->
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-		<maven.compiler.source>${java.version}</maven.compiler.source>
-		<maven.compiler.target>${java.version}</maven.compiler.target>
-
-		<timestamp>${maven.build.timestamp}</timestamp>
-		<maven.build.timestamp.format>yyyyMMdd-HHmm</maven.build.timestamp.format>
+		<java.version>1.8</java.version>
 	</properties>
 
 	<dependencies>
@@ -90,6 +86,10 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.7.0</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
 			</plugin>
 
 			<plugin>
