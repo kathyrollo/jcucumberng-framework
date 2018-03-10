@@ -35,11 +35,7 @@ public class ServiceHook {
 			driver = new ChromeDriver();
 			break;
 		case "chrome-nohead":
-			System.setProperty("webdriver.chrome.driver", driverPath + "chromedriver_win32.exe");
-			ChromeOptions chromeOpts = new ChromeOptions();
-			chromeOpts.addArguments("--headless");
-			chromeOpts.addArguments("--window-size=" + LocalSystem.getNativeResolution());
-			driver = new ChromeDriver(chromeOpts);
+			setDefaultDriver(driverPath);
 			break;
 		case "ff32":
 			System.setProperty("webdriver.gecko.driver", driverPath + "geckodriver_win32.exe");
@@ -80,8 +76,7 @@ public class ServiceHook {
 			driver = new InternetExplorerDriver();
 			break;
 		default:
-			System.setProperty("webdriver.chrome.driver", driverPath + "chromedriver_win32.exe");
-			driver = new ChromeDriver();
+			setDefaultDriver(driverPath);
 			break;
 		}
 	}
@@ -93,6 +88,14 @@ public class ServiceHook {
 
 	public WebDriver getDriver() {
 		return driver;
+	}
+
+	private void setDefaultDriver(String driverPath) {
+		System.setProperty("webdriver.chrome.driver", driverPath + "chromedriver_win32.exe");
+		ChromeOptions chromeOpts = new ChromeOptions();
+		chromeOpts.addArguments("--headless");
+		chromeOpts.addArguments("--window-size=" + LocalSystem.getNativeResolution());
+		driver = new ChromeDriver(chromeOpts);
 	}
 
 }

@@ -6,4 +6,4 @@ Feature: Home Page
 
   Scenario: Visit Home Page
     Given I Am At The Home Page
-    Then I Should See Page Title 'Simply Do - Balance Project'
+    Then I Should See Page Title 'Simply Do - Balance Projector'
