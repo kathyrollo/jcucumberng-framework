@@ -27,7 +27,6 @@ public final class LocalSystem {
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 		String width = String.valueOf((short) dimension.getWidth());
 		String height = String.valueOf((short) dimension.getHeight());
-
 		return width + "x" + height;
 	}
 
