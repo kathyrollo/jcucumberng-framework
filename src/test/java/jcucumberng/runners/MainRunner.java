@@ -15,7 +15,7 @@ public class MainRunner extends AbstractTestNGCucumberTests {
 
 // Right-Click > Run As > TestNG Test
 
-// TODO: Implement Log4j 2
+// TODO: Implement Log4j2
 // TODO: Add testng.xml
 // TODO: Integrate with Jenkins
 // TODO: Integrate with Selenium Grid

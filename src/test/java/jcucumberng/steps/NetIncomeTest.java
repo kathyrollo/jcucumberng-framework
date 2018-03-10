@@ -34,27 +34,26 @@ public class NetIncomeTest {
 
 	@When("^I Enter My Regular Income Sources$")
 	public void I_Enter_My_Regular_Income_Sources(DataTable dataTable) throws Throwable {
-		List<Income> incomeList = dataTable.asList(Income.class);
+		List<Income> incomes = dataTable.asList(Income.class);
 
-		int itemCount = incomeList.size();
 		By addIncomeBy = By.cssSelector("button[ng-click='addIncome();']");
+		By nameFieldBy = ByAngular.model("income.name");
+		By amountFieldBy = ByAngular.model("income.amount");
+		By freqDropMenuBy = ByAngular.model("income.frequency");
+
+		int itemCount = incomes.size();
 		for (int ctr = 0; ctr < itemCount - 1; ctr++) {
 			Selenium.clickElement(driver, addIncomeBy);
 		}
 
-		By nameFieldBy = ByAngular.model("income.name");
 		List<WebElement> nameFields = driver.findElements(nameFieldBy);
-
-		By amountFieldBy = ByAngular.model("income.amount");
 		List<WebElement> amountFields = driver.findElements(amountFieldBy);
-
-		By freqDropMenuBy = ByAngular.model("income.frequency");
 		List<Select> freqDropMenus = Selenium.getSelectElements(driver, freqDropMenuBy);
 
-		for (int ctr = 0; ctr < incomeList.size(); ctr++) {
-			Selenium.enterText(driver, nameFields.get(ctr), incomeList.get(ctr).getName());
-			Selenium.enterText(driver, amountFields.get(ctr), incomeList.get(ctr).getAmount());
-			Selenium.selectFromDropMenuByText(driver, freqDropMenus.get(ctr), incomeList.get(ctr).getFrequency());
+		for (int ctr = 0; ctr < incomes.size(); ctr++) {
+			Selenium.enterText(driver, nameFields.get(ctr), incomes.get(ctr).getName());
+			Selenium.enterText(driver, amountFields.get(ctr), incomes.get(ctr).getAmount());
+			Selenium.selectFromDropMenuByText(driver, freqDropMenus.get(ctr), incomes.get(ctr).getFrequency());
 		}
 
 		Selenium.captureScreen(driver);
@@ -62,27 +61,26 @@ public class NetIncomeTest {
 
 	@When("^I Enter My Regular Expenses$")
 	public void I_Enter_My_Regular_Expenses(DataTable dataTable) throws Throwable {
-		List<Expense> expenseList = dataTable.asList(Expense.class);
+		List<Expense> expenses = dataTable.asList(Expense.class);
 
-		int itemCount = expenseList.size();
 		By addExpenseBy = By.cssSelector("button[ng-click='addExpense();']");
+		By nameFieldBy = ByAngular.model("expense.name");
+		By amountFieldBy = ByAngular.model("expense.amount");
+		By freqDropMenuBy = ByAngular.model("expense.frequency");
+
+		int itemCount = expenses.size();
 		for (int ctr = 0; ctr < itemCount - 1; ctr++) {
 			Selenium.clickElement(driver, addExpenseBy);
 		}
 
-		By nameFieldBy = ByAngular.model("expense.name");
 		List<WebElement> nameFields = driver.findElements(nameFieldBy);
-
-		By amountFieldBy = ByAngular.model("expense.amount");
 		List<WebElement> amountFields = driver.findElements(amountFieldBy);
-
-		By freqDropMenuBy = ByAngular.model("expense.frequency");
 		List<Select> freqDropMenus = Selenium.getSelectElements(driver, freqDropMenuBy);
 
-		for (int ctr = 0; ctr < expenseList.size(); ctr++) {
-			Selenium.enterText(driver, nameFields.get(ctr), expenseList.get(ctr).getName());
-			Selenium.enterText(driver, amountFields.get(ctr), expenseList.get(ctr).getAmount());
-			Selenium.selectFromDropMenuByText(driver, freqDropMenus.get(ctr), expenseList.get(ctr).getFrequency());
+		for (int ctr = 0; ctr < expenses.size(); ctr++) {
+			Selenium.enterText(driver, nameFields.get(ctr), expenses.get(ctr).getName());
+			Selenium.enterText(driver, amountFields.get(ctr), expenses.get(ctr).getAmount());
+			Selenium.selectFromDropMenuByText(driver, freqDropMenus.get(ctr), expenses.get(ctr).getFrequency());
 		}
 
 		Selenium.captureScreen(driver);
