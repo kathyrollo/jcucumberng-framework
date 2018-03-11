@@ -96,11 +96,11 @@ public class NetIncomeTest {
 		String netIncomePerMonthText = driver.findElement(netIncomePerMonthBy).getText();
 		String netIncomePerYearText = driver.findElement(netIncomePerYearBy).getText();
 
-		Assert.assertEquals(netIncomePerMonthText, netIncomePerMonth);
-		Assert.assertEquals(netIncomePerYearText, netIncomePerYear);
-
 		logger.debug("Net Income Per Month: " + netIncomePerMonthText);
 		logger.debug("Net Income Per Year: " + netIncomePerYearText);
+
+		Assert.assertEquals(netIncomePerMonthText, netIncomePerMonth);
+		Assert.assertEquals(netIncomePerYearText, netIncomePerYear);
 
 		Selenium.scrollVertical(driver, 500);
 		Selenium.captureScreen(driver);

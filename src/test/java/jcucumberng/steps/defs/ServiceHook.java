@@ -32,7 +32,7 @@ public class ServiceHook {
 		FirefoxBinary ffBin = null;
 		FirefoxOptions ffOpts = null;
 
-		logger.info("Setting up driver...");
+		logger.info("Initializing webdriver...");
 		String browser = Configuration.readKey("browser").toLowerCase();
 		logger.info("Browser: " + browser);
 
@@ -83,7 +83,7 @@ public class ServiceHook {
 			driver = new InternetExplorerDriver();
 			break;
 		default:
-			logger.error("Invalid browser specified. Using default chrome-nohead.");
+			logger.error("Unsupported browser specified. Using default chrome-nohead.");
 			setDefaultDriver(driverPath);
 			break;
 		}
@@ -91,7 +91,7 @@ public class ServiceHook {
 
 	@After
 	public void tearDown() throws Throwable {
-		logger.info("Cleaning up...");
+		logger.info("Terminating webdriver...");
 		driver.quit();
 	}
 

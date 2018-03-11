@@ -13,7 +13,7 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 public class MainRunner extends AbstractTestNGCucumberTests {
 }
 
-// Right-Click > Run As > TestNG Test
+// For Eclipse IDE: Right-Click > Run As > TestNG Test
 
 // TODO: Add testng.xml
 // TODO: Integrate with Jenkins

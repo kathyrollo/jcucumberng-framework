@@ -30,8 +30,8 @@ public class HomePageTest {
 	@Then("^I Should See Page Title '(.*)'$")
 	public void I_Should_See_Page_Title(String pageTitle) throws Throwable {
 		String windowTitle = driver.getTitle();
-		Assert.assertEquals(windowTitle, pageTitle);
 		logger.debug("Window Title: " + windowTitle);
+		Assert.assertEquals(windowTitle, pageTitle);
 	}
 
 }
