@@ -1,4 +1,4 @@
-package jcucumberng.stepdefs.pages;
+package jcucumberng.steps.pages;
 
 import org.openqa.selenium.WebDriver;
 

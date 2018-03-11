@@ -1,12 +1,12 @@
-package jcucumberng.stepdefs.pojos;
+package jcucumberng.steps.pojos;
 
-public class Income {
+public class Expense {
 
 	private String name = null;
 	private String amount = null;
 	private String frequency = null;
 
-	public Income(String name, String amount, String frequency) {
+	public Expense(String name, String amount, String frequency) {
 		this.name = name;
 		this.amount = amount;
 		this.frequency = frequency;
@@ -39,7 +39,7 @@ public class Income {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Income [name=");
+		builder.append("Expense [name=");
 		builder.append(name);
 		builder.append(", amount=");
 		builder.append(amount);
