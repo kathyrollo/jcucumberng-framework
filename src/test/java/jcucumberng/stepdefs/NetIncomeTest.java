@@ -1,4 +1,4 @@
-package jcucumberng.tests;
+package jcucumberng.stepdefs;
 
 import java.util.List;
 

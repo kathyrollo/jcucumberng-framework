@@ -5,7 +5,7 @@ import cucumber.api.SnippetType;
 import cucumber.api.testng.AbstractTestNGCucumberTests;
 
 @CucumberOptions(features = "src/test/resources/features", tags = {
-		"not @ignore" }, glue = "jcucumberng/tests", plugin = { "pretty",
+		"not @ignore" }, glue = "jcucumberng/stepdefs", plugin = { "pretty",
 				"html:target/cucumber-generated-reports/cucumber-report",
 				"json:target/cucumber-generated-reports/cucumber-report.json",
 				"junit:target/cucumber-generated-reports/cucumber-report.xml" }, snippets = SnippetType.UNDERSCORE, monochrome = true, dryRun = false)

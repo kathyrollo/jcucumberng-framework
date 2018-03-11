@@ -1,4 +1,4 @@
-package jcucumberng.tests;
+package jcucumberng.stepdefs;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
