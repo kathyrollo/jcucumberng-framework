@@ -1,5 +1,7 @@
 package jcucumberng.steps.defs;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
@@ -9,6 +11,8 @@ import jcucumberng.api.Configuration;
 import jcucumberng.api.Selenium;
 
 public class HomePageTest {
+	private static final Logger logger = LogManager.getLogger(HomePageTest.class);
+
 	private WebDriver driver = null;
 
 	// PicoContainer injects ServiceHook class
@@ -25,7 +29,9 @@ public class HomePageTest {
 
 	@Then("^I Should See Page Title '(.*)'$")
 	public void I_Should_See_Page_Title(String pageTitle) throws Throwable {
-		Assert.assertEquals(driver.getTitle(), pageTitle);
+		String windowTitle = driver.getTitle();
+		Assert.assertEquals(windowTitle, pageTitle);
+		logger.debug("Window Title: " + windowTitle);
 	}
 
 }
