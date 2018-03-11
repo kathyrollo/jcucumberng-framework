@@ -1,4 +1,4 @@
-package jcucumberng.steps;
+package jcucumberng.tests;
 
 import java.util.List;
 

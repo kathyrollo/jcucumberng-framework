@@ -1,4 +1,4 @@
-package jcucumberng.steps;
+package jcucumberng.tests;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
