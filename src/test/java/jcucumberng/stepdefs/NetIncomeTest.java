@@ -14,8 +14,8 @@ import cucumber.api.DataTable;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import jcucumberng.api.Selenium;
-import jcucumberng.pojos.Expense;
-import jcucumberng.pojos.Income;
+import jcucumberng.stepdefs.pojos.Expense;
+import jcucumberng.stepdefs.pojos.Income;
 
 public class NetIncomeTest {
 	private WebDriver driver = null;

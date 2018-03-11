@@ -1,4 +1,4 @@
-package jcucumberng.pojos;
+package jcucumberng.stepdefs.pojos;
 
 public class Income {
 
