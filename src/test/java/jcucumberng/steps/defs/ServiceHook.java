@@ -1,5 +1,7 @@
 package jcucumberng.steps.defs;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -16,6 +18,8 @@ import jcucumberng.api.Configuration;
 import jcucumberng.api.LocalSystem;
 
 public class ServiceHook {
+	private static final Logger logger = LogManager.getLogger(ServiceHook.class);
+
 	private WebDriver driver = null;
 
 	@Before
@@ -28,7 +32,10 @@ public class ServiceHook {
 		FirefoxBinary ffBin = null;
 		FirefoxOptions ffOpts = null;
 
+		logger.info("Setting up driver...");
 		String browser = Configuration.readKey("browser").toLowerCase();
+		logger.info("Browser: " + browser);
+
 		switch (browser) {
 		case "chrome":
 			System.setProperty("webdriver.chrome.driver", driverPath + "chromedriver_win32.exe");
@@ -76,6 +83,7 @@ public class ServiceHook {
 			driver = new InternetExplorerDriver();
 			break;
 		default:
+			logger.error("Invalid browser specified. Using default chrome-nohead.");
 			setDefaultDriver(driverPath);
 			break;
 		}
@@ -83,6 +91,7 @@ public class ServiceHook {
 
 	@After
 	public void tearDown() throws Throwable {
+		logger.info("Cleaning up...");
 		driver.quit();
 	}
 
