@@ -22,7 +22,9 @@ public class HomePageTest {
 
 	@Given("^I Am At The Home Page$")
 	public void I_Am_At_The_Home_Page() throws Throwable {
-		driver.get(Configuration.readKey("base_url"));
+		String baseUrl = Configuration.readKey("base_url");
+		logger.debug("Navigating to website: " + baseUrl);
+		driver.get(baseUrl);
 		driver.manage().window().maximize();
 		Selenium.captureScreen(driver);
 	}
