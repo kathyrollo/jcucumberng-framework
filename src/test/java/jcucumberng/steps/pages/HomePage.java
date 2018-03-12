@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
 
 import com.paulhammant.ngwebdriver.ByAngular;
 
@@ -35,10 +33,6 @@ public class HomePage {
 	private By netIncomePerMonthBy = ByAngular.binding("roundDown(monthlyNet())");
 	private By netIncomePerYearBy = ByAngular.binding("roundDown(monthlyNet()*12)+tallyTransactions()");
 
-	private List<WebElement> nameFields = null;
-	private List<WebElement> amountFields = null;
-	private List<Select> freqDropMenus = null;
-
 	private String netIncomePerMonthText = null;
 	private String netIncomePerYearText = null;
 
@@ -54,18 +48,16 @@ public class HomePage {
 	}
 
 	public void enterRegularIncomeSources(List<Income> incomes) {
+		// Click add button based on number of items
 		for (int ctr = 0; ctr < incomes.size() - 1; ctr++) {
 			Selenium.clickElement(driver, addIncomeBy);
 		}
 
-		nameFields = driver.findElements(incNameFieldBy);
-		amountFields = driver.findElements(incAmountFieldBy);
-		freqDropMenus = Selenium.getSelectElements(driver, incFreqDropMenuBy);
-
 		for (int ctr = 0; ctr < incomes.size(); ctr++) {
-			Selenium.enterText(driver, nameFields.get(ctr), incomes.get(ctr).getName());
-			Selenium.enterText(driver, amountFields.get(ctr), incomes.get(ctr).getAmount());
-			Selenium.selectFromDropMenuByText(driver, freqDropMenus.get(ctr), incomes.get(ctr).getFrequency());
+			Selenium.enterText(driver, driver.findElements(incNameFieldBy).get(ctr), incomes.get(ctr).getName());
+			Selenium.enterText(driver, driver.findElements(incAmountFieldBy).get(ctr), incomes.get(ctr).getAmount());
+			Selenium.selectFromDropMenuByText(driver, Selenium.getSelectElements(driver, incFreqDropMenuBy).get(ctr),
+					incomes.get(ctr).getFrequency());
 		}
 	}
 
@@ -74,14 +66,11 @@ public class HomePage {
 			Selenium.clickElement(driver, addExpenseBy);
 		}
 
-		nameFields = driver.findElements(expNameFieldBy);
-		amountFields = driver.findElements(expAmountFieldBy);
-		freqDropMenus = Selenium.getSelectElements(driver, expFreqDropMenuBy);
-
 		for (int ctr = 0; ctr < expenses.size(); ctr++) {
-			Selenium.enterText(driver, nameFields.get(ctr), expenses.get(ctr).getName());
-			Selenium.enterText(driver, amountFields.get(ctr), expenses.get(ctr).getAmount());
-			Selenium.selectFromDropMenuByText(driver, freqDropMenus.get(ctr), expenses.get(ctr).getFrequency());
+			Selenium.enterText(driver, driver.findElements(expNameFieldBy).get(ctr), expenses.get(ctr).getName());
+			Selenium.enterText(driver, driver.findElements(expAmountFieldBy).get(ctr), expenses.get(ctr).getAmount());
+			Selenium.selectFromDropMenuByText(driver, Selenium.getSelectElements(driver, expFreqDropMenuBy).get(ctr),
+					expenses.get(ctr).getFrequency());
 		}
 	}
 
