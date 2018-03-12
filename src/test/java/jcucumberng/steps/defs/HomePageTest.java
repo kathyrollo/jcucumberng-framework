@@ -34,6 +34,7 @@ public class HomePageTest {
 		String windowTitle = driver.getTitle();
 		logger.debug("Window Title: " + windowTitle);
 		Assert.assertEquals(windowTitle, pageTitle);
+		Selenium.captureScreen(driver);
 	}
 
 }
