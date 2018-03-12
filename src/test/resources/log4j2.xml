@@ -6,7 +6,7 @@
 
 	<Appenders>
 		<RollingFile name="fileLogger" fileName="${logPath}/cucumber-log.log"
-			filePattern="${logPath}/jcucumberng-history-%d{yyyy-MM-dd}.log">
+			filePattern="${logPath}/cucumber-log_%d{yyyy-MM-dd}.log">
 			<PatternLayout>
 				<pattern>[%-5level] %d{HH:mm:ss.SSS} %logger{36}.%M() - %msg%n
 				</pattern>
