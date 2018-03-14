@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import com.paulhammant.ngwebdriver.ByAngular;
 
@@ -23,24 +24,24 @@ public class HomePage {
 
 	private By startBalanceBy = ByAngular.model("startBalance");
 	private By addIncomeBy = By.cssSelector("button[ng-click='addIncome();']");
-	private By incNameFieldBy = ByAngular.model("income.name");
-	private By incAmountFieldBy = ByAngular.model("income.amount");
+	private By incNameTxtBy = ByAngular.model("income.name");
+	private By incAmtTxtBy = ByAngular.model("income.amount");
 	private By incFreqDropMenuBy = ByAngular.model("income.frequency");
 	private By addExpenseBy = By.cssSelector("button[ng-click='addExpense();']");
-	private By expNameFieldBy = ByAngular.model("expense.name");
-	private By expAmountFieldBy = ByAngular.model("expense.amount");
+	private By expNameTxtBy = ByAngular.model("expense.name");
+	private By expAmtTxtBy = ByAngular.model("expense.amount");
 	private By expFreqDropMenuBy = ByAngular.model("expense.frequency");
-	private By netIncomePerMonthBy = ByAngular.binding("roundDown(monthlyNet())");
-	private By netIncomePerYearBy = ByAngular.binding("roundDown(monthlyNet()*12)+tallyTransactions()");
+	private By netPerMonthBy = ByAngular.binding("roundDown(monthlyNet())");
+	private By netPerYearBy = ByAngular.binding("roundDown(monthlyNet()*12)+tallyTransactions()");
 
-	private String netIncomePerMonthText = null;
-	private String netIncomePerYearText = null;
+	private WebElement netPerMonthEl = null;
+	private WebElement netPerYearEl = null;
 
 	public HomePage(WebDriver driver) {
 		this.driver = driver;
 
-		setNetIncomePerMonthText(driver.findElement(netIncomePerMonthBy).getText());
-		setNetIncomePerYearText(driver.findElement(netIncomePerYearBy).getText());
+		setNetPerMonthEl(driver.findElement(netPerMonthBy));
+		setNetPerYearEl(driver.findElement(netPerYearBy));
 	}
 
 	public void enterStartBalance(String startBalance) {
@@ -54,8 +55,8 @@ public class HomePage {
 		}
 
 		for (int ctr = 0; ctr < incomes.size(); ctr++) {
-			Selenium.enterText(driver, driver.findElements(incNameFieldBy).get(ctr), incomes.get(ctr).getName());
-			Selenium.enterText(driver, driver.findElements(incAmountFieldBy).get(ctr), incomes.get(ctr).getAmount());
+			Selenium.enterText(driver, driver.findElements(incNameTxtBy).get(ctr), incomes.get(ctr).getName());
+			Selenium.enterText(driver, driver.findElements(incAmtTxtBy).get(ctr), incomes.get(ctr).getAmount());
 			Selenium.selectFromDropMenuByText(driver, Selenium.getSelectElements(driver, incFreqDropMenuBy).get(ctr),
 					incomes.get(ctr).getFrequency());
 		}
@@ -67,27 +68,27 @@ public class HomePage {
 		}
 
 		for (int ctr = 0; ctr < expenses.size(); ctr++) {
-			Selenium.enterText(driver, driver.findElements(expNameFieldBy).get(ctr), expenses.get(ctr).getName());
-			Selenium.enterText(driver, driver.findElements(expAmountFieldBy).get(ctr), expenses.get(ctr).getAmount());
+			Selenium.enterText(driver, driver.findElements(expNameTxtBy).get(ctr), expenses.get(ctr).getName());
+			Selenium.enterText(driver, driver.findElements(expAmtTxtBy).get(ctr), expenses.get(ctr).getAmount());
 			Selenium.selectFromDropMenuByText(driver, Selenium.getSelectElements(driver, expFreqDropMenuBy).get(ctr),
 					expenses.get(ctr).getFrequency());
 		}
 	}
 
-	public String getNetIncomePerMonthText() {
-		return netIncomePerMonthText;
+	public WebElement getNetPerMonthEl() {
+		return netPerMonthEl;
 	}
 
-	public void setNetIncomePerMonthText(String netIncomePerMonthText) {
-		this.netIncomePerMonthText = netIncomePerMonthText;
+	public void setNetPerMonthEl(WebElement netPerMonthEl) {
+		this.netPerMonthEl = netPerMonthEl;
 	}
 
-	public String getNetIncomePerYearText() {
-		return netIncomePerYearText;
+	public WebElement getNetPerYearEl() {
+		return netPerYearEl;
 	}
 
-	public void setNetIncomePerYearText(String netIncomePerYearText) {
-		this.netIncomePerYearText = netIncomePerYearText;
+	public void setNetPerYearEl(WebElement netPerYearEl) {
+		this.netPerYearEl = netPerYearEl;
 	}
 
 }

@@ -19,15 +19,16 @@ public class NetIncomeTest {
 	private static final Logger logger = LogManager.getLogger(NetIncomeTest.class);
 
 	private WebDriver driver = null;
+	private HomePage homePage = null;
 
 	// PicoContainer injects ServiceHook class
 	public NetIncomeTest(ServiceHook serviceHook) {
 		this.driver = serviceHook.getDriver();
+		homePage = new HomePage(driver);
 	}
 
 	@When("^I Enter My Start Balance: (.*)$")
 	public void I_Enter_My_Start_Balance(String startBalance) throws Throwable {
-		HomePage homePage = new HomePage(driver);
 		homePage.enterStartBalance(startBalance);
 		Selenium.captureScreen(driver);
 	}
@@ -35,7 +36,6 @@ public class NetIncomeTest {
 	@When("^I Enter My Regular Income Sources$")
 	public void I_Enter_My_Regular_Income_Sources(DataTable dataTable) throws Throwable {
 		List<Income> incomes = dataTable.asList(Income.class);
-		HomePage homePage = new HomePage(driver);
 		homePage.enterRegularIncomeSources(incomes);
 		Selenium.captureScreen(driver);
 	}
@@ -43,22 +43,20 @@ public class NetIncomeTest {
 	@When("^I Enter My Regular Expenses$")
 	public void I_Enter_My_Regular_Expenses(DataTable dataTable) throws Throwable {
 		List<Expense> expenses = dataTable.asList(Expense.class);
-		HomePage homePage = new HomePage(driver);
 		homePage.enterRegularExpenses(expenses);
 		Selenium.captureScreen(driver);
 	}
 
 	@Then("^I Should See Net Income: (.*) (.*)$")
-	public void I_Should_See_Net_Income(String netIncomePerMonth, String netIncomePerYear) throws Throwable {
-		HomePage homePage = new HomePage(driver);
-		String netIncomePerMonthText = homePage.getNetIncomePerMonthText();
-		String netIncomePerYearText = homePage.getNetIncomePerYearText();
+	public void I_Should_See_Net_Income(String netPerMonth, String netPerYear) throws Throwable {
+		String netPerMonthText = homePage.getNetPerMonthEl().getText();
+		String netPerYearText = homePage.getNetPerYearEl().getText();
 
-		logger.debug("Net Income Per Month: " + netIncomePerMonthText);
-		logger.debug("Net Income Per Year: " + netIncomePerYearText);
+		logger.debug("Net Per Month: " + netPerMonthText);
+		logger.debug("Net Per Year: " + netPerYearText);
 
-		Assert.assertEquals(netIncomePerMonthText, netIncomePerMonth);
-		Assert.assertEquals(netIncomePerYearText, netIncomePerYear);
+		Assert.assertEquals(netPerMonthText, netPerMonth);
+		Assert.assertEquals(netPerYearText, netPerYear);
 
 		Selenium.scrollVertical(driver, 500);
 		Selenium.captureScreen(driver);

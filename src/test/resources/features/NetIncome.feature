@@ -16,8 +16,8 @@ Feature: Net Income
       | Water       |    900 | Weekly        |
       | Internet    |   1900 | Every 2 Weeks |
       | Cable TV    |    555 | Daily         |
-    Then I Should See Net Income: <netIncomePerMonth> <netIncomePerYear>
+    Then I Should See Net Income: <netPerMonth> <netPerYear>
 
     Examples: 
-      | startBalance | netIncomePerMonth | netIncomePerYear |
-      |       348000 |             23769 |           285225 |
+      | startBalance | netPerMonth | netPerYear |
+      |       348000 |       23769 |     285225 |
