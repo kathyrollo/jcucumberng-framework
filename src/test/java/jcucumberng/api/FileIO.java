@@ -19,8 +19,6 @@ import com.itextpdf.text.pdf.parser.PdfTextExtractor;
 
 /**
  * This class handles actions for manipulating files or documents.
- * 
- * @author Katherine Rollo (rollo.katherine@gmail.com)
  */
 public final class FileIO {
 
@@ -39,6 +37,8 @@ public final class FileIO {
 	 * @return boolean - true if matching file is found using given prefix and
 	 *         suffix
 	 * @throws IOException
+	 * 
+	 * @author Katherine Rollo (rollo.katherine@gmail.com)
 	 */
 	public static boolean doesFileExist(String prefix, String suffix) throws IOException {
 		String directory = Configuration.readKey("file_dir");
@@ -65,6 +65,8 @@ public final class FileIO {
 	 * 
 	 * @return String - extracted text from PDF file
 	 * @throws IOException
+	 * 
+	 * @author Katherine Rollo (rollo.katherine@gmail.com)
 	 */
 	public static String extractPdfText() throws IOException {
 		PdfReader pdfReader = new PdfReader(Configuration.readKey("pdf_file_path"));
@@ -93,6 +95,8 @@ public final class FileIO {
 	 * @return Object[ ][ ] - the String values in 2D array
 	 * @throws FileNotFoundException
 	 * @throws IOException
+	 * 
+	 * @author Katherine Rollo (rollo.katherine@gmail.com)
 	 */
 	public static Object[][] convertExcelTo2DArray(String xlsxFilePath, String sheetName)
 			throws FileNotFoundException, IOException {

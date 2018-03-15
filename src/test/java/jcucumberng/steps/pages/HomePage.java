@@ -29,25 +29,25 @@ public class HomePage {
 	private WebElement addIncomeBtn = null;
 
 	@FindAll(value = { @FindBy(css = "input[ng-model='income.name']") })
-	private List<WebElement> incomeNameFlds = null;
+	private List<WebElement> incomeNameTxts = null;
 
 	@FindAll(value = { @FindBy(css = "input[ng-model='income.amount']") })
-	private List<WebElement> incomeAmountFlds = null;
+	private List<WebElement> incomeAmountTxts = null;
 
 	@FindAll(value = { @FindBy(css = "select[ng-model='income.frequency']") })
-	private List<WebElement> incomeFreqElements = null;
+	private List<WebElement> incomeFreqDropMenus = null;
 
 	@FindBy(how = How.CSS, using = "button[ng-click='addExpense();']")
 	private WebElement addExpenseBtn = null;
 
 	@FindAll(value = { @FindBy(css = "input[ng-model='expense.name']") })
-	private List<WebElement> expenseNameFlds = null;
+	private List<WebElement> expenseNameTxts = null;
 
 	@FindAll(value = { @FindBy(css = "input[ng-model='expense.amount']") })
-	private List<WebElement> expenseAmountFlds = null;
+	private List<WebElement> expenseAmountTxts = null;
 
 	@FindAll(value = { @FindBy(css = "select[ng-model='expense.frequency']") })
-	private List<WebElement> expenseFreqElements = null;
+	private List<WebElement> expenseFreqDropMenus = null;
 
 	@FindBy(how = How.CSS, using = "td[ng-class='positiveNegative(monthlyNet())']")
 	private WebElement netPerMonthTd = null;
@@ -69,10 +69,10 @@ public class HomePage {
 			Selenium.clickElement(driver, addIncomeBtn);
 		}
 
-		List<Select> incomeFreqSelects = Selenium.getSelectElements(driver, incomeFreqElements);
+		List<Select> incomeFreqSelects = Selenium.getSelectElements(driver, incomeFreqDropMenus);
 		for (int ctr = 0; ctr < incomes.size(); ctr++) {
-			Selenium.enterText(driver, incomeNameFlds.get(ctr), incomes.get(ctr).getName());
-			Selenium.enterText(driver, incomeAmountFlds.get(ctr), incomes.get(ctr).getAmount());
+			Selenium.enterText(driver, incomeNameTxts.get(ctr), incomes.get(ctr).getName());
+			Selenium.enterText(driver, incomeAmountTxts.get(ctr), incomes.get(ctr).getAmount());
 			Selenium.selectFromDropMenuByText(driver, incomeFreqSelects.get(ctr), incomes.get(ctr).getFrequency());
 		}
 	}
@@ -82,10 +82,10 @@ public class HomePage {
 			Selenium.clickElement(driver, addExpenseBtn);
 		}
 
-		List<Select> expenseFreqSelects = Selenium.getSelectElements(driver, expenseFreqElements);
+		List<Select> expenseFreqSelects = Selenium.getSelectElements(driver, expenseFreqDropMenus);
 		for (int ctr = 0; ctr < expenses.size(); ctr++) {
-			Selenium.enterText(driver, expenseNameFlds.get(ctr), expenses.get(ctr).getName());
-			Selenium.enterText(driver, expenseAmountFlds.get(ctr), expenses.get(ctr).getAmount());
+			Selenium.enterText(driver, expenseNameTxts.get(ctr), expenses.get(ctr).getName());
+			Selenium.enterText(driver, expenseAmountTxts.get(ctr), expenses.get(ctr).getAmount());
 			Selenium.selectFromDropMenuByText(driver, expenseFreqSelects.get(ctr), expenses.get(ctr).getFrequency());
 		}
 	}
