@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
 import cucumber.api.DataTable;
@@ -24,7 +25,7 @@ public class NetIncomeTest {
 	// PicoContainer injects ServiceHook class
 	public NetIncomeTest(ServiceHook serviceHook) {
 		this.driver = serviceHook.getDriver();
-		homePage = new HomePage(driver);
+		homePage = PageFactory.initElements(driver, HomePage.class);
 	}
 
 	@When("^I Enter My Start Balance: (.*)$")
@@ -49,8 +50,8 @@ public class NetIncomeTest {
 
 	@Then("^I Should See Net Income: (.*) (.*)$")
 	public void I_Should_See_Net_Income(String netPerMonth, String netPerYear) throws Throwable {
-		String netPerMonthText = homePage.getNetPerMonthEl().getText();
-		String netPerYearText = homePage.getNetPerYearEl().getText();
+		String netPerMonthText = homePage.getNetPerMonthTd().getText();
+		String netPerYearText = homePage.getNetPerYearTd().getText();
 
 		logger.debug("Net Per Month: " + netPerMonthText);
 		logger.debug("Net Per Year: " + netPerYearText);

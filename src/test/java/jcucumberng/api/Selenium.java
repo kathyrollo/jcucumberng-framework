@@ -113,18 +113,35 @@ public final class Selenium {
 	}
 
 	/**
-	 * Returns a List of all Select elements based on locator.
+	 * Returns a List of all Select elements.
 	 * 
 	 * @param driver
 	 *            the Selenium WebDriver
 	 * @param selectLocator
-	 *            the locator of the Select element
+	 *            the locator of the Select elements
 	 * @return List - the List of Select elements
 	 */
 	public static List<Select> getSelectElements(WebDriver driver, By selectLocator) {
 		List<WebElement> elements = driver.findElements(selectLocator);
 		List<Select> selectElements = new ArrayList<>();
 		for (WebElement element : elements) {
+			selectElements.add(new Select(element));
+		}
+		return selectElements;
+	}
+
+	/**
+	 * Returns a List of all Select elements.
+	 * 
+	 * @param driver
+	 *            the Selenium WebDriver
+	 * @param webElements
+	 *            the List of Select web elements
+	 * @return List - the List of Select elements
+	 */
+	public static List<Select> getSelectElements(WebDriver driver, List<WebElement> webElements) {
+		List<Select> selectElements = new ArrayList<>();
+		for (WebElement element : webElements) {
 			selectElements.add(new Select(element));
 		}
 		return selectElements;
@@ -228,7 +245,19 @@ public final class Selenium {
 	}
 
 	/**
-	 * Clicks a child element from a parent element.
+	 * Clicks an element in the web page.
+	 * 
+	 * @param driver
+	 *            the Selenium WebDriver
+	 * @param clickableElement
+	 *            the WebElement of the clickable item
+	 */
+	public static void clickElement(WebDriver driver, WebElement clickableElement) {
+		clickableElement.click();
+	}
+
+	/**
+	 * Clicks a child element of a parent element.
 	 * 
 	 * @param driver
 	 *            the Selenium WebDriver
@@ -239,6 +268,21 @@ public final class Selenium {
 	 */
 	public static void clickChildElement(WebDriver driver, By parentLocator, By childLocator) {
 		WebElement parentElement = driver.findElement(parentLocator);
+		WebElement childElement = parentElement.findElement(childLocator);
+		childElement.click();
+	}
+
+	/**
+	 * Clicks a child element of a parent element.
+	 * 
+	 * @param driver
+	 *            the Selenium WebDriver
+	 * @param parentElement
+	 *            the WebElement of the parent
+	 * @param childLocator
+	 *            the locator of the child element
+	 */
+	public static void clickChildElement(WebDriver driver, WebElement parentElement, By childLocator) {
 		WebElement childElement = parentElement.findElement(childLocator);
 		childElement.click();
 	}
