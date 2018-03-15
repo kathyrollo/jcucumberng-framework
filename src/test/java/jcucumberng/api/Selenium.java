@@ -20,8 +20,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 /**
  * This class handles actions for interacting with web applications using the
  * Selenium WebDriver.
- * 
- * @author Katherine Rollo (rollo.katherine@gmail.com)
  */
 public final class Selenium {
 
@@ -38,6 +36,8 @@ public final class Selenium {
 	 *            the locator of the clickable element that opens the child window
 	 * @return String - the handle of the parent window before opening the child
 	 *         window
+	 * 
+	 * @author Katherine Rollo (rollo.katherine@gmail.com)
 	 */
 	public static String openWindow(WebDriver driver, By clickableLocator) {
 		String parentHandle = driver.getWindowHandle(); // Save parent window
@@ -68,6 +68,8 @@ public final class Selenium {
 	 *            the String URL that opens the child window
 	 * @return String - the handle of the parent window before opening the child
 	 *         window
+	 * 
+	 * @author Katherine Rollo (rollo.katherine@gmail.com)
 	 */
 	public static String openWindow(WebDriver driver, String url) {
 		String parentHandle = driver.getWindowHandle();
@@ -96,6 +98,8 @@ public final class Selenium {
 	 *            the title of the window
 	 * @return String - the handle of the parent window before opening the child
 	 *         window
+	 * 
+	 * @author Katherine Rollo (rollo.katherine@gmail.com)
 	 */
 	public static String switchToWindowByTitle(WebDriver driver, String windowTitle) {
 		Set<String> handles = driver.getWindowHandles();
@@ -113,13 +117,15 @@ public final class Selenium {
 	}
 
 	/**
-	 * Returns a List of all Select elements based on locator.
+	 * Returns a List of all Select elements.
 	 * 
 	 * @param driver
 	 *            the Selenium WebDriver
 	 * @param selectLocator
-	 *            the locator of the Select element
+	 *            the locator of the Select elements
 	 * @return List - the List of Select elements
+	 * 
+	 * @author Katherine Rollo (rollo.katherine@gmail.com)
 	 */
 	public static List<Select> getSelectElements(WebDriver driver, By selectLocator) {
 		List<WebElement> elements = driver.findElements(selectLocator);
@@ -131,11 +137,32 @@ public final class Selenium {
 	}
 
 	/**
+	 * Returns a List of all Select elements.
+	 * 
+	 * @param driver
+	 *            the Selenium WebDriver
+	 * @param webElements
+	 *            the List of Select web elements
+	 * @return List - the List of Select elements
+	 * 
+	 * @author Katherine Rollo (rollo.katherine@gmail.com)
+	 */
+	public static List<Select> getSelectElements(WebDriver driver, List<WebElement> webElements) {
+		List<Select> selectElements = new ArrayList<>();
+		for (WebElement element : webElements) {
+			selectElements.add(new Select(element));
+		}
+		return selectElements;
+	}
+
+	/**
 	 * Returns all text inside the body tag in HTML.
 	 * 
 	 * @param driver
 	 *            the Selenium WebDriver
 	 * @return String - the text within HTML body tags
+	 * 
+	 * @author Katherine Rollo (rollo.katherine@gmail.com)
 	 */
 	public static String getBodyText(WebDriver driver) {
 		return driver.findElement(By.tagName("body")).getText();
@@ -148,6 +175,8 @@ public final class Selenium {
 	 *            the Selenium WebDriver
 	 * @param yPosition
 	 *            positive value to scroll down, negative value to scroll up
+	 * 
+	 * @author Katherine Rollo (rollo.katherine@gmail.com)
 	 */
 	public static void scrollVertical(WebDriver driver, int yPosition) {
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
@@ -163,6 +192,8 @@ public final class Selenium {
 	 *            the locator of the textfield or textarea
 	 * @param text
 	 *            the text to be entered
+	 * 
+	 * @author Katherine Rollo (rollo.katherine@gmail.com)
 	 */
 	public static void enterText(WebDriver driver, By fieldLocator, String text) {
 		WebElement field = driver.findElement(fieldLocator);
@@ -179,6 +210,8 @@ public final class Selenium {
 	 *            the WebElement of the textfield or textarea
 	 * @param text
 	 *            the text to be entered
+	 * 
+	 * @author Katherine Rollo (rollo.katherine@gmail.com)
 	 */
 	public static void enterText(WebDriver driver, WebElement field, String text) {
 		field.clear();
@@ -194,6 +227,8 @@ public final class Selenium {
 	 *            the locator of the dropdown menu
 	 * @param text
 	 *            the text to be selected from the dropdown menu
+	 * 
+	 * @author Katherine Rollo (rollo.katherine@gmail.com)
 	 */
 	public static void selectFromDropMenuByText(WebDriver driver, By selectLocator, String text) {
 		Select select = new Select(driver.findElement(selectLocator));
@@ -209,6 +244,8 @@ public final class Selenium {
 	 *            the Select element of the dropdown menu
 	 * @param text
 	 *            the text to be selected from the dropdown menu
+	 * 
+	 * @author Katherine Rollo (rollo.katherine@gmail.com)
 	 */
 	public static void selectFromDropMenuByText(WebDriver driver, Select select, String text) {
 		select.selectByVisibleText(text);
@@ -221,6 +258,8 @@ public final class Selenium {
 	 *            the Selenium WebDriver
 	 * @param clickableLocator
 	 *            the locator of the clickable element
+	 * 
+	 * @author Katherine Rollo (rollo.katherine@gmail.com)
 	 */
 	public static void clickElement(WebDriver driver, By clickableLocator) {
 		WebElement clickableElement = driver.findElement(clickableLocator);
@@ -228,7 +267,21 @@ public final class Selenium {
 	}
 
 	/**
-	 * Clicks a child element from a parent element.
+	 * Clicks an element in the web page.
+	 * 
+	 * @param driver
+	 *            the Selenium WebDriver
+	 * @param clickableElement
+	 *            the WebElement of the clickable item
+	 * 
+	 * @author Katherine Rollo (rollo.katherine@gmail.com)
+	 */
+	public static void clickElement(WebDriver driver, WebElement clickableElement) {
+		clickableElement.click();
+	}
+
+	/**
+	 * Clicks a child element of a parent element.
 	 * 
 	 * @param driver
 	 *            the Selenium WebDriver
@@ -236,9 +289,28 @@ public final class Selenium {
 	 *            the locator of the parent element
 	 * @param childLocator
 	 *            the locator of the child element
+	 * 
+	 * @author Katherine Rollo (rollo.katherine@gmail.com)
 	 */
 	public static void clickChildElement(WebDriver driver, By parentLocator, By childLocator) {
 		WebElement parentElement = driver.findElement(parentLocator);
+		WebElement childElement = parentElement.findElement(childLocator);
+		childElement.click();
+	}
+
+	/**
+	 * Clicks a child element of a parent element.
+	 * 
+	 * @param driver
+	 *            the Selenium WebDriver
+	 * @param parentElement
+	 *            the WebElement of the parent
+	 * @param childLocator
+	 *            the locator of the child element
+	 * 
+	 * @author Katherine Rollo (rollo.katherine@gmail.com)
+	 */
+	public static void clickChildElement(WebDriver driver, WebElement parentElement, By childLocator) {
 		WebElement childElement = parentElement.findElement(childLocator);
 		childElement.click();
 	}
@@ -250,6 +322,8 @@ public final class Selenium {
 	 * @param driver
 	 *            the Selenium WebDriver
 	 * @throws IOException
+	 * 
+	 * @author Katherine Rollo (rollo.katherine@gmail.com)
 	 */
 	public static void captureScreen(WebDriver driver) throws IOException {
 		StringBuilder builder = new StringBuilder();
