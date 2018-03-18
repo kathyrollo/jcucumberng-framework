@@ -8,7 +8,7 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 		"not @ignore" }, glue = "jcucumberng/steps/defs", plugin = { "pretty",
 				"html:target/cucumber-generated-reports/cucumber-report",
 				"json:target/cucumber-generated-reports/cucumber-report.json",
-				"junit:target/cucumber-generated-reports/cucumber-report.xml" }, snippets = SnippetType.UNDERSCORE, monochrome = true, dryRun = false)
+				"junit:target/cucumber-generated-reports/cucumber-report.xml" }, snippets = SnippetType.UNDERSCORE, monochrome = true, strict = true, dryRun = false)
 
 public class MainRunner extends AbstractTestNGCucumberTests {
 }
