@@ -9,6 +9,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.Select;
 
+import com.paulhammant.ngwebdriver.ByAngularBinding;
+import com.paulhammant.ngwebdriver.ByAngularModel;
+
 import jcucumberng.api.Selenium;
 import jcucumberng.steps.pojos.Expense;
 import jcucumberng.steps.pojos.Income;
@@ -22,7 +25,7 @@ import jcucumberng.steps.pojos.Income;
 public class HomePage {
 	private final WebDriver driver;
 
-	@FindBy(how = How.CSS, using = "input[ng-model='startBalance']")
+	@ByAngularModel.FindBy(rootSelector = "input", model = "startBalance")
 	private WebElement startBalanceTxt = null;
 
 	@FindBy(how = How.CSS, using = "button[ng-click='addIncome();']")
@@ -49,10 +52,10 @@ public class HomePage {
 	@FindAll(value = { @FindBy(css = "select[ng-model='expense.frequency']") })
 	private List<WebElement> expenseFreqDropMenus = null;
 
-	@FindBy(how = How.CSS, using = "td[ng-class='positiveNegative(monthlyNet())']")
+	@ByAngularBinding.FindBy(rootSelector = "td", binding = "roundDown(monthlyNet())")
 	private WebElement netPerMonthTd = null;
 
-	@FindBy(how = How.CSS, using = "td[ng-class='positiveNegative((monthlyNet()*12)+tallyTransactions())']")
+	@ByAngularBinding.FindBy(rootSelector = "td", binding = "roundDown(monthlyNet()*12)+tallyTransactions()")
 	private WebElement netPerYearTd = null;
 
 	public HomePage(WebDriver driver) {
