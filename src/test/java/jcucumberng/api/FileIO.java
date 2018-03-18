@@ -38,7 +38,7 @@ public final class FileIO {
 	 *         suffix
 	 * @throws IOException
 	 * 
-	 * @author Katherine Rollo (rollo.katherine@gmail.com)
+	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
 	public static boolean doesFileExist(String prefix, String suffix) throws IOException {
 		String directory = Configuration.readKey("file_dir");
@@ -66,7 +66,7 @@ public final class FileIO {
 	 * @return String - extracted text from PDF file
 	 * @throws IOException
 	 * 
-	 * @author Katherine Rollo (rollo.katherine@gmail.com)
+	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
 	public static String extractPdfText() throws IOException {
 		PdfReader pdfReader = new PdfReader(Configuration.readKey("pdf_file_path"));
@@ -96,7 +96,7 @@ public final class FileIO {
 	 * @throws FileNotFoundException
 	 * @throws IOException
 	 * 
-	 * @author Katherine Rollo (rollo.katherine@gmail.com)
+	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
 	public static Object[][] convertExcelTo2DArray(String xlsxFilePath, String sheetName)
 			throws FileNotFoundException, IOException {

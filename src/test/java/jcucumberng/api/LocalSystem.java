@@ -21,7 +21,7 @@ public final class LocalSystem {
 	 * 
 	 * @return String - the native resolution in WxH (e.g. 1920x1080)
 	 * 
-	 * @author Katherine Rollo (rollo.katherine@gmail.com)
+	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
 	public static String getNativeResolution() {
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
@@ -39,7 +39,7 @@ public final class LocalSystem {
 	 * @throws NumberFormatException
 	 * @throws IOException
 	 * 
-	 * @author Katherine Rollo (rollo.katherine@gmail.com)
+	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
 	public static void pressKey(int key) throws AWTException, NumberFormatException, IOException {
 		Robot robot = new Robot();
@@ -60,7 +60,7 @@ public final class LocalSystem {
 	 * @throws NumberFormatException
 	 * @throws IOException
 	 * 
-	 * @author Katherine Rollo (rollo.katherine@gmail.com)
+	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
 	public static void pressKeys(int[] keys) throws AWTException, NumberFormatException, IOException {
 		Robot robot = new Robot();

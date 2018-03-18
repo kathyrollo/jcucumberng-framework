@@ -20,7 +20,7 @@ import jcucumberng.steps.pojos.Income;
  * This is a template of a page object for the Page Object Model (POM). Declare
  * page elements as private fields. Implement page actions as public methods.
  * 
- * @author Katherine Rollo (rollo.katherine@gmail.com)
+ * @author Kat Rollo (rollo.katherine@gmail.com)
  */
 public class HomePage {
 	private final WebDriver driver;

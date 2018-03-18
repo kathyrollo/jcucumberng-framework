@@ -23,7 +23,7 @@ public final class Configuration {
 	 * @return String - the value corresponding to the given key
 	 * @throws IOException
 	 * 
-	 * @author Katherine Rollo (rollo.katherine@gmail.com)
+	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
 	public static String readKey(String key) throws IOException {
 		StringBuilder builder = new StringBuilder();
