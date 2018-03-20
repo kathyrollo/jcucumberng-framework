@@ -18,8 +18,11 @@ import jcucumberng.api.Configuration;
 import jcucumberng.api.LocalSystem;
 
 public class ServiceHook {
-	private static final Logger logger = LogManager.getLogger(ServiceHook.class);
+	private enum Browser {
+		CHROME, CHROME_NOHEAD, FF32, FF32_NOHEAD, FF64, FF64_NOHEAD, EDGE, IE32, IE64
+	}
 
+	private static final Logger logger = LogManager.getLogger(ServiceHook.class);
 	private WebDriver driver = null;
 
 	@Before
@@ -33,22 +36,38 @@ public class ServiceHook {
 		FirefoxOptions ffOpts = null;
 
 		logger.info("Initializing webdriver...");
-		String browser = Configuration.readKey("browser").toLowerCase();
-		logger.info("Browser: " + browser);
+		String browserConfig = Configuration.readKey("browser");
+		logger.info("Browser: " + browserConfig);
+
+		Browser browser = null;
+		try {
+			browser = Browser.valueOf(browserConfig.toUpperCase());
+		} catch (IllegalArgumentException iae) {
+			logger.error("Unsupported browser specified. Using default " + Browser.CHROME_NOHEAD + ".");
+			browser = Browser.CHROME_NOHEAD;
+		}
+		if (null == browser) {
+			logger.error("Browser is null. Using default " + Browser.CHROME_NOHEAD + ".");
+			browser = Browser.CHROME_NOHEAD;
+		}
 
 		switch (browser) {
-		case "chrome":
+		case CHROME:
 			System.setProperty("webdriver.chrome.driver", driverPath + "chromedriver_win32.exe");
 			driver = new ChromeDriver();
 			break;
-		case "chrome-nohead":
-			setDefaultDriver(driverPath);
+		case CHROME_NOHEAD:
+			System.setProperty("webdriver.chrome.driver", driverPath + "chromedriver_win32.exe");
+			ChromeOptions chromeOpts = new ChromeOptions();
+			chromeOpts.addArguments("--headless");
+			chromeOpts.addArguments("--window-size=" + LocalSystem.getNativeResolution());
+			driver = new ChromeDriver(chromeOpts);
 			break;
-		case "ff32":
+		case FF32:
 			System.setProperty("webdriver.gecko.driver", driverPath + "geckodriver_win32.exe");
 			driver = new FirefoxDriver();
 			break;
-		case "ff32-nohead":
+		case FF32_NOHEAD:
 			System.setProperty("webdriver.gecko.driver", driverPath + "geckodriver_win32.exe");
 			ffBin = new FirefoxBinary();
 			ffBin.addCommandLineOptions("--headless");
@@ -57,11 +76,11 @@ public class ServiceHook {
 			ffOpts.setLogLevel(FirefoxDriverLogLevel.INFO);
 			driver = new FirefoxDriver(ffOpts);
 			break;
-		case "ff64":
+		case FF64:
 			System.setProperty("webdriver.gecko.driver", driverPath + "geckodriver_win64.exe");
 			driver = new FirefoxDriver();
 			break;
-		case "ff64-nohead":
+		case FF64_NOHEAD:
 			System.setProperty("webdriver.gecko.driver", driverPath + "geckodriver_win64.exe");
 			ffBin = new FirefoxBinary();
 			ffBin.addCommandLineOptions("--headless");
@@ -70,21 +89,17 @@ public class ServiceHook {
 			ffOpts.setLogLevel(FirefoxDriverLogLevel.INFO);
 			driver = new FirefoxDriver(ffOpts);
 			break;
-		case "edge":
+		case EDGE:
 			System.setProperty("webdriver.edge.driver", driverPath + "MicrosoftWebDriver.exe");
 			driver = new EdgeDriver();
 			break;
-		case "ie32":
+		case IE32:
 			System.setProperty("webdriver.ie.driver", driverPath + "IEDriverServer_win32.exe");
 			driver = new InternetExplorerDriver();
 			break;
-		case "ie64":
+		case IE64:
 			System.setProperty("webdriver.ie.driver", driverPath + "IEDriverServer_win64.exe");
 			driver = new InternetExplorerDriver();
-			break;
-		default:
-			logger.error("Unsupported browser specified. Using default chrome-nohead.");
-			setDefaultDriver(driverPath);
 			break;
 		}
 	}
@@ -97,14 +112,6 @@ public class ServiceHook {
 
 	public WebDriver getDriver() {
 		return driver;
-	}
-
-	private void setDefaultDriver(String driverPath) {
-		System.setProperty("webdriver.chrome.driver", driverPath + "chromedriver_win32.exe");
-		ChromeOptions chromeOpts = new ChromeOptions();
-		chromeOpts.addArguments("--headless");
-		chromeOpts.addArguments("--window-size=" + LocalSystem.getNativeResolution());
-		driver = new ChromeDriver(chromeOpts);
 	}
 
 }
