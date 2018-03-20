@@ -101,6 +101,9 @@ public class ServiceHook {
 			System.setProperty("webdriver.ie.driver", driverPath + "IEDriverServer_win64.exe");
 			driver = new InternetExplorerDriver();
 			break;
+		default:
+			// Will not execute because of error handling before the switch
+			break;
 		}
 	}
 
