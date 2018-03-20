@@ -42,8 +42,8 @@ public class ServiceHook {
 		Browser browser = null;
 		try {
 			browser = Browser.valueOf(browserConfig.toUpperCase());
-		} catch (IllegalArgumentException iae) {
-			logger.error("Unsupported browser specified. Using default " + Browser.CHROME_NOHEAD + ".");
+		} catch (IllegalArgumentException | NullPointerException ex) {
+			logger.error("Unsupported browser specified in config. Using default " + Browser.CHROME_NOHEAD + ".");
 			browser = Browser.CHROME_NOHEAD;
 		}
 		if (null == browser) {
