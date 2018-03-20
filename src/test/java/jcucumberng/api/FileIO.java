@@ -159,7 +159,8 @@ public final class FileIO {
 	/**
 	 * Returns the largest number of non-empty columns among all rows.
 	 * 
-	 * @param sheet the sheet from the xlsx file 
+	 * @param sheet
+	 *            the sheet from the xlsx file
 	 * @return int - the number of columns
 	 * 
 	 * @author Kat Rollo (rollo.katherine@gmail.com)
