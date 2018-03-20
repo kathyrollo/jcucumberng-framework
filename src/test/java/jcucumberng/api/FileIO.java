@@ -113,7 +113,7 @@ public final class FileIO {
 		}
 
 		int totalRows = sheet.getLastRowNum(); // Remove header row
-		int totalColumns = getColumnCount(sheet);
+		int totalColumns = FileIO.getColumnCount(sheet);
 		String[][] testData = new String[totalRows][totalColumns];
 
 		int rowIndex = 0;
@@ -156,6 +156,14 @@ public final class FileIO {
 		return testData;
 	}
 
+	/**
+	 * Returns the largest number of non-empty columns among all rows.
+	 * 
+	 * @param sheet the sheet from the xlsx file 
+	 * @return int - the number of columns
+	 * 
+	 * @author Kat Rollo (rollo.katherine@gmail.com)
+	 */
 	private static int getColumnCount(XSSFSheet sheet) {
 		int largestColumnNumber = 0;
 		int currentColumnNumber = 0;
