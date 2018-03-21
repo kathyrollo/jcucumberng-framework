@@ -1,5 +1,6 @@
 package jcucumberng.steps.defs;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
@@ -41,8 +42,13 @@ public class ServiceHook {
 
 		Browser browser = null;
 		try {
-			browser = Browser.valueOf(browserConfig.toUpperCase());
-		} catch (IllegalArgumentException | NullPointerException ex) {
+			if (!StringUtils.isBlank(browserConfig)) {
+				browser = Browser.valueOf(browserConfig.toUpperCase());
+			} else {
+				logger.error("Unspecified browser in config. Using default " + Browser.CHROME_NOHEAD + ".");
+				browser = Browser.CHROME_NOHEAD;
+			}
+		} catch (IllegalArgumentException iae) {
 			logger.error("Unsupported browser specified in config. Using default " + Browser.CHROME_NOHEAD + ".");
 			browser = Browser.CHROME_NOHEAD;
 		}
