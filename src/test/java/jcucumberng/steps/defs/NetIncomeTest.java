@@ -18,7 +18,6 @@ import jcucumberng.steps.pojos.Income;
 
 public class NetIncomeTest {
 	private static final Logger logger = LogManager.getLogger(NetIncomeTest.class);
-
 	private WebDriver driver = null;
 	private HomePage homePage = null;
 

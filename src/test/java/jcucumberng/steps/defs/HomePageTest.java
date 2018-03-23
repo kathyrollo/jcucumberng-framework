@@ -12,7 +12,6 @@ import jcucumberng.api.Selenium;
 
 public class HomePageTest {
 	private static final Logger logger = LogManager.getLogger(HomePageTest.class);
-
 	private WebDriver driver = null;
 
 	// PicoContainer injects ServiceHook class
