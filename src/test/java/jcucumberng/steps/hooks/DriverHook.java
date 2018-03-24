@@ -1,4 +1,4 @@
-package jcucumberng.steps.defs;
+package jcucumberng.steps.hooks;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
@@ -18,8 +18,8 @@ import cucumber.api.java.Before;
 import jcucumberng.api.Configuration;
 import jcucumberng.api.LocalSystem;
 
-public class ServiceHook {
-	private static final Logger logger = LogManager.getLogger(ServiceHook.class);
+public class DriverHook {
+	private static final Logger logger = LogManager.getLogger(DriverHook.class);
 	private WebDriver driver = null;
 
 	@Before
