@@ -1,8 +1,11 @@
 package jcucumberng.steps.hooks;
 
+import java.awt.Toolkit;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -16,7 +19,6 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import jcucumberng.api.Configuration;
-import jcucumberng.api.LocalSystem;
 
 public class DriverHook {
 	private static final Logger logger = LogManager.getLogger(DriverHook.class);
@@ -91,6 +93,12 @@ public class DriverHook {
 			setDefaultBrowser(driverPath);
 			break;
 		}
+
+		java.awt.Dimension awtDimension = Toolkit.getDefaultToolkit().getScreenSize();
+		int width = (int) awtDimension.getWidth();
+		int height = (int) awtDimension.getHeight();
+		Dimension dimension = new Dimension(width, height);
+		driver.manage().window().setSize(dimension);
 	}
 
 	@After
@@ -107,7 +115,6 @@ public class DriverHook {
 		System.setProperty("webdriver.chrome.driver", driverPath + "chromedriver_win32.exe");
 		ChromeOptions chromeOpts = new ChromeOptions();
 		chromeOpts.addArguments("--headless");
-		chromeOpts.addArguments("--window-size=" + LocalSystem.getNativeResolution());
 		driver = new ChromeDriver(chromeOpts);
 	}
 

@@ -25,7 +25,6 @@ public class HomePageTest {
 		String baseUrl = Configuration.readKey("base_url");
 		logger.debug("Navigating to website: " + baseUrl);
 		driver.get(baseUrl);
-		driver.manage().window().maximize();
 		Selenium.captureScreen(driver);
 	}
 
