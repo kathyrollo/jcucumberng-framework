@@ -1,4 +1,4 @@
-@homePage
+@sample @homePage
 Feature: Home Page
   As a user
   I want to visit the home page
