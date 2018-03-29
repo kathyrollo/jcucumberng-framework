@@ -9,6 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
 import cucumber.api.DataTable;
+import cucumber.api.Scenario;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import jcucumberng.api.Selenium;
@@ -19,11 +20,13 @@ import jcucumberng.steps.pojos.Income;
 
 public class NetIncomeTest {
 	private static final Logger logger = LogManager.getLogger(NetIncomeTest.class);
+	private Scenario scenario = null;
 	private WebDriver driver = null;
 	private HomePage homePage = null;
 
 	// PicoContainer injects BaseHook class
 	public NetIncomeTest(BaseHook baseHook) {
+		this.scenario = baseHook.getScenario();
 		this.driver = baseHook.getDriver();
 		homePage = PageFactory.initElements(driver, HomePage.class);
 	}
@@ -31,21 +34,27 @@ public class NetIncomeTest {
 	@When("^I Enter My Start Balance: (.*)$")
 	public void I_Enter_My_Start_Balance(String startBalance) throws Throwable {
 		homePage.enterStartBalance(startBalance);
-		Selenium.captureScreen(driver);
+
+		byte[] srcBytes = Selenium.captureScreenAsBytes(driver);
+		scenario.embed(srcBytes, "image/png");
 	}
 
 	@When("^I Enter My Regular Income Sources$")
 	public void I_Enter_My_Regular_Income_Sources(DataTable dataTable) throws Throwable {
 		List<Income> incomes = dataTable.asList(Income.class);
 		homePage.enterRegularIncomeSources(incomes);
-		Selenium.captureScreen(driver);
+
+		byte[] srcBytes = Selenium.captureScreenAsBytes(driver);
+		scenario.embed(srcBytes, "image/png");
 	}
 
 	@When("^I Enter My Regular Expenses$")
 	public void I_Enter_My_Regular_Expenses(DataTable dataTable) throws Throwable {
 		List<Expense> expenses = dataTable.asList(Expense.class);
 		homePage.enterRegularExpenses(expenses);
-		Selenium.captureScreen(driver);
+
+		byte[] srcBytes = Selenium.captureScreenAsBytes(driver);
+		scenario.embed(srcBytes, "image/png");
 	}
 
 	@Then("^I Should See Net Income: (.*) (.*)$")
@@ -60,7 +69,8 @@ public class NetIncomeTest {
 		Assert.assertEquals(netPerYearText, netPerYear);
 
 		Selenium.scrollVertical(driver, 500);
-		Selenium.captureScreen(driver);
+		byte[] srcBytes = Selenium.captureScreenAsBytes(driver);
+		scenario.embed(srcBytes, "image/png");
 	}
 
 }

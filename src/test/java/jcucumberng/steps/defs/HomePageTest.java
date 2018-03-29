@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
+import cucumber.api.Scenario;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import jcucumberng.api.Configuration;
@@ -13,10 +14,12 @@ import jcucumberng.steps.hooks.BaseHook;
 
 public class HomePageTest {
 	private static final Logger logger = LogManager.getLogger(HomePageTest.class);
+	private Scenario scenario = null;
 	private WebDriver driver = null;
 
 	// PicoContainer injects BaseHook class
 	public HomePageTest(BaseHook baseHook) {
+		this.scenario = baseHook.getScenario();
 		this.driver = baseHook.getDriver();
 	}
 
@@ -25,7 +28,9 @@ public class HomePageTest {
 		String baseUrl = Configuration.readKey("base_url");
 		logger.debug("Navigating to website: " + baseUrl);
 		driver.get(baseUrl);
-		Selenium.captureScreen(driver);
+
+		byte[] srcBytes = Selenium.captureScreenAsBytes(driver);
+		scenario.embed(srcBytes, "image/png");
 	}
 
 	@Then("^I Should See Page Title '(.*)'$")
@@ -33,7 +38,9 @@ public class HomePageTest {
 		String windowTitle = driver.getTitle();
 		logger.debug("Window Title: " + windowTitle);
 		Assert.assertEquals(windowTitle, pageTitle);
-		Selenium.captureScreen(driver);
+
+		byte[] srcBytes = Selenium.captureScreenAsBytes(driver);
+		scenario.embed(srcBytes, "image/png");
 	}
 
 }

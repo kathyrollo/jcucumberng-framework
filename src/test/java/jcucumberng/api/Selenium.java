@@ -316,8 +316,22 @@ public final class Selenium {
 	}
 
 	/**
-	 * Captures the current screen. Stores images in /target/cucumber-screenshots/
-	 * in PNG format.
+	 * Captures the current screen as byte[ ].
+	 * 
+	 * @param driver
+	 *            the Selenium WebDriver
+	 * @return byte[ ] - the screenshot as bytes
+	 * 
+	 * @author Kat Rollo (rollo.katherine@gmail.com)
+	 */
+	public static byte[] captureScreenAsBytes(WebDriver driver) {
+		byte[] scrBytes = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+		return scrBytes;
+	}
+
+	/**
+	 * Captures the current screen as PNG. Stores images in
+	 * /target/cucumber-screenshots/.
 	 * 
 	 * @param driver
 	 *            the Selenium WebDriver

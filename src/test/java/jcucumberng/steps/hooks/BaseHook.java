@@ -16,16 +16,21 @@ import org.openqa.selenium.firefox.FirefoxDriverLogLevel;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 
+import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import jcucumberng.api.Configuration;
 
 public class BaseHook {
 	private static final Logger logger = LogManager.getLogger(BaseHook.class);
+	private Scenario scenario = null;
 	private WebDriver driver = null;
 
 	@Before
-	public void setUp() throws Throwable {
+	public void setUp(Scenario scenario) throws Throwable {
+		this.scenario = scenario;
+		logger.debug("Scenario: " + scenario.getName());
+		
 		StringBuilder builder = new StringBuilder();
 		builder.append(System.getProperty("user.dir").replace("\\", "/"));
 		builder.append("/src/test/resources/webdrivers/");
@@ -107,6 +112,10 @@ public class BaseHook {
 		driver.quit();
 	}
 
+	public Scenario getScenario() {
+		return scenario;
+	}
+	
 	public WebDriver getDriver() {
 		return driver;
 	}
