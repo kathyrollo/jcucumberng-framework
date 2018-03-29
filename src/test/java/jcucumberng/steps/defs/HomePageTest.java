@@ -9,15 +9,15 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import jcucumberng.api.Configuration;
 import jcucumberng.api.Selenium;
-import jcucumberng.steps.hooks.DriverHook;
+import jcucumberng.steps.hooks.BaseHook;
 
 public class HomePageTest {
 	private static final Logger logger = LogManager.getLogger(HomePageTest.class);
 	private WebDriver driver = null;
 
-	// PicoContainer injects DriverHook class
-	public HomePageTest(DriverHook driverHook) {
-		this.driver = driverHook.getDriver();
+	// PicoContainer injects BaseHook class
+	public HomePageTest(BaseHook baseHook) {
+		this.driver = baseHook.getDriver();
 	}
 
 	@Given("^I Am At The Home Page$")

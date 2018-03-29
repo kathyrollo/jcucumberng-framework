@@ -12,7 +12,7 @@ import cucumber.api.DataTable;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import jcucumberng.api.Selenium;
-import jcucumberng.steps.hooks.DriverHook;
+import jcucumberng.steps.hooks.BaseHook;
 import jcucumberng.steps.pages.HomePage;
 import jcucumberng.steps.pojos.Expense;
 import jcucumberng.steps.pojos.Income;
@@ -22,9 +22,9 @@ public class NetIncomeTest {
 	private WebDriver driver = null;
 	private HomePage homePage = null;
 
-	// PicoContainer injects DriverHook class
-	public NetIncomeTest(DriverHook driverHook) {
-		this.driver = driverHook.getDriver();
+	// PicoContainer injects BaseHook class
+	public NetIncomeTest(BaseHook baseHook) {
+		this.driver = baseHook.getDriver();
 		homePage = PageFactory.initElements(driver, HomePage.class);
 	}
 

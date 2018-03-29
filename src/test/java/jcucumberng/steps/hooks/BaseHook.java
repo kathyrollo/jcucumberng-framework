@@ -20,8 +20,8 @@ import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import jcucumberng.api.Configuration;
 
-public class DriverHook {
-	private static final Logger logger = LogManager.getLogger(DriverHook.class);
+public class BaseHook {
+	private static final Logger logger = LogManager.getLogger(BaseHook.class);
 	private WebDriver driver = null;
 
 	@Before
