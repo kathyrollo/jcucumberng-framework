@@ -97,16 +97,8 @@ public class HomePage {
 		return netPerMonthTd;
 	}
 
-	public void setNetPerMonthTd(WebElement netPerMonthTd) {
-		this.netPerMonthTd = netPerMonthTd;
-	}
-
 	public WebElement getNetPerYearTd() {
 		return netPerYearTd;
-	}
-
-	public void setNetPerYearTd(WebElement netPerYearTd) {
-		this.netPerYearTd = netPerYearTd;
 	}
 
 }
