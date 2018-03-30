@@ -43,7 +43,7 @@ public final class Selenium {
 		String parentHandle = driver.getWindowHandle(); // Save parent window
 		WebElement clickableElement = driver.findElement(clickableLocator);
 		clickableElement.click(); // Open child window
-		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebDriverWait wait = new WebDriverWait(driver, 10); // Timeout in 10s
 		boolean isChildWindowOpen = wait.until(ExpectedConditions.numberOfWindowsToBe(2));
 		if (isChildWindowOpen) {
 			Set<String> handles = driver.getWindowHandles();
