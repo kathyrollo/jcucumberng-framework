@@ -18,14 +18,14 @@ import jcucumberng.steps.pages.HomePage;
 import jcucumberng.steps.pojos.Expense;
 import jcucumberng.steps.pojos.Income;
 
-public class NetIncomeTest {
-	private static final Logger logger = LogManager.getLogger(NetIncomeTest.class);
+public class CalculateNetIncomeTest {
+	private static final Logger logger = LogManager.getLogger(CalculateNetIncomeTest.class);
 	private Scenario scenario = null;
 	private WebDriver driver = null;
 	private HomePage homePage = null;
 
 	// PicoContainer injects BaseHook class
-	public NetIncomeTest(BaseHook baseHook) {
+	public CalculateNetIncomeTest(BaseHook baseHook) {
 		this.scenario = baseHook.getScenario();
 		this.driver = baseHook.getDriver();
 		homePage = PageFactory.initElements(driver, HomePage.class);
@@ -51,15 +51,20 @@ public class NetIncomeTest {
 		Selenium.embedScreenshot(driver, scenario);
 	}
 
-	@Then("^I Should See Net Income: (.*) (.*)$")
-	public void I_Should_See_Net_Income(String netPerMonth, String netPerYear) {
+	@Then("^I Should See Net Income Per Month: (.*)$")
+	public void I_Should_See_Net_Income_Per_Month(String netPerMonth) {
 		String netPerMonthText = homePage.getNetPerMonthTd().getText();
-		String netPerYearText = homePage.getNetPerYearTd().getText();
-
 		logger.debug("Net Per Month: " + netPerMonthText);
-		logger.debug("Net Per Year: " + netPerYearText);
-
 		Assert.assertEquals(netPerMonthText, netPerMonth);
+
+		Selenium.scrollVertical(driver, 500);
+		Selenium.embedScreenshot(driver, scenario);
+	}
+
+	@Then("^I Should See Net Income Per Year: (.*)$")
+	public void I_Should_See_Net_Income_Per_Year(String netPerYear) {
+		String netPerYearText = homePage.getNetPerYearTd().getText();
+		logger.debug("Net Per Year: " + netPerYearText);
 		Assert.assertEquals(netPerYearText, netPerYear);
 
 		Selenium.scrollVertical(driver, 500);

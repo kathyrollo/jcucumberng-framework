@@ -14,13 +14,13 @@ import jcucumberng.api.Configuration;
 import jcucumberng.api.Selenium;
 import jcucumberng.steps.hooks.BaseHook;
 
-public class HomePageTest {
-	private static final Logger logger = LogManager.getLogger(HomePageTest.class);
+public class NavigateToHomePageTest {
+	private static final Logger logger = LogManager.getLogger(NavigateToHomePageTest.class);
 	private Scenario scenario = null;
 	private WebDriver driver = null;
 
 	// PicoContainer injects BaseHook class
-	public HomePageTest(BaseHook baseHook) {
+	public NavigateToHomePageTest(BaseHook baseHook) {
 		this.scenario = baseHook.getScenario();
 		this.driver = baseHook.getDriver();
 	}
