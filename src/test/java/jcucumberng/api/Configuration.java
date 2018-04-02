@@ -15,8 +15,8 @@ public final class Configuration {
 	}
 
 	/**
-	 * Reads a config file by passing a specific key. The file must be located in:
-	 * /src/test/resources/config.properties
+	 * Reads a config.properties file by passing a specific key. The file must be
+	 * located in /src/test/resources/.
 	 * 
 	 * @param key
 	 *            the name corresponding to the value in the key-value pair
