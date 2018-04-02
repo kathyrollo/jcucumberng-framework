@@ -1,4 +1,4 @@
-package jcucumberng.steps.pages;
+package jcucumberng.steps.business;
 
 import java.util.List;
 
@@ -17,12 +17,17 @@ import jcucumberng.steps.pojos.Expense;
 import jcucumberng.steps.pojos.Income;
 
 /**
- * This is a template of a page object for the Page Object Model (POM). Declare
- * page elements as private fields. Implement page actions as public methods.
+ * While technically a Page Object, elements and actions in this class are
+ * grouped by business logic or intent rather than mapped to actual pages of the
+ * application. This lessens the maintenance and refactoring efforts as actions
+ * from different pages are shared in the same test classes. PageFactory
+ * annotations are preserved to maintain a repository of UI elements.
+ * 
+ * Declare elements as private fields. Implement actions as public methods.
  * 
  * @author Kat Rollo (rollo.katherine@gmail.com)
  */
-public class HomePage {
+public class NetIncome {
 	private final WebDriver driver;
 
 	@ByAngularModel.FindBy(rootSelector = "input", model = "startBalance")
@@ -58,7 +63,7 @@ public class HomePage {
 	@ByAngularBinding.FindBy(rootSelector = "td", binding = "roundDown(monthlyNet()*12)+tallyTransactions()")
 	private WebElement netPerYearTd = null;
 
-	public HomePage(WebDriver driver) {
+	public NetIncome(WebDriver driver) {
 		this.driver = driver;
 	}
 
