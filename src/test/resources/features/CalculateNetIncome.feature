@@ -29,7 +29,7 @@ Feature: Calculate Net Income
     When I Enter My Start Balance: <startBalance>
     And I Enter My Regular Income Sources
       | name   | amount | frequency     |
-      | Salary |  25000 | every 2 weeks |
+      | Salary |  48000 | every 2 weeks |
     And I Enter My Regular Expenses
       | name        | amount | frequency     |
       | Electricity |   5500 | Monthly       |
@@ -40,4 +40,4 @@ Feature: Calculate Net Income
 
     Examples: 
       | startBalance | netPerYear |
-      |       348000 |     285225 |
+      |       353000 |     883225 |
