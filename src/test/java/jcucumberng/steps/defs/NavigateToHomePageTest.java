@@ -21,8 +21,8 @@ public class NavigateToHomePageTest {
 
 	// PicoContainer injects BaseHook class
 	public NavigateToHomePageTest(BaseHook baseHook) {
-		this.scenario = baseHook.getScenario();
-		this.driver = baseHook.getDriver();
+		scenario = baseHook.getScenario();
+		driver = baseHook.getDriver();
 	}
 
 	@Given("^I Am At The Home Page$")
