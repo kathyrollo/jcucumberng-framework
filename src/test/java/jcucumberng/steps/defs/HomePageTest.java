@@ -28,9 +28,7 @@ public class HomePageTest {
 		String baseUrl = Configuration.readKey("base_url");
 		logger.debug("Navigating to website: " + baseUrl);
 		driver.get(baseUrl);
-
-		byte[] srcBytes = Selenium.captureScreenAsBytes(driver);
-		scenario.embed(srcBytes, "image/png");
+		Selenium.embedScreenshot(driver, scenario);
 	}
 
 	@Then("^I Should See Page Title '(.*)'$")
@@ -38,9 +36,7 @@ public class HomePageTest {
 		String windowTitle = driver.getTitle();
 		logger.debug("Window Title: " + windowTitle);
 		Assert.assertEquals(windowTitle, pageTitle);
-
-		byte[] srcBytes = Selenium.captureScreenAsBytes(driver);
-		scenario.embed(srcBytes, "image/png");
+		Selenium.embedScreenshot(driver, scenario);
 	}
 
 }

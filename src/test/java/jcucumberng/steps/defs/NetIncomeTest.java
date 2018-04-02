@@ -34,27 +34,21 @@ public class NetIncomeTest {
 	@When("^I Enter My Start Balance: (.*)$")
 	public void I_Enter_My_Start_Balance(String startBalance) throws Throwable {
 		homePage.enterStartBalance(startBalance);
-
-		byte[] srcBytes = Selenium.captureScreenAsBytes(driver);
-		scenario.embed(srcBytes, "image/png");
+		Selenium.embedScreenshot(driver, scenario);
 	}
 
 	@When("^I Enter My Regular Income Sources$")
 	public void I_Enter_My_Regular_Income_Sources(DataTable dataTable) throws Throwable {
 		List<Income> incomes = dataTable.asList(Income.class);
 		homePage.enterRegularIncomeSources(incomes);
-
-		byte[] srcBytes = Selenium.captureScreenAsBytes(driver);
-		scenario.embed(srcBytes, "image/png");
+		Selenium.embedScreenshot(driver, scenario);
 	}
 
 	@When("^I Enter My Regular Expenses$")
 	public void I_Enter_My_Regular_Expenses(DataTable dataTable) throws Throwable {
 		List<Expense> expenses = dataTable.asList(Expense.class);
 		homePage.enterRegularExpenses(expenses);
-
-		byte[] srcBytes = Selenium.captureScreenAsBytes(driver);
-		scenario.embed(srcBytes, "image/png");
+		Selenium.embedScreenshot(driver, scenario);
 	}
 
 	@Then("^I Should See Net Income: (.*) (.*)$")
@@ -69,8 +63,7 @@ public class NetIncomeTest {
 		Assert.assertEquals(netPerYearText, netPerYear);
 
 		Selenium.scrollVertical(driver, 500);
-		byte[] srcBytes = Selenium.captureScreenAsBytes(driver);
-		scenario.embed(srcBytes, "image/png");
+		Selenium.embedScreenshot(driver, scenario);
 	}
 
 }

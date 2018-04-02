@@ -17,6 +17,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import cucumber.api.Scenario;
+
 /**
  * This class handles actions for interacting with web applications using the
  * Selenium WebDriver.
@@ -316,17 +318,18 @@ public final class Selenium {
 	}
 
 	/**
-	 * Captures the current screen as byte[ ].
+	 * Captures and embeds screenshot in generated HTML report.
 	 * 
+	 * @param scenario
+	 *            the Scenario object
 	 * @param driver
 	 *            the Selenium WebDriver
-	 * @return byte[ ] - the screenshot as bytes
 	 * 
 	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
-	public static byte[] captureScreenAsBytes(WebDriver driver) {
-		byte[] scrBytes = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-		return scrBytes;
+	public static void embedScreenshot(WebDriver driver, Scenario scenario) {
+		byte[] srcBytes = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+		scenario.embed(srcBytes, "image/png");
 	}
 
 	/**
@@ -339,7 +342,7 @@ public final class Selenium {
 	 * 
 	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
-	public static void captureScreen(WebDriver driver) throws IOException {
+	public static void captureScreenshot(WebDriver driver) throws IOException {
 		StringBuilder builder = new StringBuilder();
 		builder.append(System.getProperty("user.dir").replace("\\", "/"));
 		builder.append("/target/cucumber-screenshots/sshot_");
