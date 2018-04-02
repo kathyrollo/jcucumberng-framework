@@ -32,27 +32,27 @@ public class NetIncomeTest {
 	}
 
 	@When("^I Enter My Start Balance: (.*)$")
-	public void I_Enter_My_Start_Balance(String startBalance) throws Throwable {
+	public void I_Enter_My_Start_Balance(String startBalance) {
 		homePage.enterStartBalance(startBalance);
 		Selenium.embedScreenshot(driver, scenario);
 	}
 
 	@When("^I Enter My Regular Income Sources$")
-	public void I_Enter_My_Regular_Income_Sources(DataTable dataTable) throws Throwable {
+	public void I_Enter_My_Regular_Income_Sources(DataTable dataTable) {
 		List<Income> incomes = dataTable.asList(Income.class);
 		homePage.enterRegularIncomeSources(incomes);
 		Selenium.embedScreenshot(driver, scenario);
 	}
 
 	@When("^I Enter My Regular Expenses$")
-	public void I_Enter_My_Regular_Expenses(DataTable dataTable) throws Throwable {
+	public void I_Enter_My_Regular_Expenses(DataTable dataTable) {
 		List<Expense> expenses = dataTable.asList(Expense.class);
 		homePage.enterRegularExpenses(expenses);
 		Selenium.embedScreenshot(driver, scenario);
 	}
 
 	@Then("^I Should See Net Income: (.*) (.*)$")
-	public void I_Should_See_Net_Income(String netPerMonth, String netPerYear) throws Throwable {
+	public void I_Should_See_Net_Income(String netPerMonth, String netPerYear) {
 		String netPerMonthText = homePage.getNetPerMonthTd().getText();
 		String netPerYearText = homePage.getNetPerYearTd().getText();
 
