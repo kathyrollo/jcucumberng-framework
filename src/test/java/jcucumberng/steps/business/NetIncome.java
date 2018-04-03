@@ -20,7 +20,7 @@ import jcucumberng.steps.pojos.Income;
  * While technically a Page Object, elements and actions in this class are
  * grouped by business logic or intent rather than mapped to actual pages of the
  * application. This lessens the maintenance and refactoring efforts as actions
- * from different pages are shared in the same test classes. PageFactory
+ * from different pages are shared in the same test class. PageFactory
  * annotations are preserved to maintain a repository of UI elements.
  * 
  * Declare elements as private fields. Implement actions as public methods.
