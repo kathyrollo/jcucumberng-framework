@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.assertj.core.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 
 import cucumber.api.DataTable;
 import cucumber.api.Scenario;
@@ -55,7 +55,7 @@ public class CalculateNetIncomeTest {
 	public void I_Should_See_Net_Income_Per_Month(String netPerMonth) {
 		String netPerMonthText = netIncome.getNetPerMonthTd().getText();
 		logger.debug("Net Per Month: " + netPerMonthText);
-		Assert.assertEquals(netPerMonthText, netPerMonth);
+		Assertions.assertThat(netPerMonthText).isEqualTo(netPerMonth);
 
 		Selenium.scrollVertical(driver, 500);
 		Selenium.embedScreenshot(driver, scenario);
@@ -65,7 +65,7 @@ public class CalculateNetIncomeTest {
 	public void I_Should_See_Net_Income_Per_Year(String netPerYear) {
 		String netPerYearText = netIncome.getNetPerYearTd().getText();
 		logger.debug("Net Per Year: " + netPerYearText);
-		Assert.assertEquals(netPerYearText, netPerYear);
+		Assertions.assertThat(netPerYearText).isEqualTo(netPerYear);
 
 		Selenium.scrollVertical(driver, 500);
 		Selenium.embedScreenshot(driver, scenario);
