@@ -4,8 +4,8 @@ import java.io.IOException;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.assertj.core.api.Assertions;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 
 import cucumber.api.Scenario;
 import cucumber.api.java.en.Given;
@@ -43,7 +43,7 @@ public class NavigateToHomePageTest {
 	public void I_Should_See_Page_Title(String pageTitle) {
 		String windowTitle = driver.getTitle();
 		logger.debug("Window Title: " + windowTitle);
-		Assert.assertEquals(windowTitle, pageTitle);
+		Assertions.assertThat(windowTitle).isEqualTo(pageTitle);
 		Selenium.embedScreenshot(driver, scenario);
 	}
 
