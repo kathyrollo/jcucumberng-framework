@@ -39,7 +39,7 @@ public final class FileHandler {
 	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
 	public static boolean doesFileExist(String prefix, String suffix) throws IOException {
-		String directory = PropsLoader.readKey("file.dir");
+		String directory = PropsLoader.readConfig("file.dir");
 		File[] files = new File(directory).listFiles();
 
 		String fileName = null;
@@ -67,7 +67,7 @@ public final class FileHandler {
 	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
 	public static String extractPdfText() throws IOException {
-		PdfReader pdfReader = new PdfReader(PropsLoader.readKey("pdf.file.path"));
+		PdfReader pdfReader = new PdfReader(PropsLoader.readConfig("pdf.file.path"));
 		int pages = pdfReader.getNumberOfPages();
 
 		String pdfText = "";

@@ -40,7 +40,7 @@ public class BaseHook {
 		FirefoxOptions ffOpts = null;
 
 		logger.info("Initializing webdriver...");
-		String browser = PropsLoader.readKey("browser");
+		String browser = PropsLoader.readConfig("browser");
 		logger.info("Browser: " + browser);
 		if (StringUtils.isBlank(browser)) {
 			logger.error("No browser specified in config. Using default CHROME_NOHEAD.");
