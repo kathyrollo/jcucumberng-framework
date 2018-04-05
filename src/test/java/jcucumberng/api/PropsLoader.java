@@ -15,8 +15,8 @@ public final class PropsLoader {
 	}
 
 	/**
-	 * Reads a config.properties file by passing a specific key. The file must be
-	 * located in /src/test/resources/.
+	 * Reads a config.properties file by passing the key of a configuration or
+	 * setting. The file must be located in /src/test/resources/.
 	 * 
 	 * @param key the name corresponding to the value in the key-value pair
 	 * @return String - the value corresponding to the given key
@@ -24,10 +24,32 @@ public final class PropsLoader {
 	 * 
 	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
-	public static String readKey(String key) throws IOException {
+	public static String readConfig(String key) throws IOException {
 		StringBuilder builder = new StringBuilder();
 		builder.append(System.getProperty("user.dir").replace("\\", "/"));
 		builder.append("/src/test/resources/config.properties");
+
+		InputStream inStream = new FileInputStream(builder.toString());
+		Properties properties = new Properties();
+		properties.load(inStream);
+
+		return properties.getProperty(key).trim();
+	}
+
+	/**
+	 * Reads a ui-map.properties file by passing the key of a locator used to find
+	 * elements in web pages. The file must be located in /src/test/resources/.
+	 * 
+	 * @param key the name corresponding to the value in the key-value pair
+	 * @return String - the value corresponding to the given key
+	 * @throws IOException
+	 * 
+	 * @author Kat Rollo (rollo.katherine@gmail.com)
+	 */
+	public static String readLocator(String key) throws IOException {
+		StringBuilder builder = new StringBuilder();
+		builder.append(System.getProperty("user.dir").replace("\\", "/"));
+		builder.append("/src/test/resources/ui-map.properties");
 
 		InputStream inStream = new FileInputStream(builder.toString());
 		Properties properties = new Properties();
