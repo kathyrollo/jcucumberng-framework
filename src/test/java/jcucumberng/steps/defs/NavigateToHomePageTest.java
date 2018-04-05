@@ -25,7 +25,7 @@ public class NavigateToHomePageTest {
 
 	@Given("^I Am At The Home Page$")
 	public void I_Am_At_The_Home_Page() throws Throwable {
-		String baseUrl = Configuration.readKey("base_url");
+		String baseUrl = Configuration.readKey("base.url");
 		logger.debug("Navigating to website: " + baseUrl);
 		driver.get(baseUrl);
 		Selenium.embedScreenshot(driver, scenario);
