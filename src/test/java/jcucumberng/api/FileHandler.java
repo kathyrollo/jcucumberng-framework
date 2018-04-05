@@ -20,9 +20,9 @@ import com.itextpdf.text.pdf.parser.PdfTextExtractor;
 /**
  * This class handles actions for manipulating files or documents.
  */
-public final class FileIO {
+public final class FileHandler {
 
-	private FileIO() {
+	private FileHandler() {
 		// Prevent instantiation
 	}
 
@@ -30,10 +30,8 @@ public final class FileIO {
 	 * Checks if a file exists in a specified directory. Set file.dir in
 	 * config.properties.
 	 * 
-	 * @param prefix
-	 *            the beginning of a filename, can be a substring
-	 * @param suffix
-	 *            can be the file extension (e.g. ".txt")
+	 * @param prefix the beginning of a filename, can be a substring
+	 * @param suffix can be the file extension (e.g. ".txt")
 	 * @return boolean - true if matching file is found using given prefix and
 	 *         suffix
 	 * @throws IOException
@@ -41,7 +39,7 @@ public final class FileIO {
 	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
 	public static boolean doesFileExist(String prefix, String suffix) throws IOException {
-		String directory = Configuration.readKey("file.dir");
+		String directory = PropsLoader.readKey("file.dir");
 		File[] files = new File(directory).listFiles();
 
 		String fileName = null;
@@ -69,7 +67,7 @@ public final class FileIO {
 	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
 	public static String extractPdfText() throws IOException {
-		PdfReader pdfReader = new PdfReader(Configuration.readKey("pdf.file.path"));
+		PdfReader pdfReader = new PdfReader(PropsLoader.readKey("pdf.file.path"));
 		int pages = pdfReader.getNumberOfPages();
 
 		String pdfText = "";
@@ -87,11 +85,9 @@ public final class FileIO {
 	 * first row will be omitted. Each row must have the same number of columns.
 	 * Each column must have a value.
 	 * 
-	 * @param xlsxFilePath
-	 *            the absolute path of the xlsx file
-	 * @param sheetName
-	 *            the name of the sheet to be read (defaults to first sheet if
-	 *            blank)
+	 * @param xlsxFilePath the absolute path of the xlsx file
+	 * @param sheetName    the name of the sheet to be read (defaults to first sheet
+	 *                     if blank)
 	 * @return Object[ ][ ] - the String values in 2D array
 	 * @throws FileNotFoundException
 	 * @throws IOException
@@ -113,7 +109,7 @@ public final class FileIO {
 		}
 
 		int totalRows = sheet.getLastRowNum(); // Remove header row
-		int totalColumns = FileIO.getColumnCount(sheet);
+		int totalColumns = FileHandler.getColumnCount(sheet);
 		String[][] testData = new String[totalRows][totalColumns];
 
 		int rowIndex = 0;
@@ -159,8 +155,7 @@ public final class FileIO {
 	/**
 	 * Returns the largest number of non-empty columns among all rows.
 	 * 
-	 * @param sheet
-	 *            the sheet from the xlsx file
+	 * @param sheet the sheet from the xlsx file
 	 * @return int - the number of columns
 	 * 
 	 * @author Kat Rollo (rollo.katherine@gmail.com)
