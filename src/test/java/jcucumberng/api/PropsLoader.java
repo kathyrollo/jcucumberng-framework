@@ -8,9 +8,9 @@ import java.util.Properties;
 /**
  * This class handles actions for configuring the test framework.
  */
-public final class Configuration {
+public final class PropsLoader {
 
-	private Configuration() {
+	private PropsLoader() {
 		// Prevent instantiation
 	}
 
@@ -18,8 +18,7 @@ public final class Configuration {
 	 * Reads a config.properties file by passing a specific key. The file must be
 	 * located in /src/test/resources/.
 	 * 
-	 * @param key
-	 *            the name corresponding to the value in the key-value pair
+	 * @param key the name corresponding to the value in the key-value pair
 	 * @return String - the value corresponding to the given key
 	 * @throws IOException
 	 * 

@@ -19,7 +19,7 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
-import jcucumberng.api.Configuration;
+import jcucumberng.api.PropsLoader;
 
 public class BaseHook {
 	private static final Logger logger = LogManager.getLogger(BaseHook.class);
@@ -40,7 +40,7 @@ public class BaseHook {
 		FirefoxOptions ffOpts = null;
 
 		logger.info("Initializing webdriver...");
-		String browser = Configuration.readKey("browser");
+		String browser = PropsLoader.readKey("browser");
 		logger.info("Browser: " + browser);
 		if (StringUtils.isBlank(browser)) {
 			logger.error("No browser specified in config. Using default CHROME_NOHEAD.");

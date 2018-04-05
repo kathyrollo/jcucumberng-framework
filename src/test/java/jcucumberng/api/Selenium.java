@@ -32,10 +32,9 @@ public final class Selenium {
 	/**
 	 * Opens a new window and switches to that window.
 	 * 
-	 * @param driver
-	 *            the Selenium WebDriver
-	 * @param clickableLocator
-	 *            the locator of the clickable element that opens the child window
+	 * @param driver           the Selenium WebDriver
+	 * @param clickableLocator the locator of the clickable element that opens the
+	 *                         child window
 	 * @return String - the handle of the parent window before opening the child
 	 *         window
 	 * 
@@ -64,10 +63,8 @@ public final class Selenium {
 	/**
 	 * Opens a new window and switches to that window.
 	 * 
-	 * @param driver
-	 *            the Selenium WebDriver
-	 * @param url
-	 *            the String URL that opens the child window
+	 * @param driver the Selenium WebDriver
+	 * @param url    the String URL that opens the child window
 	 * @return String - the handle of the parent window before opening the child
 	 *         window
 	 * 
@@ -94,10 +91,8 @@ public final class Selenium {
 	/**
 	 * Switches to an existing open window by window title.
 	 * 
-	 * @param driver
-	 *            the Selenium WebDriver
-	 * @param windowTitle
-	 *            the title of the window
+	 * @param driver      the Selenium WebDriver
+	 * @param windowTitle the title of the window
 	 * @return String - the handle of the parent window before opening the child
 	 *         window
 	 * 
@@ -121,10 +116,8 @@ public final class Selenium {
 	/**
 	 * Returns a List of all Select elements.
 	 * 
-	 * @param driver
-	 *            the Selenium WebDriver
-	 * @param selectLocator
-	 *            the locator of the Select elements
+	 * @param driver        the Selenium WebDriver
+	 * @param selectLocator the locator of the Select elements
 	 * @return List - the List of Select elements
 	 * 
 	 * @author Kat Rollo (rollo.katherine@gmail.com)
@@ -141,10 +134,8 @@ public final class Selenium {
 	/**
 	 * Returns a List of all Select elements.
 	 * 
-	 * @param driver
-	 *            the Selenium WebDriver
-	 * @param webElements
-	 *            the List of Select web elements
+	 * @param driver      the Selenium WebDriver
+	 * @param webElements the List of Select web elements
 	 * @return List - the List of Select elements
 	 * 
 	 * @author Kat Rollo (rollo.katherine@gmail.com)
@@ -160,8 +151,7 @@ public final class Selenium {
 	/**
 	 * Returns all text inside the body tag in HTML.
 	 * 
-	 * @param driver
-	 *            the Selenium WebDriver
+	 * @param driver the Selenium WebDriver
 	 * @return String - the text within HTML body tags
 	 * 
 	 * @author Kat Rollo (rollo.katherine@gmail.com)
@@ -173,10 +163,8 @@ public final class Selenium {
 	/**
 	 * Scroll the screen vertically.
 	 * 
-	 * @param driver
-	 *            the Selenium WebDriver
-	 * @param yPosition
-	 *            positive value to scroll down, negative value to scroll up
+	 * @param driver    the Selenium WebDriver
+	 * @param yPosition positive value to scroll down, negative value to scroll up
 	 * 
 	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
@@ -188,12 +176,9 @@ public final class Selenium {
 	/**
 	 * Enters text into a textfield or textarea.
 	 * 
-	 * @param driver
-	 *            the Selenium WebDriver
-	 * @param fieldLocator
-	 *            the locator of the textfield or textarea
-	 * @param text
-	 *            the text to be entered
+	 * @param driver       the Selenium WebDriver
+	 * @param fieldLocator the locator of the textfield or textarea
+	 * @param text         the text to be entered
 	 * 
 	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
@@ -206,12 +191,9 @@ public final class Selenium {
 	/**
 	 * Enters text into a textfield or textarea.
 	 * 
-	 * @param driver
-	 *            the Selenium WebDriver
-	 * @param field
-	 *            the WebElement of the textfield or textarea
-	 * @param text
-	 *            the text to be entered
+	 * @param driver the Selenium WebDriver
+	 * @param field  the WebElement of the textfield or textarea
+	 * @param text   the text to be entered
 	 * 
 	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
@@ -223,12 +205,9 @@ public final class Selenium {
 	/**
 	 * Selects value from a dropdown list by visible text.
 	 * 
-	 * @param driver
-	 *            the Selenium WebDriver
-	 * @param selectLocator
-	 *            the locator of the dropdown menu
-	 * @param text
-	 *            the text to be selected from the dropdown menu
+	 * @param driver        the Selenium WebDriver
+	 * @param selectLocator the locator of the dropdown menu
+	 * @param text          the text to be selected from the dropdown menu
 	 * 
 	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
@@ -240,12 +219,9 @@ public final class Selenium {
 	/**
 	 * Selects value from a dropdown list by visible text.
 	 * 
-	 * @param driver
-	 *            the Selenium WebDriver
-	 * @param select
-	 *            the Select element of the dropdown menu
-	 * @param text
-	 *            the text to be selected from the dropdown menu
+	 * @param driver the Selenium WebDriver
+	 * @param select the Select element of the dropdown menu
+	 * @param text   the text to be selected from the dropdown menu
 	 * 
 	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
@@ -256,10 +232,8 @@ public final class Selenium {
 	/**
 	 * Clicks an element in the web page.
 	 * 
-	 * @param driver
-	 *            the Selenium WebDriver
-	 * @param clickableLocator
-	 *            the locator of the clickable element
+	 * @param driver           the Selenium WebDriver
+	 * @param clickableLocator the locator of the clickable element
 	 * 
 	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
@@ -271,10 +245,8 @@ public final class Selenium {
 	/**
 	 * Clicks an element in the web page.
 	 * 
-	 * @param driver
-	 *            the Selenium WebDriver
-	 * @param clickableElement
-	 *            the WebElement of the clickable item
+	 * @param driver           the Selenium WebDriver
+	 * @param clickableElement the WebElement of the clickable item
 	 * 
 	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
@@ -285,12 +257,9 @@ public final class Selenium {
 	/**
 	 * Clicks a child element of a parent element.
 	 * 
-	 * @param driver
-	 *            the Selenium WebDriver
-	 * @param parentLocator
-	 *            the locator of the parent element
-	 * @param childLocator
-	 *            the locator of the child element
+	 * @param driver        the Selenium WebDriver
+	 * @param parentLocator the locator of the parent element
+	 * @param childLocator  the locator of the child element
 	 * 
 	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
@@ -303,12 +272,9 @@ public final class Selenium {
 	/**
 	 * Clicks a child element of a parent element.
 	 * 
-	 * @param driver
-	 *            the Selenium WebDriver
-	 * @param parentElement
-	 *            the WebElement of the parent
-	 * @param childLocator
-	 *            the locator of the child element
+	 * @param driver        the Selenium WebDriver
+	 * @param parentElement the WebElement of the parent
+	 * @param childLocator  the locator of the child element
 	 * 
 	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
@@ -320,10 +286,8 @@ public final class Selenium {
 	/**
 	 * Captures and embeds screenshot in generated HTML report.
 	 * 
-	 * @param scenario
-	 *            the Scenario object
-	 * @param driver
-	 *            the Selenium WebDriver
+	 * @param scenario the Scenario object
+	 * @param driver   the Selenium WebDriver
 	 * 
 	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
@@ -336,8 +300,7 @@ public final class Selenium {
 	 * Captures the current screen as PNG. Stores images in
 	 * /target/cucumber-screenshots/.
 	 * 
-	 * @param driver
-	 *            the Selenium WebDriver
+	 * @param driver the Selenium WebDriver
 	 * @throws IOException
 	 * 
 	 * @author Kat Rollo (rollo.katherine@gmail.com)

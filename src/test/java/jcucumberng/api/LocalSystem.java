@@ -33,8 +33,7 @@ public final class LocalSystem {
 	/**
 	 * Accepts a single key entry. The key is pressed and released immediately.
 	 * 
-	 * @param key
-	 *            KeyEvent constant from java.awt.event.KeyEvent
+	 * @param key KeyEvent constant from java.awt.event.KeyEvent
 	 * @throws AWTException
 	 * @throws NumberFormatException
 	 * @throws IOException
@@ -45,7 +44,7 @@ public final class LocalSystem {
 		Robot robot = new Robot();
 		robot.keyPress(key);
 		robot.keyRelease(key);
-		robot.delay(Integer.parseInt(Configuration.readKey("keypress.wait")));
+		robot.delay(Integer.parseInt(PropsLoader.readKey("keypress.wait")));
 		robot = null; // Destroy robot
 	}
 
@@ -53,9 +52,8 @@ public final class LocalSystem {
 	 * Accepts multiple key entries (e.g. shortcut command). The keys are pressed
 	 * simultaneously and released in reverse order.
 	 * 
-	 * @param keys
-	 *            an array of KeyEvent constants from java.awt.event.KeyEvent,
-	 *            specify keys in order of entry
+	 * @param keys an array of KeyEvent constants from java.awt.event.KeyEvent,
+	 *             specify keys in order of entry
 	 * @throws AWTException
 	 * @throws NumberFormatException
 	 * @throws IOException
@@ -67,7 +65,7 @@ public final class LocalSystem {
 		for (int ctr = 0; ctr < keys.length; ctr++) {
 			robot.keyPress(keys[ctr]); // Press and hold keys
 		}
-		robot.delay(Integer.parseInt(Configuration.readKey("keypress.wait")));
+		robot.delay(Integer.parseInt(PropsLoader.readKey("keypress.wait")));
 		for (int ctr = keys.length - 1; ctr > -1; ctr--) {
 			robot.keyRelease(keys[ctr]); // Release keys in reverse order
 		}
