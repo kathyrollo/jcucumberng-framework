@@ -28,8 +28,8 @@ So that I can see my net income per month and per year
     Given I Am At The Home Page
     When I Enter My Start Balance: <startBalance>
     And I Enter My Regular Income Sources
-      | name   | amount | frequency     |
-      | Salary | 48000  | every 2 weeks |
+      | name   | amount | frequency |
+      | Salary | 2180   | work days |
     And I Enter My Regular Expenses
       | name        | amount | frequency     |
       | Electricity | 5500   | Monthly       |
@@ -40,4 +40,4 @@ So that I can see my net income per month and per year
 
     Examples:
       | startBalance | netPerYear |
-      | 353000       | 883225     |
+      | 353000       | 202025     |
