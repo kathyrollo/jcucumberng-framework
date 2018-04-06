@@ -19,6 +19,8 @@ import com.itextpdf.text.pdf.parser.PdfTextExtractor;
 
 /**
  * This class handles actions for manipulating files or documents.
+ * 
+ * @author Kat Rollo (rollo.katherine@gmail.com)
  */
 public final class FileHandler {
 
@@ -35,8 +37,6 @@ public final class FileHandler {
 	 * @return boolean - true if matching file is found using given prefix and
 	 *         suffix
 	 * @throws IOException
-	 * 
-	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
 	public static boolean doesFileExist(String prefix, String suffix) throws IOException {
 		String directory = PropsLoader.readConfig("file.dir");
@@ -63,8 +63,6 @@ public final class FileHandler {
 	 * 
 	 * @return String - extracted text from PDF file
 	 * @throws IOException
-	 * 
-	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
 	public static String extractPdfText() throws IOException {
 		PdfReader pdfReader = new PdfReader(PropsLoader.readConfig("pdf.file.path"));
@@ -91,8 +89,6 @@ public final class FileHandler {
 	 * @return Object[ ][ ] - the String values in 2D array
 	 * @throws FileNotFoundException
 	 * @throws IOException
-	 * 
-	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
 	public static Object[][] convertExcelTo2DArray(String xlsxFilePath, String sheetName)
 			throws FileNotFoundException, IOException {
@@ -157,8 +153,6 @@ public final class FileHandler {
 	 * 
 	 * @param sheet the sheet from the xlsx file
 	 * @return int - the number of columns
-	 * 
-	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
 	private static int getColumnCount(XSSFSheet sheet) {
 		int largestColumnNumber = 0;
