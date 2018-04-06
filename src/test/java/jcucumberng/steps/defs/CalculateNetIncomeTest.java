@@ -16,7 +16,7 @@ import cucumber.api.Scenario;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import jcucumberng.api.Selenium;
-import jcucumberng.steps.hooks.BaseHook;
+import jcucumberng.steps.hooks.ScenarioHook;
 import jcucumberng.steps.pojos.Expense;
 import jcucumberng.steps.pojos.Income;
 
@@ -25,10 +25,10 @@ public class CalculateNetIncomeTest {
 	private Scenario scenario = null;
 	private WebDriver driver = null;
 
-	// PicoContainer injects BaseHook class
-	public CalculateNetIncomeTest(BaseHook baseHook) {
-		scenario = baseHook.getScenario();
-		driver = baseHook.getDriver();
+	// PicoContainer injects ScenarioHook class
+	public CalculateNetIncomeTest(ScenarioHook scenarioHook) {
+		scenario = scenarioHook.getScenario();
+		driver = scenarioHook.getDriver();
 	}
 
 	@When("^I Enter My Start Balance: (.*)$")
