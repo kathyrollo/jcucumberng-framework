@@ -7,6 +7,8 @@ import java.util.Properties;
 
 /**
  * This class handles actions for configuring the test framework.
+ * 
+ * @author Kat Rollo (rollo.katherine@gmail.com)
  */
 public final class PropsLoader {
 
@@ -21,8 +23,6 @@ public final class PropsLoader {
 	 * @param key the name corresponding to the value in the key-value pair
 	 * @return String - the value corresponding to the given key
 	 * @throws IOException
-	 * 
-	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
 	public static String readConfig(String key) throws IOException {
 		StringBuilder builder = new StringBuilder();
@@ -43,8 +43,6 @@ public final class PropsLoader {
 	 * @param key the name corresponding to the value in the key-value pair
 	 * @return String - the value corresponding to the given key
 	 * @throws IOException
-	 * 
-	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
 	public static String readLocator(String key) throws IOException {
 		StringBuilder builder = new StringBuilder();

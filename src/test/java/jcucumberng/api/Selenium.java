@@ -22,6 +22,8 @@ import cucumber.api.Scenario;
 /**
  * This class handles actions for interacting with web applications using the
  * Selenium WebDriver.
+ * 
+ * @author Kat Rollo (rollo.katherine@gmail.com)
  */
 public final class Selenium {
 	private Selenium() {
@@ -29,19 +31,17 @@ public final class Selenium {
 	}
 
 	/**
-	 * Opens a new window and switches to that window.
+	 * Opens a new window by clicking an element and switches to that window.
 	 * 
-	 * @param driver           the Selenium WebDriver
-	 * @param clickableLocator the locator of the clickable element that opens the
-	 *                         child window
+	 * @param driver          the Selenium WebDriver
+	 * @param childLocatorKey the locator key of the element that opens the child
+	 *                        window
 	 * @return String - the handle of the parent window before opening the child
 	 *         window
-	 * 
-	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
-	public static String openWindow(WebDriver driver, By clickableLocator) {
+	public static String openWindowByElement(WebDriver driver, String childLocatorKey) throws IOException {
 		String parentHandle = driver.getWindowHandle(); // Save parent window
-		WebElement clickableElement = driver.findElement(clickableLocator);
+		WebElement clickableElement = driver.findElement(Selenium.getBy(childLocatorKey));
 		clickableElement.click(); // Open child window
 		WebDriverWait wait = new WebDriverWait(driver, 10); // Timeout in 10s
 		boolean isChildWindowOpen = wait.until(ExpectedConditions.numberOfWindowsToBe(2));
@@ -60,18 +60,16 @@ public final class Selenium {
 	}
 
 	/**
-	 * Opens a new window and switches to that window.
+	 * Opens a new window by navigating to a URL and switches to that window.
 	 * 
-	 * @param driver the Selenium WebDriver
-	 * @param url    the String URL that opens the child window
+	 * @param driver   the Selenium WebDriver
+	 * @param childUrl the String URL that opens the child window
 	 * @return String - the handle of the parent window before opening the child
 	 *         window
-	 * 
-	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
-	public static String openWindow(WebDriver driver, String url) {
+	public static String openWindow(WebDriver driver, String childUrl) {
 		String parentHandle = driver.getWindowHandle();
-		driver.get(url);
+		driver.get(childUrl);
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		boolean isChildWindowOpen = wait.until(ExpectedConditions.numberOfWindowsToBe(2));
 		if (isChildWindowOpen) {
@@ -94,8 +92,6 @@ public final class Selenium {
 	 * @param windowTitle the title of the window
 	 * @return String - the handle of the parent window before opening the child
 	 *         window
-	 * 
-	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
 	public static String switchToWindowByTitle(WebDriver driver, String windowTitle) {
 		Set<String> handles = driver.getWindowHandles();
@@ -126,8 +122,6 @@ public final class Selenium {
 	 * @param locatorKey the locator key of the element
 	 * @return By - the By locator
 	 * @throws IOException
-	 * 
-	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
 	public static By getBy(String locatorKey) throws IOException {
 		String locatorValue = PropsLoader.readLocator(locatorKey);
@@ -149,8 +143,6 @@ public final class Selenium {
 	 * @param locatorKey the locator key of the Select elements
 	 * @return List - the List of Select elements
 	 * @throws IOException
-	 * 
-	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
 	public static List<Select> getSelectElements(WebDriver driver, String locatorKey) throws IOException {
 		List<WebElement> elements = driver.findElements(Selenium.getBy(locatorKey));
@@ -166,8 +158,6 @@ public final class Selenium {
 	 * 
 	 * @param driver the Selenium WebDriver
 	 * @return String - the text within HTML body tags
-	 * 
-	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
 	public static String getBodyText(WebDriver driver) {
 		return driver.findElement(By.tagName("body")).getText();
@@ -178,8 +168,6 @@ public final class Selenium {
 	 * 
 	 * @param driver    the Selenium WebDriver
 	 * @param yPosition positive value to scroll down, negative value to scroll up
-	 * 
-	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
 	public static void scrollVertical(WebDriver driver, int yPosition) {
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
@@ -193,8 +181,6 @@ public final class Selenium {
 	 * @param locatorKey the locator key of the element
 	 * @param text       the text to be entered
 	 * @throws IOException
-	 * 
-	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
 	public static void enterText(WebDriver driver, String locatorKey, String text) throws IOException {
 		WebElement field = driver.findElement(Selenium.getBy(locatorKey));
@@ -209,8 +195,6 @@ public final class Selenium {
 	 * @param field  the element of the textfield or textarea
 	 * @param text   the text to be entered
 	 * @throws IOException
-	 * 
-	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
 	public static void enterText(WebDriver driver, WebElement field, String text) throws IOException {
 		field.clear();
@@ -223,8 +207,6 @@ public final class Selenium {
 	 * @param driver the Selenium WebDriver
 	 * @param select the Select element of the dropdown menu
 	 * @param text   the text to be selected from the dropdown menu
-	 * 
-	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
 	public static void selectFromDropMenuByText(WebDriver driver, Select select, String text) {
 		select.selectByVisibleText(text);
@@ -236,8 +218,6 @@ public final class Selenium {
 	 * @param driver     the Selenium WebDriver
 	 * @param locatorKey the locator key of the element
 	 * @throws IOException
-	 * 
-	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
 	public static void clickElement(WebDriver driver, String locatorKey) throws IOException {
 		WebElement element = driver.findElement(Selenium.getBy(locatorKey));
@@ -251,8 +231,6 @@ public final class Selenium {
 	 * @param parentLocatorKey the locator key of the parent element
 	 * @param childLocatorKey  the locator key of the child element
 	 * @throws IOException
-	 * 
-	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
 	public static void clickChildElement(WebDriver driver, String parentLocatorKey, String childLocatorKey)
 			throws IOException {
@@ -266,8 +244,6 @@ public final class Selenium {
 	 * 
 	 * @param scenario the Scenario object
 	 * @param driver   the Selenium WebDriver
-	 * 
-	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
 	public static void embedScreenshot(WebDriver driver, Scenario scenario) {
 		byte[] srcBytes = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
