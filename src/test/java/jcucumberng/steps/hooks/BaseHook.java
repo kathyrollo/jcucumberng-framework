@@ -1,7 +1,6 @@
 package jcucumberng.steps.hooks;
 
 import java.awt.Toolkit;
-import java.io.IOException;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
@@ -20,7 +19,7 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
-import jcucumberng.api.Configuration;
+import jcucumberng.api.PropsLoader;
 
 public class BaseHook {
 	private static final Logger logger = LogManager.getLogger(BaseHook.class);
@@ -28,9 +27,9 @@ public class BaseHook {
 	private WebDriver driver = null;
 
 	@Before
-	public void setUp(Scenario scenario) {
+	public void setUp(Scenario scenario) throws Throwable {
 		this.scenario = scenario;
-		logger.debug("Scenario: " + scenario.getName());
+		logger.info("Scenario: " + scenario.getName());
 
 		StringBuilder builder = new StringBuilder();
 		builder.append(System.getProperty("user.dir").replace("\\", "/"));
@@ -41,13 +40,7 @@ public class BaseHook {
 		FirefoxOptions ffOpts = null;
 
 		logger.info("Initializing webdriver...");
-		String browser = null;
-		try {
-			browser = Configuration.readKey("browser");
-		} catch (IOException ioe) {
-			logger.error("Cannot find config.properties file in /src/test/resources/.");
-			ioe.printStackTrace();
-		}
+		String browser = PropsLoader.readConfig("browser");
 		logger.info("Browser: " + browser);
 		if (StringUtils.isBlank(browser)) {
 			logger.error("No browser specified in config. Using default CHROME_NOHEAD.");

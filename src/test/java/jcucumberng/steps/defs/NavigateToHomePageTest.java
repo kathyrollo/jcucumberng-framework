@@ -1,16 +1,14 @@
 package jcucumberng.steps.defs;
 
-import java.io.IOException;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.assertj.core.api.Assertions;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 
 import cucumber.api.Scenario;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
-import jcucumberng.api.Configuration;
+import jcucumberng.api.PropsLoader;
 import jcucumberng.api.Selenium;
 import jcucumberng.steps.hooks.BaseHook;
 
@@ -26,14 +24,8 @@ public class NavigateToHomePageTest {
 	}
 
 	@Given("^I Am At The Home Page$")
-	public void I_Am_At_The_Home_Page() {
-		String baseUrl = null;
-		try {
-			baseUrl = Configuration.readKey("base_url");
-		} catch (IOException ioe) {
-			logger.error("Cannot find config.properties file in /src/test/resources/.");
-			ioe.printStackTrace();
-		}
+	public void I_Am_At_The_Home_Page() throws Throwable {
+		String baseUrl = PropsLoader.readConfig("base.url");
 		logger.debug("Navigating to website: " + baseUrl);
 		driver.get(baseUrl);
 		Selenium.embedScreenshot(driver, scenario);
@@ -43,7 +35,7 @@ public class NavigateToHomePageTest {
 	public void I_Should_See_Page_Title(String pageTitle) {
 		String windowTitle = driver.getTitle();
 		logger.debug("Window Title: " + windowTitle);
-		Assert.assertEquals(windowTitle, pageTitle);
+		Assertions.assertThat(windowTitle).isEqualTo(pageTitle);
 		Selenium.embedScreenshot(driver, scenario);
 	}
 
