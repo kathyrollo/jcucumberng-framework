@@ -1,12 +1,10 @@
 package jcucumberng.api;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
@@ -17,6 +15,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.paulhammant.ngwebdriver.ByAngular;
+
 import cucumber.api.Scenario;
 
 /**
@@ -24,7 +24,6 @@ import cucumber.api.Scenario;
  * Selenium WebDriver.
  */
 public final class Selenium {
-
 	private Selenium() {
 		// Prevent instantiation
 	}
@@ -114,35 +113,49 @@ public final class Selenium {
 	}
 
 	/**
-	 * Returns a List of all Select elements.
+	 * Gets the By locator based on the value of the key.<br>
+	 * <br>
+	 * Example:<br>
+	 * key = expense.name.txt<br>
+	 * value = model:expense.name<br>
+	 * by = ByAngular.model()<br>
+	 * <br>
+	 * The colon (:) is the delimiter between locator type (e.g. model) and
+	 * identifier (i.e. substring after colon).
 	 * 
-	 * @param driver        the Selenium WebDriver
-	 * @param selectLocator the locator of the Select elements
-	 * @return List - the List of Select elements
+	 * @param locatorKey the locator key of the element
+	 * @return By - the By locator
+	 * @throws IOException
 	 * 
 	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
-	public static List<Select> getSelectElements(WebDriver driver, By selectLocator) {
-		List<WebElement> elements = driver.findElements(selectLocator);
-		List<Select> selectElements = new ArrayList<>();
-		for (WebElement element : elements) {
-			selectElements.add(new Select(element));
+	public static By getBy(String locatorKey) throws IOException {
+		String locatorValue = PropsLoader.readLocator(locatorKey);
+		String identifier = locatorValue.substring(locatorValue.lastIndexOf(":") + 1);
+		By by = null;
+		// TODO: Add locator types as needed
+		if (locatorValue.contains("css")) {
+			by = By.cssSelector(identifier);
+		} else if (locatorValue.contains("model")) {
+			by = ByAngular.model(identifier);
 		}
-		return selectElements;
+		return by;
 	}
 
 	/**
 	 * Returns a List of all Select elements.
 	 * 
-	 * @param driver      the Selenium WebDriver
-	 * @param webElements the List of Select web elements
+	 * @param driver     the Selenium WebDriver
+	 * @param locatorKey the locator key of the Select elements
 	 * @return List - the List of Select elements
+	 * @throws IOException
 	 * 
 	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
-	public static List<Select> getSelectElements(WebDriver driver, List<WebElement> webElements) {
+	public static List<Select> getSelectElements(WebDriver driver, String locatorKey) throws IOException {
+		List<WebElement> elements = driver.findElements(Selenium.getBy(locatorKey));
 		List<Select> selectElements = new ArrayList<>();
-		for (WebElement element : webElements) {
+		for (WebElement element : elements) {
 			selectElements.add(new Select(element));
 		}
 		return selectElements;
@@ -170,20 +183,21 @@ public final class Selenium {
 	 */
 	public static void scrollVertical(WebDriver driver, int yPosition) {
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
-		jsExecutor.executeScript("scroll(0, " + yPosition + "500);");
+		jsExecutor.executeScript("scroll(0, " + yPosition + ");");
 	}
 
 	/**
 	 * Enters text into a textfield or textarea.
 	 * 
-	 * @param driver       the Selenium WebDriver
-	 * @param fieldLocator the locator of the textfield or textarea
-	 * @param text         the text to be entered
+	 * @param driver     the Selenium WebDriver
+	 * @param locatorKey the locator key of the element
+	 * @param text       the text to be entered
+	 * @throws IOException
 	 * 
 	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
-	public static void enterText(WebDriver driver, By fieldLocator, String text) {
-		WebElement field = driver.findElement(fieldLocator);
+	public static void enterText(WebDriver driver, String locatorKey, String text) throws IOException {
+		WebElement field = driver.findElement(Selenium.getBy(locatorKey));
 		field.clear();
 		field.sendKeys(text);
 	}
@@ -192,28 +206,15 @@ public final class Selenium {
 	 * Enters text into a textfield or textarea.
 	 * 
 	 * @param driver the Selenium WebDriver
-	 * @param field  the WebElement of the textfield or textarea
+	 * @param field  the element of the textfield or textarea
 	 * @param text   the text to be entered
+	 * @throws IOException
 	 * 
 	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
-	public static void enterText(WebDriver driver, WebElement field, String text) {
+	public static void enterText(WebDriver driver, WebElement field, String text) throws IOException {
 		field.clear();
 		field.sendKeys(text);
-	}
-
-	/**
-	 * Selects value from a dropdown list by visible text.
-	 * 
-	 * @param driver        the Selenium WebDriver
-	 * @param selectLocator the locator of the dropdown menu
-	 * @param text          the text to be selected from the dropdown menu
-	 * 
-	 * @author Kat Rollo (rollo.katherine@gmail.com)
-	 */
-	public static void selectFromDropMenuByText(WebDriver driver, By selectLocator, String text) {
-		Select select = new Select(driver.findElement(selectLocator));
-		select.selectByVisibleText(text);
 	}
 
 	/**
@@ -230,56 +231,33 @@ public final class Selenium {
 	}
 
 	/**
-	 * Clicks an element in the web page.
+	 * Clicks an element on the web page.
 	 * 
-	 * @param driver           the Selenium WebDriver
-	 * @param clickableLocator the locator of the clickable element
-	 * 
-	 * @author Kat Rollo (rollo.katherine@gmail.com)
-	 */
-	public static void clickElement(WebDriver driver, By clickableLocator) {
-		WebElement clickableElement = driver.findElement(clickableLocator);
-		clickableElement.click();
-	}
-
-	/**
-	 * Clicks an element in the web page.
-	 * 
-	 * @param driver           the Selenium WebDriver
-	 * @param clickableElement the WebElement of the clickable item
+	 * @param driver     the Selenium WebDriver
+	 * @param locatorKey the locator key of the element
+	 * @throws IOException
 	 * 
 	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
-	public static void clickElement(WebDriver driver, WebElement clickableElement) {
-		clickableElement.click();
+	public static void clickElement(WebDriver driver, String locatorKey) throws IOException {
+		WebElement element = driver.findElement(Selenium.getBy(locatorKey));
+		element.click();
 	}
 
 	/**
 	 * Clicks a child element of a parent element.
 	 * 
-	 * @param driver        the Selenium WebDriver
-	 * @param parentLocator the locator of the parent element
-	 * @param childLocator  the locator of the child element
+	 * @param driver           the Selenium WebDriver
+	 * @param parentLocatorKey the locator key of the parent element
+	 * @param childLocatorKey  the locator key of the child element
+	 * @throws IOException
 	 * 
 	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
-	public static void clickChildElement(WebDriver driver, By parentLocator, By childLocator) {
-		WebElement parentElement = driver.findElement(parentLocator);
-		WebElement childElement = parentElement.findElement(childLocator);
-		childElement.click();
-	}
-
-	/**
-	 * Clicks a child element of a parent element.
-	 * 
-	 * @param driver        the Selenium WebDriver
-	 * @param parentElement the WebElement of the parent
-	 * @param childLocator  the locator of the child element
-	 * 
-	 * @author Kat Rollo (rollo.katherine@gmail.com)
-	 */
-	public static void clickChildElement(WebDriver driver, WebElement parentElement, By childLocator) {
-		WebElement childElement = parentElement.findElement(childLocator);
+	public static void clickChildElement(WebDriver driver, String parentLocatorKey, String childLocatorKey)
+			throws IOException {
+		WebElement parentElement = driver.findElement(Selenium.getBy(parentLocatorKey));
+		WebElement childElement = parentElement.findElement(Selenium.getBy(childLocatorKey));
 		childElement.click();
 	}
 
@@ -294,27 +272,6 @@ public final class Selenium {
 	public static void embedScreenshot(WebDriver driver, Scenario scenario) {
 		byte[] srcBytes = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
 		scenario.embed(srcBytes, "image/png");
-	}
-
-	/**
-	 * Captures the current screen as PNG. Stores images in
-	 * /target/cucumber-screenshots/.
-	 * 
-	 * @param driver the Selenium WebDriver
-	 * @throws IOException
-	 * 
-	 * @author Kat Rollo (rollo.katherine@gmail.com)
-	 */
-	public static void captureScreenshot(WebDriver driver) throws IOException {
-		StringBuilder builder = new StringBuilder();
-		builder.append(System.getProperty("user.dir").replace("\\", "/"));
-		builder.append("/target/cucumber-screenshots/sshot_");
-		builder.append(System.currentTimeMillis());
-		builder.append(".png");
-		String screenshot = builder.toString();
-
-		File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-		FileUtils.copyFile(srcFile, new File(screenshot));
 	}
 
 }

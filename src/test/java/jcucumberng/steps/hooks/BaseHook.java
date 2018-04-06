@@ -29,7 +29,7 @@ public class BaseHook {
 	@Before
 	public void setUp(Scenario scenario) throws Throwable {
 		this.scenario = scenario;
-		logger.debug("Scenario: " + scenario.getName());
+		logger.info("Scenario: " + scenario.getName());
 
 		StringBuilder builder = new StringBuilder();
 		builder.append(System.getProperty("user.dir").replace("\\", "/"));
