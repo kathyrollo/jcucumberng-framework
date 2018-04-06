@@ -10,17 +10,17 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import jcucumberng.api.PropsLoader;
 import jcucumberng.api.Selenium;
-import jcucumberng.steps.hooks.BaseHook;
+import jcucumberng.steps.hooks.ScenarioHook;
 
 public class NavigateToHomePageTest {
 	private static final Logger logger = LogManager.getLogger(NavigateToHomePageTest.class);
 	private Scenario scenario = null;
 	private WebDriver driver = null;
 
-	// PicoContainer injects BaseHook class
-	public NavigateToHomePageTest(BaseHook baseHook) {
-		scenario = baseHook.getScenario();
-		driver = baseHook.getDriver();
+	// PicoContainer injects ScenarioHook class
+	public NavigateToHomePageTest(ScenarioHook scenarioHook) {
+		scenario = scenarioHook.getScenario();
+		driver = scenarioHook.getDriver();
 	}
 
 	@Given("^I Am At The Home Page$")

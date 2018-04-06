@@ -21,15 +21,17 @@ import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import jcucumberng.api.PropsLoader;
 
-public class BaseHook {
-	private static final Logger logger = LogManager.getLogger(BaseHook.class);
+public class ScenarioHook {
+	private static final Logger logger = LogManager.getLogger(ScenarioHook.class);
 	private Scenario scenario = null;
 	private WebDriver driver = null;
 
 	@Before
-	public void setUp(Scenario scenario) throws Throwable {
+	public void beforeScenario(Scenario scenario) throws Throwable {
 		this.scenario = scenario;
-		logger.info("Scenario: " + scenario.getName());
+		logger.info("Scenario BEGIN: " + scenario.getStatus());
+		logger.info("Scenario ID: " + scenario.getId());
+		logger.info("Scenario Name: " + scenario.getName());
 
 		StringBuilder builder = new StringBuilder();
 		builder.append(System.getProperty("user.dir").replace("\\", "/"));
@@ -107,8 +109,9 @@ public class BaseHook {
 	}
 
 	@After
-	public void tearDown() {
+	public void afterScenario() {
 		logger.info("Terminating webdriver...");
+		logger.info("Scenario END: " + scenario.getStatus());
 		driver.quit();
 	}
 
