@@ -34,8 +34,8 @@ public final class Selenium {
 	 * Opens a new window by clicking an element and switches to that window.
 	 * 
 	 * @param driver          the Selenium WebDriver
-	 * @param childLocatorKey the locator key of the element that opens the child
-	 *                        window
+	 * @param childLocatorKey the key from the ui-map for the element that opens the
+	 *                        child window
 	 * @return String - the handle of the parent window before opening the child
 	 *         window
 	 */
@@ -119,7 +119,7 @@ public final class Selenium {
 	 * The colon (:) is the delimiter between locator type (e.g. model) and
 	 * identifier (i.e. substring after colon).
 	 * 
-	 * @param locatorKey the locator key of the element
+	 * @param locatorKey the key from the ui-map
 	 * @return By - the By locator
 	 * @throws IOException
 	 */
@@ -139,13 +139,13 @@ public final class Selenium {
 	/**
 	 * Returns a List of all Select elements.
 	 * 
-	 * @param driver     the Selenium WebDriver
-	 * @param locatorKey the locator key of the Select elements
+	 * @param driver           the Selenium WebDriver
+	 * @param selectLocatorKey the key from the ui-map
 	 * @return List - the List of Select elements
 	 * @throws IOException
 	 */
-	public static List<Select> getSelectElements(WebDriver driver, String locatorKey) throws IOException {
-		List<WebElement> elements = driver.findElements(Selenium.getBy(locatorKey));
+	public static List<Select> getSelectElements(WebDriver driver, String selectLocatorKey) throws IOException {
+		List<WebElement> elements = driver.findElements(Selenium.getBy(selectLocatorKey));
 		List<Select> selectElements = new ArrayList<>();
 		for (WebElement element : elements) {
 			selectElements.add(new Select(element));
@@ -177,13 +177,13 @@ public final class Selenium {
 	/**
 	 * Enters text into a textfield or textarea.
 	 * 
-	 * @param driver     the Selenium WebDriver
-	 * @param locatorKey the locator key of the element
-	 * @param text       the text to be entered
+	 * @param driver          the Selenium WebDriver
+	 * @param fieldLocatorKey the key from the ui-map
+	 * @param text            the text to be entered
 	 * @throws IOException
 	 */
-	public static void enterText(WebDriver driver, String locatorKey, String text) throws IOException {
-		WebElement field = driver.findElement(Selenium.getBy(locatorKey));
+	public static void enterText(WebDriver driver, String fieldLocatorKey, String text) throws IOException {
+		WebElement field = driver.findElement(Selenium.getBy(fieldLocatorKey));
 		field.clear();
 		field.sendKeys(text);
 	}
@@ -216,7 +216,7 @@ public final class Selenium {
 	 * Clicks an element on the web page.
 	 * 
 	 * @param driver     the Selenium WebDriver
-	 * @param locatorKey the locator key of the element
+	 * @param locatorKey the key from the ui-map
 	 * @throws IOException
 	 */
 	public static void clickElement(WebDriver driver, String locatorKey) throws IOException {
@@ -228,8 +228,8 @@ public final class Selenium {
 	 * Clicks a child element of a parent element.
 	 * 
 	 * @param driver           the Selenium WebDriver
-	 * @param parentLocatorKey the locator key of the parent element
-	 * @param childLocatorKey  the locator key of the child element
+	 * @param parentLocatorKey the key from the ui-map for the parent element
+	 * @param childLocatorKey  the key from the ui-map for the child element
 	 * @throws IOException
 	 */
 	public static void clickChildElement(WebDriver driver, String parentLocatorKey, String childLocatorKey)
