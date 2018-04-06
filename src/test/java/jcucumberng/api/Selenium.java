@@ -67,7 +67,7 @@ public final class Selenium {
 	 * @return String - the handle of the parent window before opening the child
 	 *         window
 	 */
-	public static String openWindow(WebDriver driver, String childUrl) {
+	public static String openWindowByUrl(WebDriver driver, String childUrl) {
 		String parentHandle = driver.getWindowHandle();
 		driver.get(childUrl);
 		WebDriverWait wait = new WebDriverWait(driver, 10);
