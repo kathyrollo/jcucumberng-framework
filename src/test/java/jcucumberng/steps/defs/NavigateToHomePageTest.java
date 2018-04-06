@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 import cucumber.api.Scenario;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
-import jcucumberng.api.Configuration;
+import jcucumberng.api.PropsLoader;
 import jcucumberng.api.Selenium;
 import jcucumberng.steps.hooks.BaseHook;
 
@@ -25,7 +25,7 @@ public class NavigateToHomePageTest {
 
 	@Given("^I Am At The Home Page$")
 	public void I_Am_At_The_Home_Page() throws Throwable {
-		String baseUrl = Configuration.readKey("base_url");
+		String baseUrl = PropsLoader.readConfig("base.url");
 		logger.debug("Navigating to website: " + baseUrl);
 		driver.get(baseUrl);
 		Selenium.embedScreenshot(driver, scenario);

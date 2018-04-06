@@ -19,29 +19,27 @@ import com.itextpdf.text.pdf.parser.PdfTextExtractor;
 
 /**
  * This class handles actions for manipulating files or documents.
+ * 
+ * @author Kat Rollo (rollo.katherine@gmail.com)
  */
-public final class FileIO {
+public final class FileHandler {
 
-	private FileIO() {
+	private FileHandler() {
 		// Prevent instantiation
 	}
 
 	/**
-	 * Checks if a file exists in a specified directory. Set file_dir in
+	 * Checks if a file exists in a specified directory. Set file.dir in
 	 * config.properties.
 	 * 
-	 * @param prefix
-	 *            the beginning of a filename, can be a substring
-	 * @param suffix
-	 *            can be the file extension (e.g. ".txt")
+	 * @param prefix the beginning of a filename, can be a substring
+	 * @param suffix can be the file extension (e.g. ".txt")
 	 * @return boolean - true if matching file is found using given prefix and
 	 *         suffix
 	 * @throws IOException
-	 * 
-	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
 	public static boolean doesFileExist(String prefix, String suffix) throws IOException {
-		String directory = Configuration.readKey("file_dir");
+		String directory = PropsLoader.readConfig("file.dir");
 		File[] files = new File(directory).listFiles();
 
 		String fileName = null;
@@ -60,16 +58,14 @@ public final class FileIO {
 	}
 
 	/**
-	 * Extracts readable text from a specified PDF file. Set pdf_file_path in
+	 * Extracts readable text from a specified PDF file. Set pdf.file.path in
 	 * config.properties. File path must be absolute.
 	 * 
 	 * @return String - extracted text from PDF file
 	 * @throws IOException
-	 * 
-	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
 	public static String extractPdfText() throws IOException {
-		PdfReader pdfReader = new PdfReader(Configuration.readKey("pdf_file_path"));
+		PdfReader pdfReader = new PdfReader(PropsLoader.readConfig("pdf.file.path"));
 		int pages = pdfReader.getNumberOfPages();
 
 		String pdfText = "";
@@ -87,16 +83,12 @@ public final class FileIO {
 	 * first row will be omitted. Each row must have the same number of columns.
 	 * Each column must have a value.
 	 * 
-	 * @param xlsxFilePath
-	 *            the absolute path of the xlsx file
-	 * @param sheetName
-	 *            the name of the sheet to be read (defaults to first sheet if
-	 *            blank)
+	 * @param xlsxFilePath the absolute path of the xlsx file
+	 * @param sheetName    the name of the sheet to be read (defaults to first sheet
+	 *                     if blank)
 	 * @return Object[ ][ ] - the String values in 2D array
 	 * @throws FileNotFoundException
 	 * @throws IOException
-	 * 
-	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
 	public static Object[][] convertExcelTo2DArray(String xlsxFilePath, String sheetName)
 			throws FileNotFoundException, IOException {
@@ -113,7 +105,7 @@ public final class FileIO {
 		}
 
 		int totalRows = sheet.getLastRowNum(); // Remove header row
-		int totalColumns = FileIO.getColumnCount(sheet);
+		int totalColumns = FileHandler.getColumnCount(sheet);
 		String[][] testData = new String[totalRows][totalColumns];
 
 		int rowIndex = 0;
@@ -159,11 +151,8 @@ public final class FileIO {
 	/**
 	 * Returns the largest number of non-empty columns among all rows.
 	 * 
-	 * @param sheet
-	 *            the sheet from the xlsx file
+	 * @param sheet the sheet from the xlsx file
 	 * @return int - the number of columns
-	 * 
-	 * @author Kat Rollo (rollo.katherine@gmail.com)
 	 */
 	private static int getColumnCount(XSSFSheet sheet) {
 		int largestColumnNumber = 0;
