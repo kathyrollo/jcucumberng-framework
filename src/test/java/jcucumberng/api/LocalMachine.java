@@ -7,14 +7,14 @@ import java.awt.Toolkit;
 import java.io.IOException;
 
 /**
- * This class handles actions relating to the local system such as screen
- * resolution, keyboard, or mouse.
+ * This class handles actions relating to the local machine such as screen
+ * resolution or input devices.
  * 
  * @author Kat Rollo (rollo.katherine@gmail.com)
  */
-public final class LocalSystem {
+public final class LocalMachine {
 
-	private LocalSystem() {
+	private LocalMachine() {
 		// Prevent instantiation
 	}
 
