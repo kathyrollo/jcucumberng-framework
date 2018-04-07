@@ -29,9 +29,8 @@ public class ScenarioHook {
 	@Before
 	public void beforeScenario(Scenario scenario) throws Throwable {
 		this.scenario = scenario;
-		logger.info("Scenario BEGIN: " + scenario.getStatus());
-		logger.info("Scenario ID: " + scenario.getId());
-		logger.info("Scenario Name: " + scenario.getName());
+		logger.info("BEGIN SCENARIO: " + scenario.getName() + " - " + scenario.getStatus());
+		logger.info("ID: " + scenario.getId());
 
 		StringBuilder builder = new StringBuilder();
 		builder.append(System.getProperty("user.dir").replace("\\", "/"));
@@ -41,7 +40,7 @@ public class ScenarioHook {
 		FirefoxBinary ffBin = null;
 		FirefoxOptions ffOpts = null;
 
-		logger.info("Initializing webdriver...");
+		logger.info("Setting up the browser...");
 		String browser = PropsLoader.readConfig("browser");
 		logger.info("Browser: " + browser);
 		if (StringUtils.isBlank(browser)) {
@@ -110,8 +109,8 @@ public class ScenarioHook {
 
 	@After
 	public void afterScenario() {
-		logger.info("Terminating webdriver...");
-		logger.info("Scenario END: " + scenario.getStatus());
+		logger.info("Quitting the browser...");
+		logger.info("END SCENARIO: " + scenario.getName() + " - " + scenario.getStatus());
 		driver.quit();
 	}
 
