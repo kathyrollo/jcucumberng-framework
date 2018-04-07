@@ -20,13 +20,13 @@ import jcucumberng.steps.hooks.ScenarioHook;
 import jcucumberng.steps.pojos.Expense;
 import jcucumberng.steps.pojos.Income;
 
-public class CalculateNetIncomeTest {
-	private static final Logger logger = LogManager.getLogger(CalculateNetIncomeTest.class);
+public class NetIncomeProjectorSteps {
+	private static final Logger logger = LogManager.getLogger(NetIncomeProjectorSteps.class);
 	private Scenario scenario = null;
 	private WebDriver driver = null;
 
 	// PicoContainer injects ScenarioHook class
-	public CalculateNetIncomeTest(ScenarioHook scenarioHook) {
+	public NetIncomeProjectorSteps(ScenarioHook scenarioHook) {
 		scenario = scenarioHook.getScenario();
 		driver = scenarioHook.getDriver();
 	}
