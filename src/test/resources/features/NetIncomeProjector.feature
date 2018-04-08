@@ -1,5 +1,5 @@
 @sample @netIncome
-Feature: Calculate Net Income
+Feature: Net Income Projector
 As a user
 I want to enter my income and expenses
 So that I can see my net income per month and per year

@@ -112,8 +112,11 @@ public final class Selenium {
 	 * Gets the By locator based on the value of the key.<br>
 	 * <br>
 	 * Example:<br>
+	 * <br>
 	 * key = expense.name.txt<br>
+	 * <br>
 	 * value = model:expense.name<br>
+	 * <br>
 	 * by = ByAngular.model()<br>
 	 * <br>
 	 * The colon (:) is the delimiter between locator type (e.g. model) and
