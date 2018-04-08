@@ -1,7 +1,15 @@
+# Eclipse IDE
 .classpath
+.settings/
 
-/.settings/
-/.vscode/
+# IntelliJ IDEA
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/dictionaries
 
-/target/
-/test-output/
+# Visual Studio Code
+.vscode/
+
+# Output Directories
+target/
+test-output/
