@@ -19,4 +19,5 @@ public class CucumberRunner extends AbstractTestNGCucumberTests {
 // TODO: Support for IntelliJ
 // TODO: Support for Jenkins
 // TODO: Support for Selenium Grid
+// TODO: Implement SLF4J
 // TODO: Update README.md
