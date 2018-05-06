@@ -122,19 +122,19 @@ public final class Selenium {
 	 * The colon (:) is the delimiter between locator type (e.g. model) and
 	 * identifier (i.e. substring after colon).
 	 * 
-	 * @param locatorKey the key from the ui-map
+	 * @param key the key from the ui-map
 	 * @return By - the By locator
 	 * @throws IOException
 	 */
-	public static By getBy(String locatorKey) throws IOException {
-		String locatorValue = PropsLoader.readLocator(locatorKey);
-		String identifier = locatorValue.substring(locatorValue.lastIndexOf(":") + 1);
+	public static By getBy(String key) throws IOException {
+		String value = PropsLoader.readLocator(key);
+		String locator = value.substring(value.lastIndexOf(":") + 1);
 		By by = null;
-		// TODO: Add locator types as needed
-		if (locatorValue.contains("css")) {
-			by = By.cssSelector(identifier);
-		} else if (locatorValue.contains("model")) {
-			by = ByAngular.model(identifier);
+		// TODO: Add By-types as needed
+		if (value.contains("by-css")) {
+			by = By.cssSelector(locator);
+		} else if (value.contains("by-model")) {
+			by = ByAngular.model(locator);
 		}
 		return by;
 	}
