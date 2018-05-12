@@ -14,10 +14,3 @@ public class CucumberRunner extends AbstractTestNGCucumberTests {
 }
 
 // For Eclipse IDE: Right-Click > Run As > TestNG Test
-
-// TODO: Add testng.xml
-// TODO: Support for IntelliJ
-// TODO: Support for Jenkins
-// TODO: Support for Selenium Grid
-// TODO: Implement SLF4J
-// TODO: Update README.md
