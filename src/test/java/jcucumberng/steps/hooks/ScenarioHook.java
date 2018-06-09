@@ -105,6 +105,7 @@ public class ScenarioHook {
 		int height = (int) awtDimension.getHeight();
 		Dimension dimension = new Dimension(width, height);
 		driver.manage().window().setSize(dimension);
+		logger.info("Screen Resolution (WxH): " + dimension.getWidth() + "x" + dimension.getHeight());
 	}
 
 	@After
