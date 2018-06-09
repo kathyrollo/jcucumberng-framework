@@ -78,6 +78,7 @@
 	</dependencies>
 	<build>
 		<plugins>
+			<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -87,6 +88,7 @@
 					<target>${java.version}</target>
 				</configuration>
 			</plugin>
+			<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
@@ -99,10 +101,11 @@
 					<reportsDirectory>./target/test-output/${timestamp}</reportsDirectory>
 				</configuration>
 			</plugin>
+			<!-- https://mvnrepository.com/artifact/net.masterthought/maven-cucumber-reporting -->
 			<plugin>
 				<groupId>net.masterthought</groupId>
 				<artifactId>maven-cucumber-reporting</artifactId>
-				<version>3.16.0</version>
+				<version>3.17.1</version>
 				<executions>
 					<execution>
 						<id>execution</id>
