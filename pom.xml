@@ -105,7 +105,7 @@
 			<plugin>
 				<groupId>net.masterthought</groupId>
 				<artifactId>maven-cucumber-reporting</artifactId>
-				<version>3.16.0</version>
+				<version>3.17.1</version>
 				<executions>
 					<execution>
 						<id>execution</id>
@@ -117,8 +117,11 @@
 							<projectName>Simply Do - Balance Projector</projectName>
 							<outputDirectory>${project.build.directory}</outputDirectory>
 							<jsonFiles>
-								<param>${project.build.directory}/cucumber-generated-reports/cucumber-report.json</param>
+								<param>**/*.json</param>
 							</jsonFiles>
+							<classificationFiles>
+								<!-- set params -->
+							</classificationFiles>
 							<parallelTesting>false</parallelTesting>
 						</configuration>
 					</execution>
