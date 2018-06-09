@@ -2,8 +2,6 @@ package jcucumberng.steps.defs;
 
 import java.util.List;
 
-import com.paulhammant.ngwebdriver.ByAngular;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.assertj.core.api.Assertions;
@@ -11,10 +9,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
-import cucumber.api.DataTable;
+import com.paulhammant.ngwebdriver.ByAngular;
+
 import cucumber.api.Scenario;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import io.cucumber.datatable.DataTable;
 import jcucumberng.api.Selenium;
 import jcucumberng.steps.hooks.ScenarioHook;
 import jcucumberng.steps.pojos.Expense;
