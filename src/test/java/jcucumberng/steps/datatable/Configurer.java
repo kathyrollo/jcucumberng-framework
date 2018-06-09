@@ -1,4 +1,4 @@
-package jcucumberng.steps.defs;
+package jcucumberng.steps.datatable;
 
 import java.util.Locale;
 import java.util.Map;

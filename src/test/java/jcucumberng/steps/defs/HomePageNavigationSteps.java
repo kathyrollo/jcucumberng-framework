@@ -12,13 +12,13 @@ import jcucumberng.api.PropsLoader;
 import jcucumberng.api.Selenium;
 import jcucumberng.steps.hooks.ScenarioHook;
 
-public class HomePageNavigation {
-	private static final Logger logger = LogManager.getLogger(HomePageNavigation.class);
+public class HomePageNavigationSteps {
+	private static final Logger logger = LogManager.getLogger(HomePageNavigationSteps.class);
 	private Scenario scenario = null;
 	private WebDriver driver = null;
 
 	// PicoContainer injects ScenarioHook class
-	public HomePageNavigation(ScenarioHook scenarioHook) {
+	public HomePageNavigationSteps(ScenarioHook scenarioHook) {
 		scenario = scenarioHook.getScenario();
 		driver = scenarioHook.getDriver();
 	}
