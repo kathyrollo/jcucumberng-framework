@@ -10,6 +10,9 @@ import io.cucumber.datatable.TableEntryTransformer;
 import jcucumberng.steps.domain.Expense;
 import jcucumberng.steps.domain.Income;
 
+/*
+ * Maps datatables in feature files to custom domain objects.
+ */
 public class DataTableConfigurer implements TypeRegistryConfigurer {
 
 	@Override
