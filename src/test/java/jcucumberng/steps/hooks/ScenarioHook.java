@@ -29,7 +29,7 @@ public class ScenarioHook {
 	@Before
 	public void beforeScenario(Scenario scenario) throws Throwable {
 		this.scenario = scenario;
-		logger.info("BEGIN SCENARIO: " + scenario.getName() + " - " + scenario.getStatus());
+		logger.info("BEGIN SCENARIO: " + scenario.getName());
 		logger.info("ID: " + scenario.getId());
 
 		StringBuilder builder = new StringBuilder();
