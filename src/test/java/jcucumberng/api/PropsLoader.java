@@ -8,7 +8,7 @@ import java.util.Properties;
 /**
  * This class handles actions for configuring the test framework.
  * 
- * @author Kat Rollo (rollo.katherine@gmail.com)
+ * @author Kat Rollo <rollo.katherine@gmail.com>
  */
 public final class PropsLoader {
 

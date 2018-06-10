@@ -23,7 +23,7 @@ import cucumber.api.Scenario;
  * This class handles actions for interacting with web applications using the
  * Selenium WebDriver.
  * 
- * @author Kat Rollo (rollo.katherine@gmail.com)
+ * @author Kat Rollo <rollo.katherine@gmail.com>
  */
 public final class Selenium {
 	private Selenium() {

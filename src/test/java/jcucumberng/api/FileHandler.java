@@ -20,7 +20,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 /**
  * This class handles actions for manipulating files or documents.
  * 
- * @author Kat Rollo (rollo.katherine@gmail.com)
+ * @author Kat Rollo <rollo.katherine@gmail.com>
  */
 public final class FileHandler {
 
