@@ -11,7 +11,6 @@ import org.openqa.selenium.support.ui.Select;
 
 import com.paulhammant.ngwebdriver.ByAngular;
 
-import cucumber.api.Scenario;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import io.cucumber.datatable.DataTable;
@@ -22,19 +21,16 @@ import jcucumberng.steps.hooks.ScenarioHook;
 
 public class NetIncomeProjectorSteps {
 	private static final Logger logger = LogManager.getLogger(NetIncomeProjectorSteps.class);
-	private Scenario scenario = null;
 	private WebDriver driver = null;
 
 	// PicoContainer injects ScenarioHook class
 	public NetIncomeProjectorSteps(ScenarioHook scenarioHook) {
-		scenario = scenarioHook.getScenario();
 		driver = scenarioHook.getDriver();
 	}
 
 	@When("I Enter My Start Balance: {word}")
 	public void I_Enter_My_Start_Balance(String startBalance) throws Throwable {
 		Selenium.enterText(driver, "start.balance", startBalance);
-		Selenium.embedScreenshot(driver, scenario);
 	}
 
 	@When("I Enter My Regular Income Sources")
@@ -51,7 +47,6 @@ public class NetIncomeProjectorSteps {
 			Selenium.enterText(driver, incomeAmountTextFields.get(ctr), incomes.get(ctr).getAmount());
 			Selenium.selectFromDropMenuByText(driver, incomeFreqDropMenus.get(ctr), incomes.get(ctr).getFrequency());
 		}
-		Selenium.embedScreenshot(driver, scenario);
 	}
 
 	@When("I Enter My Regular Expenses")
@@ -68,7 +63,6 @@ public class NetIncomeProjectorSteps {
 			Selenium.enterText(driver, expenseAmountTextFields.get(ctr), expenses.get(ctr).getAmount());
 			Selenium.selectFromDropMenuByText(driver, expenseFreqDropMenus.get(ctr), expenses.get(ctr).getFrequency());
 		}
-		Selenium.embedScreenshot(driver, scenario);
 	}
 
 	@Then("I Should See Net Income Per Month: {word}")
@@ -78,7 +72,6 @@ public class NetIncomeProjectorSteps {
 		Assertions.assertThat(netPerMonthText).isEqualTo(netPerMonth);
 		logger.debug("Net Per Month: " + netPerMonthText);
 		Selenium.scrollVertical(driver, 500);
-		Selenium.embedScreenshot(driver, scenario);
 	}
 
 	@Then("I Should See Net Income Per Year: {word}")
@@ -89,7 +82,6 @@ public class NetIncomeProjectorSteps {
 		Assertions.assertThat(netPerYearText).isEqualTo(netPerYear);
 		logger.debug("Net Per Year: " + netPerYearText);
 		Selenium.scrollVertical(driver, 500);
-		Selenium.embedScreenshot(driver, scenario);
 	}
 
 }

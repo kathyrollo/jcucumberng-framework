@@ -4,7 +4,7 @@ import cucumber.api.CucumberOptions;
 import cucumber.api.SnippetType;
 import cucumber.api.testng.AbstractTestNGCucumberTests;
 
-@CucumberOptions(features = { "src/test/resources/features" }, tags = { "not @ignore" }, glue = {
+@CucumberOptions(features = { "src/test/resources/features" }, tags = { "@netPerMonth" }, glue = {
 		"jcucumberng/steps/defs", "jcucumberng/steps/config", "jcucumberng/steps/hooks" }, plugin = { "pretty",
 				"html:target/cucumber-generated-reports/cucumber-report",
 				"json:target/cucumber-generated-reports/cucumber-report.json",
