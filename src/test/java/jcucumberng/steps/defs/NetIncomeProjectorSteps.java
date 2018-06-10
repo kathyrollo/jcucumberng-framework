@@ -31,13 +31,13 @@ public class NetIncomeProjectorSteps {
 		driver = scenarioHook.getDriver();
 	}
 
-	@When("^I Enter My Start Balance: (.*)$")
+	@When("I Enter My Start Balance: {word}")
 	public void I_Enter_My_Start_Balance(String startBalance) throws Throwable {
 		Selenium.enterText(driver, "start.balance", startBalance);
 		Selenium.embedScreenshot(driver, scenario);
 	}
 
-	@When("^I Enter My Regular Income Sources$")
+	@When("I Enter My Regular Income Sources")
 	public void I_Enter_My_Regular_Income_Sources(DataTable dataTable) throws Throwable {
 		List<Income> incomes = dataTable.asList(Income.class);
 		for (int ctr = 0; ctr < incomes.size() - 1; ctr++) {
@@ -54,7 +54,7 @@ public class NetIncomeProjectorSteps {
 		Selenium.embedScreenshot(driver, scenario);
 	}
 
-	@When("^I Enter My Regular Expenses$")
+	@When("I Enter My Regular Expenses")
 	public void I_Enter_My_Regular_Expenses(DataTable dataTable) throws Throwable {
 		List<Expense> expenses = dataTable.asList(Expense.class);
 		for (int ctr = 0; ctr < expenses.size() - 1; ctr++) {
@@ -71,7 +71,7 @@ public class NetIncomeProjectorSteps {
 		Selenium.embedScreenshot(driver, scenario);
 	}
 
-	@Then("^I Should See Net Income Per Month: (.*)$")
+	@Then("I Should See Net Income Per Month: {word}")
 	public void I_Should_See_Net_Income_Per_Month(String netPerMonth) {
 		WebElement netPerMonthTd = driver.findElement(ByAngular.binding("roundDown(monthlyNet())"));
 		String netPerMonthText = netPerMonthTd.getText();
@@ -81,7 +81,7 @@ public class NetIncomeProjectorSteps {
 		Selenium.embedScreenshot(driver, scenario);
 	}
 
-	@Then("^I Should See Net Income Per Year: (.*)$")
+	@Then("I Should See Net Income Per Year: {word}")
 	public void I_Should_See_Net_Income_Per_Year(String netPerYear) {
 		WebElement netPerYearTd = driver
 				.findElement(ByAngular.binding("roundDown(monthlyNet()*12)+tallyTransactions()"));
