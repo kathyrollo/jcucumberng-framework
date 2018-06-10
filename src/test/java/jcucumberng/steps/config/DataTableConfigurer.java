@@ -7,8 +7,8 @@ import cucumber.api.TypeRegistry;
 import cucumber.api.TypeRegistryConfigurer;
 import io.cucumber.datatable.DataTableType;
 import io.cucumber.datatable.TableEntryTransformer;
-import jcucumberng.steps.pojos.Expense;
-import jcucumberng.steps.pojos.Income;
+import jcucumberng.steps.domain.Expense;
+import jcucumberng.steps.domain.Income;
 
 public class DataTableConfigurer implements TypeRegistryConfigurer {
 

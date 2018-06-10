@@ -16,9 +16,9 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import io.cucumber.datatable.DataTable;
 import jcucumberng.api.Selenium;
+import jcucumberng.steps.domain.Expense;
+import jcucumberng.steps.domain.Income;
 import jcucumberng.steps.hooks.ScenarioHook;
-import jcucumberng.steps.pojos.Expense;
-import jcucumberng.steps.pojos.Income;
 
 public class NetIncomeProjectorSteps {
 	private static final Logger logger = LogManager.getLogger(NetIncomeProjectorSteps.class);

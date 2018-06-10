@@ -1,4 +1,4 @@
-package jcucumberng.steps.pojos;
+package jcucumberng.steps.domain;
 
 public class Expense {
 
