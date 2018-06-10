@@ -13,8 +13,12 @@ import jcucumberng.steps.pojos.Income;
 public class Configurer implements TypeRegistryConfigurer {
 
 	@Override
-	public void configureTypeRegistry(TypeRegistry registry) {
+	public Locale locale() {
+		return Locale.ENGLISH;
+	}
 
+	@Override
+	public void configureTypeRegistry(TypeRegistry registry) {
 		registry.defineDataTableType(new DataTableType(Income.class, new TableEntryTransformer<Income>() {
 			@Override
 			public Income transform(Map<String, String> entry) {
@@ -28,11 +32,6 @@ public class Configurer implements TypeRegistryConfigurer {
 				return new Expense(entry.get("name"), entry.get("amount"), entry.get("frequency"));
 			}
 		}));
-	}
-
-	@Override
-	public Locale locale() {
-		return Locale.ENGLISH;
 	}
 
 }
