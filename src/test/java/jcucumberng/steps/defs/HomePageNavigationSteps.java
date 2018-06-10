@@ -23,7 +23,7 @@ public class HomePageNavigationSteps {
 		driver = scenarioHook.getDriver();
 	}
 
-	@Given("^I Am At The Home Page$")
+	@Given("I Am At The Home Page")
 	public void I_Am_At_The_Home_Page() throws Throwable {
 		String baseUrl = PropsLoader.readConfig("base.url");
 		logger.debug("Navigating to website: " + baseUrl);
@@ -31,7 +31,7 @@ public class HomePageNavigationSteps {
 		Selenium.embedScreenshot(driver, scenario);
 	}
 
-	@Then("^I Should See Page Title '(.*)'$")
+	@Then("I Should See Page Title {string}")
 	public void I_Should_See_Page_Title(String pageTitle) {
 		String windowTitle = driver.getTitle();
 		logger.debug("Window Title: " + windowTitle);
