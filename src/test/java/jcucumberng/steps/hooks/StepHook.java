@@ -23,7 +23,6 @@ public class StepHook {
 
 	@AfterStep
 	public void afterStep() throws Throwable {
-		Selenium.captureScreenshot(driver);
 		Selenium.embedScreenshot(driver, scenario);
 	}
 
