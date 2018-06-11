@@ -22,7 +22,6 @@ public class StepHook {
 
 	@AfterStep
 	public void afterStep() throws Throwable {
-		logger.info("AfterStep - " + scenario.getName() + " | " + (null != driver));
 		Selenium.embedScreenshot(driver, scenario);
 	}
 
