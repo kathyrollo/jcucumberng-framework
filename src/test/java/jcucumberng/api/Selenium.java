@@ -132,7 +132,7 @@ public final class Selenium {
 		String value = PropsLoader.readLocator(key);
 		String locator = value.substring(value.lastIndexOf(":") + 1);
 		By by = null;
-		// TODO: Add By-types as needed
+		// TODO Add By-types as needed
 		if (value.contains("by-css")) {
 			by = By.cssSelector(locator);
 		} else if (value.contains("by-model")) {

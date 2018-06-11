@@ -9,7 +9,7 @@ import cucumber.api.java.AfterStep;
 import jcucumberng.api.Selenium;
 
 public class StepHook {
-	// TODO: Remove suppress warning when used
+	// TODO Remove suppress warning when used
 	@SuppressWarnings("unused")
 	private static final Logger logger = LogManager.getLogger(StepHook.class);
 	private Scenario scenario = null;
