@@ -12,18 +12,18 @@ import jcucumberng.api.PropsLoader;
 import jcucumberng.api.Selenium;
 import jcucumberng.steps.hooks.ScenarioHook;
 
-public class HomePageNavigation {
-	private static final Logger logger = LogManager.getLogger(HomePageNavigation.class);
+public class HomePageNavigationSteps {
+	private static final Logger logger = LogManager.getLogger(HomePageNavigationSteps.class);
 	private Scenario scenario = null;
 	private WebDriver driver = null;
 
 	// PicoContainer injects ScenarioHook class
-	public HomePageNavigation(ScenarioHook scenarioHook) {
+	public HomePageNavigationSteps(ScenarioHook scenarioHook) {
 		scenario = scenarioHook.getScenario();
 		driver = scenarioHook.getDriver();
 	}
 
-	@Given("^I Am At The Home Page$")
+	@Given("I Am At The Home Page")
 	public void I_Am_At_The_Home_Page() throws Throwable {
 		String baseUrl = PropsLoader.readConfig("base.url");
 		logger.debug("Navigating to website: " + baseUrl);
@@ -31,7 +31,7 @@ public class HomePageNavigation {
 		Selenium.embedScreenshot(driver, scenario);
 	}
 
-	@Then("^I Should See Page Title '(.*)'$")
+	@Then("I Should See Page Title {string}")
 	public void I_Should_See_Page_Title(String pageTitle) {
 		String windowTitle = driver.getTitle();
 		logger.debug("Window Title: " + windowTitle);
