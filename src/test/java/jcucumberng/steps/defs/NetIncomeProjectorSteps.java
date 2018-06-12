@@ -31,6 +31,7 @@ public class NetIncomeProjectorSteps {
 	@When("I Enter My Start Balance: {word}")
 	public void I_Enter_My_Start_Balance(String startBalance) throws Throwable {
 		Selenium.enterText(driver, "start.balance", startBalance);
+		logger.debug("Start Balance=" + startBalance);
 	}
 
 	@When("I Enter My Regular Income Sources")
@@ -46,6 +47,7 @@ public class NetIncomeProjectorSteps {
 			Selenium.enterText(driver, incomeNameTextFields.get(ctr), incomes.get(ctr).getName());
 			Selenium.enterText(driver, incomeAmountTextFields.get(ctr), incomes.get(ctr).getAmount());
 			Selenium.selectFromDropMenuByText(driver, incomeFreqDropMenus.get(ctr), incomes.get(ctr).getFrequency());
+			logger.debug(incomes.get(ctr).toString());
 		}
 	}
 
@@ -62,6 +64,7 @@ public class NetIncomeProjectorSteps {
 			Selenium.enterText(driver, expenseNameTextFields.get(ctr), expenses.get(ctr).getName());
 			Selenium.enterText(driver, expenseAmountTextFields.get(ctr), expenses.get(ctr).getAmount());
 			Selenium.selectFromDropMenuByText(driver, expenseFreqDropMenus.get(ctr), expenses.get(ctr).getFrequency());
+			logger.debug(expenses.get(ctr).toString());
 		}
 	}
 
@@ -70,7 +73,7 @@ public class NetIncomeProjectorSteps {
 		WebElement netPerMonthTd = driver.findElement(ByAngular.binding("roundDown(monthlyNet())"));
 		String netPerMonthText = netPerMonthTd.getText();
 		Assertions.assertThat(netPerMonthText).isEqualTo(netPerMonth);
-		logger.debug("Net Per Month: " + netPerMonthText);
+		logger.debug("Net Per Month=" + netPerMonthText);
 		Selenium.scrollVertical(driver, 500);
 	}
 
@@ -80,7 +83,7 @@ public class NetIncomeProjectorSteps {
 				.findElement(ByAngular.binding("roundDown(monthlyNet()*12)+tallyTransactions()"));
 		String netPerYearText = netPerYearTd.getText();
 		Assertions.assertThat(netPerYearText).isEqualTo(netPerYear);
-		logger.debug("Net Per Year: " + netPerYearText);
+		logger.debug("Net Per Year=" + netPerYearText);
 		Selenium.scrollVertical(driver, 500);
 	}
 

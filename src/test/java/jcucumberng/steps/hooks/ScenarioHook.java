@@ -30,7 +30,7 @@ public class ScenarioHook {
 	public void beforeScenario(Scenario scenario) throws Throwable {
 		this.scenario = scenario;
 		logger.info("BEGIN TEST -> " + scenario.getName());
-		logger.info("Id: " + scenario.getId());
+		logger.info("Id=" + scenario.getId());
 
 		StringBuilder builder = new StringBuilder();
 		builder.append(System.getProperty("user.dir").replace("\\", "/"));
@@ -98,14 +98,14 @@ public class ScenarioHook {
 			break;
 		}
 
-		logger.info("Browser: " + browser);
+		logger.info("Browser=" + browser);
 
 		java.awt.Dimension awtDimension = Toolkit.getDefaultToolkit().getScreenSize();
 		int width = (int) awtDimension.getWidth();
 		int height = (int) awtDimension.getHeight();
 		Dimension dimension = new Dimension(width, height);
 		driver.manage().window().setSize(dimension);
-		logger.info("Screen Resolution (WxH): " + dimension.getWidth() + "x" + dimension.getHeight());
+		logger.info("Screen Resolution (WxH)=" + dimension.getWidth() + "x" + dimension.getHeight());
 	}
 
 	@After
