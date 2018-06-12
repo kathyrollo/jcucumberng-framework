@@ -1,12 +1,12 @@
 package jcucumberng.api;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import com.paulhammant.ngwebdriver.ByAngular;
-
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
@@ -16,6 +16,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.paulhammant.ngwebdriver.ByAngular;
 
 import cucumber.api.Scenario;
 
@@ -130,7 +132,7 @@ public final class Selenium {
 		String value = PropsLoader.readLocator(key);
 		String locator = value.substring(value.lastIndexOf(":") + 1);
 		By by = null;
-		// TODO: Add By-types as needed
+		// TODO Add By-types as needed
 		if (value.contains("by-css")) {
 			by = By.cssSelector(locator);
 		} else if (value.contains("by-model")) {
@@ -240,6 +242,25 @@ public final class Selenium {
 		WebElement parentElement = driver.findElement(Selenium.getBy(parentLocatorKey));
 		WebElement childElement = parentElement.findElement(Selenium.getBy(childLocatorKey));
 		childElement.click();
+	}
+
+	/**
+	 * Captures the current screen. Stores images in /target/cucumber-screenshots/
+	 * in PNG format.
+	 * 
+	 * @param driver the Selenium WebDriver
+	 * @throws IOException
+	 */
+	public static void captureScreenshot(WebDriver driver) throws IOException {
+		StringBuilder builder = new StringBuilder();
+		builder.append(System.getProperty("user.dir").replace("\\", "/"));
+		builder.append("/target/cucumber-screenshots/sshot_");
+		builder.append(System.currentTimeMillis());
+		builder.append(".png");
+		String screenshot = builder.toString();
+
+		File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(srcFile, new File(screenshot));
 	}
 
 	/**

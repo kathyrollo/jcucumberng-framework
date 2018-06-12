@@ -29,8 +29,8 @@ public class ScenarioHook {
 	@Before
 	public void beforeScenario(Scenario scenario) throws Throwable {
 		this.scenario = scenario;
-		logger.info("BEGIN SCENARIO: " + scenario.getName());
-		logger.info("ID: " + scenario.getId());
+		logger.info("BEGIN TEST -> " + scenario.getName());
+		logger.info("Id: " + scenario.getId());
 
 		StringBuilder builder = new StringBuilder();
 		builder.append(System.getProperty("user.dir").replace("\\", "/"));
@@ -40,11 +40,9 @@ public class ScenarioHook {
 		FirefoxBinary ffBin = null;
 		FirefoxOptions ffOpts = null;
 
-		logger.info("Setting up the browser...");
 		String browser = PropsLoader.readConfig("browser");
-		logger.info("Browser: " + browser);
 		if (StringUtils.isBlank(browser)) {
-			logger.error("No browser specified in config. Using default CHROME_NOHEAD.");
+			logger.error("No browser specified in config. Using default.");
 			browser = "CHROME_NOHEAD";
 		}
 
@@ -100,6 +98,8 @@ public class ScenarioHook {
 			break;
 		}
 
+		logger.info("Browser: " + browser);
+
 		java.awt.Dimension awtDimension = Toolkit.getDefaultToolkit().getScreenSize();
 		int width = (int) awtDimension.getWidth();
 		int height = (int) awtDimension.getHeight();
@@ -110,8 +110,7 @@ public class ScenarioHook {
 
 	@After
 	public void afterScenario() {
-		logger.info("Quitting the browser...");
-		logger.info("END SCENARIO: " + scenario.getName() + " - " + scenario.getStatus());
+		logger.info("END TEST -> " + scenario.getName() + " - " + scenario.getStatus());
 		driver.quit();
 	}
 
