@@ -20,7 +20,8 @@ public final class PropsLoader {
 	 * Reads a config.properties file by passing the key of a configuration or
 	 * setting. The file must be located in /src/test/resources/.
 	 * 
-	 * @param key the name corresponding to the value in the key-value pair
+	 * @param key
+	 *            the name corresponding to the value in the key-value pair
 	 * @return String - the value corresponding to the given key
 	 * @throws IOException
 	 */
@@ -40,7 +41,8 @@ public final class PropsLoader {
 	 * Reads a ui-map.properties file by passing the key of a locator used to find
 	 * elements in web pages. The file must be located in /src/test/resources/.
 	 * 
-	 * @param key the name corresponding to the value in the key-value pair
+	 * @param key
+	 *            the name corresponding to the value in the key-value pair
 	 * @return String - the value corresponding to the given key
 	 * @throws IOException
 	 */
