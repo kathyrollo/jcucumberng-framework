@@ -34,22 +34,22 @@ public final class Selenium {
 	}
 
 	/**
-	 * Gets the By locator based on the value of the key.<br>
+	 * Returns the By object based on the value of the key from the ui-map. <br>
 	 * <br>
 	 * Example:<br>
 	 * <br>
 	 * key = expense.name.txt<br>
 	 * <br>
-	 * value = model:expense.name<br>
+	 * value = by-model:expense.name<br>
 	 * <br>
 	 * by = ByAngular.model()<br>
 	 * <br>
-	 * The colon (:) is the delimiter between locator type (e.g. model) and
-	 * identifier (i.e. substring after colon).
+	 * The colon (:) is the delimiter between the by-type (e.g. by-model) and the
+	 * locator (e.g. expense.name) or substring after the colon.
 	 * 
 	 * @param key
 	 *            the key from the ui-map
-	 * @return By - the By locator
+	 * @return By - the By object
 	 * @throws IOException
 	 */
 	public static By by(String key) throws IOException {
