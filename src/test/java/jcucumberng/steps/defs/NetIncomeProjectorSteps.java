@@ -9,8 +9,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
-import com.paulhammant.ngwebdriver.ByAngular;
-
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import io.cucumber.datatable.DataTable;
@@ -70,7 +68,7 @@ public class NetIncomeProjectorSteps {
 
 	@Then("I Should See Net Income Per Month: {word}")
 	public void I_Should_See_Net_Income_Per_Month(String netPerMonth) throws Throwable {
-		WebElement netPerMonthTd = driver.findElement(ByAngular.binding("roundDown(monthlyNet())"));
+		WebElement netPerMonthTd = driver.findElement(Selenium.by("net.per.month"));
 		String netPerMonthText = netPerMonthTd.getText();
 		Assertions.assertThat(netPerMonthText).isEqualTo(netPerMonth);
 		logger.debug("Net Per Month=" + netPerMonthText);
@@ -79,8 +77,7 @@ public class NetIncomeProjectorSteps {
 
 	@Then("I Should See Net Income Per Year: {word}")
 	public void I_Should_See_Net_Income_Per_Year(String netPerYear) throws Throwable {
-		WebElement netPerYearTd = driver
-				.findElement(ByAngular.binding("roundDown(monthlyNet()*12)+tallyTransactions()"));
+		WebElement netPerYearTd = driver.findElement(Selenium.by("net.per.year"));
 		String netPerYearText = netPerYearTd.getText();
 		Assertions.assertThat(netPerYearText).isEqualTo(netPerYear);
 		logger.debug("Net Per Year=" + netPerYearText);

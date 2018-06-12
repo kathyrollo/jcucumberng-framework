@@ -34,90 +34,6 @@ public final class Selenium {
 	}
 
 	/**
-	 * Opens a new window by clicking an element and switches to that window.
-	 * 
-	 * @param driver
-	 *            the Selenium WebDriver
-	 * @param childLocatorKey
-	 *            the key from the ui-map for the element that opens the child
-	 *            window
-	 * @return String - the handle of the parent window before opening the child
-	 *         window
-	 */
-	public static String openWindowByElement(WebDriver driver, String childLocatorKey) throws IOException {
-		String parentHandle = driver.getWindowHandle(); // Save parent window
-		WebElement clickableElement = driver.findElement(Selenium.by(childLocatorKey));
-		clickableElement.click(); // Open child window
-		WebDriverWait wait = new WebDriverWait(driver, 10); // Timeout in 10s
-		boolean isChildWindowOpen = wait.until(ExpectedConditions.numberOfWindowsToBe(2));
-		if (isChildWindowOpen) {
-			Set<String> handles = driver.getWindowHandles();
-			// Switch to child window
-			for (String handle : handles) {
-				driver.switchTo().window(handle);
-				if (!parentHandle.equals(handle)) {
-					break;
-				}
-			}
-			driver.manage().window().maximize();
-		}
-		return parentHandle; // Returns parent window if need to switch back
-	}
-
-	/**
-	 * Opens a new window by navigating to a URL and switches to that window.
-	 * 
-	 * @param driver
-	 *            the Selenium WebDriver
-	 * @param childUrl
-	 *            the String URL that opens the child window
-	 * @return String - the handle of the parent window before opening the child
-	 *         window
-	 */
-	public static String openWindowByUrl(WebDriver driver, String childUrl) {
-		String parentHandle = driver.getWindowHandle();
-		driver.get(childUrl);
-		WebDriverWait wait = new WebDriverWait(driver, 10);
-		boolean isChildWindowOpen = wait.until(ExpectedConditions.numberOfWindowsToBe(2));
-		if (isChildWindowOpen) {
-			Set<String> handles = driver.getWindowHandles();
-			for (String handle : handles) {
-				driver.switchTo().window(handle);
-				if (!parentHandle.equals(handle)) {
-					break;
-				}
-			}
-			driver.manage().window().maximize();
-		}
-		return parentHandle;
-	}
-
-	/**
-	 * Switches to an existing open window by window title.
-	 * 
-	 * @param driver
-	 *            the Selenium WebDriver
-	 * @param windowTitle
-	 *            the title of the window
-	 * @return String - the handle of the parent window before opening the child
-	 *         window
-	 */
-	public static String switchToWindowByTitle(WebDriver driver, String windowTitle) {
-		Set<String> handles = driver.getWindowHandles();
-		String parentHandle = driver.getWindowHandle();
-		if (1 < handles.size()) {
-			for (String handle : handles) {
-				driver.switchTo().window(handle);
-				if (windowTitle.equalsIgnoreCase(driver.getTitle())) {
-					break;
-				}
-			}
-			driver.manage().window().maximize();
-		}
-		return parentHandle;
-	}
-
-	/**
 	 * Gets the By locator based on the value of the key.<br>
 	 * <br>
 	 * Example:<br>
@@ -145,6 +61,8 @@ public final class Selenium {
 			by = By.cssSelector(locator);
 		} else if (value.contains("by-model")) {
 			by = ByAngular.model(locator);
+		} else if (value.contains("by-binding")) {
+			by = ByAngular.binding(locator);
 		}
 		return by;
 	}
@@ -254,7 +172,7 @@ public final class Selenium {
 	}
 
 	/**
-	 * Clicks a nested element.
+	 * Clicks a nested element on the web page.
 	 * 
 	 * @param driver
 	 *            the Selenium WebDriver
@@ -271,6 +189,90 @@ public final class Selenium {
 		}
 		WebElement element = driver.findElement(new ByChained(bys));
 		element.click();
+	}
+
+	/**
+	 * Opens a new window by clicking an element and switches to that window.
+	 * 
+	 * @param driver
+	 *            the Selenium WebDriver
+	 * @param childLocatorKey
+	 *            the key from the ui-map for the element that opens the child
+	 *            window
+	 * @return String - the handle of the parent window before opening the child
+	 *         window
+	 */
+	public static String openWindowByElement(WebDriver driver, String childLocatorKey) throws IOException {
+		String parentHandle = driver.getWindowHandle(); // Save parent window
+		WebElement clickableElement = driver.findElement(Selenium.by(childLocatorKey));
+		clickableElement.click(); // Open child window
+		WebDriverWait wait = new WebDriverWait(driver, 10); // Timeout in 10s
+		boolean isChildWindowOpen = wait.until(ExpectedConditions.numberOfWindowsToBe(2));
+		if (isChildWindowOpen) {
+			Set<String> handles = driver.getWindowHandles();
+			// Switch to child window
+			for (String handle : handles) {
+				driver.switchTo().window(handle);
+				if (!parentHandle.equals(handle)) {
+					break;
+				}
+			}
+			driver.manage().window().maximize();
+		}
+		return parentHandle; // Returns parent window if need to switch back
+	}
+
+	/**
+	 * Opens a new window by navigating to a URL and switches to that window.
+	 * 
+	 * @param driver
+	 *            the Selenium WebDriver
+	 * @param childUrl
+	 *            the String URL that opens the child window
+	 * @return String - the handle of the parent window before opening the child
+	 *         window
+	 */
+	public static String openWindowByUrl(WebDriver driver, String childUrl) {
+		String parentHandle = driver.getWindowHandle();
+		driver.get(childUrl);
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		boolean isChildWindowOpen = wait.until(ExpectedConditions.numberOfWindowsToBe(2));
+		if (isChildWindowOpen) {
+			Set<String> handles = driver.getWindowHandles();
+			for (String handle : handles) {
+				driver.switchTo().window(handle);
+				if (!parentHandle.equals(handle)) {
+					break;
+				}
+			}
+			driver.manage().window().maximize();
+		}
+		return parentHandle;
+	}
+
+	/**
+	 * Switches to an existing open window by window title.
+	 * 
+	 * @param driver
+	 *            the Selenium WebDriver
+	 * @param windowTitle
+	 *            the title of the window
+	 * @return String - the handle of the parent window before opening the child
+	 *         window
+	 */
+	public static String switchToWindowByTitle(WebDriver driver, String windowTitle) {
+		Set<String> handles = driver.getWindowHandles();
+		String parentHandle = driver.getWindowHandle();
+		if (1 < handles.size()) {
+			for (String handle : handles) {
+				driver.switchTo().window(handle);
+				if (windowTitle.equalsIgnoreCase(driver.getTitle())) {
+					break;
+				}
+			}
+			driver.manage().window().maximize();
+		}
+		return parentHandle;
 	}
 
 	/**
