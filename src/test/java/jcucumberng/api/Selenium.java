@@ -46,7 +46,7 @@ public final class Selenium {
 	 */
 	public static String openWindowByElement(WebDriver driver, String childLocatorKey) throws IOException {
 		String parentHandle = driver.getWindowHandle(); // Save parent window
-		WebElement clickableElement = driver.findElement(Selenium.getBy(childLocatorKey));
+		WebElement clickableElement = driver.findElement(Selenium.by(childLocatorKey));
 		clickableElement.click(); // Open child window
 		WebDriverWait wait = new WebDriverWait(driver, 10); // Timeout in 10s
 		boolean isChildWindowOpen = wait.until(ExpectedConditions.numberOfWindowsToBe(2));
@@ -136,7 +136,7 @@ public final class Selenium {
 	 * @return By - the By locator
 	 * @throws IOException
 	 */
-	public static By getBy(String key) throws IOException {
+	public static By by(String key) throws IOException {
 		String value = PropsLoader.readLocator(key);
 		String locator = value.substring(value.lastIndexOf(":") + 1);
 		By by = null;
@@ -160,7 +160,7 @@ public final class Selenium {
 	 * @throws IOException
 	 */
 	public static List<Select> getSelectElements(WebDriver driver, String selectLocatorKey) throws IOException {
-		List<WebElement> elements = driver.findElements(Selenium.getBy(selectLocatorKey));
+		List<WebElement> elements = driver.findElements(Selenium.by(selectLocatorKey));
 		List<Select> selectElements = new ArrayList<>();
 		for (WebElement element : elements) {
 			selectElements.add(new Select(element));
@@ -204,7 +204,7 @@ public final class Selenium {
 	 * @throws IOException
 	 */
 	public static void enterText(WebDriver driver, String fieldLocatorKey, String text) throws IOException {
-		WebElement field = driver.findElement(Selenium.getBy(fieldLocatorKey));
+		WebElement field = driver.findElement(Selenium.by(fieldLocatorKey));
 		field.clear();
 		field.sendKeys(text);
 	}
@@ -249,7 +249,7 @@ public final class Selenium {
 	 * @throws IOException
 	 */
 	public static void clickElement(WebDriver driver, String locatorKey) throws IOException {
-		WebElement element = driver.findElement(Selenium.getBy(locatorKey));
+		WebElement element = driver.findElement(Selenium.by(locatorKey));
 		element.click();
 	}
 
@@ -266,7 +266,7 @@ public final class Selenium {
 		By[] bys = new By[locatorKeys.length];
 		By by = null;
 		for (int ctr = 0; ctr < bys.length; ctr++) {
-			by = Selenium.getBy(locatorKeys[ctr]);
+			by = Selenium.by(locatorKeys[ctr]);
 			bys[ctr] = by;
 		}
 		WebElement element = driver.findElement(new ByChained(bys));

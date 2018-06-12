@@ -40,8 +40,8 @@ public class NetIncomeProjectorSteps {
 		for (int ctr = 0; ctr < incomes.size() - 1; ctr++) {
 			Selenium.clickElement(driver, "income.add.btn");
 		}
-		List<WebElement> incomeNameTextFields = driver.findElements(Selenium.getBy("income.name.txt"));
-		List<WebElement> incomeAmountTextFields = driver.findElements(Selenium.getBy("income.amount.txt"));
+		List<WebElement> incomeNameTextFields = driver.findElements(Selenium.by("income.name.txt"));
+		List<WebElement> incomeAmountTextFields = driver.findElements(Selenium.by("income.amount.txt"));
 		List<Select> incomeFreqDropMenus = Selenium.getSelectElements(driver, "income.freq.drop");
 		for (int ctr = 0; ctr < incomes.size(); ctr++) {
 			Selenium.enterText(driver, incomeNameTextFields.get(ctr), incomes.get(ctr).getName());
@@ -57,8 +57,8 @@ public class NetIncomeProjectorSteps {
 		for (int ctr = 0; ctr < expenses.size() - 1; ctr++) {
 			Selenium.clickElement(driver, "expense.add.btn");
 		}
-		List<WebElement> expenseNameTextFields = driver.findElements(Selenium.getBy("expense.name.txt"));
-		List<WebElement> expenseAmountTextFields = driver.findElements(Selenium.getBy("expense.amount.txt"));
+		List<WebElement> expenseNameTextFields = driver.findElements(Selenium.by("expense.name.txt"));
+		List<WebElement> expenseAmountTextFields = driver.findElements(Selenium.by("expense.amount.txt"));
 		List<Select> expenseFreqDropMenus = Selenium.getSelectElements(driver, "expense.freq.drop");
 		for (int ctr = 0; ctr < expenses.size(); ctr++) {
 			Selenium.enterText(driver, expenseNameTextFields.get(ctr), expenses.get(ctr).getName());
