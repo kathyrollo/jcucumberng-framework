@@ -13,6 +13,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.pagefactory.ByChained;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -35,9 +36,11 @@ public final class Selenium {
 	/**
 	 * Opens a new window by clicking an element and switches to that window.
 	 * 
-	 * @param driver          the Selenium WebDriver
-	 * @param childLocatorKey the key from the ui-map for the element that opens the
-	 *                        child window
+	 * @param driver
+	 *            the Selenium WebDriver
+	 * @param childLocatorKey
+	 *            the key from the ui-map for the element that opens the child
+	 *            window
 	 * @return String - the handle of the parent window before opening the child
 	 *         window
 	 */
@@ -64,8 +67,10 @@ public final class Selenium {
 	/**
 	 * Opens a new window by navigating to a URL and switches to that window.
 	 * 
-	 * @param driver   the Selenium WebDriver
-	 * @param childUrl the String URL that opens the child window
+	 * @param driver
+	 *            the Selenium WebDriver
+	 * @param childUrl
+	 *            the String URL that opens the child window
 	 * @return String - the handle of the parent window before opening the child
 	 *         window
 	 */
@@ -90,8 +95,10 @@ public final class Selenium {
 	/**
 	 * Switches to an existing open window by window title.
 	 * 
-	 * @param driver      the Selenium WebDriver
-	 * @param windowTitle the title of the window
+	 * @param driver
+	 *            the Selenium WebDriver
+	 * @param windowTitle
+	 *            the title of the window
 	 * @return String - the handle of the parent window before opening the child
 	 *         window
 	 */
@@ -124,7 +131,8 @@ public final class Selenium {
 	 * The colon (:) is the delimiter between locator type (e.g. model) and
 	 * identifier (i.e. substring after colon).
 	 * 
-	 * @param key the key from the ui-map
+	 * @param key
+	 *            the key from the ui-map
 	 * @return By - the By locator
 	 * @throws IOException
 	 */
@@ -144,8 +152,10 @@ public final class Selenium {
 	/**
 	 * Returns a List of all Select elements.
 	 * 
-	 * @param driver           the Selenium WebDriver
-	 * @param selectLocatorKey the key from the ui-map
+	 * @param driver
+	 *            the Selenium WebDriver
+	 * @param selectLocatorKey
+	 *            the key from the ui-map
 	 * @return List - the List of Select elements
 	 * @throws IOException
 	 */
@@ -161,7 +171,8 @@ public final class Selenium {
 	/**
 	 * Returns all text inside the body tag in HTML.
 	 * 
-	 * @param driver the Selenium WebDriver
+	 * @param driver
+	 *            the Selenium WebDriver
 	 * @return String - the text within HTML body tags
 	 */
 	public static String getBodyText(WebDriver driver) {
@@ -171,8 +182,10 @@ public final class Selenium {
 	/**
 	 * Scroll the screen vertically.
 	 * 
-	 * @param driver    the Selenium WebDriver
-	 * @param yPosition positive value to scroll down, negative value to scroll up
+	 * @param driver
+	 *            the Selenium WebDriver
+	 * @param yPosition
+	 *            positive value to scroll down, negative value to scroll up
 	 */
 	public static void scrollVertical(WebDriver driver, int yPosition) {
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
@@ -182,9 +195,12 @@ public final class Selenium {
 	/**
 	 * Enters text into a textfield or textarea.
 	 * 
-	 * @param driver          the Selenium WebDriver
-	 * @param fieldLocatorKey the key from the ui-map
-	 * @param text            the text to be entered
+	 * @param driver
+	 *            the Selenium WebDriver
+	 * @param fieldLocatorKey
+	 *            the key from the ui-map
+	 * @param text
+	 *            the text to be entered
 	 * @throws IOException
 	 */
 	public static void enterText(WebDriver driver, String fieldLocatorKey, String text) throws IOException {
@@ -196,9 +212,12 @@ public final class Selenium {
 	/**
 	 * Enters text into a textfield or textarea.
 	 * 
-	 * @param driver the Selenium WebDriver
-	 * @param field  the element of the textfield or textarea
-	 * @param text   the text to be entered
+	 * @param driver
+	 *            the Selenium WebDriver
+	 * @param field
+	 *            the element of the textfield or textarea
+	 * @param text
+	 *            the text to be entered
 	 * @throws IOException
 	 */
 	public static void enterText(WebDriver driver, WebElement field, String text) throws IOException {
@@ -209,9 +228,12 @@ public final class Selenium {
 	/**
 	 * Selects value from a dropdown list by visible text.
 	 * 
-	 * @param driver the Selenium WebDriver
-	 * @param select the Select element of the dropdown menu
-	 * @param text   the text to be selected from the dropdown menu
+	 * @param driver
+	 *            the Selenium WebDriver
+	 * @param select
+	 *            the Select element of the dropdown menu
+	 * @param text
+	 *            the text to be selected from the dropdown menu
 	 */
 	public static void selectFromDropMenuByText(WebDriver driver, Select select, String text) {
 		select.selectByVisibleText(text);
@@ -220,8 +242,10 @@ public final class Selenium {
 	/**
 	 * Clicks an element on the web page.
 	 * 
-	 * @param driver     the Selenium WebDriver
-	 * @param locatorKey the key from the ui-map
+	 * @param driver
+	 *            the Selenium WebDriver
+	 * @param locatorKey
+	 *            the key from the ui-map
 	 * @throws IOException
 	 */
 	public static void clickElement(WebDriver driver, String locatorKey) throws IOException {
@@ -230,25 +254,31 @@ public final class Selenium {
 	}
 
 	/**
-	 * Clicks a child element of a parent element.
+	 * Clicks a nested element.
 	 * 
-	 * @param driver           the Selenium WebDriver
-	 * @param parentLocatorKey the key from the ui-map for the parent element
-	 * @param childLocatorKey  the key from the ui-map for the child element
+	 * @param driver
+	 *            the Selenium WebDriver
+	 * @param locatorKeys
+	 *            the keys from the ui-map pointing to the nested element
 	 * @throws IOException
 	 */
-	public static void clickChildElement(WebDriver driver, String parentLocatorKey, String childLocatorKey)
-			throws IOException {
-		WebElement parentElement = driver.findElement(Selenium.getBy(parentLocatorKey));
-		WebElement childElement = parentElement.findElement(Selenium.getBy(childLocatorKey));
-		childElement.click();
+	public static void clickNestedElement(WebDriver driver, String... locatorKeys) throws IOException {
+		By[] bys = new By[locatorKeys.length];
+		By by = null;
+		for (int ctr = 0; ctr < bys.length; ctr++) {
+			by = Selenium.getBy(locatorKeys[ctr]);
+			bys[ctr] = by;
+		}
+		WebElement element = driver.findElement(new ByChained(bys));
+		element.click();
 	}
 
 	/**
 	 * Captures the current screen. Stores images in /target/cucumber-screenshots/
 	 * in PNG format.
 	 * 
-	 * @param driver the Selenium WebDriver
+	 * @param driver
+	 *            the Selenium WebDriver
 	 * @throws IOException
 	 */
 	public static void captureScreenshot(WebDriver driver) throws IOException {
@@ -266,8 +296,10 @@ public final class Selenium {
 	/**
 	 * Captures and embeds screenshot in generated HTML report.
 	 * 
-	 * @param scenario the Scenario object
-	 * @param driver   the Selenium WebDriver
+	 * @param scenario
+	 *            the Scenario object
+	 * @param driver
+	 *            the Selenium WebDriver
 	 */
 	public static void embedScreenshot(WebDriver driver, Scenario scenario) {
 		byte[] srcBytes = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
