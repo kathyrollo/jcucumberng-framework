@@ -5,21 +5,17 @@ import org.apache.logging.log4j.Logger;
 import org.assertj.core.api.Assertions;
 import org.openqa.selenium.WebDriver;
 
-import cucumber.api.Scenario;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import jcucumberng.api.PropsLoader;
-import jcucumberng.api.Selenium;
 import jcucumberng.steps.hooks.ScenarioHook;
 
 public class HomePageNavigationSteps {
 	private static final Logger logger = LogManager.getLogger(HomePageNavigationSteps.class);
-	private Scenario scenario = null;
 	private WebDriver driver = null;
 
 	// PicoContainer injects ScenarioHook class
 	public HomePageNavigationSteps(ScenarioHook scenarioHook) {
-		scenario = scenarioHook.getScenario();
 		driver = scenarioHook.getDriver();
 	}
 
@@ -28,7 +24,6 @@ public class HomePageNavigationSteps {
 		String baseUrl = PropsLoader.readConfig("base.url");
 		logger.debug("Navigating to website: " + baseUrl);
 		driver.get(baseUrl);
-		Selenium.embedScreenshot(driver, scenario);
 	}
 
 	@Then("I Should See Page Title {string}")
@@ -36,7 +31,6 @@ public class HomePageNavigationSteps {
 		String windowTitle = driver.getTitle();
 		logger.debug("Window Title: " + windowTitle);
 		Assertions.assertThat(windowTitle).isEqualTo(pageTitle);
-		Selenium.embedScreenshot(driver, scenario);
 	}
 
 }
