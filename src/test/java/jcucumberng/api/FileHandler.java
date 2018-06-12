@@ -32,8 +32,10 @@ public final class FileHandler {
 	 * Checks if a file exists in a specified directory. Set file.dir in
 	 * config.properties.
 	 * 
-	 * @param prefix the beginning of a filename, can be a substring
-	 * @param suffix can be the file extension (e.g. ".txt")
+	 * @param prefix
+	 *            the beginning of a filename, can be a substring
+	 * @param suffix
+	 *            can be the file extension (e.g. ".txt")
 	 * @return boolean - true if matching file is found using given prefix and
 	 *         suffix
 	 * @throws IOException
@@ -83,9 +85,11 @@ public final class FileHandler {
 	 * first row will be omitted. Each row must have the same number of columns.
 	 * Each column must have a value.
 	 * 
-	 * @param xlsxFilePath the absolute path of the xlsx file
-	 * @param sheetName    the name of the sheet to be read (defaults to first sheet
-	 *                     if blank)
+	 * @param xlsxFilePath
+	 *            the absolute path of the xlsx file
+	 * @param sheetName
+	 *            the name of the sheet to be read (defaults to first sheet if
+	 *            blank)
 	 * @return Object[ ][ ] - the String values in 2D array
 	 * @throws FileNotFoundException
 	 * @throws IOException
@@ -151,7 +155,8 @@ public final class FileHandler {
 	/**
 	 * Returns the largest number of non-empty columns among all rows.
 	 * 
-	 * @param sheet the sheet from the xlsx file
+	 * @param sheet
+	 *            the sheet from the xlsx file
 	 * @return int - the number of columns
 	 */
 	private static int getColumnCount(XSSFSheet sheet) {

@@ -33,7 +33,8 @@ public final class LocalMachine {
 	/**
 	 * Accepts a single key entry. The key is pressed and released immediately.
 	 * 
-	 * @param key KeyEvent constant from java.awt.event.KeyEvent
+	 * @param key
+	 *            KeyEvent constant from java.awt.event.KeyEvent
 	 * @throws AWTException
 	 * @throws NumberFormatException
 	 * @throws IOException
@@ -50,8 +51,9 @@ public final class LocalMachine {
 	 * Accepts multiple key entries (e.g. shortcut command). The keys are pressed
 	 * simultaneously and released in reverse order.
 	 * 
-	 * @param keys an array of KeyEvent constants from java.awt.event.KeyEvent,
-	 *             specify keys in order of entry
+	 * @param keys
+	 *            an array of KeyEvent constants from java.awt.event.KeyEvent,
+	 *            specify keys in order of entry
 	 * @throws AWTException
 	 * @throws NumberFormatException
 	 * @throws IOException
