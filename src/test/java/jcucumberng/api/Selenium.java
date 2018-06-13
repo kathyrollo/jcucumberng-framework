@@ -78,7 +78,7 @@ public final class Selenium {
 	 * @throws IOException
 	 */
 	public static List<Select> getSelectElements(WebDriver driver, String... keys) throws IOException {
-		By[] bys = Selenium.getByArray(keys);
+		By[] bys = Selenium.getBys(keys);
 		List<WebElement> elements = driver.findElements(new ByChained(bys));
 		List<Select> selectElements = new ArrayList<>();
 		for (WebElement element : elements) {
@@ -110,7 +110,7 @@ public final class Selenium {
 	 * @throws IOException
 	 */
 	public static void enterText(WebDriver driver, String text, String... keys) throws IOException {
-		By[] bys = Selenium.getByArray(keys);
+		By[] bys = Selenium.getBys(keys);
 		WebElement field = driver.findElement(new ByChained(bys));
 		field.clear();
 		field.sendKeys(text);
@@ -170,7 +170,7 @@ public final class Selenium {
 	 * @throws IOException
 	 */
 	public static void clickNestedElement(WebDriver driver, String... locatorKeys) throws IOException {
-		By[] bys = Selenium.getByArray(locatorKeys);
+		By[] bys = Selenium.getBys(locatorKeys);
 		WebElement element = driver.findElement(new ByChained(bys));
 		element.click();
 	}
@@ -305,11 +305,11 @@ public final class Selenium {
 		scenario.embed(srcBytes, "image/png");
 	}
 
-	private static By[] getByArray(String... locatorKeys) throws IOException {
-		By[] bys = new By[locatorKeys.length];
+	private static By[] getBys(String... keys) throws IOException {
+		By[] bys = new By[keys.length];
 		By by = null;
 		for (int ctr = 0; ctr < bys.length; ctr++) {
-			by = Selenium.by(locatorKeys[ctr]);
+			by = Selenium.by(keys[ctr]);
 			bys[ctr] = by;
 		}
 		return bys;
