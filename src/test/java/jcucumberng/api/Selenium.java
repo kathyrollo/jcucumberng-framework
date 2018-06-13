@@ -34,7 +34,7 @@ public final class Selenium {
 	}
 
 	/**
-	 * Returns the By object based on the value of the key from the ui-map. <br>
+	 * Returns the By object based on the value of the key from the ui-map.<br>
 	 * <br>
 	 * Example:<br>
 	 * <br>
@@ -72,13 +72,14 @@ public final class Selenium {
 	 * 
 	 * @param driver
 	 *            the Selenium WebDriver
-	 * @param selectLocatorKey
-	 *            the key from the ui-map
+	 * @param keys
+	 *            the key(s) from the ui-map
 	 * @return List - the List of Select elements
 	 * @throws IOException
 	 */
-	public static List<Select> getSelectElements(WebDriver driver, String selectLocatorKey) throws IOException {
-		List<WebElement> elements = driver.findElements(Selenium.by(selectLocatorKey));
+	public static List<Select> getSelectElements(WebDriver driver, String... keys) throws IOException {
+		By[] bys = Selenium.getByArray(keys);
+		List<WebElement> elements = driver.findElements(new ByChained(bys));
 		List<Select> selectElements = new ArrayList<>();
 		for (WebElement element : elements) {
 			selectElements.add(new Select(element));
@@ -98,31 +99,19 @@ public final class Selenium {
 	}
 
 	/**
-	 * Scroll the screen vertically.
-	 * 
-	 * @param driver
-	 *            the Selenium WebDriver
-	 * @param yPosition
-	 *            positive value to scroll down, negative value to scroll up
-	 */
-	public static void scrollVertical(WebDriver driver, int yPosition) {
-		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
-		jsExecutor.executeScript("scroll(0, " + yPosition + ");");
-	}
-
-	/**
 	 * Enters text into a textfield or textarea.
 	 * 
 	 * @param driver
 	 *            the Selenium WebDriver
-	 * @param fieldLocatorKey
-	 *            the key from the ui-map
 	 * @param text
 	 *            the text to be entered
+	 * @param keys
+	 *            the key(s) from the ui-map
 	 * @throws IOException
 	 */
-	public static void enterText(WebDriver driver, String fieldLocatorKey, String text) throws IOException {
-		WebElement field = driver.findElement(Selenium.by(fieldLocatorKey));
+	public static void enterText(WebDriver driver, String text, String... keys) throws IOException {
+		By[] bys = Selenium.getByArray(keys);
+		WebElement field = driver.findElement(new ByChained(bys));
 		field.clear();
 		field.sendKeys(text);
 	}
@@ -132,13 +121,13 @@ public final class Selenium {
 	 * 
 	 * @param driver
 	 *            the Selenium WebDriver
-	 * @param field
-	 *            the element of the textfield or textarea
 	 * @param text
 	 *            the text to be entered
+	 * @param field
+	 *            the element of the textfield or textarea
 	 * @throws IOException
 	 */
-	public static void enterText(WebDriver driver, WebElement field, String text) throws IOException {
+	public static void enterText(WebDriver driver, String text, WebElement field) throws IOException {
 		field.clear();
 		field.sendKeys(text);
 	}
@@ -148,12 +137,12 @@ public final class Selenium {
 	 * 
 	 * @param driver
 	 *            the Selenium WebDriver
-	 * @param select
-	 *            the Select element of the dropdown menu
 	 * @param text
 	 *            the text to be selected from the dropdown menu
+	 * @param select
+	 *            the Select element of the dropdown menu
 	 */
-	public static void selectFromDropMenuByText(WebDriver driver, Select select, String text) {
+	public static void selectByText(WebDriver driver, String text, Select select) {
 		select.selectByVisibleText(text);
 	}
 
@@ -184,6 +173,19 @@ public final class Selenium {
 		By[] bys = Selenium.getByArray(locatorKeys);
 		WebElement element = driver.findElement(new ByChained(bys));
 		element.click();
+	}
+
+	/**
+	 * Scroll the screen vertically.
+	 * 
+	 * @param driver
+	 *            the Selenium WebDriver
+	 * @param yPosition
+	 *            positive value to scroll down, negative value to scroll up
+	 */
+	public static void scrollVertical(WebDriver driver, int yPosition) {
+		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+		jsExecutor.executeScript("scroll(0, " + yPosition + ");");
 	}
 
 	/**

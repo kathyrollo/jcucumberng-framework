@@ -28,7 +28,7 @@ public class NetIncomeProjectorSteps {
 
 	@When("I Enter My Start Balance: {word}")
 	public void I_Enter_My_Start_Balance(String startBalance) throws Throwable {
-		Selenium.enterText(driver, "start.balance", startBalance);
+		Selenium.enterText(driver, startBalance, "start.balance");
 		logger.debug("Start Balance=" + startBalance);
 	}
 
@@ -42,9 +42,9 @@ public class NetIncomeProjectorSteps {
 		List<WebElement> incomeAmountTextFields = driver.findElements(Selenium.by("income.amount.txt"));
 		List<Select> incomeFreqDropMenus = Selenium.getSelectElements(driver, "income.freq.drop");
 		for (int ctr = 0; ctr < incomes.size(); ctr++) {
-			Selenium.enterText(driver, incomeNameTextFields.get(ctr), incomes.get(ctr).getName());
-			Selenium.enterText(driver, incomeAmountTextFields.get(ctr), incomes.get(ctr).getAmount());
-			Selenium.selectFromDropMenuByText(driver, incomeFreqDropMenus.get(ctr), incomes.get(ctr).getFrequency());
+			Selenium.enterText(driver, incomes.get(ctr).getName(), incomeNameTextFields.get(ctr));
+			Selenium.enterText(driver, incomes.get(ctr).getAmount(), incomeAmountTextFields.get(ctr));
+			Selenium.selectByText(driver, incomes.get(ctr).getFrequency(), incomeFreqDropMenus.get(ctr));
 			logger.debug(incomes.get(ctr).toString());
 		}
 	}
@@ -59,9 +59,9 @@ public class NetIncomeProjectorSteps {
 		List<WebElement> expenseAmountTextFields = driver.findElements(Selenium.by("expense.amount.txt"));
 		List<Select> expenseFreqDropMenus = Selenium.getSelectElements(driver, "expense.freq.drop");
 		for (int ctr = 0; ctr < expenses.size(); ctr++) {
-			Selenium.enterText(driver, expenseNameTextFields.get(ctr), expenses.get(ctr).getName());
-			Selenium.enterText(driver, expenseAmountTextFields.get(ctr), expenses.get(ctr).getAmount());
-			Selenium.selectFromDropMenuByText(driver, expenseFreqDropMenus.get(ctr), expenses.get(ctr).getFrequency());
+			Selenium.enterText(driver, expenses.get(ctr).getName(), expenseNameTextFields.get(ctr));
+			Selenium.enterText(driver, expenses.get(ctr).getAmount(), expenseAmountTextFields.get(ctr));
+			Selenium.selectByText(driver, expenses.get(ctr).getFrequency(), expenseFreqDropMenus.get(ctr));
 			logger.debug(expenses.get(ctr).toString());
 		}
 	}
