@@ -181,12 +181,7 @@ public final class Selenium {
 	 * @throws IOException
 	 */
 	public static void clickNestedElement(WebDriver driver, String... locatorKeys) throws IOException {
-		By[] bys = new By[locatorKeys.length];
-		By by = null;
-		for (int ctr = 0; ctr < bys.length; ctr++) {
-			by = Selenium.by(locatorKeys[ctr]);
-			bys[ctr] = by;
-		}
+		By[] bys = Selenium.getByArray(locatorKeys);
 		WebElement element = driver.findElement(new ByChained(bys));
 		element.click();
 	}
@@ -306,6 +301,16 @@ public final class Selenium {
 	public static void embedScreenshot(WebDriver driver, Scenario scenario) {
 		byte[] srcBytes = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
 		scenario.embed(srcBytes, "image/png");
+	}
+
+	private static By[] getByArray(String... locatorKeys) throws IOException {
+		By[] bys = new By[locatorKeys.length];
+		By by = null;
+		for (int ctr = 0; ctr < bys.length; ctr++) {
+			by = Selenium.by(locatorKeys[ctr]);
+			bys[ctr] = by;
+		}
+		return bys;
 	}
 
 }
