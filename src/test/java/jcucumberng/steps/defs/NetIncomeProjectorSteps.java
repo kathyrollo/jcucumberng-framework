@@ -33,35 +33,35 @@ public class NetIncomeProjectorSteps {
 	}
 
 	@When("I Enter My Regular Income Sources")
-	public void I_Enter_My_Regular_Income_Sources(DataTable dataTable) throws Throwable {
-		List<Income> incomes = dataTable.asList(Income.class);
+	public void I_Enter_My_Regular_Income_Sources(DataTable table) throws Throwable {
+		List<Income> incomes = table.asList(Income.class);
 		for (int ctr = 0; ctr < incomes.size() - 1; ctr++) {
 			Selenium.clickElement(driver, "income.add.btn");
 		}
-		List<WebElement> incomeNameTextFields = driver.findElements(Selenium.by("income.name.txt"));
-		List<WebElement> incomeAmountTextFields = driver.findElements(Selenium.by("income.amount.txt"));
-		List<Select> incomeFreqDropMenus = Selenium.getSelectElements(driver, "income.freq.drop");
+		List<WebElement> nameFields = driver.findElements(Selenium.by("income.name.txt"));
+		List<WebElement> amountFields = driver.findElements(Selenium.by("income.amount.txt"));
+		List<Select> freqDropMenus = Selenium.getSelectElements(driver, "income.freq.drop");
 		for (int ctr = 0; ctr < incomes.size(); ctr++) {
-			Selenium.enterText(driver, incomes.get(ctr).getName(), incomeNameTextFields.get(ctr));
-			Selenium.enterText(driver, incomes.get(ctr).getAmount(), incomeAmountTextFields.get(ctr));
-			Selenium.selectByText(driver, incomes.get(ctr).getFrequency(), incomeFreqDropMenus.get(ctr));
+			Selenium.enterText(driver, incomes.get(ctr).getName(), nameFields.get(ctr));
+			Selenium.enterText(driver, incomes.get(ctr).getAmount(), amountFields.get(ctr));
+			Selenium.selectByText(driver, incomes.get(ctr).getFrequency(), freqDropMenus.get(ctr));
 			logger.debug(incomes.get(ctr).toString());
 		}
 	}
 
 	@When("I Enter My Regular Expenses")
-	public void I_Enter_My_Regular_Expenses(DataTable dataTable) throws Throwable {
-		List<Expense> expenses = dataTable.asList(Expense.class);
+	public void I_Enter_My_Regular_Expenses(DataTable table) throws Throwable {
+		List<Expense> expenses = table.asList(Expense.class);
 		for (int ctr = 0; ctr < expenses.size() - 1; ctr++) {
 			Selenium.clickElement(driver, "expense.add.btn");
 		}
-		List<WebElement> expenseNameTextFields = driver.findElements(Selenium.by("expense.name.txt"));
-		List<WebElement> expenseAmountTextFields = driver.findElements(Selenium.by("expense.amount.txt"));
-		List<Select> expenseFreqDropMenus = Selenium.getSelectElements(driver, "expense.freq.drop");
+		List<WebElement> nameFields = driver.findElements(Selenium.by("expense.name.txt"));
+		List<WebElement> amountFields = driver.findElements(Selenium.by("expense.amount.txt"));
+		List<Select> freqDropMenus = Selenium.getSelectElements(driver, "expense.freq.drop");
 		for (int ctr = 0; ctr < expenses.size(); ctr++) {
-			Selenium.enterText(driver, expenses.get(ctr).getName(), expenseNameTextFields.get(ctr));
-			Selenium.enterText(driver, expenses.get(ctr).getAmount(), expenseAmountTextFields.get(ctr));
-			Selenium.selectByText(driver, expenses.get(ctr).getFrequency(), expenseFreqDropMenus.get(ctr));
+			Selenium.enterText(driver, expenses.get(ctr).getName(), nameFields.get(ctr));
+			Selenium.enterText(driver, expenses.get(ctr).getAmount(), amountFields.get(ctr));
+			Selenium.selectByText(driver, expenses.get(ctr).getFrequency(), freqDropMenus.get(ctr));
 			logger.debug(expenses.get(ctr).toString());
 		}
 	}
