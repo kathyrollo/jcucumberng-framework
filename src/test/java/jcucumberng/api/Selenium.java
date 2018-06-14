@@ -157,6 +157,8 @@ public final class Selenium {
 		jsExecutor.executeScript("scroll(0, " + yPosition + ");");
 	}
 
+	// TODO Implement scrollHorizontal()
+
 	/**
 	 * Opens a new window by clicking an element and switches to that window.
 	 * 
