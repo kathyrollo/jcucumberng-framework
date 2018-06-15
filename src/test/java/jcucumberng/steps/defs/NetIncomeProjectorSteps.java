@@ -37,16 +37,14 @@ public class NetIncomeProjectorSteps {
 	@When("I Enter My Regular Income Sources")
 	public void I_Enter_My_Regular_Income_Sources(DataTable table) throws Throwable {
 		List<RegularTransaction> txns = table.asList(RegularTransaction.class);
-		this.enterRegularTransactions(txns, "income.add.btn", "income.name.txt", "income.amount.txt",
-				"income.freq.select");
+		this.enterRegTxn(txns, "income.add.btn", "income.name.txt", "income.amount.txt", "income.freq.select");
 		this.scrollToDivBox(1);
 	}
 
 	@When("I Enter My Regular Expenses")
 	public void I_Enter_My_Regular_Expenses(DataTable table) throws Throwable {
 		List<RegularTransaction> txns = table.asList(RegularTransaction.class);
-		this.enterRegularTransactions(txns, "expense.add.btn", "expense.name.txt", "expense.amount.txt",
-				"expense.freq.select");
+		this.enterRegTxn(txns, "expense.add.btn", "expense.name.txt", "expense.amount.txt", "expense.freq.select");
 		this.scrollToDivBox(2);
 	}
 
@@ -68,8 +66,8 @@ public class NetIncomeProjectorSteps {
 		Selenium.scrollToElement(driver, netPerYearTd);
 	}
 
-	private void enterRegularTransactions(List<RegularTransaction> txns, String addBtnKey, String nameFldKey,
-			String amtFldKey, String freqSelectKey) throws IOException {
+	private void enterRegTxn(List<RegularTransaction> txns, String addBtnKey, String nameFldKey, String amtFldKey,
+			String freqSelKey) throws IOException {
 		// Click Add button
 		for (int ctr = 0; ctr < txns.size() - 1; ctr++) {
 			Selenium.clickElement(driver, addBtnKey);
@@ -77,7 +75,7 @@ public class NetIncomeProjectorSteps {
 		// Enter details
 		List<WebElement> nameFields = driver.findElements(Selenium.by(nameFldKey));
 		List<WebElement> amtFields = driver.findElements(Selenium.by(amtFldKey));
-		List<Select> freqSelects = Selenium.getSelectElements(driver, freqSelectKey);
+		List<Select> freqSelects = Selenium.getSelectElements(driver, freqSelKey);
 		for (int ctr = 0; ctr < txns.size(); ctr++) {
 			Selenium.enterText(driver, txns.get(ctr).getName(), nameFields.get(ctr));
 			Selenium.enterText(driver, txns.get(ctr).getAmount(), amtFields.get(ctr));
