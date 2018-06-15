@@ -32,8 +32,7 @@ public class NetIncomeProjectorSteps {
 	public void I_Enter_My_Start_Balance(String startBalance) throws Throwable {
 		Selenium.enterText(driver, startBalance, "start.balance.txt");
 		logger.debug("Start Balance=" + startBalance);
-		List<WebElement> divBoxes = this.getDivBoxes();
-		Selenium.scrollToElement(driver, divBoxes.get(0));
+		this.scrollToDivBox(0);
 	}
 
 	@When("I Enter My Regular Income Sources")
@@ -51,8 +50,7 @@ public class NetIncomeProjectorSteps {
 			Selenium.selectByText(driver, incomes.get(ctr).getFrequency(), freqDropMenus.get(ctr));
 			logger.debug(incomes.get(ctr).toString());
 		}
-		List<WebElement> divBoxes = this.getDivBoxes();
-		Selenium.scrollToElement(driver, divBoxes.get(1));
+		this.scrollToDivBox(1);
 	}
 
 	@When("I Enter My Regular Expenses")
@@ -70,8 +68,7 @@ public class NetIncomeProjectorSteps {
 			Selenium.selectByText(driver, expenses.get(ctr).getFrequency(), freqDropMenus.get(ctr));
 			logger.debug(expenses.get(ctr).toString());
 		}
-		List<WebElement> divBoxes = this.getDivBoxes();
-		Selenium.scrollToElement(driver, divBoxes.get(2));
+		this.scrollToDivBox(2);
 	}
 
 	@Then("I Should See Net Income Per Month: {word}")
@@ -92,10 +89,10 @@ public class NetIncomeProjectorSteps {
 		Selenium.scrollToElement(driver, netPerYearTd);
 	}
 
-	private List<WebElement> getDivBoxes() throws IOException {
+	private void scrollToDivBox(int index) throws IOException {
 		List<WebElement> divBoxes = driver
 				.findElements(new ByChained(Selenium.by("page.div.span7"), Selenium.by("page.div.box")));
-		return divBoxes;
+		Selenium.scrollToElement(driver, divBoxes.get(index));
 	}
 
 }
