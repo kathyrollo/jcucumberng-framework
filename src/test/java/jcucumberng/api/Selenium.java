@@ -57,7 +57,9 @@ public final class Selenium {
 		String locator = value.substring(value.lastIndexOf(":") + 1);
 		By by = null;
 		// TODO Add By-types as needed
-		if (value.contains("by-css")) {
+		if (value.contains("by-classname")) {
+			by = By.className(locator);
+		} else if (value.contains("by-css")) {
 			by = By.cssSelector(locator);
 		} else if (value.contains("by-model")) {
 			by = ByAngular.model(locator);

@@ -1,5 +1,6 @@
 package jcucumberng.steps.defs;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -7,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 import org.assertj.core.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.pagefactory.ByChained;
 import org.openqa.selenium.support.ui.Select;
 
 import cucumber.api.java.en.Then;
@@ -30,6 +32,8 @@ public class NetIncomeProjectorSteps {
 	public void I_Enter_My_Start_Balance(String startBalance) throws Throwable {
 		Selenium.enterText(driver, startBalance, "start.balance.txt");
 		logger.debug("Start Balance=" + startBalance);
+		List<WebElement> divBoxes = this.getDivBoxes();
+		Selenium.scrollToElement(driver, divBoxes.get(0));
 	}
 
 	@When("I Enter My Regular Income Sources")
@@ -47,6 +51,8 @@ public class NetIncomeProjectorSteps {
 			Selenium.selectByText(driver, incomes.get(ctr).getFrequency(), freqDropMenus.get(ctr));
 			logger.debug(incomes.get(ctr).toString());
 		}
+		List<WebElement> divBoxes = this.getDivBoxes();
+		Selenium.scrollToElement(driver, divBoxes.get(1));
 	}
 
 	@When("I Enter My Regular Expenses")
@@ -64,6 +70,8 @@ public class NetIncomeProjectorSteps {
 			Selenium.selectByText(driver, expenses.get(ctr).getFrequency(), freqDropMenus.get(ctr));
 			logger.debug(expenses.get(ctr).toString());
 		}
+		List<WebElement> divBoxes = this.getDivBoxes();
+		Selenium.scrollToElement(driver, divBoxes.get(2));
 	}
 
 	@Then("I Should See Net Income Per Month: {word}")
@@ -71,8 +79,8 @@ public class NetIncomeProjectorSteps {
 		WebElement netPerMonthTd = driver.findElement(Selenium.by("net.per.month.td"));
 		String netPerMonthText = netPerMonthTd.getText();
 		Assertions.assertThat(netPerMonthText).isEqualTo(netPerMonth);
-		Selenium.scrollToElement(driver, netPerMonthTd);
 		logger.debug("Net Per Month=" + netPerMonthText);
+		Selenium.scrollToElement(driver, netPerMonthTd);
 	}
 
 	@Then("I Should See Net Income Per Year: {word}")
@@ -80,8 +88,14 @@ public class NetIncomeProjectorSteps {
 		WebElement netPerYearTd = driver.findElement(Selenium.by("net.per.year.td"));
 		String netPerYearText = netPerYearTd.getText();
 		Assertions.assertThat(netPerYearText).isEqualTo(netPerYear);
-		Selenium.scrollToElement(driver, netPerYearTd);
 		logger.debug("Net Per Year=" + netPerYearText);
+		Selenium.scrollToElement(driver, netPerYearTd);
+	}
+
+	private List<WebElement> getDivBoxes() throws IOException {
+		List<WebElement> divBoxes = driver
+				.findElements(new ByChained(Selenium.by("page.div.span7"), Selenium.by("page.div.box")));
+		return divBoxes;
 	}
 
 }
