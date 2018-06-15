@@ -28,7 +28,7 @@ public class NetIncomeProjectorSteps {
 
 	@When("I Enter My Start Balance: {word}")
 	public void I_Enter_My_Start_Balance(String startBalance) throws Throwable {
-		Selenium.enterText(driver, startBalance, "start.balance");
+		Selenium.enterText(driver, startBalance, "start.balance.txt");
 		logger.debug("Start Balance=" + startBalance);
 	}
 
