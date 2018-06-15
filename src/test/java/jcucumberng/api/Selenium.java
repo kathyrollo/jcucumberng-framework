@@ -21,6 +21,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.paulhammant.ngwebdriver.ByAngular;
 
 import cucumber.api.Scenario;
+import jucucumberng.exceptions.MissingArgumentsException;
 
 /**
  * This class handles actions for interacting with web applications using the
@@ -207,13 +208,14 @@ public final class Selenium {
 	 */
 	public static String openNewWindow(WebDriver driver, String... args) throws IOException {
 		String parentHandle = driver.getWindowHandle(); // Save parent window
-		// Open child window
 		if (0 != args.length) {
-			if (args[0].matches("http[s]?://.*")) { // Check if valid URL
-				driver.get(args[0]);
-			} else {
-				Selenium.clickElement(driver, args);
-			}
+			throw new MissingArgumentsException("No arguments found for arbitrary parameters.");
+		}
+		// Open child window
+		if (args[0].matches("http[s]?://.*")) { // Check if valid URL
+			driver.get(args[0]);
+		} else {
+			Selenium.clickElement(driver, args);
 		}
 		WebDriverWait wait = new WebDriverWait(driver, 10); // Timeout in 10s
 		boolean isChildWindowOpen = wait.until(ExpectedConditions.numberOfWindowsToBe(2));
@@ -290,6 +292,9 @@ public final class Selenium {
 
 	// Returns arbitrary String... keys as By array
 	private static By[] getBys(String... keys) throws IOException {
+		if (0 == keys.length) {
+			throw new MissingArgumentsException("No arguments found for arbitrary parameters.");
+		}
 		By[] bys = new By[keys.length];
 		By by = null;
 		for (int ctr = 0; ctr < bys.length; ctr++) {

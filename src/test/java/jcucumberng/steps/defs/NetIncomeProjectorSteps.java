@@ -1,6 +1,5 @@
 package jcucumberng.steps.defs;
 
-import java.io.IOException;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -67,7 +66,7 @@ public class NetIncomeProjectorSteps {
 	}
 
 	private void enterRegTxn(List<RegularTransaction> txns, String addBtnKey, String nameFldKey, String amtFldKey,
-			String freqSelKey) throws IOException {
+			String freqSelKey) throws Throwable {
 		// Click Add button
 		for (int ctr = 0; ctr < txns.size() - 1; ctr++) {
 			Selenium.clickElement(driver, addBtnKey);
@@ -84,7 +83,7 @@ public class NetIncomeProjectorSteps {
 		}
 	}
 
-	private void scrollToDivBox(int index) throws IOException {
+	private void scrollToDivBox(int index) throws Throwable {
 		List<WebElement> divBoxes = driver
 				.findElements(new ByChained(Selenium.by("page.div.span7"), Selenium.by("page.div.box")));
 		Selenium.scrollToElement(driver, divBoxes.get(index));
