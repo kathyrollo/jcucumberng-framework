@@ -18,13 +18,13 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
- * This class handles actions for manipulating files or documents.
+ * {@code FileIO} handles actions for manipulating files or documents.
  * 
  * @author Kat Rollo <rollo.katherine@gmail.com>
  */
-public final class FileHandler {
+public final class FileIO {
 
-	private FileHandler() {
+	private FileIO() {
 		// Prevent instantiation
 	}
 
@@ -109,7 +109,7 @@ public final class FileHandler {
 		}
 
 		int totalRows = sheet.getLastRowNum(); // Remove header row
-		int totalColumns = FileHandler.getColumnCount(sheet);
+		int totalColumns = FileIO.getColumnCount(sheet);
 		String[][] testData = new String[totalRows][totalColumns];
 
 		int rowIndex = 0;
