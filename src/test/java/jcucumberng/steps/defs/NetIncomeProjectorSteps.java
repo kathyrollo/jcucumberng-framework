@@ -68,7 +68,7 @@ public class NetIncomeProjectorSteps {
 
 	@Then("I Should See Net Income Per Month: {word}")
 	public void I_Should_See_Net_Income_Per_Month(String netPerMonth) throws Throwable {
-		WebElement netPerMonthTd = driver.findElement(Selenium.by("net.per.month"));
+		WebElement netPerMonthTd = driver.findElement(Selenium.by("net.per.month.td"));
 		String netPerMonthText = netPerMonthTd.getText();
 		Assertions.assertThat(netPerMonthText).isEqualTo(netPerMonth);
 		Selenium.scrollToElement(driver, netPerMonthTd);
@@ -77,7 +77,7 @@ public class NetIncomeProjectorSteps {
 
 	@Then("I Should See Net Income Per Year: {word}")
 	public void I_Should_See_Net_Income_Per_Year(String netPerYear) throws Throwable {
-		WebElement netPerYearTd = driver.findElement(Selenium.by("net.per.year"));
+		WebElement netPerYearTd = driver.findElement(Selenium.by("net.per.year.td"));
 		String netPerYearText = netPerYearTd.getText();
 		Assertions.assertThat(netPerYearText).isEqualTo(netPerYear);
 		Selenium.scrollToElement(driver, netPerYearTd);
