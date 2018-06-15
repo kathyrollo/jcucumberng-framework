@@ -71,8 +71,8 @@ public class NetIncomeProjectorSteps {
 		WebElement netPerMonthTd = driver.findElement(Selenium.by("net.per.month"));
 		String netPerMonthText = netPerMonthTd.getText();
 		Assertions.assertThat(netPerMonthText).isEqualTo(netPerMonth);
-		logger.debug("Net Per Month=" + netPerMonthText);
 		Selenium.scrollToElement(driver, netPerMonthTd);
+		logger.debug("Net Per Month=" + netPerMonthText);
 	}
 
 	@Then("I Should See Net Income Per Year: {word}")
@@ -80,8 +80,8 @@ public class NetIncomeProjectorSteps {
 		WebElement netPerYearTd = driver.findElement(Selenium.by("net.per.year"));
 		String netPerYearText = netPerYearTd.getText();
 		Assertions.assertThat(netPerYearText).isEqualTo(netPerYear);
-		logger.debug("Net Per Year=" + netPerYearText);
 		Selenium.scrollToElement(driver, netPerYearTd);
+		logger.debug("Net Per Year=" + netPerYearText);
 	}
 
 }

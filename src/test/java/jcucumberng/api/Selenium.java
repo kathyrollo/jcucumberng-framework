@@ -109,11 +109,12 @@ public final class Selenium {
 	 *            the key(s) from the ui-map
 	 * @throws IOException
 	 */
-	public static void enterText(WebDriver driver, String text, String... keys) throws IOException {
+	public static WebElement enterText(WebDriver driver, String text, String... keys) throws IOException {
 		By[] bys = Selenium.getBys(keys);
 		WebElement field = driver.findElement(new ByChained(bys));
 		field.clear();
 		field.sendKeys(text);
+		return field;
 	}
 
 	/**
@@ -155,10 +156,11 @@ public final class Selenium {
 	 *            the key(s) from the ui-map
 	 * @throws IOException
 	 */
-	public static void clickElement(WebDriver driver, String... keys) throws IOException {
+	public static WebElement clickElement(WebDriver driver, String... keys) throws IOException {
 		By[] bys = Selenium.getBys(keys);
-		WebElement element = driver.findElement(new ByChained(bys));
-		element.click();
+		WebElement clickableElement = driver.findElement(new ByChained(bys));
+		clickableElement.click();
+		return clickableElement;
 	}
 
 	/**
@@ -306,6 +308,7 @@ public final class Selenium {
 		scenario.embed(srcBytes, "image/png");
 	}
 
+	// Returns arbitrary String... keys as By array
 	private static By[] getBys(String... keys) throws IOException {
 		By[] bys = new By[keys.length];
 		By by = null;
