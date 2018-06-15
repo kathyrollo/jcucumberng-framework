@@ -21,7 +21,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.paulhammant.ngwebdriver.ByAngular;
 
 import cucumber.api.Scenario;
-import jucucumberng.exceptions.MissingArgumentsException;
+import jcucumberng.exceptions.MissingArgumentsException;
 
 /**
  * This class handles actions for interacting with web applications using the
