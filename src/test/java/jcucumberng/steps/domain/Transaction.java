@@ -1,12 +1,12 @@
 package jcucumberng.steps.domain;
 
-public class Expense {
+public class Transaction {
 
 	private String name = null;
 	private String amount = null;
 	private String frequency = null;
 
-	public Expense(String name, String amount, String frequency) {
+	public Transaction(String name, String amount, String frequency) {
 		this.name = name;
 		this.amount = amount;
 		this.frequency = frequency;
@@ -39,7 +39,7 @@ public class Expense {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Expense [name=");
+		builder.append("Transaction [name=");
 		builder.append(name);
 		builder.append(", amount=");
 		builder.append(amount);

@@ -15,8 +15,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import io.cucumber.datatable.DataTable;
 import jcucumberng.api.Selenium;
-import jcucumberng.steps.domain.Expense;
-import jcucumberng.steps.domain.Income;
+import jcucumberng.steps.domain.Transaction;
 import jcucumberng.steps.hooks.ScenarioHook;
 
 public class NetIncomeProjectorSteps {
@@ -37,37 +36,15 @@ public class NetIncomeProjectorSteps {
 
 	@When("I Enter My Regular Income Sources")
 	public void I_Enter_My_Regular_Income_Sources(DataTable table) throws Throwable {
-		List<Income> incomes = table.asList(Income.class);
-		for (int ctr = 0; ctr < incomes.size() - 1; ctr++) {
-			Selenium.clickElement(driver, "income.add.btn");
-		}
-		List<WebElement> nameFields = driver.findElements(Selenium.by("income.name.txt"));
-		List<WebElement> amountFields = driver.findElements(Selenium.by("income.amount.txt"));
-		List<Select> freqDropMenus = Selenium.getSelectElements(driver, "income.freq.drop");
-		for (int ctr = 0; ctr < incomes.size(); ctr++) {
-			Selenium.enterText(driver, incomes.get(ctr).getName(), nameFields.get(ctr));
-			Selenium.enterText(driver, incomes.get(ctr).getAmount(), amountFields.get(ctr));
-			Selenium.selectByText(driver, incomes.get(ctr).getFrequency(), freqDropMenus.get(ctr));
-			logger.debug(incomes.get(ctr).toString());
-		}
+		List<Transaction> txns = table.asList(Transaction.class);
+		this.enterTransactions(txns, "income.add.btn", "income.name.txt", "income.amount.txt", "income.freq.drop");
 		this.scrollToDivBox(1);
 	}
 
 	@When("I Enter My Regular Expenses")
 	public void I_Enter_My_Regular_Expenses(DataTable table) throws Throwable {
-		List<Expense> expenses = table.asList(Expense.class);
-		for (int ctr = 0; ctr < expenses.size() - 1; ctr++) {
-			Selenium.clickElement(driver, "expense.add.btn");
-		}
-		List<WebElement> nameFields = driver.findElements(Selenium.by("expense.name.txt"));
-		List<WebElement> amountFields = driver.findElements(Selenium.by("expense.amount.txt"));
-		List<Select> freqDropMenus = Selenium.getSelectElements(driver, "expense.freq.drop");
-		for (int ctr = 0; ctr < expenses.size(); ctr++) {
-			Selenium.enterText(driver, expenses.get(ctr).getName(), nameFields.get(ctr));
-			Selenium.enterText(driver, expenses.get(ctr).getAmount(), amountFields.get(ctr));
-			Selenium.selectByText(driver, expenses.get(ctr).getFrequency(), freqDropMenus.get(ctr));
-			logger.debug(expenses.get(ctr).toString());
-		}
+		List<Transaction> txns = table.asList(Transaction.class);
+		this.enterTransactions(txns, "expense.add.btn", "expense.name.txt", "expense.amount.txt", "expense.freq.drop");
 		this.scrollToDivBox(2);
 	}
 
@@ -87,6 +64,22 @@ public class NetIncomeProjectorSteps {
 		Assertions.assertThat(netPerYearText).isEqualTo(netPerYear);
 		logger.debug("Net Per Year=" + netPerYearText);
 		Selenium.scrollToElement(driver, netPerYearTd);
+	}
+
+	private void enterTransactions(List<Transaction> txns, String addBtnKey, String txnNameKey, String txnAmountKey,
+			String txnFreqKey) throws IOException {
+		for (int ctr = 0; ctr < txns.size() - 1; ctr++) {
+			Selenium.clickElement(driver, addBtnKey);
+		}
+		List<WebElement> txnNameFields = driver.findElements(Selenium.by(txnNameKey));
+		List<WebElement> txnAmountFields = driver.findElements(Selenium.by(txnAmountKey));
+		List<Select> txnFreqSelects = Selenium.getSelectElements(driver, txnFreqKey);
+		for (int ctr = 0; ctr < txns.size(); ctr++) {
+			Selenium.enterText(driver, txns.get(ctr).getName(), txnNameFields.get(ctr));
+			Selenium.enterText(driver, txns.get(ctr).getAmount(), txnAmountFields.get(ctr));
+			Selenium.selectByText(driver, txns.get(ctr).getFrequency(), txnFreqSelects.get(ctr));
+			logger.debug(txns.get(ctr).toString());
+		}
 	}
 
 	private void scrollToDivBox(int index) throws IOException {
