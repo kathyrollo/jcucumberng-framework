@@ -21,6 +21,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.paulhammant.ngwebdriver.ByAngular;
 
 import cucumber.api.Scenario;
+import jcucumberng.constants.ExceptionMessages;
 import jcucumberng.exceptions.MissingArgumentsException;
 
 /**
@@ -209,7 +210,7 @@ public final class Selenium {
 	public static String openNewWindow(WebDriver driver, String... args) throws IOException {
 		String parentHandle = driver.getWindowHandle(); // Save parent window
 		if (0 != args.length) {
-			throw new MissingArgumentsException("No arguments found for arbitrary parameters.");
+			throw new MissingArgumentsException(ExceptionMessages.MISSING_ARGS);
 		}
 		// Open child window
 		if (args[0].matches("http[s]?://.*")) { // Check if valid URL
@@ -293,7 +294,7 @@ public final class Selenium {
 	// Returns arbitrary String... keys as By array
 	private static By[] getBys(String... keys) throws IOException {
 		if (0 == keys.length) {
-			throw new MissingArgumentsException("No arguments found for arbitrary parameters.");
+			throw new MissingArgumentsException(ExceptionMessages.MISSING_ARGS);
 		}
 		By[] bys = new By[keys.length];
 		By by = null;
