@@ -107,6 +107,7 @@ public final class Selenium {
 	 *            the text to be entered
 	 * @param keys
 	 *            the key(s) from the ui-map
+	 * @return WebElement - the textfield or textarea element
 	 * @throws IOException
 	 */
 	public static WebElement enterText(WebDriver driver, String text, String... keys) throws IOException {
@@ -125,7 +126,7 @@ public final class Selenium {
 	 * @param text
 	 *            the text to be entered
 	 * @param field
-	 *            the element of the textfield or textarea
+	 *            the textfield or textarea element
 	 * @throws IOException
 	 */
 	public static void enterText(WebDriver driver, String text, WebElement field) throws IOException {
@@ -154,6 +155,7 @@ public final class Selenium {
 	 *            the Selenium WebDriver
 	 * @param keys
 	 *            the key(s) from the ui-map
+	 * @return WebElement - the clickable element
 	 * @throws IOException
 	 */
 	public static WebElement clickElement(WebDriver driver, String... keys) throws IOException {
