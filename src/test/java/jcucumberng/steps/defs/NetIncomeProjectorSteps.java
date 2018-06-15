@@ -15,7 +15,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import io.cucumber.datatable.DataTable;
 import jcucumberng.api.Selenium;
-import jcucumberng.steps.domain.Transaction;
+import jcucumberng.steps.domain.RegularTransaction;
 import jcucumberng.steps.hooks.ScenarioHook;
 
 public class NetIncomeProjectorSteps {
@@ -36,15 +36,16 @@ public class NetIncomeProjectorSteps {
 
 	@When("I Enter My Regular Income Sources")
 	public void I_Enter_My_Regular_Income_Sources(DataTable table) throws Throwable {
-		List<Transaction> txns = table.asList(Transaction.class);
+		List<RegularTransaction> txns = table.asList(RegularTransaction.class);
 		this.enterTransactions(txns, "income.add.btn", "income.name.txt", "income.amount.txt", "income.freq.select");
 		this.scrollToDivBox(1);
 	}
 
 	@When("I Enter My Regular Expenses")
 	public void I_Enter_My_Regular_Expenses(DataTable table) throws Throwable {
-		List<Transaction> txns = table.asList(Transaction.class);
-		this.enterTransactions(txns, "expense.add.btn", "expense.name.txt", "expense.amount.txt", "expense.freq.select");
+		List<RegularTransaction> txns = table.asList(RegularTransaction.class);
+		this.enterTransactions(txns, "expense.add.btn", "expense.name.txt", "expense.amount.txt",
+				"expense.freq.select");
 		this.scrollToDivBox(2);
 	}
 
@@ -66,18 +67,18 @@ public class NetIncomeProjectorSteps {
 		Selenium.scrollToElement(driver, netPerYearTd);
 	}
 
-	private void enterTransactions(List<Transaction> txns, String txnAddBtnKey, String txnNameFldKey,
-			String txnAmtFldKey, String txnFreqSelectKey) throws IOException {
+	private void enterTransactions(List<RegularTransaction> txns, String addBtnKey, String nameFldKey, String amtFldKey,
+			String freqSelectKey) throws IOException {
 		for (int ctr = 0; ctr < txns.size() - 1; ctr++) {
-			Selenium.clickElement(driver, txnAddBtnKey);
+			Selenium.clickElement(driver, addBtnKey);
 		}
-		List<WebElement> txnNameFields = driver.findElements(Selenium.by(txnNameFldKey));
-		List<WebElement> txnAmtFields = driver.findElements(Selenium.by(txnAmtFldKey));
-		List<Select> txnFreqSelects = Selenium.getSelectElements(driver, txnFreqSelectKey);
+		List<WebElement> nameFields = driver.findElements(Selenium.by(nameFldKey));
+		List<WebElement> amtFields = driver.findElements(Selenium.by(amtFldKey));
+		List<Select> freqSelects = Selenium.getSelectElements(driver, freqSelectKey);
 		for (int ctr = 0; ctr < txns.size(); ctr++) {
-			Selenium.enterText(driver, txns.get(ctr).getName(), txnNameFields.get(ctr));
-			Selenium.enterText(driver, txns.get(ctr).getAmount(), txnAmtFields.get(ctr));
-			Selenium.selectByText(driver, txns.get(ctr).getFrequency(), txnFreqSelects.get(ctr));
+			Selenium.enterText(driver, txns.get(ctr).getName(), nameFields.get(ctr));
+			Selenium.enterText(driver, txns.get(ctr).getAmount(), amtFields.get(ctr));
+			Selenium.selectByText(driver, txns.get(ctr).getFrequency(), freqSelects.get(ctr));
 			logger.debug(txns.get(ctr).toString());
 		}
 	}

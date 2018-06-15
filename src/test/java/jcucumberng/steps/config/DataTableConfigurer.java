@@ -7,7 +7,7 @@ import cucumber.api.TypeRegistry;
 import cucumber.api.TypeRegistryConfigurer;
 import io.cucumber.datatable.DataTableType;
 import io.cucumber.datatable.TableEntryTransformer;
-import jcucumberng.steps.domain.Transaction;
+import jcucumberng.steps.domain.RegularTransaction;
 
 /*
  * Maps datatables in feature files to custom domain objects.
@@ -21,10 +21,10 @@ public class DataTableConfigurer implements TypeRegistryConfigurer {
 
 	@Override
 	public void configureTypeRegistry(TypeRegistry registry) {
-		registry.defineDataTableType(new DataTableType(Transaction.class, new TableEntryTransformer<Transaction>() {
+		registry.defineDataTableType(new DataTableType(RegularTransaction.class, new TableEntryTransformer<RegularTransaction>() {
 			@Override
-			public Transaction transform(Map<String, String> entry) {
-				return new Transaction(entry.get("name"), entry.get("amount"), entry.get("frequency"));
+			public RegularTransaction transform(Map<String, String> entry) {
+				return new RegularTransaction(entry.get("name"), entry.get("amount"), entry.get("frequency"));
 			}
 		}));
 	}
