@@ -181,7 +181,7 @@ public final class Selenium {
 	// TODO Implement scrollHorizontal()
 
 	/**
-	 * Scroll to specific element on webpage.
+	 * Scroll to specific element on web page.
 	 * 
 	 * @param driver
 	 *            the Selenium WebDriver
