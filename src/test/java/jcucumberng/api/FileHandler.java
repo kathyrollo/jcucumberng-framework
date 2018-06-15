@@ -29,8 +29,8 @@ public final class FileHandler {
 	}
 
 	/**
-	 * Checks if a file exists in a specified directory. Set file.dir in
-	 * config.properties.
+	 * Checks if a file exists in a specified directory. Set {@code file.dir} in
+	 * {@code config.properties}.
 	 * 
 	 * @param prefix
 	 *            the beginning of a filename, can be a substring
@@ -60,8 +60,8 @@ public final class FileHandler {
 	}
 
 	/**
-	 * Extracts readable text from a specified PDF file. Set pdf.file.path in
-	 * config.properties. File path must be absolute.
+	 * Extracts readable text from a specified PDF file. Set {@code pdf.file.path}
+	 * in {@code config.properties}. File path must be absolute.
 	 * 
 	 * @return String - extracted text from PDF file
 	 * @throws IOException
