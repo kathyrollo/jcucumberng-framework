@@ -201,10 +201,8 @@ public final class Selenium {
 	 * 
 	 * @param driver
 	 *            the Selenium WebDriver
-	 * @param url
-	 *            the link to the child window
 	 * @param args
-	 *            the url or the key(s) from the ui-map
+	 *            the link to the child window or the key(s) from the ui-map
 	 * @return String - the handle of the parent window
 	 */
 	public static String openNewWindow(WebDriver driver, String... args) throws IOException {
