@@ -66,17 +66,17 @@ public class NetIncomeProjectorSteps {
 		Selenium.scrollToElement(driver, netPerYearTd);
 	}
 
-	private void enterTransactions(List<Transaction> txns, String addBtnKey, String txnNameKey, String txnAmountKey,
+	private void enterTransactions(List<Transaction> txns, String addBtnKey, String txnNameKey, String txnAmtKey,
 			String txnFreqKey) throws IOException {
 		for (int ctr = 0; ctr < txns.size() - 1; ctr++) {
 			Selenium.clickElement(driver, addBtnKey);
 		}
 		List<WebElement> txnNameFields = driver.findElements(Selenium.by(txnNameKey));
-		List<WebElement> txnAmountFields = driver.findElements(Selenium.by(txnAmountKey));
+		List<WebElement> txnAmtFields = driver.findElements(Selenium.by(txnAmtKey));
 		List<Select> txnFreqSelects = Selenium.getSelectElements(driver, txnFreqKey);
 		for (int ctr = 0; ctr < txns.size(); ctr++) {
 			Selenium.enterText(driver, txns.get(ctr).getName(), txnNameFields.get(ctr));
-			Selenium.enterText(driver, txns.get(ctr).getAmount(), txnAmountFields.get(ctr));
+			Selenium.enterText(driver, txns.get(ctr).getAmount(), txnAmtFields.get(ctr));
 			Selenium.selectByText(driver, txns.get(ctr).getFrequency(), txnFreqSelects.get(ctr));
 			logger.debug(txns.get(ctr).toString());
 		}
