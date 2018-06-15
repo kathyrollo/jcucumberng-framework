@@ -1,7 +1,5 @@
 package jcucumberng.steps.hooks;
 
-import java.awt.Toolkit;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -19,6 +17,7 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
+import jcucumberng.api.LocalMachine;
 import jcucumberng.api.PropsLoader;
 
 public class ScenarioHook {
@@ -97,13 +96,9 @@ public class ScenarioHook {
 			setDefaultBrowser(driverPath);
 			break;
 		}
-
 		logger.info("Browser=" + browser);
 
-		java.awt.Dimension awtDimension = Toolkit.getDefaultToolkit().getScreenSize();
-		int width = (int) awtDimension.getWidth();
-		int height = (int) awtDimension.getHeight();
-		Dimension dimension = new Dimension(width, height);
+		Dimension dimension = LocalMachine.getDimension();
 		driver.manage().window().setSize(dimension);
 		logger.info("Screen Resolution (WxH)=" + dimension.getWidth() + "x" + dimension.getHeight());
 	}
