@@ -92,7 +92,7 @@ public class ScenarioHook {
 			driver = new InternetExplorerDriver();
 			break;
 		default:
-			logger.error("Unsupported browser specified in config. Using default CHROME_NOHEAD.");
+			logger.error("Unsupported browser specified in config. Using default.");
 			setDefaultBrowser(driverPath);
 			break;
 		}
