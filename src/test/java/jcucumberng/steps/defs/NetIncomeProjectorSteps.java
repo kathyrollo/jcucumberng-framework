@@ -36,14 +36,14 @@ public class NetIncomeProjectorSteps {
 	@When("I Enter My Regular Income Sources")
 	public void I_Enter_My_Regular_Income_Sources(DataTable table) throws Throwable {
 		List<Transaction> txns = table.asList(Transaction.class);
-		this.enterTxn(txns, "income.add.btn", "income.name.txt", "income.amount.txt", "income.freq.select");
+		this.enterTransaction(txns, "income.add.btn", "income.name.txt", "income.amount.txt", "income.freq.select");
 		this.scrollToDivBox(1);
 	}
 
 	@When("I Enter My Regular Expenses")
 	public void I_Enter_My_Regular_Expenses(DataTable table) throws Throwable {
 		List<Transaction> txns = table.asList(Transaction.class);
-		this.enterTxn(txns, "expense.add.btn", "expense.name.txt", "expense.amount.txt", "expense.freq.select");
+		this.enterTransaction(txns, "expense.add.btn", "expense.name.txt", "expense.amount.txt", "expense.freq.select");
 		this.scrollToDivBox(2);
 	}
 
@@ -65,7 +65,7 @@ public class NetIncomeProjectorSteps {
 		Selenium.scrollToElement(driver, netPerYearTd);
 	}
 
-	private void enterTxn(List<Transaction> txns, String addBtnKey, String nameFldKey, String amtFldKey,
+	private void enterTransaction(List<Transaction> txns, String addBtnKey, String nameFldKey, String amtFldKey,
 			String freqSelKey) throws Throwable {
 		// Click Add button
 		for (int ctr = 0; ctr < txns.size() - 1; ctr++) {
