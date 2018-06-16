@@ -234,19 +234,30 @@ public final class Selenium {
 	}
 
 	/**
+	 * Scroll the screen horizontally.
+	 * 
+	 * @param driver
+	 *            the Selenium WebDriver
+	 * @param xPos
+	 *            negative value to scroll left, positive value to scroll right
+	 */
+	public static void scrollHorizontal(WebDriver driver, int xPos) {
+		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+		jsExecutor.executeScript("scroll(" + xPos + ", 0);");
+	}
+
+	/**
 	 * Scroll the screen vertically.
 	 * 
 	 * @param driver
 	 *            the Selenium WebDriver
-	 * @param yPosition
+	 * @param yPos
 	 *            positive value to scroll down, negative value to scroll up
 	 */
-	public static void scrollVertical(WebDriver driver, int yPosition) {
+	public static void scrollVertical(WebDriver driver, int yPos) {
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
-		jsExecutor.executeScript("scroll(0, " + yPosition + ");");
+		jsExecutor.executeScript("scroll(0, " + yPos + ");");
 	}
-
-	// TODO Implement scrollHorizontal()
 
 	/**
 	 * Scroll to specific element on web page.
