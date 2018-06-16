@@ -55,7 +55,7 @@ public final class Selenium {
 	 * @throws IOException
 	 */
 	public static By by(String key) throws IOException {
-		String value = PropsLoader.readLocator(key);
+		String value = PropsLoader.readUiMap(key);
 		String locator = value.substring(value.lastIndexOf(":") + 1);
 		By by = null;
 		// TODO Add By-types as needed
