@@ -7,12 +7,6 @@ public class Transaction {
 	private String frequency = null;
 	private String month = null;
 
-	public Transaction(String name, String amount, String frequency) {
-		this.name = name;
-		this.amount = amount;
-		this.frequency = frequency;
-	}
-
 	public Transaction(String name, String amount, String frequency, String month) {
 		this.name = name;
 		this.amount = amount;

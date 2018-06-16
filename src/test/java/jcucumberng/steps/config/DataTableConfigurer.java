@@ -24,7 +24,8 @@ public class DataTableConfigurer implements TypeRegistryConfigurer {
 		registry.defineDataTableType(new DataTableType(Transaction.class, new TableEntryTransformer<Transaction>() {
 			@Override
 			public Transaction transform(Map<String, String> entry) {
-				return new Transaction(entry.get("name"), entry.get("amount"), entry.get("frequency"));
+				return new Transaction(entry.get("name"), entry.get("amount"), entry.get("frequency"),
+						entry.get("month"));
 			}
 		}));
 	}
