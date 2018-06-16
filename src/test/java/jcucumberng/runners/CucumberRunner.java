@@ -6,9 +6,8 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 
 @CucumberOptions(features = { "src/test/resources/features" }, tags = { "not @ignore" }, glue = {
 		"jcucumberng/steps/config", "jcucumberng/steps/defs", "jcucumberng/steps/hooks" }, plugin = { "pretty",
-				"html:target/cucumber-generated-reports/cucumber-report",
-				"json:target/cucumber-generated-reports/cucumber-report.json",
-				"junit:target/cucumber-generated-reports/cucumber-report.xml" }, snippets = SnippetType.UNDERSCORE, monochrome = true, strict = true, dryRun = false)
+				"html:target/cucumber-output/generated-report", "json:target/cucumber-output/cucumber-report.json",
+				"junit:target/cucumber-output/cucumber-report.xml" }, snippets = SnippetType.UNDERSCORE, monochrome = true, strict = true, dryRun = false)
 
 public class CucumberRunner extends AbstractTestNGCucumberTests {
 }
