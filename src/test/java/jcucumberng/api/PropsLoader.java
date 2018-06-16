@@ -6,7 +6,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 /**
- * This class handles actions for configuring the test framework.
+ * {@code PropsLoader} handles actions for configuring the test framework.
  * 
  * @author Kat Rollo <rollo.katherine@gmail.com>
  */
@@ -17,8 +17,9 @@ public final class PropsLoader {
 	}
 
 	/**
-	 * Reads a config.properties file by passing the key of a configuration or
-	 * setting. The file must be located in /src/test/resources/.
+	 * Reads a {@code config.properties} file by passing the key of a setting to
+	 * configure properties of the project. The file must be located in
+	 * {@code /src/test/resources/}.
 	 * 
 	 * @param key
 	 *            the name corresponding to the value in the key-value pair
@@ -30,32 +31,33 @@ public final class PropsLoader {
 		builder.append(System.getProperty("user.dir").replace("\\", "/"));
 		builder.append("/src/test/resources/config.properties");
 
-		InputStream inStream = new FileInputStream(builder.toString());
-		Properties properties = new Properties();
-		properties.load(inStream);
+		InputStream inputStream = new FileInputStream(builder.toString());
+		Properties props = new Properties();
+		props.load(inputStream);
 
-		return properties.getProperty(key).trim();
+		return props.getProperty(key).trim();
 	}
 
 	/**
-	 * Reads a ui-map.properties file by passing the key of a locator used to find
-	 * elements in web pages. The file must be located in /src/test/resources/.
+	 * Reads a {@code ui-map.properties} file by passing the key of a locator used
+	 * to find an element on a web page. The file must be located in
+	 * {@code /src/test/resources/}.
 	 * 
 	 * @param key
 	 *            the name corresponding to the value in the key-value pair
 	 * @return String - the value corresponding to the given key
 	 * @throws IOException
 	 */
-	public static String readLocator(String key) throws IOException {
+	public static String readUiMap(String key) throws IOException {
 		StringBuilder builder = new StringBuilder();
 		builder.append(System.getProperty("user.dir").replace("\\", "/"));
 		builder.append("/src/test/resources/ui-map.properties");
 
-		InputStream inStream = new FileInputStream(builder.toString());
-		Properties properties = new Properties();
-		properties.load(inStream);
+		InputStream inputStream = new FileInputStream(builder.toString());
+		Properties props = new Properties();
+		props.load(inputStream);
 
-		return properties.getProperty(key).trim();
+		return props.getProperty(key).trim();
 	}
 
 }

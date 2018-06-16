@@ -1,7 +1,5 @@
 package jcucumberng.steps.hooks;
 
-import java.awt.Toolkit;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -19,7 +17,9 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
+import jcucumberng.api.LocalMachine;
 import jcucumberng.api.PropsLoader;
+import jcucumberng.constants.ErrorMessages;
 
 public class ScenarioHook {
 	private static final Logger logger = LogManager.getLogger(ScenarioHook.class);
@@ -37,48 +37,33 @@ public class ScenarioHook {
 		builder.append("/src/test/resources/webdrivers/");
 		String driverPath = builder.toString().trim();
 
-		FirefoxBinary ffBin = null;
-		FirefoxOptions ffOpts = null;
-
 		String browser = PropsLoader.readConfig("browser");
 		if (StringUtils.isBlank(browser)) {
-			logger.error("No browser specified in config. Using default.");
-			browser = "CHROME_NOHEAD";
+			logger.error(ErrorMessages.NO_BROWSER);
+			browser = "CHROME32_NOHEAD";
 		}
 
 		switch (browser.toUpperCase()) {
-		case "CHROME":
+		case "CHROME32":
 			System.setProperty("webdriver.chrome.driver", driverPath + "chromedriver_win32.exe");
 			driver = new ChromeDriver();
 			break;
-		case "CHROME_NOHEAD":
-			setDefaultBrowser(driverPath);
+		case "CHROME32_NOHEAD":
+			this.setChromeNoHead(driverPath, "chromedriver_win32.exe");
 			break;
 		case "FF32":
 			System.setProperty("webdriver.gecko.driver", driverPath + "geckodriver_win32.exe");
 			driver = new FirefoxDriver();
 			break;
 		case "FF32_NOHEAD":
-			System.setProperty("webdriver.gecko.driver", driverPath + "geckodriver_win32.exe");
-			ffBin = new FirefoxBinary();
-			ffBin.addCommandLineOptions("--headless");
-			ffOpts = new FirefoxOptions();
-			ffOpts.setBinary(ffBin);
-			ffOpts.setLogLevel(FirefoxDriverLogLevel.INFO);
-			driver = new FirefoxDriver(ffOpts);
+			this.setFirefoxNoHead(driverPath, "geckodriver_win32.exe");
 			break;
 		case "FF64":
 			System.setProperty("webdriver.gecko.driver", driverPath + "geckodriver_win64.exe");
 			driver = new FirefoxDriver();
 			break;
 		case "FF64_NOHEAD":
-			System.setProperty("webdriver.gecko.driver", driverPath + "geckodriver_win64.exe");
-			ffBin = new FirefoxBinary();
-			ffBin.addCommandLineOptions("--headless");
-			ffOpts = new FirefoxOptions();
-			ffOpts.setBinary(ffBin);
-			ffOpts.setLogLevel(FirefoxDriverLogLevel.INFO);
-			driver = new FirefoxDriver(ffOpts);
+			this.setFirefoxNoHead(driverPath, "geckodriver_win64.exe");
 			break;
 		case "EDGE":
 			System.setProperty("webdriver.edge.driver", driverPath + "MicrosoftWebDriver.exe");
@@ -93,17 +78,13 @@ public class ScenarioHook {
 			driver = new InternetExplorerDriver();
 			break;
 		default:
-			logger.error("Unsupported browser specified in config. Using default CHROME_NOHEAD.");
-			setDefaultBrowser(driverPath);
+			logger.error(ErrorMessages.UNSUPPORTED_BROWSER);
+			this.setChromeNoHead(driverPath, "chromedriver_win32.exe");
 			break;
 		}
-
 		logger.info("Browser=" + browser);
 
-		java.awt.Dimension awtDimension = Toolkit.getDefaultToolkit().getScreenSize();
-		int width = (int) awtDimension.getWidth();
-		int height = (int) awtDimension.getHeight();
-		Dimension dimension = new Dimension(width, height);
+		Dimension dimension = LocalMachine.getDimension();
 		driver.manage().window().setSize(dimension);
 		logger.info("Screen Resolution (WxH)=" + dimension.getWidth() + "x" + dimension.getHeight());
 	}
@@ -122,11 +103,21 @@ public class ScenarioHook {
 		return driver;
 	}
 
-	private void setDefaultBrowser(String driverPath) {
-		System.setProperty("webdriver.chrome.driver", driverPath + "chromedriver_win32.exe");
+	private void setChromeNoHead(String driverPath, String driverBinary) {
+		System.setProperty("webdriver.chrome.driver", driverPath + driverBinary);
 		ChromeOptions chromeOpts = new ChromeOptions();
 		chromeOpts.addArguments("--headless");
 		driver = new ChromeDriver(chromeOpts);
+	}
+
+	private void setFirefoxNoHead(String driverPath, String driverBinary) {
+		System.setProperty("webdriver.gecko.driver", driverPath + driverBinary);
+		FirefoxBinary ffBin = new FirefoxBinary();
+		ffBin.addCommandLineOptions("--headless");
+		FirefoxOptions ffOpts = new FirefoxOptions();
+		ffOpts.setBinary(ffBin);
+		ffOpts.setLogLevel(FirefoxDriverLogLevel.INFO);
+		driver = new FirefoxDriver(ffOpts);
 	}
 
 }
