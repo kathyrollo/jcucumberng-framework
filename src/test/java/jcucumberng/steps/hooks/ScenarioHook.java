@@ -40,15 +40,15 @@ public class ScenarioHook {
 		String browser = PropsLoader.readConfig("browser");
 		if (StringUtils.isBlank(browser)) {
 			logger.error(ErrorMessages.NO_BROWSER);
-			browser = "CHROME_NOHEAD";
+			browser = "CHROME32_NOHEAD";
 		}
 
 		switch (browser.toUpperCase()) {
-		case "CHROME":
+		case "CHROME32":
 			System.setProperty("webdriver.chrome.driver", driverPath + "chromedriver_win32.exe");
 			driver = new ChromeDriver();
 			break;
-		case "CHROME_NOHEAD":
+		case "CHROME32_NOHEAD":
 			this.setChromeNoHead(driverPath, "chromedriver_win32.exe");
 			break;
 		case "FF32":
