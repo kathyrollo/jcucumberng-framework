@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
-import jcucumberng.api.PropsLoader;
+import jcucumberng.framework.api.PropsLoader;
 import jcucumberng.steps.hooks.ScenarioHook;
 
 public class HomePageNavigationSteps {

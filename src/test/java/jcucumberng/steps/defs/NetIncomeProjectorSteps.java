@@ -13,7 +13,7 @@ import org.openqa.selenium.support.ui.Select;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import io.cucumber.datatable.DataTable;
-import jcucumberng.api.Selenium;
+import jcucumberng.framework.api.Selenium;
 import jcucumberng.steps.domain.Transaction;
 import jcucumberng.steps.hooks.ScenarioHook;
 

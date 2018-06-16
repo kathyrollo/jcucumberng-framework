@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 
 import cucumber.api.Scenario;
 import cucumber.api.java.AfterStep;
-import jcucumberng.api.Selenium;
+import jcucumberng.framework.api.Selenium;
 
 public class StepHook {
 	@SuppressWarnings("unused") // TODO Remove suppress warning when used

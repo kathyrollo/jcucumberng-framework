@@ -1,4 +1,4 @@
-package jcucumberng.api;
+package jcucumberng.framework.api;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,8 +21,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.paulhammant.ngwebdriver.ByAngular;
 
 import cucumber.api.Scenario;
-import jcucumberng.constants.ExceptionMessages;
-import jcucumberng.exceptions.MissingArgumentsException;
+import jcucumberng.framework.constants.ExceptionMessages;
+import jcucumberng.framework.exceptions.MissingArgumentsException;
 
 /**
  * {@code Selenium} handles actions for interacting with web applications using

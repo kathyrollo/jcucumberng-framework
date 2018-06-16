@@ -1,4 +1,4 @@
-package jcucumberng.exceptions;
+package jcucumberng.framework.exceptions;
 
 /**
  * {@code MissingArgumentsException} is thrown when the arbitrary parameters or
