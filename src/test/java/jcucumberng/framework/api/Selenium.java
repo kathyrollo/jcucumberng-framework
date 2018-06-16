@@ -36,7 +36,7 @@ public final class Selenium {
 	}
 
 	/**
-	 * Returns the By object based on the value of the key from the
+	 * Returns the By object based on the value of the key from
 	 * {@code ui-map.properties}.<br>
 	 * <br>
 	 * Example:<br>
@@ -52,7 +52,7 @@ public final class Selenium {
 	 * after the colon.
 	 * 
 	 * @param key
-	 *            the key from the {@code ui-map.properties}
+	 *            the key from {@code ui-map.properties}
 	 * @return By - the By object
 	 * @throws IOException
 	 */
@@ -164,7 +164,7 @@ public final class Selenium {
 	 * @param driver
 	 *            the Selenium WebDriver
 	 * @param args
-	 *            the link to the child window or the key(s) from the
+	 *            the link to the child window or the key(s) from
 	 *            {@code ui-map.properties}
 	 * @return String - the handle of the parent window
 	 */
