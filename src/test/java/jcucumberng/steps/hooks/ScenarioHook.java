@@ -37,9 +37,6 @@ public class ScenarioHook {
 		builder.append("/src/test/resources/webdrivers/");
 		String driverPath = builder.toString().trim();
 
-		FirefoxBinary ffBin = null;
-		FirefoxOptions ffOpts = null;
-
 		String browser = PropsLoader.readConfig("browser");
 		if (StringUtils.isBlank(browser)) {
 			logger.error(ErrorMessages.NO_BROWSER);
@@ -52,33 +49,21 @@ public class ScenarioHook {
 			driver = new ChromeDriver();
 			break;
 		case "CHROME_NOHEAD":
-			setDefaultBrowser(driverPath);
+			this.setChromeNoHead(driverPath, "chromedriver_win32.exe");
 			break;
 		case "FF32":
 			System.setProperty("webdriver.gecko.driver", driverPath + "geckodriver_win32.exe");
 			driver = new FirefoxDriver();
 			break;
 		case "FF32_NOHEAD":
-			System.setProperty("webdriver.gecko.driver", driverPath + "geckodriver_win32.exe");
-			ffBin = new FirefoxBinary();
-			ffBin.addCommandLineOptions("--headless");
-			ffOpts = new FirefoxOptions();
-			ffOpts.setBinary(ffBin);
-			ffOpts.setLogLevel(FirefoxDriverLogLevel.INFO);
-			driver = new FirefoxDriver(ffOpts);
+			this.setFirefoxNoHead(driverPath, "geckodriver_win32.exe");
 			break;
 		case "FF64":
 			System.setProperty("webdriver.gecko.driver", driverPath + "geckodriver_win64.exe");
 			driver = new FirefoxDriver();
 			break;
 		case "FF64_NOHEAD":
-			System.setProperty("webdriver.gecko.driver", driverPath + "geckodriver_win64.exe");
-			ffBin = new FirefoxBinary();
-			ffBin.addCommandLineOptions("--headless");
-			ffOpts = new FirefoxOptions();
-			ffOpts.setBinary(ffBin);
-			ffOpts.setLogLevel(FirefoxDriverLogLevel.INFO);
-			driver = new FirefoxDriver(ffOpts);
+			this.setFirefoxNoHead(driverPath, "geckodriver_win64.exe");
 			break;
 		case "EDGE":
 			System.setProperty("webdriver.edge.driver", driverPath + "MicrosoftWebDriver.exe");
@@ -94,7 +79,7 @@ public class ScenarioHook {
 			break;
 		default:
 			logger.error(ErrorMessages.UNSUPPORTED_BROWSER);
-			setDefaultBrowser(driverPath);
+			this.setChromeNoHead(driverPath, "chromedriver_win32.exe");
 			break;
 		}
 		logger.info("Browser=" + browser);
@@ -118,11 +103,21 @@ public class ScenarioHook {
 		return driver;
 	}
 
-	private void setDefaultBrowser(String driverPath) {
-		System.setProperty("webdriver.chrome.driver", driverPath + "chromedriver_win32.exe");
+	private void setChromeNoHead(String driverPath, String driverBinary) {
+		System.setProperty("webdriver.chrome.driver", driverPath + driverBinary);
 		ChromeOptions chromeOpts = new ChromeOptions();
 		chromeOpts.addArguments("--headless");
 		driver = new ChromeDriver(chromeOpts);
+	}
+
+	private void setFirefoxNoHead(String driverPath, String driverBinary) {
+		System.setProperty("webdriver.gecko.driver", driverPath + driverBinary);
+		FirefoxBinary ffBin = new FirefoxBinary();
+		ffBin.addCommandLineOptions("--headless");
+		FirefoxOptions ffOpts = new FirefoxOptions();
+		ffOpts.setBinary(ffBin);
+		ffOpts.setLogLevel(FirefoxDriverLogLevel.INFO);
+		driver = new FirefoxDriver(ffOpts);
 	}
 
 }
