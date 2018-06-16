@@ -19,6 +19,7 @@ import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import jcucumberng.api.LocalMachine;
 import jcucumberng.api.PropsLoader;
+import jcucumberng.constants.ErrorMessages;
 
 public class ScenarioHook {
 	private static final Logger logger = LogManager.getLogger(ScenarioHook.class);
@@ -41,7 +42,7 @@ public class ScenarioHook {
 
 		String browser = PropsLoader.readConfig("browser");
 		if (StringUtils.isBlank(browser)) {
-			logger.error("No browser specified in config. Using default.");
+			logger.error(ErrorMessages.NO_BROWSER);
 			browser = "CHROME_NOHEAD";
 		}
 
@@ -92,7 +93,7 @@ public class ScenarioHook {
 			driver = new InternetExplorerDriver();
 			break;
 		default:
-			logger.error("Unsupported browser specified in config. Using default.");
+			logger.error(ErrorMessages.UNSUPPORTED_BROWSER);
 			setDefaultBrowser(driverPath);
 			break;
 		}
