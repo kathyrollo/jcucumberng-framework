@@ -1,14 +1,15 @@
 package jcucumberng.api;
 
 import java.awt.AWTException;
-import java.awt.Dimension;
 import java.awt.Robot;
 import java.awt.Toolkit;
 import java.io.IOException;
 
+import org.openqa.selenium.Dimension;
+
 /**
- * This class handles actions relating to the local machine such as screen
- * resolution or input devices.
+ * {@code LocalMachine} handles actions relating to the user's machine such as
+ * screen resolution or input devices.
  * 
  * @author Kat Rollo <rollo.katherine@gmail.com>
  */
@@ -21,20 +22,21 @@ public final class LocalMachine {
 	/**
 	 * Gets the native resolution of the local machine.
 	 * 
-	 * @return String - the native resolution in WxH (e.g. 1920x1080)
+	 * @return Dimension - the screen size in WxH (e.g. 1920x1080)
 	 */
-	public static String getNativeResolution() {
-		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
-		String width = String.valueOf((short) dimension.getWidth());
-		String height = String.valueOf((short) dimension.getHeight());
-		return width + "x" + height;
+	public static Dimension getDimension() {
+		java.awt.Dimension awtDimension = Toolkit.getDefaultToolkit().getScreenSize();
+		short width = (short) awtDimension.getWidth();
+		short height = (short) awtDimension.getHeight();
+		Dimension dimension = new Dimension(width, height);
+		return dimension;
 	}
 
 	/**
 	 * Accepts a single key entry. The key is pressed and released immediately.
 	 * 
 	 * @param key
-	 *            KeyEvent constant from java.awt.event.KeyEvent
+	 *            the constant from {@code java.awt.event.KeyEvent}
 	 * @throws AWTException
 	 * @throws NumberFormatException
 	 * @throws IOException
@@ -52,8 +54,8 @@ public final class LocalMachine {
 	 * simultaneously and released in reverse order.
 	 * 
 	 * @param keys
-	 *            an array of KeyEvent constants from java.awt.event.KeyEvent,
-	 *            specify keys in order of entry
+	 *            an array of KeyEvent constants from
+	 *            {@code java.awt.event.KeyEvent}, specify keys in order
 	 * @throws AWTException
 	 * @throws NumberFormatException
 	 * @throws IOException

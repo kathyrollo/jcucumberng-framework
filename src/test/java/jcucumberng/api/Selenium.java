@@ -21,10 +21,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.paulhammant.ngwebdriver.ByAngular;
 
 import cucumber.api.Scenario;
+import jcucumberng.constants.ExceptionMessages;
+import jcucumberng.exceptions.MissingArgumentsException;
 
 /**
- * This class handles actions for interacting with web applications using the
- * Selenium WebDriver.
+ * {@code Selenium} handles actions for interacting with web applications using
+ * the Selenium WebDriver.
  * 
  * @author Kat Rollo <rollo.katherine@gmail.com>
  */
@@ -34,30 +36,34 @@ public final class Selenium {
 	}
 
 	/**
-	 * Gets the By locator based on the value of the key.<br>
+	 * Returns the By object based on the value of the key from the
+	 * {@code ui-map.properties}.<br>
 	 * <br>
 	 * Example:<br>
 	 * <br>
-	 * key = expense.name.txt<br>
+	 * {@code key = expense.name.txt}<br>
 	 * <br>
-	 * value = model:expense.name<br>
+	 * {@code value = by-model:expense.name}<br>
 	 * <br>
-	 * by = ByAngular.model()<br>
+	 * {@code by = ByAngular.model()}<br>
 	 * <br>
-	 * The colon (:) is the delimiter between locator type (e.g. model) and
-	 * identifier (i.e. substring after colon).
+	 * The colon ({@code :}) is the delimiter between the by-type (e.g.
+	 * {@code by-model}) and the locator (e.g. {@code expense.name}) or substring
+	 * after the colon.
 	 * 
 	 * @param key
-	 *            the key from the ui-map
-	 * @return By - the By locator
+	 *            the key from the {@code ui-map.properties}
+	 * @return By - the By object
 	 * @throws IOException
 	 */
 	public static By by(String key) throws IOException {
-		String value = PropsLoader.readLocator(key);
+		String value = PropsLoader.readUiMap(key);
 		String locator = value.substring(value.lastIndexOf(":") + 1);
 		By by = null;
 		// TODO Add By-types as needed
-		if (value.contains("by-css")) {
+		if (value.contains("by-classname")) {
+			by = By.className(locator);
+		} else if (value.contains("by-css")) {
 			by = By.cssSelector(locator);
 		} else if (value.contains("by-model")) {
 			by = ByAngular.model(locator);
@@ -72,13 +78,14 @@ public final class Selenium {
 	 * 
 	 * @param driver
 	 *            the Selenium WebDriver
-	 * @param selectLocatorKey
-	 *            the key from the ui-map
+	 * @param keys
+	 *            the key(s) from the {@code ui-map.properties}
 	 * @return List - the List of Select elements
 	 * @throws IOException
 	 */
-	public static List<Select> getSelectElements(WebDriver driver, String selectLocatorKey) throws IOException {
-		List<WebElement> elements = driver.findElements(Selenium.by(selectLocatorKey));
+	public static List<Select> getSelectElements(WebDriver driver, String... keys) throws IOException {
+		By[] bys = Selenium.getBys(keys);
+		List<WebElement> elements = driver.findElements(new ByChained(bys));
 		List<Select> selectElements = new ArrayList<>();
 		for (WebElement element : elements) {
 			selectElements.add(new Select(element));
@@ -98,6 +105,73 @@ public final class Selenium {
 	}
 
 	/**
+	 * Enters text into a textfield or textarea.
+	 * 
+	 * @param driver
+	 *            the Selenium WebDriver
+	 * @param text
+	 *            the text to be entered
+	 * @param keys
+	 *            the key(s) from the {@code ui-map.properties}
+	 * @return WebElement - the textfield or textarea element
+	 * @throws IOException
+	 */
+	public static WebElement enterText(WebDriver driver, String text, String... keys) throws IOException {
+		By[] bys = Selenium.getBys(keys);
+		WebElement field = driver.findElement(new ByChained(bys));
+		field.clear();
+		field.sendKeys(text);
+		return field;
+	}
+
+	/**
+	 * Enters text into a textfield or textarea.
+	 * 
+	 * @param driver
+	 *            the Selenium WebDriver
+	 * @param text
+	 *            the text to be entered
+	 * @param field
+	 *            the textfield or textarea element
+	 * @throws IOException
+	 */
+	public static void enterText(WebDriver driver, String text, WebElement field) throws IOException {
+		field.clear();
+		field.sendKeys(text);
+	}
+
+	/**
+	 * Selects value from a dropdown list by visible text.
+	 * 
+	 * @param driver
+	 *            the Selenium WebDriver
+	 * @param text
+	 *            the text to be selected from the dropdown menu
+	 * @param select
+	 *            the Select element of the dropdown menu
+	 */
+	public static void selectByText(WebDriver driver, String text, Select select) {
+		select.selectByVisibleText(text);
+	}
+
+	/**
+	 * Clicks an element on the web page.
+	 * 
+	 * @param driver
+	 *            the Selenium WebDriver
+	 * @param keys
+	 *            the key(s) from the {@code ui-map.properties}
+	 * @return WebElement - the clickable element
+	 * @throws IOException
+	 */
+	public static WebElement clickElement(WebDriver driver, String... keys) throws IOException {
+		By[] bys = Selenium.getBys(keys);
+		WebElement clickableElement = driver.findElement(new ByChained(bys));
+		clickableElement.click();
+		return clickableElement;
+	}
+
+	/**
 	 * Scroll the screen vertically.
 	 * 
 	 * @param driver
@@ -110,102 +184,43 @@ public final class Selenium {
 		jsExecutor.executeScript("scroll(0, " + yPosition + ");");
 	}
 
+	// TODO Implement scrollHorizontal()
+
 	/**
-	 * Enters text into a textfield or textarea.
+	 * Scroll to specific element on web page.
 	 * 
 	 * @param driver
 	 *            the Selenium WebDriver
-	 * @param fieldLocatorKey
-	 *            the key from the ui-map
-	 * @param text
-	 *            the text to be entered
-	 * @throws IOException
+	 * @param element
+	 *            the element to scroll to
 	 */
-	public static void enterText(WebDriver driver, String fieldLocatorKey, String text) throws IOException {
-		WebElement field = driver.findElement(Selenium.by(fieldLocatorKey));
-		field.clear();
-		field.sendKeys(text);
+	public static void scrollToElement(WebDriver driver, WebElement element) {
+		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+		jsExecutor.executeScript("arguments[0].scrollIntoView();", element);
 	}
 
 	/**
-	 * Enters text into a textfield or textarea.
+	 * Opens a new window by clicking a link or an element and switches to that
+	 * window.
 	 * 
 	 * @param driver
 	 *            the Selenium WebDriver
-	 * @param field
-	 *            the element of the textfield or textarea
-	 * @param text
-	 *            the text to be entered
-	 * @throws IOException
+	 * @param args
+	 *            the link to the child window or the key(s) from the
+	 *            {@code ui-map.properties}
+	 * @return String - the handle of the parent window
 	 */
-	public static void enterText(WebDriver driver, WebElement field, String text) throws IOException {
-		field.clear();
-		field.sendKeys(text);
-	}
-
-	/**
-	 * Selects value from a dropdown list by visible text.
-	 * 
-	 * @param driver
-	 *            the Selenium WebDriver
-	 * @param select
-	 *            the Select element of the dropdown menu
-	 * @param text
-	 *            the text to be selected from the dropdown menu
-	 */
-	public static void selectFromDropMenuByText(WebDriver driver, Select select, String text) {
-		select.selectByVisibleText(text);
-	}
-
-	/**
-	 * Clicks an element on the web page.
-	 * 
-	 * @param driver
-	 *            the Selenium WebDriver
-	 * @param locatorKey
-	 *            the key from the ui-map
-	 * @throws IOException
-	 */
-	public static void clickElement(WebDriver driver, String locatorKey) throws IOException {
-		WebElement element = driver.findElement(Selenium.by(locatorKey));
-		element.click();
-	}
-
-	/**
-	 * Clicks a nested element on the web page.
-	 * 
-	 * @param driver
-	 *            the Selenium WebDriver
-	 * @param locatorKeys
-	 *            the keys from the ui-map pointing to the nested element
-	 * @throws IOException
-	 */
-	public static void clickNestedElement(WebDriver driver, String... locatorKeys) throws IOException {
-		By[] bys = new By[locatorKeys.length];
-		By by = null;
-		for (int ctr = 0; ctr < bys.length; ctr++) {
-			by = Selenium.by(locatorKeys[ctr]);
-			bys[ctr] = by;
-		}
-		WebElement element = driver.findElement(new ByChained(bys));
-		element.click();
-	}
-
-	/**
-	 * Opens a new window by clicking an element and switches to that window.
-	 * 
-	 * @param driver
-	 *            the Selenium WebDriver
-	 * @param childLocatorKey
-	 *            the key from the ui-map for the element that opens the child
-	 *            window
-	 * @return String - the handle of the parent window before opening the child
-	 *         window
-	 */
-	public static String openWindowByElement(WebDriver driver, String childLocatorKey) throws IOException {
+	public static String openNewWindow(WebDriver driver, String... args) throws IOException {
 		String parentHandle = driver.getWindowHandle(); // Save parent window
-		WebElement clickableElement = driver.findElement(Selenium.by(childLocatorKey));
-		clickableElement.click(); // Open child window
+		if (0 == args.length) {
+			throw new MissingArgumentsException(ExceptionMessages.MISSING_ARGS);
+		}
+		// Open child window
+		if (args[0].matches("http[s]?://.*")) { // Check if valid URL
+			driver.get(args[0]);
+		} else {
+			Selenium.clickElement(driver, args);
+		}
 		WebDriverWait wait = new WebDriverWait(driver, 10); // Timeout in 10s
 		boolean isChildWindowOpen = wait.until(ExpectedConditions.numberOfWindowsToBe(2));
 		if (isChildWindowOpen) {
@@ -223,42 +238,13 @@ public final class Selenium {
 	}
 
 	/**
-	 * Opens a new window by navigating to a URL and switches to that window.
-	 * 
-	 * @param driver
-	 *            the Selenium WebDriver
-	 * @param childUrl
-	 *            the String URL that opens the child window
-	 * @return String - the handle of the parent window before opening the child
-	 *         window
-	 */
-	public static String openWindowByUrl(WebDriver driver, String childUrl) {
-		String parentHandle = driver.getWindowHandle();
-		driver.get(childUrl);
-		WebDriverWait wait = new WebDriverWait(driver, 10);
-		boolean isChildWindowOpen = wait.until(ExpectedConditions.numberOfWindowsToBe(2));
-		if (isChildWindowOpen) {
-			Set<String> handles = driver.getWindowHandles();
-			for (String handle : handles) {
-				driver.switchTo().window(handle);
-				if (!parentHandle.equals(handle)) {
-					break;
-				}
-			}
-			driver.manage().window().maximize();
-		}
-		return parentHandle;
-	}
-
-	/**
 	 * Switches to an existing open window by window title.
 	 * 
 	 * @param driver
 	 *            the Selenium WebDriver
 	 * @param windowTitle
 	 *            the title of the window
-	 * @return String - the handle of the parent window before opening the child
-	 *         window
+	 * @return String - the handle of the parent window
 	 */
 	public static String switchToWindowByTitle(WebDriver driver, String windowTitle) {
 		Set<String> handles = driver.getWindowHandles();
@@ -276,8 +262,8 @@ public final class Selenium {
 	}
 
 	/**
-	 * Captures the current screen. Stores images in /target/cucumber-screenshots/
-	 * in PNG format.
+	 * Captures the current screen. Stores images in
+	 * {@code /target/cucumber-screenshots/} in PNG format.
 	 * 
 	 * @param driver
 	 *            the Selenium WebDriver
@@ -306,6 +292,27 @@ public final class Selenium {
 	public static void embedScreenshot(WebDriver driver, Scenario scenario) {
 		byte[] srcBytes = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
 		scenario.embed(srcBytes, "image/png");
+	}
+
+	/**
+	 * Returns arbitrary {@code String... keys} as By array.
+	 * 
+	 * @param keys
+	 *            the key(s) from the {@code ui-map.properties}
+	 * @return By[ ] - the By array
+	 * @throws IOException
+	 */
+	private static By[] getBys(String... keys) throws IOException {
+		if (0 == keys.length) {
+			throw new MissingArgumentsException(ExceptionMessages.MISSING_ARGS);
+		}
+		By[] bys = new By[keys.length];
+		By by = null;
+		for (int ctr = 0; ctr < bys.length; ctr++) {
+			by = Selenium.by(keys[ctr]);
+			bys[ctr] = by;
+		}
+		return bys;
 	}
 
 }

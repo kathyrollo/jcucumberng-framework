@@ -22,15 +22,15 @@ public class HomePageNavigationSteps {
 	@Given("I Am At The Home Page")
 	public void I_Am_At_The_Home_Page() throws Throwable {
 		String baseUrl = PropsLoader.readConfig("base.url");
-		logger.debug("Navigating to website=" + baseUrl);
 		driver.get(baseUrl);
+		logger.debug("Base URL=" + baseUrl);
 	}
 
-	@Then("I Should See Page Title {string}")
+	@Then("I Should See Page Title: {string}")
 	public void I_Should_See_Page_Title(String pageTitle) throws Throwable {
 		String windowTitle = driver.getTitle();
-		logger.debug("Window Title=" + windowTitle);
 		Assertions.assertThat(windowTitle).isEqualTo(pageTitle);
+		logger.debug("Window Title=" + windowTitle);
 	}
 
 }
