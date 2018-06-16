@@ -147,20 +147,6 @@ public final class Selenium {
 	}
 
 	/**
-	 * Selects value from a dropdown list by visible text.
-	 * 
-	 * @param driver
-	 *            the Selenium WebDriver
-	 * @param text
-	 *            the text to be selected from the dropdown menu
-	 * @param select
-	 *            the Select element of the dropdown menu
-	 */
-	public static void selectByText(WebDriver driver, String text, Select select) {
-		select.selectByVisibleText(text);
-	}
-
-	/**
 	 * Returns all text inside the body tag in HTML.
 	 * 
 	 * @param driver

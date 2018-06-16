@@ -78,7 +78,7 @@ public class NetIncomeProjectorSteps {
 		for (int ctr = 0; ctr < txns.size(); ctr++) {
 			Selenium.enterText(driver, txns.get(ctr).getName(), nameFields.get(ctr));
 			Selenium.enterText(driver, txns.get(ctr).getAmount(), amtFields.get(ctr));
-			Selenium.selectByText(driver, txns.get(ctr).getFrequency(), freqSelects.get(ctr));
+			freqSelects.get(ctr).selectByVisibleText(txns.get(ctr).getFrequency());
 			logger.debug(txns.get(ctr).toString());
 		}
 	}
