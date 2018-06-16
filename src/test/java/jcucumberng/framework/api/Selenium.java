@@ -74,34 +74,20 @@ public final class Selenium {
 	}
 
 	/**
-	 * Returns a List of all Select elements.
+	 * Clicks an element on the web page.
 	 * 
 	 * @param driver
 	 *            the Selenium WebDriver
 	 * @param keys
 	 *            the key(s) from the {@code ui-map.properties}
-	 * @return List - the List of Select elements
+	 * @return WebElement - the clickable element
 	 * @throws IOException
 	 */
-	public static List<Select> getSelectElements(WebDriver driver, String... keys) throws IOException {
+	public static WebElement clickElement(WebDriver driver, String... keys) throws IOException {
 		By[] bys = Selenium.getBys(keys);
-		List<WebElement> elements = driver.findElements(new ByChained(bys));
-		List<Select> selectElements = new ArrayList<>();
-		for (WebElement element : elements) {
-			selectElements.add(new Select(element));
-		}
-		return selectElements;
-	}
-
-	/**
-	 * Returns all text inside the body tag in HTML.
-	 * 
-	 * @param driver
-	 *            the Selenium WebDriver
-	 * @return String - the text within HTML body tags
-	 */
-	public static String getBodyText(WebDriver driver) {
-		return driver.findElement(By.tagName("body")).getText();
+		WebElement clickableElement = driver.findElement(new ByChained(bys));
+		clickableElement.click();
+		return clickableElement;
 	}
 
 	/**
@@ -141,6 +127,26 @@ public final class Selenium {
 	}
 
 	/**
+	 * Returns a List of all Select elements.
+	 * 
+	 * @param driver
+	 *            the Selenium WebDriver
+	 * @param keys
+	 *            the key(s) from the {@code ui-map.properties}
+	 * @return List - the List of Select elements
+	 * @throws IOException
+	 */
+	public static List<Select> getSelectElements(WebDriver driver, String... keys) throws IOException {
+		By[] bys = Selenium.getBys(keys);
+		List<WebElement> elements = driver.findElements(new ByChained(bys));
+		List<Select> selectElements = new ArrayList<>();
+		for (WebElement element : elements) {
+			selectElements.add(new Select(element));
+		}
+		return selectElements;
+	}
+
+	/**
 	 * Selects value from a dropdown list by visible text.
 	 * 
 	 * @param driver
@@ -155,48 +161,14 @@ public final class Selenium {
 	}
 
 	/**
-	 * Clicks an element on the web page.
+	 * Returns all text inside the body tag in HTML.
 	 * 
 	 * @param driver
 	 *            the Selenium WebDriver
-	 * @param keys
-	 *            the key(s) from the {@code ui-map.properties}
-	 * @return WebElement - the clickable element
-	 * @throws IOException
+	 * @return String - the text within HTML body tags
 	 */
-	public static WebElement clickElement(WebDriver driver, String... keys) throws IOException {
-		By[] bys = Selenium.getBys(keys);
-		WebElement clickableElement = driver.findElement(new ByChained(bys));
-		clickableElement.click();
-		return clickableElement;
-	}
-
-	/**
-	 * Scroll the screen vertically.
-	 * 
-	 * @param driver
-	 *            the Selenium WebDriver
-	 * @param yPosition
-	 *            positive value to scroll down, negative value to scroll up
-	 */
-	public static void scrollVertical(WebDriver driver, int yPosition) {
-		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
-		jsExecutor.executeScript("scroll(0, " + yPosition + ");");
-	}
-
-	// TODO Implement scrollHorizontal()
-
-	/**
-	 * Scroll to specific element on web page.
-	 * 
-	 * @param driver
-	 *            the Selenium WebDriver
-	 * @param element
-	 *            the element to scroll to
-	 */
-	public static void scrollToElement(WebDriver driver, WebElement element) {
-		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
-		jsExecutor.executeScript("arguments[0].scrollIntoView();", element);
+	public static String getBodyText(WebDriver driver) {
+		return driver.findElement(By.tagName("body")).getText();
 	}
 
 	/**
@@ -259,6 +231,34 @@ public final class Selenium {
 			driver.manage().window().maximize();
 		}
 		return parentHandle;
+	}
+
+	/**
+	 * Scroll the screen vertically.
+	 * 
+	 * @param driver
+	 *            the Selenium WebDriver
+	 * @param yPosition
+	 *            positive value to scroll down, negative value to scroll up
+	 */
+	public static void scrollVertical(WebDriver driver, int yPosition) {
+		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+		jsExecutor.executeScript("scroll(0, " + yPosition + ");");
+	}
+
+	// TODO Implement scrollHorizontal()
+
+	/**
+	 * Scroll to specific element on web page.
+	 * 
+	 * @param driver
+	 *            the Selenium WebDriver
+	 * @param element
+	 *            the element to scroll to
+	 */
+	public static void scrollToElement(WebDriver driver, WebElement element) {
+		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+		jsExecutor.executeScript("arguments[0].scrollIntoView();", element);
 	}
 
 	/**
