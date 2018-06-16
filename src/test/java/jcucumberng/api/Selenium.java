@@ -25,8 +25,8 @@ import jcucumberng.constants.ExceptionMessages;
 import jcucumberng.exceptions.MissingArgumentsException;
 
 /**
- * This class handles actions for interacting with web applications using the
- * Selenium WebDriver.
+ * {@code Selenium} handles actions for interacting with web applications using
+ * the Selenium WebDriver.
  * 
  * @author Kat Rollo <rollo.katherine@gmail.com>
  */
@@ -36,21 +36,23 @@ public final class Selenium {
 	}
 
 	/**
-	 * Returns the By object based on the value of the key from the ui-map.<br>
+	 * Returns the By object based on the value of the key from the
+	 * {@code ui-map.properties}.<br>
 	 * <br>
 	 * Example:<br>
 	 * <br>
-	 * key = expense.name.txt<br>
+	 * {@code key = expense.name.txt}<br>
 	 * <br>
-	 * value = by-model:expense.name<br>
+	 * {@code value = by-model:expense.name}<br>
 	 * <br>
-	 * by = ByAngular.model()<br>
+	 * {@code by = ByAngular.model()}<br>
 	 * <br>
-	 * The colon (:) is the delimiter between the by-type (e.g. by-model) and the
-	 * locator (e.g. expense.name) or substring after the colon.
+	 * The colon ({@code :}) is the delimiter between the by-type (e.g.
+	 * {@code by-model}) and the locator (e.g. {@code expense.name}) or substring
+	 * after the colon.
 	 * 
 	 * @param key
-	 *            the key from the ui-map
+	 *            the key from the {@code ui-map.properties}
 	 * @return By - the By object
 	 * @throws IOException
 	 */
@@ -77,7 +79,7 @@ public final class Selenium {
 	 * @param driver
 	 *            the Selenium WebDriver
 	 * @param keys
-	 *            the key(s) from the ui-map
+	 *            the key(s) from the {@code ui-map.properties}
 	 * @return List - the List of Select elements
 	 * @throws IOException
 	 */
@@ -110,7 +112,7 @@ public final class Selenium {
 	 * @param text
 	 *            the text to be entered
 	 * @param keys
-	 *            the key(s) from the ui-map
+	 *            the key(s) from the {@code ui-map.properties}
 	 * @return WebElement - the textfield or textarea element
 	 * @throws IOException
 	 */
@@ -158,7 +160,7 @@ public final class Selenium {
 	 * @param driver
 	 *            the Selenium WebDriver
 	 * @param keys
-	 *            the key(s) from the ui-map
+	 *            the key(s) from the {@code ui-map.properties}
 	 * @return WebElement - the clickable element
 	 * @throws IOException
 	 */
@@ -204,12 +206,13 @@ public final class Selenium {
 	 * @param driver
 	 *            the Selenium WebDriver
 	 * @param args
-	 *            the link to the child window or the key(s) from the ui-map
+	 *            the link to the child window or the key(s) from the
+	 *            {@code ui-map.properties}
 	 * @return String - the handle of the parent window
 	 */
 	public static String openNewWindow(WebDriver driver, String... args) throws IOException {
 		String parentHandle = driver.getWindowHandle(); // Save parent window
-		if (0 != args.length) {
+		if (0 == args.length) {
 			throw new MissingArgumentsException(ExceptionMessages.MISSING_ARGS);
 		}
 		// Open child window
@@ -259,8 +262,8 @@ public final class Selenium {
 	}
 
 	/**
-	 * Captures the current screen. Stores images in /target/cucumber-screenshots/
-	 * in PNG format.
+	 * Captures the current screen. Stores images in
+	 * {@code /target/cucumber-screenshots/} in PNG format.
 	 * 
 	 * @param driver
 	 *            the Selenium WebDriver
@@ -291,7 +294,14 @@ public final class Selenium {
 		scenario.embed(srcBytes, "image/png");
 	}
 
-	// Returns arbitrary String... keys as By array
+	/**
+	 * Returns arbitrary {@code String... keys} as By array.
+	 * 
+	 * @param keys
+	 *            the key(s) from the {@code ui-map.properties}
+	 * @return By[ ] - the By array
+	 * @throws IOException
+	 */
 	private static By[] getBys(String... keys) throws IOException {
 		if (0 == keys.length) {
 			throw new MissingArgumentsException(ExceptionMessages.MISSING_ARGS);
