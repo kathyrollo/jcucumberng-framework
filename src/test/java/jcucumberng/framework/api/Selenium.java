@@ -79,7 +79,7 @@ public final class Selenium {
 	 * @param driver
 	 *            the Selenium WebDriver
 	 * @param keys
-	 *            the key(s) from the {@code ui-map.properties}
+	 *            the key(s) from {@code ui-map.properties}
 	 * @return WebElement - the clickable element
 	 * @throws IOException
 	 */
@@ -98,7 +98,7 @@ public final class Selenium {
 	 * @param text
 	 *            the text to be entered
 	 * @param keys
-	 *            the key(s) from the {@code ui-map.properties}
+	 *            the key(s) from {@code ui-map.properties}
 	 * @return WebElement - the textfield or textarea element
 	 * @throws IOException
 	 */
@@ -132,7 +132,7 @@ public final class Selenium {
 	 * @param driver
 	 *            the Selenium WebDriver
 	 * @param keys
-	 *            the key(s) from the {@code ui-map.properties}
+	 *            the key(s) from {@code ui-map.properties}
 	 * @return List - the List of Select elements
 	 * @throws IOException
 	 */
@@ -264,6 +264,22 @@ public final class Selenium {
 	 * 
 	 * @param driver
 	 *            the Selenium WebDriver
+	 * @param keys
+	 *            the key(s) from {@code ui-map.properties}
+	 * @throws IOException
+	 */
+	public static void scrollToElement(WebDriver driver, String... keys) throws IOException {
+		By[] bys = Selenium.getBys(keys);
+		WebElement element = driver.findElement(new ByChained(bys));
+		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+		jsExecutor.executeScript("arguments[0].scrollIntoView();", element);
+	}
+
+	/**
+	 * Scroll to specific element on web page.
+	 * 
+	 * @param driver
+	 *            the Selenium WebDriver
 	 * @param element
 	 *            the element to scroll to
 	 */
@@ -309,7 +325,7 @@ public final class Selenium {
 	 * Returns arbitrary {@code String... keys} as By array.
 	 * 
 	 * @param keys
-	 *            the key(s) from the {@code ui-map.properties}
+	 *            the key(s) from {@code ui-map.properties}
 	 * @return By[ ] - the By array
 	 * @throws IOException
 	 */
