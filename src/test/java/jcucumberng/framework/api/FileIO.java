@@ -35,7 +35,7 @@ public final class FileIO {
 	 * @param prefix
 	 *            the beginning of a filename, can be a substring
 	 * @param suffix
-	 *            can be the file extension (e.g. ".txt")
+	 *            can be the file extension (e.g. {@code .txt})
 	 * @return boolean - true if matching file is found using given prefix and
 	 *         suffix
 	 * @throws IOException
