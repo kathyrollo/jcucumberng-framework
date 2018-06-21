@@ -17,9 +17,9 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
-import jcucumberng.api.LocalMachine;
-import jcucumberng.api.PropsLoader;
-import jcucumberng.constants.ErrorMessages;
+import jcucumberng.framework.api.LocalMachine;
+import jcucumberng.framework.api.PropsLoader;
+import jcucumberng.framework.constants.ErrorMessages;
 
 public class ScenarioHook {
 	private static final Logger logger = LogManager.getLogger(ScenarioHook.class);
