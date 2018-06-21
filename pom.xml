@@ -116,10 +116,10 @@
 							<projectName>Simply Do - Balance Projector</projectName>
 							<outputDirectory>${project.build.directory}</outputDirectory>
 							<jsonFiles>
-								<param>**/cucumber-report.json</param>
+								<param>**/report.json</param>
 							</jsonFiles>
 							<classificationFiles>
-								<param>**/cucumber-report.properties</param>
+								<param>**/report.properties</param>
 							</classificationFiles>
 							<parallelTesting>false</parallelTesting>
 						</configuration>
