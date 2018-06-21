@@ -116,10 +116,10 @@
 							<projectName>Simply Do - Balance Projector</projectName>
 							<outputDirectory>${project.build.directory}</outputDirectory>
 							<jsonFiles>
-								<param>**/report.json</param>
+								<param>**/test-report.json</param>
 							</jsonFiles>
 							<classificationFiles>
-								<param>**/report.properties</param>
+								<param>**/test-report.properties</param>
 							</classificationFiles>
 							<parallelTesting>false</parallelTesting>
 						</configuration>
