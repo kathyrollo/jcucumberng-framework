@@ -13,7 +13,7 @@ import org.openqa.selenium.support.ui.Select;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import io.cucumber.datatable.DataTable;
-import jcucumberng.api.Selenium;
+import jcucumberng.framework.api.Selenium;
 import jcucumberng.steps.domain.Transaction;
 import jcucumberng.steps.hooks.ScenarioHook;
 
@@ -78,7 +78,7 @@ public class NetIncomeProjectorSteps {
 		for (int ctr = 0; ctr < txns.size(); ctr++) {
 			Selenium.enterText(driver, txns.get(ctr).getName(), nameFields.get(ctr));
 			Selenium.enterText(driver, txns.get(ctr).getAmount(), amtFields.get(ctr));
-			Selenium.selectByText(driver, txns.get(ctr).getFrequency(), freqSelects.get(ctr));
+			freqSelects.get(ctr).selectByVisibleText(txns.get(ctr).getFrequency());
 			logger.debug(txns.get(ctr).toString());
 		}
 	}

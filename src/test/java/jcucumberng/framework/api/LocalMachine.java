@@ -1,4 +1,4 @@
-package jcucumberng.api;
+package jcucumberng.framework.api;
 
 import java.awt.AWTException;
 import java.awt.Robot;

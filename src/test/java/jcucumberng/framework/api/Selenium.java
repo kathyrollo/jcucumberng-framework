@@ -1,4 +1,4 @@
-package jcucumberng.api;
+package jcucumberng.framework.api;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,8 +21,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.paulhammant.ngwebdriver.ByAngular;
 
 import cucumber.api.Scenario;
-import jcucumberng.constants.ExceptionMessages;
-import jcucumberng.exceptions.MissingArgumentsException;
+import jcucumberng.framework.constants.ExceptionMessages;
+import jcucumberng.framework.exceptions.MissingArgumentsException;
 
 /**
  * {@code Selenium} handles actions for interacting with web applications using
@@ -36,7 +36,7 @@ public final class Selenium {
 	}
 
 	/**
-	 * Returns the By object based on the value of the key from the
+	 * Returns the By object based on the value of the key from
 	 * {@code ui-map.properties}.<br>
 	 * <br>
 	 * Example:<br>
@@ -52,7 +52,7 @@ public final class Selenium {
 	 * after the colon.
 	 * 
 	 * @param key
-	 *            the key from the {@code ui-map.properties}
+	 *            the key from {@code ui-map.properties}
 	 * @return By - the By object
 	 * @throws IOException
 	 */
@@ -74,34 +74,20 @@ public final class Selenium {
 	}
 
 	/**
-	 * Returns a List of all Select elements.
+	 * Clicks an element on the web page.
 	 * 
 	 * @param driver
 	 *            the Selenium WebDriver
 	 * @param keys
-	 *            the key(s) from the {@code ui-map.properties}
-	 * @return List - the List of Select elements
+	 *            the key(s) from {@code ui-map.properties}
+	 * @return WebElement - the clickable element
 	 * @throws IOException
 	 */
-	public static List<Select> getSelectElements(WebDriver driver, String... keys) throws IOException {
+	public static WebElement clickElement(WebDriver driver, String... keys) throws IOException {
 		By[] bys = Selenium.getBys(keys);
-		List<WebElement> elements = driver.findElements(new ByChained(bys));
-		List<Select> selectElements = new ArrayList<>();
-		for (WebElement element : elements) {
-			selectElements.add(new Select(element));
-		}
-		return selectElements;
-	}
-
-	/**
-	 * Returns all text inside the body tag in HTML.
-	 * 
-	 * @param driver
-	 *            the Selenium WebDriver
-	 * @return String - the text within HTML body tags
-	 */
-	public static String getBodyText(WebDriver driver) {
-		return driver.findElement(By.tagName("body")).getText();
+		WebElement clickableElement = driver.findElement(new ByChained(bys));
+		clickableElement.click();
+		return clickableElement;
 	}
 
 	/**
@@ -112,7 +98,7 @@ public final class Selenium {
 	 * @param text
 	 *            the text to be entered
 	 * @param keys
-	 *            the key(s) from the {@code ui-map.properties}
+	 *            the key(s) from {@code ui-map.properties}
 	 * @return WebElement - the textfield or textarea element
 	 * @throws IOException
 	 */
@@ -141,62 +127,34 @@ public final class Selenium {
 	}
 
 	/**
-	 * Selects value from a dropdown list by visible text.
-	 * 
-	 * @param driver
-	 *            the Selenium WebDriver
-	 * @param text
-	 *            the text to be selected from the dropdown menu
-	 * @param select
-	 *            the Select element of the dropdown menu
-	 */
-	public static void selectByText(WebDriver driver, String text, Select select) {
-		select.selectByVisibleText(text);
-	}
-
-	/**
-	 * Clicks an element on the web page.
+	 * Returns a List of all Select elements.
 	 * 
 	 * @param driver
 	 *            the Selenium WebDriver
 	 * @param keys
-	 *            the key(s) from the {@code ui-map.properties}
-	 * @return WebElement - the clickable element
+	 *            the key(s) from {@code ui-map.properties}
+	 * @return List - the List of Select elements
 	 * @throws IOException
 	 */
-	public static WebElement clickElement(WebDriver driver, String... keys) throws IOException {
+	public static List<Select> getSelectElements(WebDriver driver, String... keys) throws IOException {
 		By[] bys = Selenium.getBys(keys);
-		WebElement clickableElement = driver.findElement(new ByChained(bys));
-		clickableElement.click();
-		return clickableElement;
+		List<WebElement> elements = driver.findElements(new ByChained(bys));
+		List<Select> selectElements = new ArrayList<>();
+		for (WebElement element : elements) {
+			selectElements.add(new Select(element));
+		}
+		return selectElements;
 	}
 
 	/**
-	 * Scroll the screen vertically.
+	 * Returns all text inside the body tag in HTML.
 	 * 
 	 * @param driver
 	 *            the Selenium WebDriver
-	 * @param yPosition
-	 *            positive value to scroll down, negative value to scroll up
+	 * @return String - the text within HTML body tags
 	 */
-	public static void scrollVertical(WebDriver driver, int yPosition) {
-		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
-		jsExecutor.executeScript("scroll(0, " + yPosition + ");");
-	}
-
-	// TODO Implement scrollHorizontal()
-
-	/**
-	 * Scroll to specific element on web page.
-	 * 
-	 * @param driver
-	 *            the Selenium WebDriver
-	 * @param element
-	 *            the element to scroll to
-	 */
-	public static void scrollToElement(WebDriver driver, WebElement element) {
-		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
-		jsExecutor.executeScript("arguments[0].scrollIntoView();", element);
+	public static String getBodyText(WebDriver driver) {
+		return driver.findElement(By.tagName("body")).getText();
 	}
 
 	/**
@@ -206,7 +164,7 @@ public final class Selenium {
 	 * @param driver
 	 *            the Selenium WebDriver
 	 * @param args
-	 *            the link to the child window or the key(s) from the
+	 *            the link to the child window or the key(s) from
 	 *            {@code ui-map.properties}
 	 * @return String - the handle of the parent window
 	 */
@@ -262,6 +220,61 @@ public final class Selenium {
 	}
 
 	/**
+	 * Scroll the screen horizontally.
+	 * 
+	 * @param driver
+	 *            the Selenium WebDriver
+	 * @param xPos
+	 *            negative value to scroll left, positive value to scroll right
+	 */
+	public static void scrollHorizontal(WebDriver driver, int xPos) {
+		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+		jsExecutor.executeScript("scroll(" + xPos + ", 0);");
+	}
+
+	/**
+	 * Scroll the screen vertically.
+	 * 
+	 * @param driver
+	 *            the Selenium WebDriver
+	 * @param yPos
+	 *            positive value to scroll down, negative value to scroll up
+	 */
+	public static void scrollVertical(WebDriver driver, int yPos) {
+		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+		jsExecutor.executeScript("scroll(0, " + yPos + ");");
+	}
+
+	/**
+	 * Scroll to specific element on web page.
+	 * 
+	 * @param driver
+	 *            the Selenium WebDriver
+	 * @param keys
+	 *            the key(s) from {@code ui-map.properties}
+	 * @throws IOException
+	 */
+	public static void scrollToElement(WebDriver driver, String... keys) throws IOException {
+		By[] bys = Selenium.getBys(keys);
+		WebElement element = driver.findElement(new ByChained(bys));
+		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+		jsExecutor.executeScript("arguments[0].scrollIntoView();", element);
+	}
+
+	/**
+	 * Scroll to specific element on web page.
+	 * 
+	 * @param driver
+	 *            the Selenium WebDriver
+	 * @param element
+	 *            the element to scroll to
+	 */
+	public static void scrollToElement(WebDriver driver, WebElement element) {
+		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+		jsExecutor.executeScript("arguments[0].scrollIntoView();", element);
+	}
+
+	/**
 	 * Captures the current screen. Stores images in
 	 * {@code /target/cucumber-screenshots/} in PNG format.
 	 * 
@@ -298,7 +311,7 @@ public final class Selenium {
 	 * Returns arbitrary {@code String... keys} as By array.
 	 * 
 	 * @param keys
-	 *            the key(s) from the {@code ui-map.properties}
+	 *            the key(s) from {@code ui-map.properties}
 	 * @return By[ ] - the By array
 	 * @throws IOException
 	 */
