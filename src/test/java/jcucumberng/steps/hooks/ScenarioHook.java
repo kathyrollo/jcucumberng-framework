@@ -1,8 +1,6 @@
 package jcucumberng.steps.hooks;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -13,6 +11,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxDriverLogLevel;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
@@ -22,7 +22,7 @@ import jcucumberng.framework.api.PropsLoader;
 import jcucumberng.framework.constants.ErrorMessages;
 
 public class ScenarioHook {
-	private static final Logger logger = LogManager.getLogger(ScenarioHook.class);
+	private static final Logger logger = LoggerFactory.getLogger(ScenarioHook.class);
 	private Scenario scenario = null;
 	private WebDriver driver = null;
 
