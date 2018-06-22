@@ -1,4 +1,4 @@
-package jcucumberng.steps.domain;
+package jcucumberng.project.domain;
 
 public class Transaction {
 

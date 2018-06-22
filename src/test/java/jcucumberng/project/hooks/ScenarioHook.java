@@ -1,4 +1,4 @@
-package jcucumberng.steps.hooks;
+package jcucumberng.project.hooks;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.Dimension;

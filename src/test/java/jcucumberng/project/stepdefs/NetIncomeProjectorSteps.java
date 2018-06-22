@@ -1,4 +1,4 @@
-package jcucumberng.steps.defs;
+package jcucumberng.project.stepdefs;
 
 import java.util.List;
 
@@ -14,8 +14,8 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import io.cucumber.datatable.DataTable;
 import jcucumberng.framework.api.Selenium;
-import jcucumberng.steps.domain.Transaction;
-import jcucumberng.steps.hooks.ScenarioHook;
+import jcucumberng.project.domain.Transaction;
+import jcucumberng.project.hooks.ScenarioHook;
 
 public class NetIncomeProjectorSteps {
 	private static final Logger logger = LoggerFactory.getLogger(NetIncomeProjectorSteps.class);

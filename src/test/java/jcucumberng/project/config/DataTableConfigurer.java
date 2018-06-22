@@ -1,4 +1,4 @@
-package jcucumberng.steps.config;
+package jcucumberng.project.config;
 
 import java.util.Locale;
 import java.util.Map;
@@ -7,7 +7,7 @@ import cucumber.api.TypeRegistry;
 import cucumber.api.TypeRegistryConfigurer;
 import io.cucumber.datatable.DataTableType;
 import io.cucumber.datatable.TableEntryTransformer;
-import jcucumberng.steps.domain.Transaction;
+import jcucumberng.project.domain.Transaction;
 
 /*
  * Maps datatables in feature files to custom domain objects.
