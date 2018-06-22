@@ -1,4 +1,4 @@
-package jcucumberng.project.config;
+package jcucumberng.project.registry;
 
 import java.util.Locale;
 import java.util.Map;
