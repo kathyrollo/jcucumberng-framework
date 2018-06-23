@@ -11,7 +11,7 @@ import jcucumberng.framework.api.PropsLoader;
 import jcucumberng.project.hooks.ScenarioHook;
 
 public class HomePageNavigationSteps {
-	private static final Logger logger = LoggerFactory.getLogger(HomePageNavigationSteps.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(HomePageNavigationSteps.class);
 	private WebDriver driver = null;
 
 	// PicoContainer injects ScenarioHook class
@@ -23,14 +23,14 @@ public class HomePageNavigationSteps {
 	public void I_Am_At_The_Home_Page() throws Throwable {
 		String baseUrl = PropsLoader.readConfig("base.url");
 		driver.get(baseUrl);
-		logger.debug("Base URL=" + baseUrl);
+		LOGGER.debug("Base URL=" + baseUrl);
 	}
 
 	@Then("I Should See Page Title: {string}")
 	public void I_Should_See_Page_Title(String pageTitle) throws Throwable {
 		String windowTitle = driver.getTitle();
 		Assertions.assertThat(windowTitle).isEqualTo(pageTitle);
-		logger.debug("Window Title=" + windowTitle);
+		LOGGER.debug("Window Title=" + windowTitle);
 	}
 
 }

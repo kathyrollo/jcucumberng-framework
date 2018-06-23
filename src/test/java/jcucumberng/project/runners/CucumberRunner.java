@@ -1,4 +1,4 @@
-package jcucumberng.project;
+package jcucumberng.project.runners;
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.SnippetType;

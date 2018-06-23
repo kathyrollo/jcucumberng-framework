@@ -21,8 +21,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.paulhammant.ngwebdriver.ByAngular;
 
 import cucumber.api.Scenario;
-import jcucumberng.framework.constants.ExceptionMessages;
 import jcucumberng.framework.exceptions.MissingArgumentsException;
+import jcucumberng.framework.strings.Messages;
 
 /**
  * {@code Selenium} handles actions for interacting with web applications using
@@ -171,7 +171,7 @@ public final class Selenium {
 	public static String openNewWindow(WebDriver driver, String... args) throws IOException {
 		String parentHandle = driver.getWindowHandle(); // Save parent window
 		if (0 == args.length) {
-			throw new MissingArgumentsException(ExceptionMessages.MISSING_ARGS);
+			throw new MissingArgumentsException(Messages.MISSING_ARGS);
 		}
 		// Open child window
 		if (args[0].matches("http[s]?://.*")) { // Check if valid URL
@@ -317,7 +317,7 @@ public final class Selenium {
 	 */
 	private static By[] getBys(String... keys) throws IOException {
 		if (0 == keys.length) {
-			throw new MissingArgumentsException(ExceptionMessages.MISSING_ARGS);
+			throw new MissingArgumentsException(Messages.MISSING_ARGS);
 		}
 		By[] bys = new By[keys.length];
 		By by = null;
