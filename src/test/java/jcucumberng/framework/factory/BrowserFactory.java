@@ -1,6 +1,5 @@
 package jcucumberng.framework.factory;
 
-import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -12,8 +11,6 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 
 import jcucumberng.framework.enums.Browser;
-import jcucumberng.framework.exceptions.UnsupportedBrowserException;
-import jcucumberng.framework.strings.Messages;
 
 public final class BrowserFactory {
 
@@ -21,7 +18,7 @@ public final class BrowserFactory {
 		// Prevent instantiation
 	}
 
-	public static WebDriver getBrowser(String browserConfig) {
+	public static WebDriver getBrowser(Browser browser) {
 		WebDriver driver = null;
 		FirefoxOptions ffOpts = null;
 
@@ -30,7 +27,6 @@ public final class BrowserFactory {
 		builder.append("/src/test/resources/webdrivers/");
 		String driverPath = builder.toString().trim();
 
-		Browser browser = Browser.valueOf(browserConfig.toUpperCase());
 		switch (browser) {
 		case CHROME32:
 			System.setProperty("webdriver.chrome.driver", driverPath + "chromedriver_win32.exe");
@@ -71,15 +67,13 @@ public final class BrowserFactory {
 			driver = new InternetExplorerDriver();
 			break;
 		default:
-			if (StringUtils.isBlank(browserConfig)) {
-				browserConfig = "BLANK";
-			}
-			throw new UnsupportedBrowserException(Messages.UNSUPPORTED_BROWSER + browserConfig);
+			// Exception handled in @Before
+			break;
 		}
 
 		return driver;
 	}
-	
+
 	public static void quitBrowser(WebDriver driver) {
 		driver.quit();
 	}
