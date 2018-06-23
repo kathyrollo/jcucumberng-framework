@@ -1,17 +1,17 @@
-package jcucumberng.steps.defs;
+package jcucumberng.project.stepdefs;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.assertj.core.api.Assertions;
 import org.openqa.selenium.WebDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import jcucumberng.framework.api.PropsLoader;
-import jcucumberng.steps.hooks.ScenarioHook;
+import jcucumberng.project.hooks.ScenarioHook;
 
 public class HomePageNavigationSteps {
-	private static final Logger logger = LogManager.getLogger(HomePageNavigationSteps.class);
+	private static final Logger logger = LoggerFactory.getLogger(HomePageNavigationSteps.class);
 	private WebDriver driver = null;
 
 	// PicoContainer injects ScenarioHook class

@@ -56,12 +56,11 @@
 			<version>3.10.0</version>
 			<scope>test</scope>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j-impl -->
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-core</artifactId>
+			<artifactId>log4j-slf4j-impl</artifactId>
 			<version>2.11.0</version>
-			<scope>test</scope>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.itextpdf/itextpdf -->
 		<dependency>
@@ -117,10 +116,10 @@
 							<projectName>Simply Do - Balance Projector</projectName>
 							<outputDirectory>${project.build.directory}</outputDirectory>
 							<jsonFiles>
-								<param>**/cucumber-report.json</param>
+								<param>**/test-report.json</param>
 							</jsonFiles>
 							<classificationFiles>
-								<param>**/cucumber-report.properties</param>
+								<param>**/test-report.properties</param>
 							</classificationFiles>
 							<parallelTesting>false</parallelTesting>
 						</configuration>
