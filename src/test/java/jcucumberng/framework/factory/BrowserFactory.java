@@ -14,13 +14,14 @@ import org.openqa.selenium.firefox.FirefoxDriverLogLevel;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 
-import jcucumberng.framework.constants.ExceptionMessages;
+import jcucumberng.framework.enums.Browser;
 import jcucumberng.framework.exceptions.UnsupportedBrowserException;
+import jcucumberng.framework.strings.Messages;
 
 public final class BrowserFactory {
 	private static Map<String, WebDriver> drivers = new HashMap<>();
 
-	public static WebDriver getBrowser(String browser) {
+	public static WebDriver getBrowser(String browserConfig) {
 		WebDriver driver = null;
 		FirefoxOptions ffOpts = null;
 
@@ -29,50 +30,51 @@ public final class BrowserFactory {
 		builder.append("/src/test/resources/webdrivers/");
 		String driverPath = builder.toString().trim();
 
-		switch (browser.toUpperCase()) {
-		case "CHROME32":
+		Browser browser = Browser.valueOf(browserConfig.toUpperCase());
+		switch (browser) {
+		case CHROME32:
 			System.setProperty("webdriver.chrome.driver", driverPath + "chromedriver_win32.exe");
 			driver = new ChromeDriver();
 			break;
-		case "CHROME32_NOHEAD":
+		case CHROME32_NOHEAD:
 			System.setProperty("webdriver.chrome.driver", driverPath + "chromedriver_win32.exe");
 			ChromeOptions chromeOpts = new ChromeOptions();
 			chromeOpts.addArguments("--headless");
 			driver = new ChromeDriver(chromeOpts);
 			break;
-		case "FF32":
+		case FF32:
 			System.setProperty("webdriver.gecko.driver", driverPath + "geckodriver_win32.exe");
 			driver = new FirefoxDriver();
 			break;
-		case "FF32_NOHEAD":
+		case FF32_NOHEAD:
 			ffOpts = BrowserFactory.setFirefoxNoHead(driverPath, "geckodriver_win32.exe");
 			driver = new FirefoxDriver(ffOpts);
 			break;
-		case "FF64":
+		case FF64:
 			System.setProperty("webdriver.gecko.driver", driverPath + "geckodriver_win64.exe");
 			driver = new FirefoxDriver();
 			break;
-		case "FF64_NOHEAD":
+		case FF64_NOHEAD:
 			ffOpts = BrowserFactory.setFirefoxNoHead(driverPath, "geckodriver_win64.exe");
 			driver = new FirefoxDriver(ffOpts);
 			break;
-		case "EDGE":
+		case EDGE:
 			System.setProperty("webdriver.edge.driver", driverPath + "MicrosoftWebDriver.exe");
 			driver = new EdgeDriver();
 			break;
-		case "IE32":
+		case IE32:
 			System.setProperty("webdriver.ie.driver", driverPath + "IEDriverServer_win32.exe");
 			driver = new InternetExplorerDriver();
 			break;
-		case "IE64":
+		case IE64:
 			System.setProperty("webdriver.ie.driver", driverPath + "IEDriverServer_win64.exe");
 			driver = new InternetExplorerDriver();
 			break;
 		default:
-			if (StringUtils.isBlank(browser)) {
-				browser = "BLANK";
+			if (StringUtils.isBlank(browserConfig)) {
+				browserConfig = "BLANK";
 			}
-			throw new UnsupportedBrowserException(ExceptionMessages.UNSUPPORTED_BROWSER + browser);
+			throw new UnsupportedBrowserException(Messages.UNSUPPORTED_BROWSER + browserConfig);
 		}
 
 		return driver;
