@@ -23,9 +23,9 @@ public class ScenarioHook {
 		LOGGER.info("BEGIN TEST -> " + scenario.getName());
 		LOGGER.info("Id=" + scenario.getId());
 
-		String browser = PropsLoader.readConfig("browser");
-		driver = BrowserFactory.getBrowser(browser);
-		LOGGER.info("Browser=" + browser);
+		String browserConfig = PropsLoader.readConfig("browser");
+		driver = BrowserFactory.getBrowser(browserConfig);
+		LOGGER.info("Browser=" + browserConfig);
 
 		Dimension dimension = LocalMachine.getDimension();
 		driver.manage().window().setSize(dimension);
