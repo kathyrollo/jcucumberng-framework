@@ -18,7 +18,7 @@ import jcucumberng.project.domain.Transaction;
 import jcucumberng.project.hooks.ScenarioHook;
 
 public class NetIncomeProjectorSteps {
-	private static final Logger logger = LoggerFactory.getLogger(NetIncomeProjectorSteps.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(NetIncomeProjectorSteps.class);
 	private WebDriver driver = null;
 
 	// PicoContainer injects ScenarioHook class
@@ -29,7 +29,7 @@ public class NetIncomeProjectorSteps {
 	@When("I Enter My Start Balance: {word}")
 	public void I_Enter_My_Start_Balance(String startBalance) throws Throwable {
 		Selenium.enterText(driver, startBalance, "start.balance.txt");
-		logger.debug("Start Balance=" + startBalance);
+		LOGGER.debug("Start Balance=" + startBalance);
 		this.scrollToDivBox(0);
 	}
 
@@ -52,7 +52,7 @@ public class NetIncomeProjectorSteps {
 		WebElement netPerMonthTd = driver.findElement(Selenium.by("net.per.month.td"));
 		String netPerMonthText = netPerMonthTd.getText();
 		Assertions.assertThat(netPerMonthText).isEqualTo(netPerMonth);
-		logger.debug("Net Per Month=" + netPerMonthText);
+		LOGGER.debug("Net Per Month=" + netPerMonthText);
 		Selenium.scrollToElement(driver, netPerMonthTd);
 	}
 
@@ -61,7 +61,7 @@ public class NetIncomeProjectorSteps {
 		WebElement netPerYearTd = driver.findElement(Selenium.by("net.per.year.td"));
 		String netPerYearText = netPerYearTd.getText();
 		Assertions.assertThat(netPerYearText).isEqualTo(netPerYear);
-		logger.debug("Net Per Year=" + netPerYearText);
+		LOGGER.debug("Net Per Year=" + netPerYearText);
 		Selenium.scrollToElement(driver, netPerYearTd);
 	}
 
@@ -79,7 +79,7 @@ public class NetIncomeProjectorSteps {
 			Selenium.enterText(driver, txns.get(ctr).getName(), nameFields.get(ctr));
 			Selenium.enterText(driver, txns.get(ctr).getAmount(), amtFields.get(ctr));
 			freqSelects.get(ctr).selectByVisibleText(txns.get(ctr).getFrequency());
-			logger.debug(txns.get(ctr).toString());
+			LOGGER.debug(txns.get(ctr).toString());
 		}
 	}
 
