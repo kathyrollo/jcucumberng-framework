@@ -22,15 +22,15 @@ import jcucumberng.framework.api.PropsLoader;
 import jcucumberng.framework.constants.ErrorMessages;
 
 public class ScenarioHook {
-	private static final Logger logger = LoggerFactory.getLogger(ScenarioHook.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ScenarioHook.class);
 	private Scenario scenario = null;
 	private WebDriver driver = null;
 
 	@Before
 	public void beforeScenario(Scenario scenario) throws Throwable {
 		this.scenario = scenario;
-		logger.info("BEGIN TEST -> " + scenario.getName());
-		logger.info("Id=" + scenario.getId());
+		LOGGER.info("BEGIN TEST -> " + scenario.getName());
+		LOGGER.info("Id=" + scenario.getId());
 
 		StringBuilder builder = new StringBuilder();
 		builder.append(System.getProperty("user.dir").replace("\\", "/"));
@@ -39,7 +39,7 @@ public class ScenarioHook {
 
 		String browser = PropsLoader.readConfig("browser");
 		if (StringUtils.isBlank(browser)) {
-			logger.error(ErrorMessages.NO_BROWSER);
+			LOGGER.error(ErrorMessages.NO_BROWSER);
 			browser = "CHROME32_NOHEAD";
 		}
 
@@ -78,20 +78,20 @@ public class ScenarioHook {
 			driver = new InternetExplorerDriver();
 			break;
 		default:
-			logger.error(ErrorMessages.UNSUPPORTED_BROWSER);
+			LOGGER.error(ErrorMessages.UNSUPPORTED_BROWSER);
 			this.setChromeNoHead(driverPath, "chromedriver_win32.exe");
 			break;
 		}
-		logger.info("Browser=" + browser);
+		LOGGER.info("Browser=" + browser);
 
 		Dimension dimension = LocalMachine.getDimension();
 		driver.manage().window().setSize(dimension);
-		logger.info("Screen Resolution (WxH)=" + dimension.getWidth() + "x" + dimension.getHeight());
+		LOGGER.info("Screen Resolution (WxH)=" + dimension.getWidth() + "x" + dimension.getHeight());
 	}
 
 	@After
 	public void afterScenario() {
-		logger.info("END TEST -> " + scenario.getName() + " - " + scenario.getStatus());
+		LOGGER.info("END TEST -> " + scenario.getName() + " - " + scenario.getStatus());
 		driver.quit();
 	}
 
