@@ -1,5 +1,6 @@
 # Eclipse IDE
 .classpath
+.factorypath
 .settings/
 
 # IntelliJ IDEA
