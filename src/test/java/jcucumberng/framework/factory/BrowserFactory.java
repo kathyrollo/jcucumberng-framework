@@ -43,7 +43,7 @@ public final class BrowserFactory {
 			driver = new FirefoxDriver();
 			break;
 		case FF32_NOHEAD:
-			ffOpts = BrowserFactory.setFirefoxNoHead(driverPath, "geckodriver_win32.exe");
+			ffOpts = BrowserFactory.initFirefoxNoHead(driverPath, "geckodriver_win32.exe");
 			driver = new FirefoxDriver(ffOpts);
 			break;
 		case FF64:
@@ -51,7 +51,7 @@ public final class BrowserFactory {
 			driver = new FirefoxDriver();
 			break;
 		case FF64_NOHEAD:
-			ffOpts = BrowserFactory.setFirefoxNoHead(driverPath, "geckodriver_win64.exe");
+			ffOpts = BrowserFactory.initFirefoxNoHead(driverPath, "geckodriver_win64.exe");
 			driver = new FirefoxDriver(ffOpts);
 			break;
 		case EDGE:
@@ -78,7 +78,7 @@ public final class BrowserFactory {
 		driver.quit();
 	}
 
-	private static FirefoxOptions setFirefoxNoHead(String driverPath, String driverBinary) {
+	private static FirefoxOptions initFirefoxNoHead(String driverPath, String driverBinary) {
 		System.setProperty("webdriver.gecko.driver", driverPath + driverBinary);
 		FirefoxBinary ffBin = new FirefoxBinary();
 		ffBin.addCommandLineOptions("--headless");
