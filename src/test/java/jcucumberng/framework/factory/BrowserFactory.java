@@ -3,6 +3,7 @@ package jcucumberng.framework.factory;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -12,6 +13,9 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxDriverLogLevel;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+
+import jcucumberng.framework.constants.ExceptionMessages;
+import jcucumberng.framework.exceptions.UnsupportedBrowserException;
 
 public final class BrowserFactory {
 	private static Map<String, WebDriver> drivers = new HashMap<>();
@@ -65,7 +69,10 @@ public final class BrowserFactory {
 			driver = new InternetExplorerDriver();
 			break;
 		default:
-			return null;
+			if (StringUtils.isBlank(browser)) {
+				browser = "BLANK";
+			}
+			throw new UnsupportedBrowserException(ExceptionMessages.UNSUPPORTED_BROWSER + browser);
 		}
 
 		return driver;

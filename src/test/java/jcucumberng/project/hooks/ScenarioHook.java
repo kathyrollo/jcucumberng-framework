@@ -10,8 +10,6 @@ import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import jcucumberng.framework.api.LocalMachine;
 import jcucumberng.framework.api.PropsLoader;
-import jcucumberng.framework.constants.ExceptionMessages;
-import jcucumberng.framework.exceptions.UnsupportedBrowserException;
 import jcucumberng.framework.factory.BrowserFactory;
 
 public class ScenarioHook {
@@ -27,11 +25,7 @@ public class ScenarioHook {
 
 		String browser = PropsLoader.readConfig("browser");
 		driver = BrowserFactory.getBrowser(browser);
-		if (null == driver) {
-			throw new UnsupportedBrowserException(ExceptionMessages.UNSUPPORTED_BROWSER);
-		} else {
-			LOGGER.info("Browser=" + browser);
-		}
+		LOGGER.info("Browser=" + browser);
 
 		Dimension dimension = LocalMachine.getDimension();
 		driver.manage().window().setSize(dimension);
