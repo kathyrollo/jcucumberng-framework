@@ -22,14 +22,12 @@ public final class BrowserFactory {
 
 	public static WebDriver getBrowser(String browser) {
 		WebDriver driver = null;
+		FirefoxOptions ffOpts = null;
 
 		StringBuilder builder = new StringBuilder();
 		builder.append(System.getProperty("user.dir").replace("\\", "/"));
 		builder.append("/src/test/resources/webdrivers/");
 		String driverPath = builder.toString().trim();
-
-		ChromeOptions chromeOpts = null;
-		FirefoxOptions ffOpts = null;
 
 		switch (browser.toUpperCase()) {
 		case "CHROME32":
@@ -37,7 +35,9 @@ public final class BrowserFactory {
 			driver = new ChromeDriver();
 			break;
 		case "CHROME32_NOHEAD":
-			chromeOpts = BrowserFactory.setChromeNoHead(driverPath, "chromedriver_win32.exe");
+			System.setProperty("webdriver.chrome.driver", driverPath + "chromedriver_win32.exe");
+			ChromeOptions chromeOpts = new ChromeOptions();
+			chromeOpts.addArguments("--headless");
 			driver = new ChromeDriver(chromeOpts);
 			break;
 		case "FF32":
@@ -76,13 +76,6 @@ public final class BrowserFactory {
 		}
 
 		return driver;
-	}
-
-	private static ChromeOptions setChromeNoHead(String driverPath, String driverBinary) {
-		System.setProperty("webdriver.chrome.driver", driverPath + driverBinary);
-		ChromeOptions chromeOpts = new ChromeOptions();
-		chromeOpts.addArguments("--headless");
-		return chromeOpts;
 	}
 
 	private static FirefoxOptions setFirefoxNoHead(String driverPath, String driverBinary) {
