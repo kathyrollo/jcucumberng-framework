@@ -1,8 +1,5 @@
 package jcucumberng.framework.factory;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -19,7 +16,10 @@ import jcucumberng.framework.exceptions.UnsupportedBrowserException;
 import jcucumberng.framework.strings.Messages;
 
 public final class BrowserFactory {
-	private static Map<String, WebDriver> drivers = new HashMap<>();
+
+	private BrowserFactory() {
+		// Prevent instantiation
+	}
 
 	public static WebDriver getBrowser(String browserConfig) {
 		WebDriver driver = null;
@@ -78,6 +78,10 @@ public final class BrowserFactory {
 		}
 
 		return driver;
+	}
+	
+	public static void quitBrowser(WebDriver driver) {
+		driver.quit();
 	}
 
 	private static FirefoxOptions setFirefoxNoHead(String driverPath, String driverBinary) {

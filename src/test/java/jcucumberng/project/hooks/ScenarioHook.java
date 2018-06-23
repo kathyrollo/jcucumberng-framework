@@ -35,7 +35,7 @@ public class ScenarioHook {
 	@After
 	public void afterScenario() {
 		LOGGER.info("END TEST -> " + scenario.getName() + " - " + scenario.getStatus());
-		driver.quit();
+		BrowserFactory.quitBrowser(driver);
 	}
 
 	public Scenario getScenario() {
