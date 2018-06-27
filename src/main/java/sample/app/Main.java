@@ -2,6 +2,8 @@ package sample.app;
 
 public class Main {
 
-	// This is a sample app.
+	public static void main(String[] args) {
+		// This is a sample app.
+	}
 
 }
