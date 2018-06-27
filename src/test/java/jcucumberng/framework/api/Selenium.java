@@ -276,7 +276,7 @@ public final class Selenium {
 
 	/**
 	 * Captures the current screen. Stores images in
-	 * {@code /target/cucumber-screenshots/} in PNG format.
+	 * {@code /target/cucumber-output/test-report-sshots/} in PNG format.
 	 * 
 	 * @param driver
 	 *            the Selenium WebDriver
@@ -285,7 +285,7 @@ public final class Selenium {
 	public static void captureScreenshot(WebDriver driver) throws IOException {
 		StringBuilder builder = new StringBuilder();
 		builder.append(System.getProperty("user.dir").replace("\\", "/"));
-		builder.append("/target/cucumber-screenshots/sshot_");
+		builder.append("/target/cucumber-output/test-report-sshots/sshot_");
 		builder.append(System.currentTimeMillis());
 		builder.append(".png");
 		String screenshot = builder.toString();
