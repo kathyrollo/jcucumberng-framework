@@ -20,7 +20,6 @@ public final class BrowserFactory {
 
 	public static WebDriver getBrowser(Browser browser) {
 		WebDriver driver = null;
-		FirefoxOptions ffOpts = null;
 
 		StringBuilder builder = new StringBuilder();
 		builder.append(System.getProperty("user.dir").replace("\\", "/"));
@@ -43,16 +42,14 @@ public final class BrowserFactory {
 			driver = new FirefoxDriver();
 			break;
 		case FF32_NOHEAD:
-			ffOpts = BrowserFactory.initFirefoxNoHead(driverPath, "geckodriver_win32.exe");
-			driver = new FirefoxDriver(ffOpts);
+			driver = BrowserFactory.initFirefoxNoHead(driverPath, "geckodriver_win32.exe");
 			break;
 		case FF64:
 			System.setProperty("webdriver.gecko.driver", driverPath + "geckodriver_win64.exe");
 			driver = new FirefoxDriver();
 			break;
 		case FF64_NOHEAD:
-			ffOpts = BrowserFactory.initFirefoxNoHead(driverPath, "geckodriver_win64.exe");
-			driver = new FirefoxDriver(ffOpts);
+			driver = BrowserFactory.initFirefoxNoHead(driverPath, "geckodriver_win64.exe");
 			break;
 		case EDGE:
 			System.setProperty("webdriver.edge.driver", driverPath + "MicrosoftWebDriver.exe");
@@ -78,14 +75,16 @@ public final class BrowserFactory {
 		driver.quit();
 	}
 
-	private static FirefoxOptions initFirefoxNoHead(String driverPath, String driverBinary) {
+	private static WebDriver initFirefoxNoHead(String driverPath, String driverBinary) {
+		WebDriver driver = null;
 		System.setProperty("webdriver.gecko.driver", driverPath + driverBinary);
 		FirefoxBinary ffBin = new FirefoxBinary();
 		ffBin.addCommandLineOptions("--headless");
 		FirefoxOptions ffOpts = new FirefoxOptions();
 		ffOpts.setBinary(ffBin);
-		ffOpts.setLogLevel(FirefoxDriverLogLevel.INFO);
-		return ffOpts;
+		ffOpts.setLogLevel(FirefoxDriverLogLevel.WARN);
+		driver = new FirefoxDriver(ffOpts);
+		return driver;
 	}
 
 }
