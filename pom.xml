@@ -11,6 +11,7 @@
 	<properties>
 		<!-- Project Properties -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<aut>Simply Do - Balance Projector</aut>
 		<!-- Maven Properties -->
 		<timestamp>${maven.build.timestamp}</timestamp>
 		<maven.build.timestamp.format>yyyyMMdd-HHmm</maven.build.timestamp.format>
@@ -97,7 +98,7 @@
 						<include>**/*Runner.java</include>
 					</includes>
 					<testFailureIgnore>true</testFailureIgnore>
-					<reportsDirectory>./target/test-output/${timestamp}</reportsDirectory>
+					<reportsDirectory>${project.build.directory}/test-output/${timestamp}</reportsDirectory>
 				</configuration>
 			</plugin>
 			<!-- https://mvnrepository.com/artifact/net.masterthought/maven-cucumber-reporting -->
@@ -113,8 +114,8 @@
 							<goal>generate</goal>
 						</goals>
 						<configuration>
-							<projectName>Simply Do - Balance Projector</projectName>
-							<outputDirectory>${project.build.directory}</outputDirectory>
+							<projectName>${aut}</projectName>
+							<outputDirectory>${project.build.directory}/cucumber-output</outputDirectory>
 							<jsonFiles>
 								<param>**/test-report.json</param>
 							</jsonFiles>
