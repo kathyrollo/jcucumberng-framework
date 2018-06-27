@@ -115,7 +115,7 @@
 						</goals>
 						<configuration>
 							<projectName>${aut}</projectName>
-							<outputDirectory>${project.build.directory}/cucumber-output</outputDirectory>
+							<outputDirectory>${project.build.directory}/jcucumberng-output</outputDirectory>
 							<jsonFiles>
 								<param>**/test-report.json</param>
 							</jsonFiles>
