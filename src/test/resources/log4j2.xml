@@ -5,10 +5,10 @@
 	</Properties>
 	<Appenders>
 		<Console name="console" target="SYSTEM_OUT">
-			<PatternLayout pattern="[%highlight{%level}] %d{DATE} %logger{36}.%M() - %msg%n%throwable{short.lineNumber}" />
+			<PatternLayout pattern="[%highlight{%level}] %d{DEFAULT} %c{1}.%M() - %msg%n%throwable{short.lineNumber}" />
 		</Console>
 		<RollingFile name="rollingFile" fileName="${logPath}/test-report.log" filePattern="${logPath}/test-report_%d{yyyy-MM-dd}.log">
-			<PatternLayout pattern="[%highlight{%level}] %d{DATE} %logger{36}.%M() - %msg%n%throwable{short.lineNumber}" />
+			<PatternLayout pattern="[%highlight{%level}] %d{DEFAULT} %c{1}.%M() - %msg%n%throwable{short.lineNumber}" />
 			<Policies>
 				<!-- Create log file every time the JVM starts -->
 				<OnStartupTriggeringPolicy />
