@@ -42,7 +42,7 @@ public class ScenarioHook {
 	}
 
 	@After
-	public void afterScenario() {
+	public void afterScenario() throws Throwable {
 		LOGGER.info("END TEST -> " + scenario.getName() + " - " + scenario.getStatus());
 		BrowserFactory.quitBrowser(driver);
 	}
