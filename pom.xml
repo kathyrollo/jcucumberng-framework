@@ -12,6 +12,7 @@
 		<!-- Project Properties -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<aut>Simply Do - Balance Projector</aut>
+		<jcucumberng.output>${project.build.directory}/jcucumberng-output</jcucumberng.output>
 		<!-- Maven Properties -->
 		<timestamp>${maven.build.timestamp}</timestamp>
 		<maven.build.timestamp.format>yyyyMMdd'T'HHmmss,SSS'Z'</maven.build.timestamp.format>
@@ -62,18 +63,21 @@
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-slf4j-impl</artifactId>
 			<version>2.11.0</version>
+			<scope>test</scope>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.itextpdf/itextpdf -->
 		<dependency>
 			<groupId>com.itextpdf</groupId>
 			<artifactId>itextpdf</artifactId>
 			<version>5.5.13</version>
+			<scope>test</scope>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml</artifactId>
 			<version>3.17</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 	<build>
@@ -98,14 +102,14 @@
 						<include>**/*Runner.java</include>
 					</includes>
 					<testFailureIgnore>false</testFailureIgnore>
-					<reportsDirectory>${project.build.directory}/test-output/${timestamp}</reportsDirectory>
+					<reportsDirectory>${jcucumberng.output}/testng-reports/${timestamp}</reportsDirectory>
 				</configuration>
 			</plugin>
 			<!-- https://mvnrepository.com/artifact/net.masterthought/maven-cucumber-reporting -->
 			<plugin>
 				<groupId>net.masterthought</groupId>
 				<artifactId>maven-cucumber-reporting</artifactId>
-				<version>3.17.1</version>
+				<version>3.18.0</version>
 				<executions>
 					<execution>
 						<id>execution</id>
@@ -115,12 +119,12 @@
 						</goals>
 						<configuration>
 							<projectName>${aut}</projectName>
-							<outputDirectory>${project.build.directory}/jcucumberng-output</outputDirectory>
+							<outputDirectory>${jcucumberng.output}</outputDirectory>
 							<jsonFiles>
 								<param>**/test-report.json</param>
 							</jsonFiles>
 							<classificationFiles>
-								<param>**/test-report.properties</param>
+								<param>**/aut-details.properties</param>
 							</classificationFiles>
 							<parallelTesting>false</parallelTesting>
 						</configuration>
