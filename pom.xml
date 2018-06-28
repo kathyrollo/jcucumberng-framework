@@ -37,10 +37,10 @@
 			<version>${ngwebdriver.version}</version>
 			<scope>test</scope>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-testng -->
+		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
 		<dependency>
 			<groupId>io.cucumber</groupId>
-			<artifactId>cucumber-testng</artifactId>
+			<artifactId>cucumber-junit</artifactId>
 			<version>${cucumber.version}</version>
 			<scope>test</scope>
 		</dependency>
@@ -102,7 +102,7 @@
 						<include>**/*Runner.java</include>
 					</includes>
 					<testFailureIgnore>false</testFailureIgnore>
-					<reportsDirectory>${jcucumberng.output}/testng-reports/${timestamp}</reportsDirectory>
+					<reportsDirectory>${jcucumberng.output}/junit-reports/${timestamp}</reportsDirectory>
 				</configuration>
 			</plugin>
 			<!-- https://mvnrepository.com/artifact/net.masterthought/maven-cucumber-reporting -->
