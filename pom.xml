@@ -124,7 +124,7 @@
 								<param>**/test-report.json</param>
 							</jsonFiles>
 							<classificationFiles>
-								<param>**/aut-details.properties</param>
+								<param>**/aut.properties</param>
 							</classificationFiles>
 							<parallelTesting>false</parallelTesting>
 						</configuration>
