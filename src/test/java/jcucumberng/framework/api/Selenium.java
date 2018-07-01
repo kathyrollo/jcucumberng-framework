@@ -37,20 +37,24 @@ public final class Selenium {
 	}
 
 	/**
-	 * Returns the By object based on the value of the key from
-	 * {@code ui-map.properties}.<br>
+	 * Returns the By object based on the {@code by-method} and {@code selector}
+	 * delimited by a colon ({@code :}) from {@code ui-map.properties}.<br>
 	 * <br>
-	 * Example:<br>
-	 * <br>
-	 * {@code key = expense.name.txt}<br>
-	 * <br>
-	 * {@code value = by-model:expense.name}<br>
-	 * <br>
-	 * {@code By = ByAngular.model()}<br>
-	 * <br>
-	 * The colon ({@code :}) is the delimiter between the by-method (e.g.
-	 * {@code by-model}) and the selector (e.g. {@code expense.name}) which is the
-	 * substring after the colon.
+	 * Example:
+	 * 
+	 * <pre>
+	 * {@code
+	 * ui-map.properties:
+	 * income.add.btn=by-css:button[ng-click='addIncome();']
+	 * 
+	 * Where:
+	 * by-method = by-css
+	 * selector = button[ng-click='addIncome();']
+	 * 
+	 * Therefore:
+	 * By = By.cssSelector()
+	 * }
+	 * </pre>
 	 * 
 	 * @param key
 	 *            the key from {@code ui-map.properties}
@@ -59,20 +63,20 @@ public final class Selenium {
 	 */
 	public static By by(String key) throws IOException {
 		String value = PropsLoader.readUiMap(key);
-		String byMethod = value.substring(0, value.lastIndexOf(":"));
+		String method = value.substring(0, value.lastIndexOf(":"));
 		String selector = value.substring(value.lastIndexOf(":") + 1);
 		By by = null;
 		// TODO Add by-methods as needed
-		if (value.contains("by-classname")) {
+		if (method.equalsIgnoreCase("by-classname")) {
 			by = By.className(selector);
-		} else if (value.contains("by-css")) {
+		} else if (method.equalsIgnoreCase("by-css")) {
 			by = By.cssSelector(selector);
-		} else if (value.contains("by-model")) {
+		} else if (method.equalsIgnoreCase("by-model")) {
 			by = ByAngular.model(selector);
-		} else if (value.contains("by-binding")) {
+		} else if (method.equalsIgnoreCase("by-binding")) {
 			by = ByAngular.binding(selector);
 		} else {
-			throw new UnsupportedByMethodException(Messages.UNSUPPORTED_BY_METHOD + byMethod);
+			throw new UnsupportedByMethodException(Messages.UNSUPPORTED_BY_METHOD + method);
 		}
 		return by;
 	}
