@@ -46,7 +46,7 @@ public final class Selenium {
 	 * <br>
 	 * {@code value = by-model:expense.name}<br>
 	 * <br>
-	 * {@code by = ByAngular.model()}<br>
+	 * {@code By = ByAngular.model()}<br>
 	 * <br>
 	 * The colon ({@code :}) is the delimiter between the by-method (e.g.
 	 * {@code by-model}) and the selector (e.g. {@code expense.name}) which is the
@@ -62,7 +62,7 @@ public final class Selenium {
 		String byMethod = value.substring(0, value.lastIndexOf(":"));
 		String selector = value.substring(value.lastIndexOf(":") + 1);
 		By by = null;
-		// TODO Add By-methods as needed
+		// TODO Add by-methods as needed
 		if (value.contains("by-classname")) {
 			by = By.className(selector);
 		} else if (value.contains("by-css")) {
