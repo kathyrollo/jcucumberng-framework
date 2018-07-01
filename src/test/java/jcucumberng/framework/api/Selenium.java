@@ -22,6 +22,7 @@ import com.paulhammant.ngwebdriver.ByAngular;
 
 import cucumber.api.Scenario;
 import jcucumberng.framework.exceptions.MissingArgumentsException;
+import jcucumberng.framework.exceptions.UnsupportedByMethodException;
 import jcucumberng.framework.strings.Messages;
 
 /**
@@ -47,9 +48,9 @@ public final class Selenium {
 	 * <br>
 	 * {@code by = ByAngular.model()}<br>
 	 * <br>
-	 * The colon ({@code :}) is the delimiter between the by-type (e.g.
-	 * {@code by-model}) and the locator (e.g. {@code expense.name}) or substring
-	 * after the colon.
+	 * The colon ({@code :}) is the delimiter between the by-method (e.g.
+	 * {@code by-model}) and the selector (e.g. {@code expense.name}) which is the
+	 * substring after the colon.
 	 * 
 	 * @param key
 	 *            the key from {@code ui-map.properties}
@@ -58,17 +59,20 @@ public final class Selenium {
 	 */
 	public static By by(String key) throws IOException {
 		String value = PropsLoader.readUiMap(key);
-		String locator = value.substring(value.lastIndexOf(":") + 1);
+		String byMethod = value.substring(0, value.lastIndexOf(":"));
+		String selector = value.substring(value.lastIndexOf(":") + 1);
 		By by = null;
-		// TODO Add By-types as needed
+		// TODO Add By-methods as needed
 		if (value.contains("by-classname")) {
-			by = By.className(locator);
+			by = By.className(selector);
 		} else if (value.contains("by-css")) {
-			by = By.cssSelector(locator);
+			by = By.cssSelector(selector);
 		} else if (value.contains("by-model")) {
-			by = ByAngular.model(locator);
+			by = ByAngular.model(selector);
 		} else if (value.contains("by-binding")) {
-			by = ByAngular.binding(locator);
+			by = ByAngular.binding(selector);
+		} else {
+			throw new UnsupportedByMethodException(Messages.UNSUPPORTED_BY_METHOD + byMethod);
 		}
 		return by;
 	}

@@ -16,5 +16,5 @@ import cucumber.api.junit.Cucumber;
 public class CucumberRunner {
 }
 
-// TODO Implement UnsupportedByTypeException
-// TODO Add other by-types to Selenium.by(String)
+// TODO Throw UnsupportedBrowserException in BrowserFactory
+// TODO Add other by-methods to Selenium.by(String)
