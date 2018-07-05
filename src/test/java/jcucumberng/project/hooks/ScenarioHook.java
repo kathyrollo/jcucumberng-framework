@@ -10,9 +10,7 @@ import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import jcucumberng.framework.api.LocalMachine;
 import jcucumberng.framework.api.PropsLoader;
-import jcucumberng.framework.enums.Browser;
 import jcucumberng.framework.factory.BrowserFactory;
-import jcucumberng.framework.strings.Messages;
 
 public class ScenarioHook {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ScenarioHook.class);
@@ -23,18 +21,10 @@ public class ScenarioHook {
 	public void beforeScenario(Scenario scenario) throws Throwable {
 		this.scenario = scenario;
 		LOGGER.info("BEGIN TEST -> " + scenario.getName());
-		LOGGER.info("Id=" + scenario.getId());
 
 		String browserConfig = PropsLoader.readConfig("browser");
-		Browser browser = null;
-		try {
-			browser = Browser.valueOf(browserConfig.toUpperCase());
-		} catch (IllegalArgumentException iae) {
-			LOGGER.error(Messages.UNSUPPORTED_BROWSER);
-			browser = Browser.CHROME32_NOHEAD; // Set default browser if invalid
-		}
-		driver = BrowserFactory.getBrowser(browser);
-		LOGGER.info("Browser=" + browser);
+		driver = BrowserFactory.getBrowser(browserConfig);
+		LOGGER.info("Browser=" + browserConfig);
 
 		Dimension dimension = LocalMachine.getDimension();
 		driver.manage().window().setSize(dimension);
