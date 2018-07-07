@@ -9,7 +9,7 @@ import jcucumberng.framework.exceptions.NoSuchKeyException;
 import jcucumberng.framework.strings.Messages;
 
 /**
- * {@code PropsLoader} handles actions for configuring the test framework.
+ * {@code PropsLoader} handles actions for reading {@code .properties} files.
  * 
  * @author Kat Rollo <rollo.katherine@gmail.com>
  */
@@ -20,8 +20,7 @@ public final class PropsLoader {
 	}
 
 	/**
-	 * Configures the settings of the framework using the
-	 * {@code framework.properties} file.
+	 * Reads framework config from {@code framework.properties}.
 	 * 
 	 * @param key
 	 *            the config name (Example: {@code browser=CHROME32}, key =
@@ -30,7 +29,7 @@ public final class PropsLoader {
 	 *         {@code browser=CHROME32}, value = {@code CHROME32})
 	 * @throws IOException
 	 */
-	public static String readFrameworkSettings(String key) throws IOException {
+	public static String configFramework(String key) throws IOException {
 		String propsFileName = "framework.properties";
 		StringBuilder builder = new StringBuilder();
 		builder.append(System.getProperty("user.dir").replace("\\", "/"));
