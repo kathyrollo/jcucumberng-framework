@@ -22,6 +22,7 @@ import com.paulhammant.ngwebdriver.ByAngular;
 
 import cucumber.api.Scenario;
 import jcucumberng.framework.exceptions.MissingArgumentsException;
+import jcucumberng.framework.exceptions.UnsupportedByMethodException;
 import jcucumberng.framework.strings.Messages;
 
 /**
@@ -36,20 +37,24 @@ public final class Selenium {
 	}
 
 	/**
-	 * Returns the By object based on the value of the key from
-	 * {@code ui-map.properties}.<br>
+	 * Returns the By object based on the {@code by-method} and {@code selector}
+	 * delimited by a colon ({@code :}) from {@code ui-map.properties}.<br>
 	 * <br>
-	 * Example:<br>
-	 * <br>
-	 * {@code key = expense.name.txt}<br>
-	 * <br>
-	 * {@code value = by-model:expense.name}<br>
-	 * <br>
-	 * {@code by = ByAngular.model()}<br>
-	 * <br>
-	 * The colon ({@code :}) is the delimiter between the by-type (e.g.
-	 * {@code by-model}) and the locator (e.g. {@code expense.name}) or substring
-	 * after the colon.
+	 * Example:
+	 * 
+	 * <pre>
+	 * {@code
+	 * ui-map.properties:
+	 * income.add.btn=by-css:button[ng-click='addIncome();']
+	 * 
+	 * Where:
+	 * by-method = by-css
+	 * selector = button[ng-click='addIncome();']
+	 * 
+	 * Therefore:
+	 * By = By.cssSelector()
+	 * }
+	 * </pre>
 	 * 
 	 * @param key
 	 *            the key from {@code ui-map.properties}
@@ -58,17 +63,20 @@ public final class Selenium {
 	 */
 	public static By by(String key) throws IOException {
 		String value = PropsLoader.readUiMap(key);
-		String locator = value.substring(value.lastIndexOf(":") + 1);
+		String method = value.substring(0, value.lastIndexOf(":"));
+		String selector = value.substring(value.lastIndexOf(":") + 1);
 		By by = null;
-		// TODO Add By-types as needed
-		if (value.contains("by-classname")) {
-			by = By.className(locator);
-		} else if (value.contains("by-css")) {
-			by = By.cssSelector(locator);
-		} else if (value.contains("by-model")) {
-			by = ByAngular.model(locator);
-		} else if (value.contains("by-binding")) {
-			by = ByAngular.binding(locator);
+		// TODO Add by-methods as needed
+		if (method.equalsIgnoreCase("by-classname")) {
+			by = By.className(selector);
+		} else if (method.equalsIgnoreCase("by-css")) {
+			by = By.cssSelector(selector);
+		} else if (method.equalsIgnoreCase("by-model")) {
+			by = ByAngular.model(selector);
+		} else if (method.equalsIgnoreCase("by-binding")) {
+			by = ByAngular.binding(selector);
+		} else {
+			throw new UnsupportedByMethodException(Messages.UNSUPPORTED_BY_METHOD + method);
 		}
 		return by;
 	}
@@ -276,7 +284,7 @@ public final class Selenium {
 
 	/**
 	 * Captures the current screen. Stores images in
-	 * {@code /target/cucumber-screenshots/} in PNG format.
+	 * {@code /target/jcucumberng-output/test-report-sshots/} in PNG format.
 	 * 
 	 * @param driver
 	 *            the Selenium WebDriver
@@ -285,7 +293,7 @@ public final class Selenium {
 	public static void captureScreenshot(WebDriver driver) throws IOException {
 		StringBuilder builder = new StringBuilder();
 		builder.append(System.getProperty("user.dir").replace("\\", "/"));
-		builder.append("/target/cucumber-screenshots/sshot_");
+		builder.append("/target/jcucumberng-output/test-report-sshots/sshot_");
 		builder.append(System.currentTimeMillis());
 		builder.append(".png");
 		String screenshot = builder.toString();

@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import jcucumberng.framework.exceptions.NoSuchKeyException;
+import jcucumberng.framework.strings.Messages;
+
 /**
  * {@code PropsLoader} handles actions for configuring the test framework.
  * 
@@ -35,7 +38,11 @@ public final class PropsLoader {
 		Properties props = new Properties();
 		props.load(inputStream);
 
-		return props.getProperty(key).trim();
+		String value = props.getProperty(key);
+		if (null == value) {
+			throw new NoSuchKeyException(Messages.NO_SUCH_KEY_CONFIG + key);
+		}
+		return value.trim();
 	}
 
 	/**
@@ -57,7 +64,11 @@ public final class PropsLoader {
 		Properties props = new Properties();
 		props.load(inputStream);
 
-		return props.getProperty(key).trim();
+		String value = props.getProperty(key);
+		if (null == value) {
+			throw new NoSuchKeyException(Messages.NO_SUCH_KEY_UIMAP + key);
+		}
+		return value.trim();
 	}
 
 }

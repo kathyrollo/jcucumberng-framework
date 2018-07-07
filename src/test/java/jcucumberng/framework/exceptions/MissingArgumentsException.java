@@ -2,7 +2,7 @@ package jcucumberng.framework.exceptions;
 
 /**
  * {@code MissingArgumentsException} is thrown when the arbitrary parameters or
- * varargs of a method is empty. All varargs in {@code jcucumber.api} require at
+ * varargs of a method is empty. All varargs in {@code jcucumberng.api} require at
  * least 1 parameter.
  * 
  * @author Kat Rollo <rollo.katherine@gmail.com>
