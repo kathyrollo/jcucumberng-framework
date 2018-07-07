@@ -28,7 +28,7 @@ public final class BrowserFactory {
 	}
 
 	/**
-	 * Gets the WebDriver instance.
+	 * Gets the Selenium WebDriver instance.
 	 * 
 	 * @param browserConfig
 	 *            the {@code browser} specified in {@code framework.properties}
@@ -95,6 +95,12 @@ public final class BrowserFactory {
 		return driver;
 	}
 
+	/**
+	 * Quits all instances of the driver (close all windows).
+	 * 
+	 * @param driver
+	 *            the Selenium WebDriver
+	 */
 	public static void quitBrowser(WebDriver driver) {
 		driver.quit();
 	}

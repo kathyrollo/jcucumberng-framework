@@ -20,13 +20,15 @@ import jcucumberng.framework.factory.BrowserFactory;
 import jcucumberng.framework.strings.Messages;
 
 public class ScenarioHook {
-	// Set logger config
+	// Set logger config, no edit
 	static {
-		StringBuilder builder = new StringBuilder();
-		builder.append(System.getProperty("user.dir").replace("\\", "/"));
-		builder.append("/src/test/resources/jcucumberng/framework/log4j2.xml");
-
 		try {
+			String log4j2FileName = PropsLoader.configFramework("log4j2.conf.file");
+			StringBuilder builder = new StringBuilder();
+			builder.append(System.getProperty("user.dir").replace("\\", "/"));
+			builder.append("/src/test/resources/jcucumberng/framework/");
+			builder.append(log4j2FileName);
+
 			InputStream inputStream = new FileInputStream(builder.toString());
 			ConfigurationSource source = new ConfigurationSource(inputStream);
 			Configurator.initialize(null, source);
