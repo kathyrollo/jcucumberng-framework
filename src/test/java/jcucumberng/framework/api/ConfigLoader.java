@@ -5,17 +5,22 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import org.apache.logging.log4j.core.config.ConfigurationSource;
+import org.apache.logging.log4j.core.config.Configurator;
+
+import jcucumberng.framework.exceptions.LoggerConfigException;
 import jcucumberng.framework.exceptions.NoSuchKeyException;
 import jcucumberng.framework.strings.Messages;
 
 /**
- * {@code PropsLoader} handles actions for reading {@code .properties} files.
+ * {@code ConfigLoader} handles actions for reading/loading various
+ * configuration and properties files.
  * 
  * @author Kat Rollo <rollo.katherine@gmail.com>
  */
-public final class PropsLoader {
+public final class ConfigLoader {
 
-	private PropsLoader() {
+	private ConfigLoader() {
 		// Prevent instantiation
 	}
 
@@ -77,6 +82,25 @@ public final class PropsLoader {
 			throw new NoSuchKeyException(Messages.NO_SUCH_KEY + builder.toString());
 		}
 		return value.trim();
+	}
+
+	/**
+	 * Loads the log4j2 configuration file from {@code framework.properties}.
+	 */
+	public static void configLogger() {
+		try {
+			String log4j2FileName = ConfigLoader.configFramework("log4j2.conf.file");
+			StringBuilder builder = new StringBuilder();
+			builder.append(System.getProperty("user.dir").replace("\\", "/"));
+			builder.append("/src/test/resources/jcucumberng/framework/");
+			builder.append(log4j2FileName);
+
+			InputStream inputStream = new FileInputStream(builder.toString());
+			ConfigurationSource source = new ConfigurationSource(inputStream);
+			Configurator.initialize(null, source);
+		} catch (Exception ex) {
+			throw new LoggerConfigException(Messages.LOGGER_CONFIG_FAIL);
+		}
 	}
 
 	/**

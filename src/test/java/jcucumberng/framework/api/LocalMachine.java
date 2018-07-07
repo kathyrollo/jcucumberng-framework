@@ -45,7 +45,7 @@ public final class LocalMachine {
 		Robot robot = new Robot();
 		robot.keyPress(key);
 		robot.keyRelease(key);
-		robot.delay(Integer.parseInt(PropsLoader.configFramework("keypress.wait")));
+		robot.delay(Integer.parseInt(ConfigLoader.configFramework("keypress.wait")));
 		robot = null; // Destroy robot
 	}
 
@@ -65,7 +65,7 @@ public final class LocalMachine {
 		for (int ctr = 0; ctr < keys.length; ctr++) {
 			robot.keyPress(keys[ctr]); // Press and hold keys
 		}
-		robot.delay(Integer.parseInt(PropsLoader.configFramework("keypress.wait")));
+		robot.delay(Integer.parseInt(ConfigLoader.configFramework("keypress.wait")));
 		for (int ctr = keys.length - 1; ctr > -1; ctr--) {
 			robot.keyRelease(keys[ctr]); // Release keys in reverse order
 		}

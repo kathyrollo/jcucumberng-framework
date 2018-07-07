@@ -1,10 +1,5 @@
 package jcucumberng.project.hooks;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
-
-import org.apache.logging.log4j.core.config.ConfigurationSource;
-import org.apache.logging.log4j.core.config.Configurator;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
@@ -14,27 +9,12 @@ import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import jcucumberng.framework.api.LocalMachine;
-import jcucumberng.framework.api.PropsLoader;
-import jcucumberng.framework.exceptions.LoggerConfigException;
+import jcucumberng.framework.api.ConfigLoader;
 import jcucumberng.framework.factory.BrowserFactory;
-import jcucumberng.framework.strings.Messages;
 
 public class ScenarioHook {
-	// Set logger config, no edit
 	static {
-		try {
-			String log4j2FileName = PropsLoader.configFramework("log4j2.conf.file");
-			StringBuilder builder = new StringBuilder();
-			builder.append(System.getProperty("user.dir").replace("\\", "/"));
-			builder.append("/src/test/resources/jcucumberng/framework/");
-			builder.append(log4j2FileName);
-
-			InputStream inputStream = new FileInputStream(builder.toString());
-			ConfigurationSource source = new ConfigurationSource(inputStream);
-			Configurator.initialize(null, source);
-		} catch (Exception ex) {
-			throw new LoggerConfigException(Messages.LOGGER_CONFIG_FAIL);
-		}
+		ConfigLoader.configLogger();
 	}
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ScenarioHook.class);
@@ -46,7 +26,7 @@ public class ScenarioHook {
 		this.scenario = scenario;
 		LOGGER.info("BEGIN TEST -> " + scenario.getName());
 
-		String browserConfig = PropsLoader.configFramework("browser");
+		String browserConfig = ConfigLoader.configFramework("browser");
 		driver = BrowserFactory.getBrowser(browserConfig);
 		LOGGER.info("Browser=" + browserConfig);
 
