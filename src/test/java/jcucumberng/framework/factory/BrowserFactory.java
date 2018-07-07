@@ -15,18 +15,31 @@ import jcucumberng.framework.enums.Browser;
 import jcucumberng.framework.exceptions.UnsupportedBrowserException;
 import jcucumberng.framework.strings.Messages;
 
+/**
+ * {@code BrowserFactory} handles actions for instantiating or terminating the
+ * Selenium WebDriver.
+ * 
+ * @author Kat Rollo <rollo.katherine@gmail.com>
+ */
 public final class BrowserFactory {
 
 	private BrowserFactory() {
 		// Prevent instantiation
 	}
 
+	/**
+	 * Gets the WebDriver instance.
+	 * 
+	 * @param browserConfig
+	 *            the browser specified in {@code config.properties}
+	 * @return WebDriver - the Selenium WebDriver
+	 */
 	public static WebDriver getBrowser(String browserConfig) {
 		WebDriver driver = null;
 
 		StringBuilder builder = new StringBuilder();
 		builder.append(System.getProperty("user.dir").replace("\\", "/"));
-		builder.append("/src/test/resources/webdrivers/");
+		builder.append("/src/test/resources/jcucumberng/framework/drivers/");
 		String driverPath = builder.toString().trim();
 
 		try {
