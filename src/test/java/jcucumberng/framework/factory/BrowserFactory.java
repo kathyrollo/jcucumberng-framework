@@ -31,7 +31,7 @@ public final class BrowserFactory {
 	 * Gets the WebDriver instance.
 	 * 
 	 * @param browserConfig
-	 *            the browser specified in {@code config.properties}
+	 *            the {@code browser} specified in {@code framework.properties}
 	 * @return WebDriver - the Selenium WebDriver
 	 */
 	public static WebDriver getBrowser(String browserConfig) {
