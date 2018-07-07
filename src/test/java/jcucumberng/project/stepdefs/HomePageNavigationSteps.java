@@ -21,7 +21,7 @@ public class HomePageNavigationSteps {
 
 	@Given("I Am At The Home Page")
 	public void I_Am_At_The_Home_Page() throws Throwable {
-		String baseUrl = PropsLoader.configFramework("base.url");
+		String baseUrl = PropsLoader.configProject("base.url");
 		driver.get(baseUrl);
 		LOGGER.debug("Base URL=" + baseUrl);
 	}

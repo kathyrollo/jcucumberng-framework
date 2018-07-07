@@ -42,7 +42,37 @@ public final class PropsLoader {
 
 		String value = props.getProperty(key);
 		if (null == value) {
-			builder.setLength(0); // Clear builder object
+			builder.setLength(0);
+			builder.append(propsFileName + ": " + key);
+			throw new NoSuchKeyException(Messages.NO_SUCH_KEY + builder.toString());
+		}
+		return value.trim();
+	}
+
+	/**
+	 * Reads project config from {@code project.properties}.
+	 * 
+	 * @param key
+	 *            the config name (Example: {@code base.url=www.google.com}, key =
+	 *            {@code base.url})
+	 * @return String - the value corresponding to the given key (Example:
+	 *         {@code base.url=www.google.com}, value = {@code www.google.com})
+	 * @throws IOException
+	 */
+	public static String configProject(String key) throws IOException {
+		String propsFileName = "project.properties";
+		StringBuilder builder = new StringBuilder();
+		builder.append(System.getProperty("user.dir").replace("\\", "/"));
+		builder.append("/src/test/resources/jcucumberng/project/");
+		builder.append(propsFileName);
+
+		InputStream inputStream = new FileInputStream(builder.toString());
+		Properties props = new Properties();
+		props.load(inputStream);
+
+		String value = props.getProperty(key);
+		if (null == value) {
+			builder.setLength(0);
 			builder.append(propsFileName + ": " + key);
 			throw new NoSuchKeyException(Messages.NO_SUCH_KEY + builder.toString());
 		}
