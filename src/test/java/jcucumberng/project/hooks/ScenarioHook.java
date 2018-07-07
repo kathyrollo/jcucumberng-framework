@@ -9,10 +9,14 @@ import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import jcucumberng.framework.api.LocalMachine;
-import jcucumberng.framework.api.PropsLoader;
+import jcucumberng.framework.api.ConfigLoader;
 import jcucumberng.framework.factory.BrowserFactory;
 
 public class ScenarioHook {
+	static {
+		ConfigLoader.configLogger();
+	}
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(ScenarioHook.class);
 	private Scenario scenario = null;
 	private WebDriver driver = null;
@@ -22,7 +26,7 @@ public class ScenarioHook {
 		this.scenario = scenario;
 		LOGGER.info("BEGIN TEST -> " + scenario.getName());
 
-		String browserConfig = PropsLoader.readConfig("browser");
+		String browserConfig = ConfigLoader.configFramework("browser");
 		driver = BrowserFactory.getBrowser(browserConfig);
 		LOGGER.info("Browser=" + browserConfig);
 

@@ -11,7 +11,7 @@
 	<properties>
 		<!-- Project Properties -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<aut>Simply Do - Balance Projector</aut>
+		<app.name>Simply Do - Balance Projector</app.name>
 		<jcucumberng.output>${project.build.directory}/jcucumberng-output</jcucumberng.output>
 		<!-- Maven Properties -->
 		<timestamp>${maven.build.timestamp}</timestamp>
@@ -118,13 +118,13 @@
 							<goal>generate</goal>
 						</goals>
 						<configuration>
-							<projectName>${aut}</projectName>
+							<projectName>${app.name}</projectName>
 							<outputDirectory>${jcucumberng.output}</outputDirectory>
 							<jsonFiles>
 								<param>**/test-report.json</param>
 							</jsonFiles>
 							<classificationFiles>
-								<param>**/aut.properties</param>
+								<!-- no classification file set -->
 							</classificationFiles>
 							<parallelTesting>false</parallelTesting>
 						</configuration>

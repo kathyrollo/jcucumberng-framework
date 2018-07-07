@@ -30,7 +30,7 @@ public final class FileIO {
 
 	/**
 	 * Checks if a file exists in a specified directory. Set {@code file.dir} in
-	 * {@code config.properties}.
+	 * {@code framework.properties}.
 	 * 
 	 * @param prefix
 	 *            the beginning of a filename, can be a substring
@@ -41,7 +41,7 @@ public final class FileIO {
 	 * @throws IOException
 	 */
 	public static boolean doesFileExist(String prefix, String suffix) throws IOException {
-		String directory = PropsLoader.readConfig("file.dir");
+		String directory = ConfigLoader.configFramework("file.dir");
 		File[] files = new File(directory).listFiles();
 
 		String fileName = null;
@@ -61,13 +61,13 @@ public final class FileIO {
 
 	/**
 	 * Extracts readable text from a specified PDF file. Set {@code pdf.file.path}
-	 * in {@code config.properties}. File path must be absolute.
+	 * in {@code framework.properties}. File path must be absolute.
 	 * 
 	 * @return String - extracted text from PDF file
 	 * @throws IOException
 	 */
 	public static String extractPdfText() throws IOException {
-		PdfReader pdfReader = new PdfReader(PropsLoader.readConfig("pdf.file.path"));
+		PdfReader pdfReader = new PdfReader(ConfigLoader.configFramework("pdf.file.path"));
 		int pages = pdfReader.getNumberOfPages();
 
 		String pdfText = "";
