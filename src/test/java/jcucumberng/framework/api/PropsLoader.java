@@ -22,7 +22,7 @@ public final class PropsLoader {
 	/**
 	 * Reads a {@code config.properties} file by passing the key of a setting to
 	 * configure properties of the project. The file must be located in
-	 * {@code /src/test/resources/}.
+	 * {@code /src/test/resources/jcucumberng/framework/}.
 	 * 
 	 * @param key
 	 *            the name corresponding to the value in the key-value pair
@@ -32,7 +32,7 @@ public final class PropsLoader {
 	public static String readConfig(String key) throws IOException {
 		StringBuilder builder = new StringBuilder();
 		builder.append(System.getProperty("user.dir").replace("\\", "/"));
-		builder.append("/src/test/resources/config.properties");
+		builder.append("/src/test/resources/jcucumberng/framework/config.properties");
 
 		InputStream inputStream = new FileInputStream(builder.toString());
 		Properties props = new Properties();
