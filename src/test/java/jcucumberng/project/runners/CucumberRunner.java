@@ -7,7 +7,7 @@ import cucumber.api.SnippetType;
 import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features = { "src/test/resources/features" }, tags = { "not @ignore" }, glue = {
+@CucumberOptions(features = { "src/test/resources/jcucumberng/project/features" }, tags = { "not @ignore" }, glue = {
 		"jcucumberng/project/typeregistry", "jcucumberng/project/stepdefs", "jcucumberng/project/hooks" }, plugin = {
 				"pretty", "html:target/jcucumberng-output/cucumber-html-default",
 				"json:target/jcucumberng-output/test-report.json",
