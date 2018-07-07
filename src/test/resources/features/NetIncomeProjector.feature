@@ -32,4 +32,4 @@ So that I can see my net income per month and per year
 			| Water       | 900    | Weekly        |
 			| Internet    | 1900   | Every 2 Weeks |
 			| Cable TV    | 555    | Daily         |
-		Then I Should See Net Income Per Year: 202025
+		Then I Should See Net Income Per Year: 202026
