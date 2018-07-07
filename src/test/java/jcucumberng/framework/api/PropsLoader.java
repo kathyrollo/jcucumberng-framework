@@ -23,7 +23,7 @@ public final class PropsLoader {
 	 * Reads framework config from {@code framework.properties}.
 	 * 
 	 * @param key
-	 *            the config name (Example: {@code browser=CHROME32}, key =
+	 *            the config key (Example: {@code browser=CHROME32}, key =
 	 *            {@code browser})
 	 * @return String - the value corresponding to the given key (Example:
 	 *         {@code browser=CHROME32}, value = {@code CHROME32})
@@ -53,7 +53,7 @@ public final class PropsLoader {
 	 * Reads project config from {@code project.properties}.
 	 * 
 	 * @param key
-	 *            the config name (Example: {@code base.url=www.google.com}, key =
+	 *            the config key (Example: {@code base.url=www.google.com}, key =
 	 *            {@code base.url})
 	 * @return String - the value corresponding to the given key (Example:
 	 *         {@code base.url=www.google.com}, value = {@code www.google.com})
@@ -80,19 +80,22 @@ public final class PropsLoader {
 	}
 
 	/**
-	 * Reads a {@code ui-map.properties} file by passing the key of a locator used
-	 * to find an element on a web page. The file must be located in
-	 * {@code /src/test/resources/}.
+	 * Reads web elements from {@code ui-map.properties}.
 	 * 
 	 * @param key
-	 *            the name corresponding to the value in the key-value pair
-	 * @return String - the value corresponding to the given key
+	 *            the element key (Example: {@code first.name.txt=by-id:firstName},
+	 *            key = {@code first.name.txt})
+	 * @return String - the value corresponding to the given key (Example:
+	 *         {@code first.name.txt=by-id:firstName}, value =
+	 *         {@code by-id:firstName})
 	 * @throws IOException
 	 */
 	public static String readUiMap(String key) throws IOException {
+		String propsFileName = "ui-map.properties";
 		StringBuilder builder = new StringBuilder();
 		builder.append(System.getProperty("user.dir").replace("\\", "/"));
-		builder.append("/src/test/resources/ui-map.properties");
+		builder.append("/src/test/resources/jcucumberng/project/");
+		builder.append(propsFileName);
 
 		InputStream inputStream = new FileInputStream(builder.toString());
 		Properties props = new Properties();
@@ -100,7 +103,9 @@ public final class PropsLoader {
 
 		String value = props.getProperty(key);
 		if (null == value) {
-			throw new NoSuchKeyException(Messages.NO_SUCH_KEY_UIMAP + key);
+			builder.setLength(0);
+			builder.append(propsFileName + ": " + key);
+			throw new NoSuchKeyException(Messages.NO_SUCH_KEY + builder.toString());
 		}
 		return value.trim();
 	}
