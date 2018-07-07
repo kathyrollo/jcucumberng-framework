@@ -34,7 +34,7 @@ public final class ConfigLoader {
 	 *         {@code browser=CHROME32}, value = {@code CHROME32})
 	 * @throws IOException
 	 */
-	public static String configFramework(String key) throws IOException {
+	public static String frameworkConf(String key) throws IOException {
 		String propsFileName = "framework.properties";
 		StringBuilder builder = new StringBuilder();
 		builder.append(System.getProperty("user.dir").replace("\\", "/"));
@@ -64,7 +64,7 @@ public final class ConfigLoader {
 	 *         {@code base.url=www.google.com}, value = {@code www.google.com})
 	 * @throws IOException
 	 */
-	public static String configProject(String key) throws IOException {
+	public static String projectConf(String key) throws IOException {
 		String propsFileName = "project.properties";
 		StringBuilder builder = new StringBuilder();
 		builder.append(System.getProperty("user.dir").replace("\\", "/"));
@@ -87,9 +87,9 @@ public final class ConfigLoader {
 	/**
 	 * Loads the log4j2 configuration file from {@code framework.properties}.
 	 */
-	public static void configLogger() {
+	public static void initLogger() {
 		try {
-			String log4j2FileName = ConfigLoader.configFramework("log4j2.conf.file");
+			String log4j2FileName = ConfigLoader.frameworkConf("log4j2.conf.file");
 			StringBuilder builder = new StringBuilder();
 			builder.append(System.getProperty("user.dir").replace("\\", "/"));
 			builder.append("/src/test/resources/jcucumberng/framework/");

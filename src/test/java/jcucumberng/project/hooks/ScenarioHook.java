@@ -14,7 +14,7 @@ import jcucumberng.framework.factory.BrowserFactory;
 
 public class ScenarioHook {
 	static {
-		ConfigLoader.configLogger();
+		ConfigLoader.initLogger();
 	}
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ScenarioHook.class);
@@ -26,7 +26,7 @@ public class ScenarioHook {
 		this.scenario = scenario;
 		LOGGER.info("BEGIN TEST -> " + scenario.getName());
 
-		String browserConfig = ConfigLoader.configFramework("browser");
+		String browserConfig = ConfigLoader.frameworkConf("browser");
 		driver = BrowserFactory.getBrowser(browserConfig);
 		LOGGER.info("Browser=" + browserConfig);
 
