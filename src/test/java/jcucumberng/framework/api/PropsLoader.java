@@ -20,19 +20,22 @@ public final class PropsLoader {
 	}
 
 	/**
-	 * Reads a {@code framework.properties} file by passing the key of a setting to
-	 * configure properties of the project. The file must be located in
-	 * {@code /src/test/resources/jcucumberng/framework/}.
+	 * Configures the settings of the framework using the
+	 * {@code framework.properties} file.
 	 * 
 	 * @param key
-	 *            the name corresponding to the value in the key-value pair
-	 * @return String - the value corresponding to the given key
+	 *            the config name (Example: {@code browser=CHROME32}, key =
+	 *            {@code browser})
+	 * @return String - the value corresponding to the given key (Example:
+	 *         {@code browser=CHROME32}, value = {@code CHROME32})
 	 * @throws IOException
 	 */
-	public static String readConfig(String key) throws IOException {
+	public static String readFrameworkSettings(String key) throws IOException {
+		String propsFileName = "framework.properties";
 		StringBuilder builder = new StringBuilder();
 		builder.append(System.getProperty("user.dir").replace("\\", "/"));
-		builder.append("/src/test/resources/jcucumberng/framework/framework.properties");
+		builder.append("/src/test/resources/jcucumberng/framework/");
+		builder.append(propsFileName);
 
 		InputStream inputStream = new FileInputStream(builder.toString());
 		Properties props = new Properties();
@@ -40,7 +43,9 @@ public final class PropsLoader {
 
 		String value = props.getProperty(key);
 		if (null == value) {
-			throw new NoSuchKeyException(Messages.NO_SUCH_KEY_CONFIG + key);
+			builder.setLength(0); // Clear builder object
+			builder.append(propsFileName + ": " + key);
+			throw new NoSuchKeyException(Messages.NO_SUCH_KEY + builder.toString());
 		}
 		return value.trim();
 	}

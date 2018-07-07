@@ -124,7 +124,7 @@
 								<param>**/test-report.json</param>
 							</jsonFiles>
 							<classificationFiles>
-								<param>**/project.properties</param>
+								<!-- no classification file set -->
 							</classificationFiles>
 							<parallelTesting>false</parallelTesting>
 						</configuration>

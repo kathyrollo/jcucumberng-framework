@@ -41,7 +41,7 @@ public final class FileIO {
 	 * @throws IOException
 	 */
 	public static boolean doesFileExist(String prefix, String suffix) throws IOException {
-		String directory = PropsLoader.readConfig("file.dir");
+		String directory = PropsLoader.readFrameworkSettings("file.dir");
 		File[] files = new File(directory).listFiles();
 
 		String fileName = null;
@@ -67,7 +67,7 @@ public final class FileIO {
 	 * @throws IOException
 	 */
 	public static String extractPdfText() throws IOException {
-		PdfReader pdfReader = new PdfReader(PropsLoader.readConfig("pdf.file.path"));
+		PdfReader pdfReader = new PdfReader(PropsLoader.readFrameworkSettings("pdf.file.path"));
 		int pages = pdfReader.getNumberOfPages();
 
 		String pdfText = "";

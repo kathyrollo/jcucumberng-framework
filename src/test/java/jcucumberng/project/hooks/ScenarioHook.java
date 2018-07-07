@@ -22,7 +22,7 @@ public class ScenarioHook {
 		this.scenario = scenario;
 		LOGGER.info("BEGIN TEST -> " + scenario.getName());
 
-		String browserConfig = PropsLoader.readConfig("browser");
+		String browserConfig = PropsLoader.readFrameworkSettings("browser");
 		driver = BrowserFactory.getBrowser(browserConfig);
 		LOGGER.info("Browser=" + browserConfig);
 
