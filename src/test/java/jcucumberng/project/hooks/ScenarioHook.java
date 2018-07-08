@@ -13,8 +13,13 @@ import jcucumberng.framework.api.LocalMachine;
 import jcucumberng.framework.factory.BrowserFactory;
 
 public class ScenarioHook {
+	// Initialize Logger, no edit
+	private static boolean isLoggerInit = false;
 	static {
-		ConfigLoader.initLogger();
+		if (!isLoggerInit) {
+			ConfigLoader.initLogger();
+			isLoggerInit = true;
+		}
 	}
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ScenarioHook.class);
