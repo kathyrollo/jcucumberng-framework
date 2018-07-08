@@ -83,14 +83,14 @@ public final class ConfigLoader {
 	}
 
 	/**
-	 * Loads the log4j2 configuration file from {@code framework.properties}.
+	 * Loads {@code log4j2.conf.file} from {@code framework.properties}.
 	 */
 	public static void initLogger() {
 		String log4j2FileName = null;
 		try {
 			log4j2FileName = ConfigLoader.frameworkConf("log4j2.conf.file");
-		} catch (IOException e) {
-			throw new LoggerConfigException(Messages.LOGGER_CONFIG_FAIL);
+		} catch (IOException ioe) {
+			throw new LoggerConfigException(Messages.LOGGER_CONFIG_FAIL + log4j2FileName);
 		}
 		StringBuilder builder = new StringBuilder();
 		builder.append(System.getProperty("user.dir").replace("\\", "/"));
