@@ -85,7 +85,7 @@ public final class ConfigLoader {
 	/**
 	 * Loads {@code log4j2.conf.file} from {@code framework.properties}.
 	 */
-	public static void initLogger() {
+	public static void loggerConf() {
 		String log4j2FileName = null;
 		try {
 			log4j2FileName = ConfigLoader.frameworkConf("log4j2.conf.file");
@@ -112,7 +112,7 @@ public final class ConfigLoader {
 	 *         {@code by-id:firstName})
 	 * @throws IOException
 	 */
-	public static String readUiMap(String key) throws IOException {
+	public static String uiMap(String key) throws IOException {
 		String propsFileName = "ui-map.properties";
 		StringBuilder builder = new StringBuilder();
 		builder.append(System.getProperty("user.dir").replace("\\", "/"));
