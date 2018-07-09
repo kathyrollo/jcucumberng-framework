@@ -177,10 +177,10 @@ public final class Selenium {
 	 * @return String - the handle of the parent window
 	 */
 	public static String openNewWindow(WebDriver driver, String... args) throws IOException {
-		String parentHandle = driver.getWindowHandle(); // Save parent window
 		if (0 == args.length) {
 			throw new MissingArgumentsException(Messages.MISSING_ARGS);
 		}
+		String parentHandle = driver.getWindowHandle(); // Save parent window
 		// Open child window
 		if (args[0].matches("http[s]?://.*")) { // Check if valid URL
 			driver.get(args[0]);
