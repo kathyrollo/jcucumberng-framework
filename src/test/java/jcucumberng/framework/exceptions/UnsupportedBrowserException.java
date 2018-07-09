@@ -1,8 +1,8 @@
 package jcucumberng.framework.exceptions;
 
 /**
- * {@code UnsupportedBrowserException} is thrown when the specified browser is
- * empty or invalid in {@code framework.properties}.
+ * {@code UnsupportedBrowserException} is thrown when the specified
+ * {@code browser} is empty or invalid in {@code framework.properties}.
  * 
  * @author Kat Rollo <rollo.katherine@gmail.com>
  */

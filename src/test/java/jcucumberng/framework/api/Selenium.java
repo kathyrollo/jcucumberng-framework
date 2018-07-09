@@ -62,7 +62,7 @@ public final class Selenium {
 	 * @throws IOException
 	 */
 	public static By by(String key) throws IOException {
-		String value = ConfigLoader.readUiMap(key);
+		String value = ConfigLoader.uiMap(key);
 		String method = value.substring(0, value.lastIndexOf(":"));
 		String selector = value.substring(value.lastIndexOf(":") + 1);
 		By by = null;
