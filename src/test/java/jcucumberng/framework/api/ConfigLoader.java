@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import org.apache.commons.lang3.StringUtils;
+
 import jcucumberng.framework.exceptions.LoggerConfigException;
 import jcucumberng.framework.exceptions.NoSuchKeyException;
 import jcucumberng.framework.strings.Messages;
@@ -25,8 +27,7 @@ public final class ConfigLoader {
 	/**
 	 * Reads framework config from {@code framework.properties}.
 	 * 
-	 * @param key
-	 *            the config key (Example: {@code browser=CHROME32}, key =
+	 * @param key the config key (Example: {@code browser=CHROME32}, key =
 	 *            {@code browser})
 	 * @return String - the value corresponding to the given key (Example:
 	 *         {@code browser=CHROME32}, value = {@code CHROME32})
@@ -44,7 +45,7 @@ public final class ConfigLoader {
 		props.load(inputStream);
 
 		String value = props.getProperty(key);
-		if (null == value) {
+		if (StringUtils.isBlank(value)) {
 			builder.setLength(0);
 			builder.append(propsFileName + ": " + key);
 			throw new NoSuchKeyException(Messages.NO_SUCH_KEY + builder.toString());
@@ -55,8 +56,7 @@ public final class ConfigLoader {
 	/**
 	 * Reads project config from {@code project.properties}.
 	 * 
-	 * @param key
-	 *            the config key (Example: {@code base.url=www.google.com}, key =
+	 * @param key the config key (Example: {@code base.url=www.google.com}, key =
 	 *            {@code base.url})
 	 * @return String - the value corresponding to the given key (Example:
 	 *         {@code base.url=www.google.com}, value = {@code www.google.com})
@@ -74,7 +74,7 @@ public final class ConfigLoader {
 		props.load(inputStream);
 
 		String value = props.getProperty(key);
-		if (null == value) {
+		if (StringUtils.isBlank(value)) {
 			builder.setLength(0);
 			builder.append(propsFileName + ": " + key);
 			throw new NoSuchKeyException(Messages.NO_SUCH_KEY + builder.toString());
@@ -104,8 +104,7 @@ public final class ConfigLoader {
 	/**
 	 * Reads web elements from {@code ui-map.properties}.
 	 * 
-	 * @param key
-	 *            the element key (Example: {@code first.name.txt=by-id:firstName},
+	 * @param key the element key (Example: {@code first.name.txt=by-id:firstName},
 	 *            key = {@code first.name.txt})
 	 * @return String - the value corresponding to the given key (Example:
 	 *         {@code first.name.txt=by-id:firstName}, value =
@@ -124,7 +123,7 @@ public final class ConfigLoader {
 		props.load(inputStream);
 
 		String value = props.getProperty(key);
-		if (null == value) {
+		if (StringUtils.isBlank(value)) {
 			builder.setLength(0);
 			builder.append(propsFileName + ": " + key);
 			throw new NoSuchKeyException(Messages.NO_SUCH_KEY + builder.toString());
