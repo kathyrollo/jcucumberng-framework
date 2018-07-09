@@ -8,13 +8,18 @@ import org.slf4j.LoggerFactory;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
-import jcucumberng.framework.api.LocalMachine;
 import jcucumberng.framework.api.ConfigLoader;
+import jcucumberng.framework.api.LocalMachine;
 import jcucumberng.framework.factory.BrowserFactory;
 
 public class ScenarioHook {
+	// Load logger config, no edit
+	private static boolean isLoaded = false;
 	static {
-		ConfigLoader.configLogger();
+		if (!isLoaded) {
+			ConfigLoader.loggerConf();
+			isLoaded = true;
+		}
 	}
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ScenarioHook.class);
@@ -26,7 +31,7 @@ public class ScenarioHook {
 		this.scenario = scenario;
 		LOGGER.info("BEGIN TEST -> " + scenario.getName());
 
-		String browserConfig = ConfigLoader.configFramework("browser");
+		String browserConfig = ConfigLoader.frameworkConf("browser");
 		driver = BrowserFactory.getBrowser(browserConfig);
 		LOGGER.info("Browser=" + browserConfig);
 
