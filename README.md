@@ -16,7 +16,7 @@ Supports the following capabilities:
 ## Prerequisites
 The following are required:
 - JDK 1.8+
-- Eclipse IDE, VSCode, IntelliJ
+- Eclipse IDE / VSCode / IntelliJ
 - Git
 - Maven
 
