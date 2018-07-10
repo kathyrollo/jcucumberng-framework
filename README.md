@@ -35,11 +35,13 @@ $ mvn verify
 ~~~
 
 ### Test Reports
-Below are the generated dynamic HTML test reports in `/target/cucumber-html-reports/`:
-<!-- insert screenshots -->
+Below is the generated dynamic HTML report in `/target/cucumber-html-reports/`:
+![dynamic_report_1](https://user-images.githubusercontent.com/28589393/42504692-1cbd7e74-846f-11e8-9446-53abb66222fb.PNG)
 
-Below are the generated static (default) HTML reports in `/target/cucumber-html-default`:
-<!-- insert screenshots -->
+![dynamic_report_2](https://user-images.githubusercontent.com/28589393/42504707-27a9054c-846f-11e8-9a07-2989b6af4436.PNG)
+
+Below is the generated static (default) HTML report in `/target/cucumber-html-default`:
+![static_report_1](https://user-images.githubusercontent.com/28589393/42506180-baa64b4e-8473-11e8-917d-604e85fe9f14.PNG)
 
 ### Logs
 Below are the generated logs in `/target/report-logs/`:
