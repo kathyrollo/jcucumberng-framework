@@ -9,7 +9,7 @@ Supports the following capabilities:
 - Cucumber PicoContainer for dependency injection
 - Compatibile with IE11, Edge, Chrome, Firefox (extendable)
 - Uses Maven for build and test execution via cmdline
-- Uses Log4j2 (SLF4J) for logging mechanism with daily rolling file
+- Uses Log4j2 for logging mechanism with daily rolling file
 - Automated test result generation in HTML, JSON, XML
 - Embedded screenshots in pretty HTML/human-readable reports
 
@@ -53,3 +53,5 @@ Below are the generated logs in `/target/report-logs/`:
 [DEBUG] 2018-07-10 15:13:12,004 HomePageNavigationSteps.I_Should_See_Page_Title() - Window Title=Simply Do - Balance Projector
 [INFO ] 2018-07-10 15:13:12,322 ScenarioHook.afterScenario() - END TEST -> Verify Page Title - PASSED
 ~~~
+
+The user guide is available in the [Project Wiki](#).
