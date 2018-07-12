@@ -10,9 +10,9 @@
 		<RollingFile name="rollingFile" fileName="${logPath}/report.log" filePattern="${logPath}/report_%d{yyyy-MM-dd}.log">
 			<PatternLayout pattern="[%highlight{%-5level}] %d{DEFAULT} %c{1}.%M() - %msg%n%throwable{short.lineNumber}" />
 			<Policies>
-				<!-- Create log file every time the JVM starts -->
+				<!-- Causes a rollover if the log file is older than the current JVM's start time -->
 				<OnStartupTriggeringPolicy />
-				<!-- Roll log file based on date/time pattern -->
+				<!-- Causes a rollover once the date/time pattern no longer applies to the active file -->
 				<TimeBasedTriggeringPolicy interval="1" modulate="true" />
 			</Policies>
 		</RollingFile>
