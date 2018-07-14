@@ -136,8 +136,7 @@
 								<param>**/cucumber-report.json</param>
 							</jsonFiles>
 							<classificationFiles>
-								<param>**/app.properties</param>
-								<param>**/driver.properties</param>
+								<param>**/classifications/*.properties</param>
 							</classificationFiles>
 							<parallelTesting>false</parallelTesting>
 						</configuration>
