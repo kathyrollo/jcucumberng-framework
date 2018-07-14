@@ -53,4 +53,4 @@ Below are the generated logs in `/target/report-logs/`:
 [INFO ] 2018-07-10 15:13:12,322 ScenarioHook.afterScenario() - END TEST -> Verify Page Title - PASSED
 ~~~
 
-The user guide is available in the [project wiki](#).
+The user guide is available in the project [Wiki](https://github.com/kathyrollo/jcucumberng-framework/wiki).
