@@ -40,7 +40,7 @@ Below is the generated dynamic HTML report in `/target/cucumber-html-reports/`:
 ![dynamic_report_2](https://user-images.githubusercontent.com/28589393/42504707-27a9054c-846f-11e8-9a07-2989b6af4436.PNG)
 
 Below is the generated static (default) HTML report in `/target/cucumber-html-default`:
-![static_report_1](https://user-images.githubusercontent.com/28589393/42506180-baa64b4e-8473-11e8-917d-604e85fe9f14.PNG)
+![static_report_1](https://user-images.githubusercontent.com/28589393/42722129-31cbfd56-8779-11e8-8117-55a91f09a4db.png)
 
 ### Logs
 Below are the generated logs in `/target/report-logs/`:
