@@ -1,7 +1,7 @@
 # jCucumberNG-Framework
 
 ## Overview
-Allows automation testers to easily write feature files for Cucumber and implement step definitions in Java. ngWebDriver (Protractor) offers support for AngularJS/2 web applications.
+Allows automation testers to easily write Feature/Gherkin files for Cucumber and implement step definitions in plain Java classes. ngWebDriver (Protractor) offers support for Angular/JS web applications.
 
 ## Features
 Supports the following capabilities:
@@ -15,10 +15,12 @@ Supports the following capabilities:
 
 ## Prerequisites
 The following are required:
-- JDK 1.8+
-- Eclipse IDE / VSCode / IntelliJ
-- Git
-- Maven
+- [JDK 1.8+](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+- [Eclipse IDE](http://www.eclipse.org/downloads/eclipse-packages/) / [VSCode](https://code.visualstudio.com/download) / [IntelliJ](https://www.jetbrains.com/idea/download/#section=windows)
+- [Git](https://git-scm.com/downloads)
+- [Maven](https://maven.apache.org/download.cgi)
+
+Installation and configuration of the above are not in the scope of this guide. Check the corresponding official documentation or external tutorials accordingly.
 
 ## Getting Started
 This section will help you run the project for the first time. No further configurations are needed at this point. We will run the tests using the project's pre-defined settings.
@@ -54,4 +56,4 @@ Below are the generated logs in `/target/report-logs/`:
 [INFO ] 2018-07-10 15:13:12,322 ScenarioHook.afterScenario() - END TEST -> Verify Page Title - PASSED
 ~~~
 
-The user guide is available in the [Project Wiki](#).
+The framework user guide is available in the [Project Wiki](#).
