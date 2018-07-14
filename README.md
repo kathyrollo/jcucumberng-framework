@@ -24,15 +24,12 @@ Installation and configuration of the above are not in the scope of this guide. 
 
 ## Getting Started
 This section will help you run the project for the first time. No further configurations are needed at this point. We will run the tests using the project's pre-defined settings.
-1. Run the following commands in the cmdline:
+
+Run the following commands in the cmdline:
 ~~~
 $ cd /path/to/workspace/
 $ git clone <https or ssh>
 $ cd jcucumberng-framework
-$ mvn clean install
-~~~
-2. The command below can be used for subsequent executions:
-~~~
 $ mvn verify
 ~~~
 
