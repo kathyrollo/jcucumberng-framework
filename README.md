@@ -1,7 +1,7 @@
 # jCucumberNG-Framework
 
 ## Overview
-Allows automation testers to easily write feature files for Cucumber and implement step definitions in Java. ngWebDriver (Protractor) offers support for AngularJS/2 web applications.
+Allows automation testers to easily write Feature/Gherkin files for Cucumber and implement step definitions in plain Java classes. ngWebDriver (Protractor) offers support for Angular/JS web applications.
 
 ## Features
 Supports the following capabilities:
@@ -15,22 +15,21 @@ Supports the following capabilities:
 
 ## Prerequisites
 The following are required:
-- JDK 1.8+
-- Eclipse IDE / VSCode / IntelliJ
-- Git
-- Maven
+- [JDK 1.8+](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+- [Eclipse IDE](http://www.eclipse.org/downloads/eclipse-packages/) / [VSCode](https://code.visualstudio.com/download) / [IntelliJ](https://www.jetbrains.com/idea/download/#section=windows)
+- [Git](https://git-scm.com/downloads)
+- [Maven](https://maven.apache.org/download.cgi)
+
+Installation and configuration of the above are not in the scope of this guide. Check the corresponding official documentation or external tutorials accordingly.
 
 ## Getting Started
 This section will help you run the project for the first time. No further configurations are needed at this point. We will run the tests using the project's pre-defined settings.
-1. Run the following commands in the cmdline:
+
+Run the following commands in the cmdline:
 ~~~
 $ cd /path/to/workspace/
 $ git clone <https or ssh>
 $ cd jcucumberng-framework
-$ mvn clean install
-~~~
-2. The command below can be used for subsequent executions:
-~~~
 $ mvn verify
 ~~~
 
@@ -41,7 +40,7 @@ Below is the generated dynamic HTML report in `/target/cucumber-html-reports/`:
 ![dynamic_report_2](https://user-images.githubusercontent.com/28589393/42504707-27a9054c-846f-11e8-9a07-2989b6af4436.PNG)
 
 Below is the generated static (default) HTML report in `/target/cucumber-html-default`:
-![static_report_1](https://user-images.githubusercontent.com/28589393/42506180-baa64b4e-8473-11e8-917d-604e85fe9f14.PNG)
+![static_report_1](https://user-images.githubusercontent.com/28589393/42722129-31cbfd56-8779-11e8-8117-55a91f09a4db.png)
 
 ### Logs
 Below are the generated logs in `/target/report-logs/`:
@@ -54,4 +53,4 @@ Below are the generated logs in `/target/report-logs/`:
 [INFO ] 2018-07-10 15:13:12,322 ScenarioHook.afterScenario() - END TEST -> Verify Page Title - PASSED
 ~~~
 
-The user guide is available in the [Project Wiki](#).
+The user guide is available in the project [Wiki](https://github.com/kathyrollo/jcucumberng-framework/wiki).
