@@ -66,7 +66,6 @@ public final class Selenium {
 		String method = value.substring(0, value.lastIndexOf(":"));
 		String selector = value.substring(value.lastIndexOf(":") + 1);
 		By by = null;
-		// TODO Add by-methods as needed
 		if (method.equalsIgnoreCase("by-classname")) {
 			by = By.className(selector);
 		} else if (method.equalsIgnoreCase("by-css")) {
