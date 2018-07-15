@@ -37,7 +37,7 @@ public final class Selenium {
 	}
 
 	/**
-	 * Returns the By object based on the {@code by-method} and {@code selector}
+	 * Returns the By object based on the {@code method} and {@code selector}
 	 * delimited by a colon ({@code :}) from {@code ui-map.properties}.<br>
 	 * <br>
 	 * Example:
@@ -45,10 +45,10 @@ public final class Selenium {
 	 * <pre>
 	 * {@code
 	 * ui-map.properties:
-	 * income.add.btn=by-css:button[ng-click='addIncome();']
+	 * income.add.btn=css:button[ng-click='addIncome();']
 	 * 
 	 * Where:
-	 * by-method = by-css
+	 * method = css
 	 * selector = button[ng-click='addIncome();']
 	 * 
 	 * Therefore:
@@ -66,13 +66,13 @@ public final class Selenium {
 		String method = value.substring(0, value.lastIndexOf(":"));
 		String selector = value.substring(value.lastIndexOf(":") + 1);
 		By by = null;
-		if (method.equalsIgnoreCase("by-classname")) {
+		if (method.equalsIgnoreCase("classname")) {
 			by = By.className(selector);
-		} else if (method.equalsIgnoreCase("by-css")) {
+		} else if (method.equalsIgnoreCase("css")) {
 			by = By.cssSelector(selector);
-		} else if (method.equalsIgnoreCase("by-model")) {
+		} else if (method.equalsIgnoreCase("model")) {
 			by = ByAngular.model(selector);
-		} else if (method.equalsIgnoreCase("by-binding")) {
+		} else if (method.equalsIgnoreCase("binding")) {
 			by = ByAngular.binding(selector);
 		} else {
 			throw new UnsupportedByMethodException(Messages.UNSUPPORTED_BY_METHOD + method);
