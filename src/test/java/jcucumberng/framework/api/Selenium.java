@@ -63,16 +63,16 @@ public final class Selenium {
 	 */
 	public static By by(String key) throws IOException {
 		String value = ConfigLoader.uiMap(key);
-		String method = value.substring(0, value.lastIndexOf(":"));
+		String method = value.substring(0, value.lastIndexOf(":")).toLowerCase();
 		String selector = value.substring(value.lastIndexOf(":") + 1);
 		By by = null;
-		if (method.equalsIgnoreCase("classname")) {
+		if (method.equals("classname")) {
 			by = By.className(selector);
-		} else if (method.equalsIgnoreCase("css")) {
+		} else if (method.equals("css")) {
 			by = By.cssSelector(selector);
-		} else if (method.equalsIgnoreCase("model")) {
+		} else if (method.equals("model")) {
 			by = ByAngular.model(selector);
-		} else if (method.equalsIgnoreCase("binding")) {
+		} else if (method.equals("binding")) {
 			by = ByAngular.binding(selector);
 		} else {
 			throw new UnsupportedByMethodException(Messages.UNSUPPORTED_BY_METHOD + method);
