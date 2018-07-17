@@ -18,11 +18,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.paulhammant.ngwebdriver.ByAngular;
-
 import cucumber.api.Scenario;
 import jcucumberng.framework.exceptions.MissingArgumentsException;
-import jcucumberng.framework.exceptions.UnsupportedByMethodException;
+import jcucumberng.framework.factory.ByMethodFactory;
 import jcucumberng.framework.strings.Messages;
 
 /**
@@ -37,7 +35,7 @@ public final class Selenium {
 	}
 
 	/**
-	 * Returns the By object based on the {@code method} and {@code selector}
+	 * Returns the {@code By} object based on the {@code method} and {@code selector}
 	 * delimited by a colon ({@code :}) from {@code ui-map.properties}.<br>
 	 * <br>
 	 * Example:
@@ -56,37 +54,19 @@ public final class Selenium {
 	 * }
 	 * </pre>
 	 * 
-	 * @param key
-	 *            the key from {@code ui-map.properties}
-	 * @return By - the By object
+	 * @param key the key from {@code ui-map.properties}
+	 * @return By - the {@code By} object
 	 * @throws IOException
 	 */
 	public static By by(String key) throws IOException {
-		String value = ConfigLoader.uiMap(key);
-		String method = value.substring(0, value.lastIndexOf(":"));
-		String selector = value.substring(value.lastIndexOf(":") + 1);
-		By by = null;
-		if (method.equalsIgnoreCase("classname")) {
-			by = By.className(selector);
-		} else if (method.equalsIgnoreCase("css")) {
-			by = By.cssSelector(selector);
-		} else if (method.equalsIgnoreCase("model")) {
-			by = ByAngular.model(selector);
-		} else if (method.equalsIgnoreCase("binding")) {
-			by = ByAngular.binding(selector);
-		} else {
-			throw new UnsupportedByMethodException(Messages.UNSUPPORTED_BY_METHOD + method);
-		}
-		return by;
+		return ByMethodFactory.getBy(key);
 	}
 
 	/**
 	 * Clicks an element on the web page.
 	 * 
-	 * @param driver
-	 *            the Selenium WebDriver
-	 * @param keys
-	 *            the key(s) from {@code ui-map.properties}
+	 * @param driver the Selenium WebDriver
+	 * @param keys   the key(s) from {@code ui-map.properties}
 	 * @return WebElement - the clickable element
 	 * @throws IOException
 	 */
@@ -100,12 +80,9 @@ public final class Selenium {
 	/**
 	 * Enters text into a textfield or textarea.
 	 * 
-	 * @param driver
-	 *            the Selenium WebDriver
-	 * @param text
-	 *            the text to be entered
-	 * @param keys
-	 *            the key(s) from {@code ui-map.properties}
+	 * @param driver the Selenium WebDriver
+	 * @param text   the text to be entered
+	 * @param keys   the key(s) from {@code ui-map.properties}
 	 * @return WebElement - the textfield or textarea element
 	 * @throws IOException
 	 */
@@ -120,12 +97,9 @@ public final class Selenium {
 	/**
 	 * Enters text into a textfield or textarea.
 	 * 
-	 * @param driver
-	 *            the Selenium WebDriver
-	 * @param text
-	 *            the text to be entered
-	 * @param field
-	 *            the textfield or textarea element
+	 * @param driver the Selenium WebDriver
+	 * @param text   the text to be entered
+	 * @param field  the textfield or textarea element
 	 * @throws IOException
 	 */
 	public static void enterText(WebDriver driver, String text, WebElement field) throws IOException {
@@ -136,10 +110,8 @@ public final class Selenium {
 	/**
 	 * Returns a List of all Select elements.
 	 * 
-	 * @param driver
-	 *            the Selenium WebDriver
-	 * @param keys
-	 *            the key(s) from {@code ui-map.properties}
+	 * @param driver the Selenium WebDriver
+	 * @param keys   the key(s) from {@code ui-map.properties}
 	 * @return List - the List of Select elements
 	 * @throws IOException
 	 */
@@ -156,8 +128,7 @@ public final class Selenium {
 	/**
 	 * Returns all text inside the body tag in HTML.
 	 * 
-	 * @param driver
-	 *            the Selenium WebDriver
+	 * @param driver the Selenium WebDriver
 	 * @return String - the text within HTML body tags
 	 */
 	public static String getBodyText(WebDriver driver) {
@@ -168,11 +139,9 @@ public final class Selenium {
 	 * Opens a new window by clicking a link or an element and switches to that
 	 * window.
 	 * 
-	 * @param driver
-	 *            the Selenium WebDriver
-	 * @param args
-	 *            the link to the child window or the key(s) from
-	 *            {@code ui-map.properties}
+	 * @param driver the Selenium WebDriver
+	 * @param args   the link to the child window or the key(s) from
+	 *               {@code ui-map.properties}
 	 * @return String - the handle of the parent window
 	 */
 	public static String openNewWindow(WebDriver driver, String... args) throws IOException {
@@ -205,10 +174,8 @@ public final class Selenium {
 	/**
 	 * Switches to an existing open window by window title.
 	 * 
-	 * @param driver
-	 *            the Selenium WebDriver
-	 * @param windowTitle
-	 *            the title of the window
+	 * @param driver      the Selenium WebDriver
+	 * @param windowTitle the title of the window
 	 * @return String - the handle of the parent window
 	 */
 	public static String switchToWindowByTitle(WebDriver driver, String windowTitle) {
@@ -229,10 +196,8 @@ public final class Selenium {
 	/**
 	 * Scroll the screen horizontally.
 	 * 
-	 * @param driver
-	 *            the Selenium WebDriver
-	 * @param xPos
-	 *            negative value to scroll left, positive value to scroll right
+	 * @param driver the Selenium WebDriver
+	 * @param xPos   negative value to scroll left, positive value to scroll right
 	 */
 	public static void scrollHorizontal(WebDriver driver, int xPos) {
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
@@ -242,10 +207,8 @@ public final class Selenium {
 	/**
 	 * Scroll the screen vertically.
 	 * 
-	 * @param driver
-	 *            the Selenium WebDriver
-	 * @param yPos
-	 *            positive value to scroll down, negative value to scroll up
+	 * @param driver the Selenium WebDriver
+	 * @param yPos   positive value to scroll down, negative value to scroll up
 	 */
 	public static void scrollVertical(WebDriver driver, int yPos) {
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
@@ -255,10 +218,8 @@ public final class Selenium {
 	/**
 	 * Scroll to specific element on web page.
 	 * 
-	 * @param driver
-	 *            the Selenium WebDriver
-	 * @param keys
-	 *            the key(s) from {@code ui-map.properties}
+	 * @param driver the Selenium WebDriver
+	 * @param keys   the key(s) from {@code ui-map.properties}
 	 * @throws IOException
 	 */
 	public static void scrollToElement(WebDriver driver, String... keys) throws IOException {
@@ -271,10 +232,8 @@ public final class Selenium {
 	/**
 	 * Scroll to specific element on web page.
 	 * 
-	 * @param driver
-	 *            the Selenium WebDriver
-	 * @param element
-	 *            the element to scroll to
+	 * @param driver  the Selenium WebDriver
+	 * @param element the element to scroll to
 	 */
 	public static void scrollToElement(WebDriver driver, WebElement element) {
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
@@ -285,8 +244,7 @@ public final class Selenium {
 	 * Captures the current screen. Stores images in
 	 * {@code /target/jcucumberng-output/test-report-sshots/} in PNG format.
 	 * 
-	 * @param driver
-	 *            the Selenium WebDriver
+	 * @param driver the Selenium WebDriver
 	 * @throws IOException
 	 */
 	public static void captureScreenshot(WebDriver driver) throws IOException {
@@ -304,10 +262,8 @@ public final class Selenium {
 	/**
 	 * Captures and embeds screenshot in generated HTML report.
 	 * 
-	 * @param scenario
-	 *            the Scenario object
-	 * @param driver
-	 *            the Selenium WebDriver
+	 * @param scenario the Scenario object
+	 * @param driver   the Selenium WebDriver
 	 */
 	public static void embedScreenshot(WebDriver driver, Scenario scenario) {
 		byte[] srcBytes = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
@@ -317,8 +273,7 @@ public final class Selenium {
 	/**
 	 * Returns arbitrary {@code String... keys} as By array.
 	 * 
-	 * @param keys
-	 *            the key(s) from {@code ui-map.properties}
+	 * @param keys the key(s) from {@code ui-map.properties}
 	 * @return By[ ] - the By array
 	 * @throws IOException
 	 */
