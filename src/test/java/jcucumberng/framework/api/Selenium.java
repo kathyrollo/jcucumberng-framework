@@ -18,12 +18,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.paulhammant.ngwebdriver.ByAngular;
-
 import cucumber.api.Scenario;
-import jcucumberng.framework.enums.ByMethod;
 import jcucumberng.framework.exceptions.MissingArgumentsException;
-import jcucumberng.framework.exceptions.UnsupportedByMethodException;
+import jcucumberng.framework.factory.ByMethodFactory;
 import jcucumberng.framework.strings.Messages;
 
 /**
@@ -62,51 +59,7 @@ public final class Selenium {
 	 * @throws IOException
 	 */
 	public static By by(String key) throws IOException {
-		String value = ConfigLoader.uiMap(key);
-		String method = value.substring(0, value.lastIndexOf(":")).toUpperCase();
-		String selector = value.substring(value.lastIndexOf(":") + 1);
-		By by = null;
-		try {
-			ByMethod byMethod = ByMethod.valueOf(method);
-			switch (byMethod) {
-			case ID:
-				by = By.id(selector);
-				break;
-			case NAME:
-				by = By.name(selector);
-				break;
-			case LINK_TEXT:
-				by = By.linkText(selector);
-				break;
-			case PARTIAL_LINK_TEXT:
-				by = By.partialLinkText(selector);
-				break;
-			case TAG:
-				by = By.tagName(selector);
-				break;
-			case CLASS:
-				by = By.className(selector);
-				break;
-			case CSS:
-				by = By.cssSelector(selector);
-				break;
-			case XPATH:
-				by = By.xpath(selector);
-				break;
-			case MODEL:
-				by = ByAngular.model(selector);
-				break;
-			case BINDING:
-				by = ByAngular.binding(selector);
-				break;
-			default:
-				// Handled in try-catch
-				break;
-			}
-		} catch (IllegalArgumentException iae) {
-			throw new UnsupportedByMethodException(Messages.UNSUPPORTED_BY_METHOD + method);
-		}
-		return by;
+		return ByMethodFactory.getBy(key);
 	}
 
 	/**
