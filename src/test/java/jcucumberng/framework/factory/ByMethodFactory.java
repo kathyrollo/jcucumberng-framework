@@ -11,12 +11,25 @@ import jcucumberng.framework.enums.ByMethod;
 import jcucumberng.framework.exceptions.UnsupportedByMethodException;
 import jcucumberng.framework.strings.Messages;
 
+/**
+ * {@code ByMethodFactory} handles actions for manipulating the Selenium
+ * {@code By} object.
+ * 
+ * @author Kat Rollo <rollo.katherine@gmail.com>
+ */
 public final class ByMethodFactory {
 
 	private ByMethodFactory() {
 		// Prevent instantiation
 	}
 
+	/**
+	 * Gets the Selenium {@code By} object.
+	 * 
+	 * @param key the key from {@code ui-map.properties}
+	 * @return By - the {@code By} object
+	 * @throws IOException
+	 */
 	public static By getBy(String key) throws IOException {
 		String value = ConfigLoader.uiMap(key);
 		String method = value.substring(0, value.lastIndexOf(":")).toUpperCase();

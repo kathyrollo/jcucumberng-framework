@@ -35,7 +35,7 @@ public final class Selenium {
 	}
 
 	/**
-	 * Returns the By object based on the {@code method} and {@code selector}
+	 * Returns the {@code By} object based on the {@code method} and {@code selector}
 	 * delimited by a colon ({@code :}) from {@code ui-map.properties}.<br>
 	 * <br>
 	 * Example:
@@ -55,7 +55,7 @@ public final class Selenium {
 	 * </pre>
 	 * 
 	 * @param key the key from {@code ui-map.properties}
-	 * @return By - the By object
+	 * @return By - the {@code By} object
 	 * @throws IOException
 	 */
 	public static By by(String key) throws IOException {
