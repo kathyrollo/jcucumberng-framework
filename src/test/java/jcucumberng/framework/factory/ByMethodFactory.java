@@ -63,11 +63,32 @@ public final class ByMethodFactory {
 			case XPATH:
 				by = By.xpath(selector);
 				break;
+			case BINDING:
+				by = ByAngular.binding(selector);
+				break;
 			case MODEL:
 				by = ByAngular.model(selector);
 				break;
-			case BINDING:
-				by = ByAngular.binding(selector);
+			case BUTTON_TEXT:
+				by = ByAngular.buttonText(selector);
+				break;
+			case CSS_CONTAINING_TEXT:
+				// TODO Implement cssContainingText
+				break;
+			case EXACT_BINDING:
+				by = ByAngular.exactBinding(selector);
+				break;
+			case EXACT_REPEATER:
+				by = ByAngular.exactRepeater(selector);
+				break;
+			case OPTIONS:
+				by = ByAngular.options(selector);
+				break;
+			case PARTIAL_BUTTON_TEXT:
+				by = ByAngular.partialButtonText(selector);
+				break;
+			case REPEATER:
+				by = ByAngular.repeater(selector);
 				break;
 			default:
 				// Handled in try-catch
