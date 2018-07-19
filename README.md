@@ -13,6 +13,8 @@ Supports the following capabilities:
 - Uses Log4j2 for logging mechanism with daily rolling file
 - Automated test result generation in HTML, JSON, XML
 - Embedded screenshots in HTML reports
+- Custom exceptions to assist framework usage and troubleshooting
+- Fully documented source code
 
 ## Prerequisites
 The following are required:
