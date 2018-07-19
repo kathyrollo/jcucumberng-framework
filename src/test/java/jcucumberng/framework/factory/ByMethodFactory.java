@@ -8,6 +8,7 @@ import com.paulhammant.ngwebdriver.ByAngular;
 
 import jcucumberng.framework.api.ConfigLoader;
 import jcucumberng.framework.enums.ByMethod;
+import jcucumberng.framework.exceptions.InvalidPatternException;
 import jcucumberng.framework.exceptions.UnsupportedByMethodException;
 import jcucumberng.framework.strings.Messages;
 
@@ -32,6 +33,10 @@ public final class ByMethodFactory {
 	 */
 	public static By getBy(String key) throws IOException {
 		String value = ConfigLoader.uiMap(key);
+		if (!value.matches(".+:.+")) {
+			throw new InvalidPatternException(Messages.INVALID_PATTERN + value);
+		}
+
 		String method = value.substring(0, value.lastIndexOf(":")).toUpperCase();
 		String selector = value.substring(value.lastIndexOf(":") + 1);
 
