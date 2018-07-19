@@ -13,14 +13,14 @@ import jcucumberng.framework.exceptions.UnsupportedByMethodException;
 import jcucumberng.framework.strings.Messages;
 
 /**
- * {@code ByMethodFactory} handles actions for manipulating the Selenium
+ * {@code ByFactory} handles actions for manipulating the Selenium
  * {@code By} object.
  * 
  * @author Kat Rollo <rollo.katherine@gmail.com>
  */
-public final class ByMethodFactory {
+public final class ByFactory {
 
-	private ByMethodFactory() {
+	private ByFactory() {
 		// Prevent instantiation
 	}
 

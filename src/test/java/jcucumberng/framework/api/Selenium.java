@@ -20,7 +20,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import cucumber.api.Scenario;
 import jcucumberng.framework.exceptions.MissingArgumentsException;
-import jcucumberng.framework.factory.ByMethodFactory;
+import jcucumberng.framework.factory.ByFactory;
 import jcucumberng.framework.strings.Messages;
 
 /**
@@ -60,7 +60,7 @@ public final class Selenium {
 	 * @throws IOException
 	 */
 	public static By by(String key) throws IOException {
-		return ByMethodFactory.getBy(key);
+		return ByFactory.getBy(key);
 	}
 
 	/**
