@@ -35,8 +35,9 @@ public final class Selenium {
 	}
 
 	/**
-	 * Returns the {@code By} object based on the {@code method} and {@code selector}
-	 * delimited by a colon ({@code :}) from {@code ui-map.properties}.<br>
+	 * Returns the {@code By} object based on the {@code method} and
+	 * {@code selector} delimited by a colon ({@code :}) from
+	 * {@code ui-map.properties}.<br>
 	 * <br>
 	 * Example:
 	 * 
@@ -150,7 +151,7 @@ public final class Selenium {
 		}
 		String parentHandle = driver.getWindowHandle(); // Save parent window
 		// Open child window
-		if (args[0].matches("http[s]?://.*")) { // Check if valid URL
+		if (args[0].matches("http[s]?://.+")) { // Check if valid URL
 			driver.get(args[0]);
 		} else {
 			Selenium.clickElement(driver, args);
