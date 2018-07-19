@@ -88,16 +88,17 @@ public final class ConfigLoader {
 	 * Loads {@code log4j2.conf.file} from {@code framework.properties}.
 	 */
 	public static void loggerConf() {
-		String log4j2FileName = null;
+		String cfgFile = null;
 		try {
-			log4j2FileName = ConfigLoader.frameworkConf("log4j2.conf.file");
+			cfgFile = ConfigLoader.frameworkConf("log4j2.conf.file");
 		} catch (IOException ioe) {
-			throw new LoggerConfigException(Messages.LOGGER_CONFIG_FAIL + log4j2FileName);
+			throw new LoggerConfigException(Messages.LOGGER_CONFIG_FAIL + cfgFile);
 		}
+
 		StringBuilder builder = new StringBuilder();
 		builder.append(System.getProperty("user.dir").replace("\\", "/"));
 		builder.append("/src/test/resources/jcucumberng/framework/");
-		builder.append(log4j2FileName);
+		builder.append(cfgFile);
 
 		File log4j2File = new File(builder.toString());
 		System.setProperty("log4j2.configurationFile", log4j2File.toURI().toString());
