@@ -50,6 +50,7 @@ public final class ConfigLoader {
 			builder.append(propsFileName + ": " + key);
 			throw new NoSuchKeyException(Messages.NO_SUCH_KEY + builder.toString());
 		}
+
 		return value.trim();
 	}
 
@@ -79,6 +80,7 @@ public final class ConfigLoader {
 			builder.append(propsFileName + ": " + key);
 			throw new NoSuchKeyException(Messages.NO_SUCH_KEY + builder.toString());
 		}
+
 		return value.trim();
 	}
 
@@ -86,16 +88,17 @@ public final class ConfigLoader {
 	 * Loads {@code log4j2.conf.file} from {@code framework.properties}.
 	 */
 	public static void loggerConf() {
-		String log4j2FileName = null;
+		String cfgFile = null;
 		try {
-			log4j2FileName = ConfigLoader.frameworkConf("log4j2.conf.file");
+			cfgFile = ConfigLoader.frameworkConf("log4j2.conf.file");
 		} catch (IOException ioe) {
-			throw new LoggerConfigException(Messages.LOGGER_CONFIG_FAIL + log4j2FileName);
+			throw new LoggerConfigException(Messages.LOGGER_CONFIG_FAIL + cfgFile);
 		}
+
 		StringBuilder builder = new StringBuilder();
 		builder.append(System.getProperty("user.dir").replace("\\", "/"));
 		builder.append("/src/test/resources/jcucumberng/framework/");
-		builder.append(log4j2FileName);
+		builder.append(cfgFile);
 
 		File log4j2File = new File(builder.toString());
 		System.setProperty("log4j2.configurationFile", log4j2File.toURI().toString());
@@ -104,11 +107,10 @@ public final class ConfigLoader {
 	/**
 	 * Reads web elements from {@code ui-map.properties}.
 	 * 
-	 * @param key the element key (Example: {@code first.name.txt=id:firstName},
-	 *            key = {@code first.name.txt})
+	 * @param key the element key (Example: {@code first.name.txt=id:firstName}, key
+	 *            = {@code first.name.txt})
 	 * @return String - the value corresponding to the given key (Example:
-	 *         {@code first.name.txt=id:firstName}, value =
-	 *         {@code id:firstName})
+	 *         {@code first.name.txt=id:firstName}, value = {@code id:firstName})
 	 * @throws IOException
 	 */
 	public static String uiMap(String key) throws IOException {
@@ -128,6 +130,7 @@ public final class ConfigLoader {
 			builder.append(propsFileName + ": " + key);
 			throw new NoSuchKeyException(Messages.NO_SUCH_KEY + builder.toString());
 		}
+
 		return value.trim();
 	}
 

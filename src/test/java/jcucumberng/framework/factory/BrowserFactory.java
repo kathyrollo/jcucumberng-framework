@@ -30,8 +30,8 @@ public final class BrowserFactory {
 	/**
 	 * Gets the Selenium WebDriver instance.
 	 * 
-	 * @param browserConfig
-	 *            the {@code browser} specified in {@code framework.properties}
+	 * @param browserConfig the {@code browser} specified in
+	 *                      {@code framework.properties}
 	 * @return WebDriver - the Selenium WebDriver
 	 */
 	public static WebDriver getBrowser(String browserConfig) {
@@ -98,8 +98,7 @@ public final class BrowserFactory {
 	/**
 	 * Quits all instances of the driver (close all windows).
 	 * 
-	 * @param driver
-	 *            the Selenium WebDriver
+	 * @param driver the Selenium WebDriver
 	 */
 	public static void quitBrowser(WebDriver driver) {
 		driver.quit();

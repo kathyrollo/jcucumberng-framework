@@ -13,10 +13,12 @@ Supports the following capabilities:
 - Uses Log4j2 for logging mechanism with daily rolling file
 - Automated test result generation in HTML, JSON, XML
 - Embedded screenshots in HTML reports
+- Custom exceptions to assist framework usage and troubleshooting
+- Fully documented source code
 
 ## Prerequisites
 The following are required:
-- [JDK 1.8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
+- [JDK 1.8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) or higher
 - [Eclipse IDE](http://www.eclipse.org/downloads/eclipse-packages/) / [VSCode](https://code.visualstudio.com/download) / [IntelliJ](https://www.jetbrains.com/idea/download/#section=windows)
 - [Git](https://git-scm.com/downloads)
 - [Maven](https://maven.apache.org/download.cgi)
