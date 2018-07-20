@@ -20,7 +20,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import cucumber.api.Scenario;
 import jcucumberng.framework.exceptions.MissingArgumentsException;
-import jcucumberng.framework.factory.ByMethodFactory;
+import jcucumberng.framework.factory.ByFactory;
 import jcucumberng.framework.strings.Messages;
 
 /**
@@ -35,8 +35,9 @@ public final class Selenium {
 	}
 
 	/**
-	 * Returns the {@code By} object based on the {@code method} and {@code selector}
-	 * delimited by a colon ({@code :}) from {@code ui-map.properties}.<br>
+	 * Returns the {@code By} object based on the {@code method} and
+	 * {@code selector} delimited by a colon ({@code :}) from
+	 * {@code ui-map.properties}.<br>
 	 * <br>
 	 * Example:
 	 * 
@@ -59,7 +60,7 @@ public final class Selenium {
 	 * @throws IOException
 	 */
 	public static By by(String key) throws IOException {
-		return ByMethodFactory.getBy(key);
+		return ByFactory.getBy(key);
 	}
 
 	/**
@@ -150,7 +151,7 @@ public final class Selenium {
 		}
 		String parentHandle = driver.getWindowHandle(); // Save parent window
 		// Open child window
-		if (args[0].matches("http[s]?://.*")) { // Check if valid URL
+		if (args[0].matches("http[s]?://.+")) { // Check if valid URL
 			driver.get(args[0]);
 		} else {
 			Selenium.clickElement(driver, args);
@@ -242,7 +243,7 @@ public final class Selenium {
 
 	/**
 	 * Captures the current screen. Stores images in
-	 * {@code /target/jcucumberng-output/test-report-sshots/} in PNG format.
+	 * {@code /target/cucumber-sshots/} in PNG format.
 	 * 
 	 * @param driver the Selenium WebDriver
 	 * @throws IOException
@@ -250,11 +251,10 @@ public final class Selenium {
 	public static void captureScreenshot(WebDriver driver) throws IOException {
 		StringBuilder builder = new StringBuilder();
 		builder.append(System.getProperty("user.dir").replace("\\", "/"));
-		builder.append("/target/jcucumberng-output/test-report-sshots/sshot_");
+		builder.append("/target/cucumber-sshots/sshot_");
 		builder.append(System.currentTimeMillis());
 		builder.append(".png");
 		String screenshot = builder.toString();
-
 		File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		FileUtils.copyFile(srcFile, new File(screenshot));
 	}
@@ -271,7 +271,7 @@ public final class Selenium {
 	}
 
 	/**
-	 * Returns arbitrary {@code String... keys} as By array.
+	 * Returns arbitrary {@code String... keys} as {@code By} array.
 	 * 
 	 * @param keys the key(s) from {@code ui-map.properties}
 	 * @return By[ ] - the By array
