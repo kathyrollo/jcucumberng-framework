@@ -34,7 +34,7 @@ $ cd jcucumberng-framework
 $ mvn verify
 ~~~
 
-### Test Reports
+### Reporting
 Below is the generated dynamic HTML report in `/target/cucumber-html-reports/`:
 ![dynamic_report_1](https://user-images.githubusercontent.com/28589393/42723826-fe23c716-8798-11e8-9b31-6e6148bba39a.png)
 
@@ -43,7 +43,7 @@ Below is the generated dynamic HTML report in `/target/cucumber-html-reports/`:
 Below is the generated static (default) HTML report in `/target/cucumber-html-default`:
 ![static_report_1](https://user-images.githubusercontent.com/28589393/42722129-31cbfd56-8779-11e8-8117-55a91f09a4db.png)
 
-### Logs
+### Logging
 Below are the generated logs in `/target/report-logs/`:
 ~~~
 [INFO ] 2018-07-10 15:12:43,100 ScenarioHook.beforeScenario() - BEGIN TEST -> Verify Page Title
