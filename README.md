@@ -6,15 +6,13 @@ Allows automation testers to easily write Feature/Gherkin files for Cucumber and
 ## Features
 Supports the following capabilities:
 - API for commonly used web testing actions
-- UI map/object repository for web elements in `.properties` file
+- Object repository for UI elements in `.properties` file
 - Cucumber PicoContainer for dependency injection
 - Compatibile with IE11, Edge, Chrome, Firefox (extendable)
 - Uses Maven for build and test execution via cmdline
 - Uses Log4j2 for logging mechanism with daily rolling file
 - Automated test result generation in HTML, JSON, XML
 - Embedded screenshots in HTML reports
-- Custom exceptions to assist framework usage and troubleshooting
-- Fully documented source code
 
 ## Prerequisites
 The following are required:
