@@ -243,7 +243,7 @@ public final class Selenium {
 
 	/**
 	 * Captures the current screen. Stores images in
-	 * {@code /target/jcucumberng-output/test-report-sshots/} in PNG format.
+	 * {@code /target/cucumber-sshots/} in PNG format.
 	 * 
 	 * @param driver the Selenium WebDriver
 	 * @throws IOException
@@ -251,7 +251,7 @@ public final class Selenium {
 	public static void captureScreenshot(WebDriver driver) throws IOException {
 		StringBuilder builder = new StringBuilder();
 		builder.append(System.getProperty("user.dir").replace("\\", "/"));
-		builder.append("/target/jcucumberng-output/test-report-sshots/sshot_");
+		builder.append("/target/cucumber-sshots/sshot_");
 		builder.append(System.currentTimeMillis());
 		builder.append(".png");
 		String screenshot = builder.toString();
@@ -271,7 +271,7 @@ public final class Selenium {
 	}
 
 	/**
-	 * Returns arbitrary {@code String... keys} as By array.
+	 * Returns arbitrary {@code String... keys} as {@code By} array.
 	 * 
 	 * @param keys the key(s) from {@code ui-map.properties}
 	 * @return By[ ] - the By array

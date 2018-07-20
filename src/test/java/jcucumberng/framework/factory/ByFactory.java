@@ -2,6 +2,7 @@ package jcucumberng.framework.factory;
 
 import java.io.IOException;
 
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 
 import com.paulhammant.ngwebdriver.ByAngular;
@@ -13,8 +14,8 @@ import jcucumberng.framework.exceptions.UnsupportedByMethodException;
 import jcucumberng.framework.strings.Messages;
 
 /**
- * {@code ByFactory} handles actions for manipulating the Selenium
- * {@code By} object.
+ * {@code ByFactory} handles actions for manipulating the Selenium {@code By}
+ * object.
  * 
  * @author Kat Rollo <rollo.katherine@gmail.com>
  */
@@ -37,8 +38,13 @@ public final class ByFactory {
 			throw new InvalidPatternException(Messages.INVALID_PATTERN + value);
 		}
 
-		String method = value.substring(0, value.lastIndexOf(":")).toUpperCase();
-		String selector = value.substring(value.lastIndexOf(":") + 1);
+		String text = null;
+		String method = StringUtils.substringBefore(value, ":").toUpperCase();
+		String selector = StringUtils.substringAfter(value, ":");
+		if (selector.contains("|")) {
+			text = StringUtils.substringAfter(selector, "|");
+			selector = StringUtils.substringBefore(selector, "|");
+		}
 
 		By by = null;
 		try {
@@ -78,7 +84,7 @@ public final class ByFactory {
 				by = ByAngular.buttonText(selector);
 				break;
 			case CSS_CONTAINING_TEXT:
-				// TODO Implement cssContainingText
+				by = ByAngular.cssContainingText(selector, text);
 				break;
 			case EXACT_BINDING:
 				by = ByAngular.exactBinding(selector);
