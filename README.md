@@ -21,10 +21,14 @@ The following are required:
 - [Git](https://git-scm.com/downloads)
 - [Maven](https://maven.apache.org/download.cgi)
 
-Installation and configuration of the above are not in the scope of this guide. Check the corresponding official documentation or external tutorials accordingly.
+Setup and installation of the above are not in the scope of this guide. Check the corresponding documentation or tutorials accordingly.
 
 ## Getting Started
-This section will help you run the project for the first time. No further configurations are needed at this point. We will run the tests using the project's pre-defined settings.
+This section will help you run the project for the first time. No further configurations are needed at this point.
+
+We will run the tests against the following web application: http://simplydo.com/projector/
+
+The tests will execute in [headless](https://en.wikipedia.org/wiki/Headless_browser) mode as defined in the default framework settings.
 
 Run the following commands in the cmdline:
 ~~~
@@ -33,6 +37,8 @@ $ git clone <https or ssh>
 $ cd jcucumberng-framework
 $ mvn verify
 ~~~
+
+Artefacts are created in the `/target/` directory after the test run is complete.
 
 ### Reporting
 Below is the generated dynamic HTML report in `/target/cucumber-html-reports/`:
