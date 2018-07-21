@@ -13,7 +13,7 @@ import jcucumberng.framework.api.LocalMachine;
 import jcucumberng.framework.factory.BrowserFactory;
 
 public class ScenarioHook {
-	private static final Logger LOGGER = LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ScenarioHook.class);
 	private Scenario scenario = null;
 	private WebDriver driver = null;
 
