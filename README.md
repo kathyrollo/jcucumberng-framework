@@ -49,20 +49,14 @@ Below is the generated static (default) HTML report in `/target/cucumber-html-de
 ![static_report_1](https://user-images.githubusercontent.com/28589393/42722129-31cbfd56-8779-11e8-8117-55a91f09a4db.png)
 
 ### Logging
-Below are the generated logs in `/target/report-logs/`:
+Below is a sample of the generated logs in `/target/report-logs/`:
 ~~~
-[INFO ] 2018-07-21 20:40:34,320 ScenarioHook.beforeScenario() - BEGIN TEST -> Calculate Net Income Per Month
-[INFO ] 2018-07-21 20:40:37,485 ScenarioHook.beforeScenario() - Browser=CHROME32_NOHEAD
-[INFO ] 2018-07-21 20:40:38,671 ScenarioHook.beforeScenario() - Screen Resolution (WxH)=1366x768
-[DEBUG] 2018-07-21 20:40:42,521 HomePageNavigationSteps.I_Am_At_The_Home_Page() - Base URL=http://simplydo.com/projector/
-[DEBUG] 2018-07-21 20:40:43,009 NetIncomeProjectorSteps.I_Enter_My_Start_Balance() - Start Balance=348000
-[DEBUG] 2018-07-21 20:40:43,874 NetIncomeProjectorSteps.enterTransaction() - Transaction [name=Salary, amount=25000, frequency=every 2 weeks, month=null]
-[DEBUG] 2018-07-21 20:40:44,888 NetIncomeProjectorSteps.enterTransaction() - Transaction [name=Electricity, amount=5500, frequency=Monthly, month=null]
-[DEBUG] 2018-07-21 20:40:45,257 NetIncomeProjectorSteps.enterTransaction() - Transaction [name=Water, amount=900, frequency=Weekly, month=null]
-[DEBUG] 2018-07-21 20:40:45,664 NetIncomeProjectorSteps.enterTransaction() - Transaction [name=Internet, amount=1900, frequency=Every 2 Weeks, month=null]
-[DEBUG] 2018-07-21 20:40:46,039 NetIncomeProjectorSteps.enterTransaction() - Transaction [name=Cable TV, amount=555, frequency=Daily, month=null]
-[DEBUG] 2018-07-21 20:40:46,537 NetIncomeProjectorSteps.I_Should_See_Net_Income_Per_Month() - Net Per Month=23769
-[INFO ] 2018-07-21 20:40:46,938 ScenarioHook.afterScenario() - END TEST -> Calculate Net Income Per Month - PASSED
+[INFO ] 2018-07-21 22:02:40,107 ScenarioHook.beforeScenario() - BEGIN TEST -> Verify Page Title
+[INFO ] 2018-07-21 22:02:44,191 ScenarioHook.beforeScenario() - Browser=CHROME32_NOHEAD
+[INFO ] 2018-07-21 22:02:45,387 ScenarioHook.beforeScenario() - Screen Resolution (WxH)=1366x768
+[DEBUG] 2018-07-21 22:02:49,642 HomePageNavigationSteps.I_Am_At_The_Home_Page() - Base URL=http://simplydo.com/projector/
+[DEBUG] 2018-07-21 22:02:50,095 HomePageNavigationSteps.I_Should_See_Page_Title() - Window Title=Simply Do - Balance Projector
+[INFO ] 2018-07-21 22:02:50,413 ScenarioHook.afterScenario() - END TEST -> Verify Page Title - PASSED
 ~~~
 
 The user guide is available in the project [Wiki](https://github.com/kathyrollo/jcucumberng-framework/wiki).
