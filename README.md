@@ -28,7 +28,7 @@ This section will help you run the project for the first time. No further config
 
 We will run the tests against the following web application: http://simplydo.com/projector/
 
-The tests will execute in [headless](https://en.wikipedia.org/wiki/Headless_browser) mode as defined in the default framework configuration.
+The tests will execute in [headless](https://en.wikipedia.org/wiki/Headless_browser) mode as defined in the default framework settings.
 
 Run the following commands in the cmdline:
 ~~~
