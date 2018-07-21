@@ -11,7 +11,7 @@ import jcucumberng.framework.api.ConfigLoader;
 import jcucumberng.project.hooks.ScenarioHook;
 
 public class HomePageNavigationSteps {
-	private static final Logger LOGGER = LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
+	private static final Logger LOGGER = LoggerFactory.getLogger(HomePageNavigationSteps.class);
 	private WebDriver driver = null;
 
 	// PicoContainer injects ScenarioHook class
