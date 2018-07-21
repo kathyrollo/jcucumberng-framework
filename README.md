@@ -51,12 +51,18 @@ Below is the generated static (default) HTML report in `/target/cucumber-html-de
 ### Logging
 Below are the generated logs in `/target/report-logs/`:
 ~~~
-[INFO ] 2018-07-10 15:12:43,100 ScenarioHook.beforeScenario() - BEGIN TEST -> Verify Page Title
-[INFO ] 2018-07-10 15:12:58,053 ScenarioHook.beforeScenario() - Browser=CHROME32_NOHEAD
-[INFO ] 2018-07-10 15:12:59,562 ScenarioHook.beforeScenario() - Screen Resolution (WxH)=1920x1080
-[DEBUG] 2018-07-10 15:13:10,804 HomePageNavigationSteps.I_Am_At_The_Home_Page() - Base URL=http://simplydo.com/projector/
-[DEBUG] 2018-07-10 15:13:12,004 HomePageNavigationSteps.I_Should_See_Page_Title() - Window Title=Simply Do - Balance Projector
-[INFO ] 2018-07-10 15:13:12,322 ScenarioHook.afterScenario() - END TEST -> Verify Page Title - PASSED
+[INFO ] 2018-07-21 20:40:34,320 ScenarioHook.beforeScenario() - BEGIN TEST -> Calculate Net Income Per Month
+[INFO ] 2018-07-21 20:40:37,485 ScenarioHook.beforeScenario() - Browser=CHROME32_NOHEAD
+[INFO ] 2018-07-21 20:40:38,671 ScenarioHook.beforeScenario() - Screen Resolution (WxH)=1366x768
+[DEBUG] 2018-07-21 20:40:42,521 HomePageNavigationSteps.I_Am_At_The_Home_Page() - Base URL=http://simplydo.com/projector/
+[DEBUG] 2018-07-21 20:40:43,009 NetIncomeProjectorSteps.I_Enter_My_Start_Balance() - Start Balance=348000
+[DEBUG] 2018-07-21 20:40:43,874 NetIncomeProjectorSteps.enterTransaction() - Transaction [name=Salary, amount=25000, frequency=every 2 weeks, month=null]
+[DEBUG] 2018-07-21 20:40:44,888 NetIncomeProjectorSteps.enterTransaction() - Transaction [name=Electricity, amount=5500, frequency=Monthly, month=null]
+[DEBUG] 2018-07-21 20:40:45,257 NetIncomeProjectorSteps.enterTransaction() - Transaction [name=Water, amount=900, frequency=Weekly, month=null]
+[DEBUG] 2018-07-21 20:40:45,664 NetIncomeProjectorSteps.enterTransaction() - Transaction [name=Internet, amount=1900, frequency=Every 2 Weeks, month=null]
+[DEBUG] 2018-07-21 20:40:46,039 NetIncomeProjectorSteps.enterTransaction() - Transaction [name=Cable TV, amount=555, frequency=Daily, month=null]
+[DEBUG] 2018-07-21 20:40:46,537 NetIncomeProjectorSteps.I_Should_See_Net_Income_Per_Month() - Net Per Month=23769
+[INFO ] 2018-07-21 20:40:46,938 ScenarioHook.afterScenario() - END TEST -> Calculate Net Income Per Month - PASSED
 ~~~
 
 The user guide is available in the project [Wiki](https://github.com/kathyrollo/jcucumberng-framework/wiki).
