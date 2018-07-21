@@ -95,15 +95,6 @@ public final class BrowserFactory {
 		return driver;
 	}
 
-	/**
-	 * Quits all instances of the driver (close all windows).
-	 * 
-	 * @param driver the Selenium WebDriver
-	 */
-	public static void quitBrowser(WebDriver driver) {
-		driver.quit();
-	}
-
 	private static WebDriver initFirefoxNoHead(String driverPath, String driverBinary) {
 		WebDriver driver = null;
 		System.setProperty("webdriver.gecko.driver", driverPath + driverBinary);
