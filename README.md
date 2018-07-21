@@ -20,15 +20,14 @@ The following are required:
 - [Eclipse IDE](http://www.eclipse.org/downloads/eclipse-packages/) / [VSCode](https://code.visualstudio.com/download) / [IntelliJ](https://www.jetbrains.com/idea/download/#section=windows)
 - [Git](https://git-scm.com/downloads)
 - [Maven](https://maven.apache.org/download.cgi)
+- [Cmder](http://cmder.net/) (optional, includes Git for Windows)
 
 Setup and installation of the above are not in the scope of this guide. Check the corresponding documentation or tutorials accordingly.
 
 ## Getting Started
-This section will help you run the project for the first time. No further configurations are needed at this point.
-
 We will run the tests against the following web application: http://simplydo.com/projector/
 
-The tests will execute in [headless](https://en.wikipedia.org/wiki/Headless_browser) mode as defined in the default framework settings.
+No further configurations needed at this point. The tests will execute in [headless](https://en.wikipedia.org/wiki/Headless_browser) mode as defined in the default framework settings.
 
 Run the following commands in the cmdline:
 ~~~
