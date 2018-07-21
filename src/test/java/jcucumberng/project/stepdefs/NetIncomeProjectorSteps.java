@@ -18,7 +18,7 @@ import jcucumberng.project.domain.Transaction;
 import jcucumberng.project.hooks.ScenarioHook;
 
 public class NetIncomeProjectorSteps {
-	private static final Logger LOGGER = LoggerFactory.getLogger(NetIncomeProjectorSteps.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
 	private WebDriver driver = null;
 
 	// PicoContainer injects ScenarioHook class

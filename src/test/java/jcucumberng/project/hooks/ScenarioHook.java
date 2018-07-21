@@ -13,16 +13,7 @@ import jcucumberng.framework.api.LocalMachine;
 import jcucumberng.framework.factory.BrowserFactory;
 
 public class ScenarioHook {
-	// Load logger config, no edit
-	private static boolean isLoaded = false;
-	static {
-		if (!isLoaded) {
-			ConfigLoader.loggerConf();
-			isLoaded = true;
-		}
-	}
-
-	private static final Logger LOGGER = LoggerFactory.getLogger(ScenarioHook.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
 	private Scenario scenario = null;
 	private WebDriver driver = null;
 
