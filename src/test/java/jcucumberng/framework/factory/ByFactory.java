@@ -32,7 +32,7 @@ public final class ByFactory {
 	 * @return By - the {@code By} object
 	 * @throws IOException
 	 */
-	public static By getBy(String key) throws IOException {
+	public static By getInstance(String key) throws IOException {
 		String value = ConfigLoader.uiMap(key);
 		if (!value.matches(".+:.+")) {
 			throw new InvalidPatternException(Messages.INVALID_PATTERN + value);

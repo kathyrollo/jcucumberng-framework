@@ -23,7 +23,7 @@ public class ScenarioHook {
 		LOGGER.info("BEGIN TEST -> " + scenario.getName());
 
 		String browserConfig = ConfigLoader.frameworkConf("browser");
-		driver = BrowserFactory.getBrowser(browserConfig);
+		driver = BrowserFactory.getInstance(browserConfig);
 		LOGGER.info("Browser=" + browserConfig);
 
 		Dimension dimension = LocalMachine.getDimension();

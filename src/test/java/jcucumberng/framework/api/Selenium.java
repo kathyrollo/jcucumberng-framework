@@ -60,7 +60,7 @@ public final class Selenium {
 	 * @throws IOException
 	 */
 	public static By by(String key) throws IOException {
-		return ByFactory.getBy(key);
+		return ByFactory.getInstance(key);
 	}
 
 	/**

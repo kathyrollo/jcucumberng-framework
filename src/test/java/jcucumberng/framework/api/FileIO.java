@@ -7,15 +7,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Iterator;
 
-import com.itextpdf.text.pdf.PdfReader;
-import com.itextpdf.text.pdf.parser.PdfTextExtractor;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import com.itextpdf.text.pdf.PdfReader;
+import com.itextpdf.text.pdf.parser.PdfTextExtractor;
 
 /**
  * {@code FileIO} handles actions for manipulating files or documents.
@@ -94,8 +94,8 @@ public final class FileIO {
 			throws FileNotFoundException, IOException {
 
 		File xlsxFile = new File(xlsxFilePath);
-		InputStream inStream = new FileInputStream(xlsxFile);
-		XSSFWorkbook workbook = new XSSFWorkbook(inStream);
+		InputStream inputStream = new FileInputStream(xlsxFile);
+		XSSFWorkbook workbook = new XSSFWorkbook(inputStream);
 
 		XSSFSheet sheet = null;
 		if (StringUtils.isBlank(sheetName)) {
@@ -143,7 +143,7 @@ public final class FileIO {
 		}
 
 		workbook.close();
-		inStream.close();
+		inputStream.close();
 
 		return testData;
 	}

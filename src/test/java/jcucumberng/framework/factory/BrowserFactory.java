@@ -34,7 +34,7 @@ public final class BrowserFactory {
 	 *                      {@code framework.properties}
 	 * @return WebDriver - the Selenium WebDriver
 	 */
-	public static WebDriver getBrowser(String browserConfig) {
+	public static WebDriver getInstance(String browserConfig) {
 		WebDriver driver = null;
 
 		StringBuilder builder = new StringBuilder();
