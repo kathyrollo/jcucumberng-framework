@@ -7,18 +7,15 @@ import java.io.IOException;
 
 import org.openqa.selenium.Dimension;
 
-import jcucumberng.framework.exceptions.OutOfRangeException;
-import jcucumberng.framework.strings.Messages;
-
 /**
- * {@code LocalMachine} handles actions relating to the user's machine such as
+ * {@code LocalSystem} handles actions relating to the user's machine such as
  * screen resolution or input devices.
  * 
  * @author Kat Rollo <rollo.katherine@gmail.com>
  */
-public final class LocalMachine {
+public final class LocalSystem {
 
-	private LocalMachine() {
+	private LocalSystem() {
 		// Prevent instantiation
 	}
 
@@ -47,7 +44,7 @@ public final class LocalMachine {
 		Robot robot = new Robot();
 		robot.keyPress(key);
 		robot.keyRelease(key);
-		int millis = convertSecondsToMillis(ConfigLoader.frameworkConf("key.press.wait"));
+		int millis = DateTime.convertSecondsToMillis(ConfigLoader.frameworkConf("key.press.wait"));
 		robot.delay(millis);
 		robot = null; // Destroy robot
 	}
@@ -67,27 +64,12 @@ public final class LocalMachine {
 		for (int ctr = 0; ctr < keys.length; ctr++) {
 			robot.keyPress(keys[ctr]); // Press and hold keys
 		}
-		int millis = convertSecondsToMillis(ConfigLoader.frameworkConf("key.press.wait"));
+		int millis = DateTime.convertSecondsToMillis(ConfigLoader.frameworkConf("key.press.wait"));
 		robot.delay(millis);
 		for (int ctr = keys.length - 1; ctr > -1; ctr--) {
 			robot.keyRelease(keys[ctr]); // Release keys in reverse order
 		}
 		robot = null;
-	}
-
-	/**
-	 * Converts seconds to millis.
-	 * 
-	 * @param waitTime value in seconds
-	 * @return int - the value in millis
-	 */
-	private static int convertSecondsToMillis(String waitTime) {
-		int secs = Integer.parseInt(waitTime);
-		int millis = secs * 1000;
-		if (!(millis >= 1000 && millis <= 60000)) {
-			throw new OutOfRangeException(Messages.OUT_OF_RANGE + millis);
-		}
-		return millis;
 	}
 
 }
