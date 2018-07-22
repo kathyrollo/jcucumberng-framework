@@ -42,16 +42,14 @@ Artefacts are created in the `/target/` directory after the test execution is co
 ### Reporting
 #### Dynamic Report
 Below is the generated dynamic HTML report in `/target/cucumber-html-reports/`:
-![dynamic_report_1](https://user-images.githubusercontent.com/28589393/42723826-fe23c716-8798-11e8-9b31-6e6148bba39a.png)
-
-![dynamic_report_2](https://user-images.githubusercontent.com/28589393/42723842-75ee2386-8799-11e8-85d2-df309569c466.png)
+![dynamic_report](https://user-images.githubusercontent.com/28589393/43045835-81c09f18-8df2-11e8-8b84-e2f6a2ef63f6.gif)
 
 #### Static Report
 Below is the generated static (default) HTML report in `/target/cucumber-html-default`:
 ![static_report_1](https://user-images.githubusercontent.com/28589393/42722129-31cbfd56-8779-11e8-8117-55a91f09a4db.png)
 
 ### Logging
-Below is a sample of the generated logs in `/target/report-logs/`:
+Below is a sample of the generated logs in `/target/cucumber-logs/`:
 ~~~
 [INFO ] 2018-07-21 22:02:40,107 ScenarioHook.beforeScenario() - BEGIN TEST -> Verify Page Title
 [INFO ] 2018-07-21 22:02:44,191 ScenarioHook.beforeScenario() - Browser=CHROME32_NOHEAD
