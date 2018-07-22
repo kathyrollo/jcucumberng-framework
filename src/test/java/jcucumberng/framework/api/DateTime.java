@@ -20,7 +20,6 @@ public final class DateTime {
 	 * @param waitTime value in seconds from a {@code .properties} file
 	 * @param begin    lowerbound value of the range in seconds, inclusive
 	 * @param end      upperbound value of the range in seconds, inclusive
-	 * 
 	 * @return int - value in millis
 	 */
 	public static int convertSecondsToMillisWithRange(String waitTime, int begin, int end) {
