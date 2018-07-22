@@ -15,15 +15,19 @@ public final class DateTime {
 	}
 
 	/**
-	 * Converts seconds to millis.
+	 * Converts seconds to millis with specified range.
 	 * 
-	 * @param waitTime value in seconds
-	 * @return int - the value in millis
+	 * @param waitTime value in seconds from a {@code .properties} file
+	 * @param begin    lowerbound value of the range in seconds, inclusive
+	 * @param end      upperbound value of the range in seconds, inclusive
+	 * 
+	 * @return int - value in millis
 	 */
-	public static int convertSecondsToMillis(String waitTime) {
-		int secs = Integer.parseInt(waitTime);
-		int millis = secs * 1000;
-		if (!(millis >= 1000 && millis <= 60000)) {
+	public static int convertSecondsToMillisWithRange(String waitTime, int begin, int end) {
+		int millis = Integer.parseInt(waitTime) * 1000;
+		begin *= 1000;
+		end *= 1000;
+		if (!(millis >= begin && millis <= end)) {
 			throw new OutOfRangeException(Messages.OUT_OF_RANGE + millis);
 		}
 		return millis;

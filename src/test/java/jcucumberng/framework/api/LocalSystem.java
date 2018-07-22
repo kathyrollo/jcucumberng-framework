@@ -44,7 +44,7 @@ public final class LocalSystem {
 		Robot robot = new Robot();
 		robot.keyPress(key);
 		robot.keyRelease(key);
-		int millis = DateTime.convertSecondsToMillis(ConfigLoader.frameworkConf("key.press.wait"));
+		int millis = DateTime.convertSecondsToMillisWithRange(ConfigLoader.frameworkConf("key.press.wait"), 1, 60);
 		robot.delay(millis);
 		robot = null; // Destroy robot
 	}
@@ -64,7 +64,7 @@ public final class LocalSystem {
 		for (int ctr = 0; ctr < keys.length; ctr++) {
 			robot.keyPress(keys[ctr]); // Press and hold keys
 		}
-		int millis = DateTime.convertSecondsToMillis(ConfigLoader.frameworkConf("key.press.wait"));
+		int millis = DateTime.convertSecondsToMillisWithRange(ConfigLoader.frameworkConf("key.press.wait"), 1, 60);
 		robot.delay(millis);
 		for (int ctr = keys.length - 1; ctr > -1; ctr--) {
 			robot.keyRelease(keys[ctr]); // Release keys in reverse order
