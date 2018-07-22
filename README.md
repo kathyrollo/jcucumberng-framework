@@ -27,7 +27,7 @@ Setup and installation are not in the scope of this guide. Check the correspondi
 ## Getting Started
 Visit the application under test (AUT) here: http://simplydo.com/projector/
 
-No further configurations needed at this point. The tests will run against the AUT in [headless](https://en.wikipedia.org/wiki/Headless_browser) mode using the ChromeDriver as defined in the default framework settings.
+No further configurations needed at this point. The tests will run against the AUT in [headless](https://en.wikipedia.org/wiki/Headless_browser) mode using ChromeDriver as defined in the default framework settings.
 
 Run the following commands in the cmdline:
 ~~~
@@ -60,5 +60,3 @@ Below is a sample of the generated logs in `/target/report-logs/`:
 [DEBUG] 2018-07-21 22:02:50,095 HomePageNavigationSteps.I_Should_See_Page_Title() - Window Title=Simply Do - Balance Projector
 [INFO ] 2018-07-21 22:02:50,413 ScenarioHook.afterScenario() - END TEST -> Verify Page Title - PASSED
 ~~~
-
-The user guide is available in the project [Wiki](https://github.com/kathyrollo/jcucumberng-framework/wiki).
