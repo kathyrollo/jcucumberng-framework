@@ -22,12 +22,12 @@ The following are required:
 - [Maven](https://maven.apache.org/download.cgi)
 - [Cmder](http://cmder.net/) (optional, includes Git for Windows)
 
-Setup and installation of the above are not in the scope of this guide. Check the corresponding documentation or tutorials accordingly.
+Setup and installation are not in the scope of this guide. Check the corresponding documentation or tutorials accordingly.
 
 ## Getting Started
-We will run the tests against the following web application: http://simplydo.com/projector/
+Visit the application under test (AUT) here: http://simplydo.com/projector/
 
-No further configurations needed at this point. The tests will execute in [headless](https://en.wikipedia.org/wiki/Headless_browser) mode as defined in the default framework settings.
+No further configurations needed at this point. The tests will run against the AUT in [headless](https://en.wikipedia.org/wiki/Headless_browser) mode as defined in the default framework settings.
 
 Run the following commands in the cmdline:
 ~~~
@@ -37,7 +37,7 @@ $ cd jcucumberng-framework
 $ mvn verify
 ~~~
 
-Artefacts are created in the `/target/` directory after the test run is complete.
+Artefacts are created in the `/target/` directory after the test execution is complete.
 
 ### Reporting
 Below is the generated dynamic HTML report in `/target/cucumber-html-reports/`:
