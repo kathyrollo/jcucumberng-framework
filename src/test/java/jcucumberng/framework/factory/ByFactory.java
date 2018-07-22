@@ -35,7 +35,7 @@ public final class ByFactory {
 	public static By getInstance(String key) throws IOException {
 		String value = ConfigLoader.uiMap(key);
 		if (!value.matches(".+:.+")) {
-			throw new InvalidPatternException(Messages.INVALID_PATTERN + value);
+			throw new InvalidPatternException(Messages.INVALID_UI_PATTERN + value);
 		}
 
 		String text = null;
