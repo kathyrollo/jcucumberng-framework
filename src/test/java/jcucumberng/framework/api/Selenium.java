@@ -242,8 +242,8 @@ public final class Selenium {
 	}
 
 	/**
-	 * Captures the current screen. Stores images in
-	 * {@code /target/cucumber-sshots/} in PNG format.
+	 * Captures the current screen. Saves images in {@code /target/cucumber-sshots/}
+	 * in PNG format.
 	 * 
 	 * @param driver the Selenium WebDriver
 	 * @throws IOException
