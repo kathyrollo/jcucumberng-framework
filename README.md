@@ -51,7 +51,7 @@ Below is the generated static (default) HTML report in `/target/cucumber-html-de
 ![static_report_1](https://user-images.githubusercontent.com/28589393/42722129-31cbfd56-8779-11e8-8117-55a91f09a4db.png)
 
 ### Logging
-Below is a sample of the generated logs in `/target/report-logs/`:
+Below is a sample of the generated logs in `/target/cucumber-logs/`:
 ~~~
 [INFO ] 2018-07-21 22:02:40,107 ScenarioHook.beforeScenario() - BEGIN TEST -> Verify Page Title
 [INFO ] 2018-07-21 22:02:44,191 ScenarioHook.beforeScenario() - Browser=CHROME32_NOHEAD
