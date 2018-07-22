@@ -6,5 +6,6 @@ public abstract class Messages {
 	public static final String UNSUPPORTED_BROWSER = "Unsupported browser specified in framework.properties: ";
 	public static final String UNSUPPORTED_BY_METHOD = "Unsupported method specified in ui-map.properties: ";
 	public static final String LOGGER_CONFIG_FAIL = "The logger config file failed to load: ";
-	public static final String INVALID_PATTERN = "Does not match expected pattern in ui-map.properties: ";
+	public static final String INVALID_UI_PATTERN = "Does not match expected pattern in ui-map.properties: ";
+	public static final String OUT_OF_RANGE = "Specified value is out of bounds: ";
 }

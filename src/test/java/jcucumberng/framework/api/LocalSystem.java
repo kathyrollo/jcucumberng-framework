@@ -8,14 +8,14 @@ import java.io.IOException;
 import org.openqa.selenium.Dimension;
 
 /**
- * {@code LocalMachine} handles actions relating to the user's machine such as
+ * {@code LocalSystem} handles actions relating to the user's machine such as
  * screen resolution or input devices.
  * 
  * @author Kat Rollo <rollo.katherine@gmail.com>
  */
-public final class LocalMachine {
+public final class LocalSystem {
 
-	private LocalMachine() {
+	private LocalSystem() {
 		// Prevent instantiation
 	}
 
@@ -44,7 +44,8 @@ public final class LocalMachine {
 		Robot robot = new Robot();
 		robot.keyPress(key);
 		robot.keyRelease(key);
-		robot.delay(Integer.parseInt(ConfigLoader.frameworkConf("keypress.wait")));
+		int millis = DateTime.convertSecondsToMillisWithRange(ConfigLoader.frameworkConf("key.press.wait"), 1, 60);
+		robot.delay(millis);
 		robot = null; // Destroy robot
 	}
 
@@ -63,7 +64,8 @@ public final class LocalMachine {
 		for (int ctr = 0; ctr < keys.length; ctr++) {
 			robot.keyPress(keys[ctr]); // Press and hold keys
 		}
-		robot.delay(Integer.parseInt(ConfigLoader.frameworkConf("keypress.wait")));
+		int millis = DateTime.convertSecondsToMillisWithRange(ConfigLoader.frameworkConf("key.press.wait"), 1, 60);
+		robot.delay(millis);
 		for (int ctr = keys.length - 1; ctr > -1; ctr--) {
 			robot.keyRelease(keys[ctr]); // Release keys in reverse order
 		}

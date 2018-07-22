@@ -242,8 +242,8 @@ public final class Selenium {
 	}
 
 	/**
-	 * Captures the current screen. Stores images in
-	 * {@code /target/cucumber-sshots/} in PNG format.
+	 * Captures and saves screenshot in PNG format. Images are stored in
+	 * {@code /target/cucumber-sshots/}.
 	 * 
 	 * @param driver the Selenium WebDriver
 	 * @throws IOException
@@ -260,7 +260,8 @@ public final class Selenium {
 	}
 
 	/**
-	 * Captures and embeds screenshot in generated HTML report.
+	 * Captures and embeds screenshot in generated HTML report. Reports can be found
+	 * in {@code /target/}.
 	 * 
 	 * @param scenario the Scenario object
 	 * @param driver   the Selenium WebDriver

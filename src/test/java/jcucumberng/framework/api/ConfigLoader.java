@@ -14,7 +14,7 @@ import jcucumberng.framework.strings.Messages;
 
 /**
  * {@code ConfigLoader} handles actions for reading/loading various
- * configuration and properties files.
+ * configuration files.
  * 
  * @author Kat Rollo <rollo.katherine@gmail.com>
  */
