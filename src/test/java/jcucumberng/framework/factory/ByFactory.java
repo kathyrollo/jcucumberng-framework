@@ -43,11 +43,15 @@ public final class ByFactory {
 		String keys[] = {};
 
 		String value = ConfigLoader.uiMap(key);
+		if (StringUtils.isBlank(value)) {
+			value = "BLANK";
+		}
 		if (!value.matches(".+:.+")) {
 			throw new InvalidPatternException(Messages.INVALID_UI_PATTERN + value);
 		}
+
 		if (StringUtils.containsIgnoreCase(value, "by_chained")) {
-			keys = StringUtils.substringAfter(value, ":").split("\\|");
+			keys = StringUtils.split(StringUtils.substringAfter(value, ":"), "|");
 		}
 
 		method = StringUtils.substringBefore(value, ":");
@@ -130,9 +134,7 @@ public final class ByFactory {
 				break;
 			}
 		} catch (IllegalArgumentException | NullPointerException ex) {
-			selector = null;
-			text = null;
-			if (StringUtils.isBlank(value)) {
+			if (StringUtils.isBlank(method)) {
 				method = "BLANK";
 			}
 			throw new UnsupportedByMethodException(Messages.UNSUPPORTED_BY_METHOD + method);
