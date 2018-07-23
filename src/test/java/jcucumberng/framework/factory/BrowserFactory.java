@@ -40,7 +40,7 @@ public final class BrowserFactory {
 		StringBuilder builder = new StringBuilder();
 		builder.append(StringUtils.replace(System.getProperty("user.dir"), "\\", "/"));
 		builder.append("/src/test/resources/jcucumberng/framework/drivers/");
-		String driverPath = builder.toString().trim();
+		String driverPath = builder.toString();
 
 		try {
 			Browser browser = Browser.valueOf(StringUtils.upperCase(browserConfig));
