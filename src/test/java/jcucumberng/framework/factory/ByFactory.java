@@ -116,7 +116,7 @@ public final class ByFactory {
 				// Handled in try-catch
 				break;
 			}
-		} catch (IllegalArgumentException iae) {
+		} catch (IllegalArgumentException | NullPointerException ex) {
 			if (StringUtils.isBlank(value)) {
 				method = "BLANK";
 			}

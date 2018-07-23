@@ -85,7 +85,7 @@ public final class BrowserFactory {
 				// Handled in try-catch
 				break;
 			}
-		} catch (IllegalArgumentException iae) {
+		} catch (IllegalArgumentException | NullPointerException ex) {
 			if (StringUtils.isBlank(browserConfig)) {
 				browserConfig = "BLANK";
 			}
