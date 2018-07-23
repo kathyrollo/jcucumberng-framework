@@ -6,6 +6,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ByIdOrName;
 
+import cucumber.api.PendingException;
+
 import com.paulhammant.ngwebdriver.ByAngular;
 
 import jcucumberng.framework.api.ConfigLoader;
@@ -77,10 +79,10 @@ public final class ByFactory {
 				break;
 			case BY_ALL:
 				// TODO Implement ByAll
-				break;
+				throw new PendingException("Not yet implemented.");
 			case BY_CHAINED:
 				// TODO Implement ByChained
-				break;
+				throw new PendingException("Not yet implemented.");
 			case BY_ID_OR_NAME:
 				by = new ByIdOrName(selector);
 				break;
