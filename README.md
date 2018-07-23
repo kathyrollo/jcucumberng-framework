@@ -37,7 +37,9 @@ $ cd jcucumberng-framework
 $ mvn verify
 ~~~
 
-Artefacts are created in the `/target/` directory after the test execution is complete.
+![mvn_verify_short](https://user-images.githubusercontent.com/28589393/43070203-ca03fcde-8ea1-11e8-8cf0-3cad6a50620f.gif)
+
+Artefacts are created in the `/target/` directory after the build is successful.
 
 ### Reporting
 #### Dynamic Report
@@ -46,7 +48,7 @@ Below is the generated dynamic HTML report in `/target/cucumber-html-reports/`:
 
 #### Static Report
 Below is the generated static (default) HTML report in `/target/cucumber-html-default`:
-![static_report_1](https://user-images.githubusercontent.com/28589393/42722129-31cbfd56-8779-11e8-8117-55a91f09a4db.png)
+![static_report](https://user-images.githubusercontent.com/28589393/43070855-7b1c9818-8ea3-11e8-9e99-f02105898723.gif)
 
 ### Logging
 Below is a sample of the generated logs in `/target/cucumber-logs/`:
