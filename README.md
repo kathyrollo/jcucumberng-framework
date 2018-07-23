@@ -37,7 +37,7 @@ $ cd jcucumberng-framework
 $ mvn verify
 ~~~
 
-![mvn_verify_short](https://user-images.githubusercontent.com/28589393/43070203-ca03fcde-8ea1-11e8-8cf0-3cad6a50620f.gif)
+![mvn_verify](https://user-images.githubusercontent.com/28589393/43071460-79da3de6-8ea5-11e8-9935-a6afc02d62d8.gif)
 
 Artefacts are created in the `/target/` directory after the build is successful.
 
