@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
@@ -163,7 +164,7 @@ public final class Selenium {
 			// Switch to child window
 			for (String handle : handles) {
 				driver.switchTo().window(handle);
-				if (!parentHandle.equals(handle)) {
+				if (StringUtils.equals(parentHandle, handle)) {
 					break;
 				}
 			}
@@ -185,7 +186,7 @@ public final class Selenium {
 		if (1 < handles.size()) {
 			for (String handle : handles) {
 				driver.switchTo().window(handle);
-				if (windowTitle.equalsIgnoreCase(driver.getTitle())) {
+				if (StringUtils.equalsIgnoreCase(windowTitle, driver.getTitle())) {
 					break;
 				}
 			}
