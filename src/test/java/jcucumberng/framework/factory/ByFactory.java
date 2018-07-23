@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ByIdOrName;
 
 import com.paulhammant.ngwebdriver.ByAngular;
 
@@ -73,6 +74,15 @@ public final class ByFactory {
 				break;
 			case XPATH:
 				by = By.xpath(selector);
+				break;
+			case BY_ALL:
+				// TODO Implement ByAll
+				break;
+			case BY_CHAINED:
+				// TODO Implement ByChained
+				break;
+			case BY_ID_OR_NAME:
+				by = new ByIdOrName(selector);
 				break;
 			case BINDING:
 				by = ByAngular.binding(selector);
