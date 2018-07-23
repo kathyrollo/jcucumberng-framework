@@ -51,7 +51,7 @@ public final class ConfigLoader {
 			throw new NoSuchKeyException(Messages.NO_SUCH_KEY + builder.toString());
 		}
 
-		return value.trim();
+		return StringUtils.trim(value);
 	}
 
 	/**
@@ -81,7 +81,7 @@ public final class ConfigLoader {
 			throw new NoSuchKeyException(Messages.NO_SUCH_KEY + builder.toString());
 		}
 
-		return value.trim();
+		return StringUtils.trim(value);
 	}
 
 	/**
@@ -131,7 +131,7 @@ public final class ConfigLoader {
 			throw new NoSuchKeyException(Messages.NO_SUCH_KEY + builder.toString());
 		}
 
-		return value.trim();
+		return StringUtils.trim(value);
 	}
 
 }
