@@ -5,7 +5,6 @@ import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.pagefactory.ByChained;
 import org.openqa.selenium.support.ui.Select;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -84,8 +83,7 @@ public class NetIncomeProjectorSteps {
 	}
 
 	private void scrollToDivBox(int index) throws Throwable {
-		List<WebElement> divBoxes = driver
-				.findElements(new ByChained(Selenium.by("page.div.span7"), Selenium.by("page.div.box")));
+		List<WebElement> divBoxes = driver.findElements(Selenium.by("div.boxes"));
 		Selenium.scrollToElement(driver, divBoxes.get(index));
 	}
 

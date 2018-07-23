@@ -279,7 +279,7 @@ public final class Selenium {
 	 * @return By[ ] - the By array
 	 * @throws IOException
 	 */
-	private static By[] getBys(String... keys) throws IOException {
+	public static By[] getBys(String... keys) throws IOException {
 		if (0 == keys.length) {
 			throw new MissingArgumentsException(Messages.MISSING_ARGS);
 		}
