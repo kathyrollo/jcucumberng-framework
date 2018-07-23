@@ -40,7 +40,7 @@ public final class ByFactory {
 		}
 
 		String text = null;
-		String method = StringUtils.substringBefore(value, ":").toUpperCase();
+		String method = StringUtils.substringBefore(value, ":");
 		String selector = StringUtils.substringAfter(value, ":");
 		if (selector.contains("|")) {
 			text = StringUtils.substringAfter(selector, "|");
@@ -49,7 +49,7 @@ public final class ByFactory {
 
 		By by = null;
 		try {
-			ByMethod byMethod = ByMethod.valueOf(method);
+			ByMethod byMethod = ByMethod.valueOf(method.toUpperCase());
 			switch (byMethod) {
 			case ID:
 				by = By.id(selector);
