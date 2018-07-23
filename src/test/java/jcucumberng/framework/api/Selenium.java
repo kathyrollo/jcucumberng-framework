@@ -250,7 +250,7 @@ public final class Selenium {
 	 */
 	public static void captureScreenshot(WebDriver driver) throws IOException {
 		StringBuilder builder = new StringBuilder();
-		builder.append(System.getProperty("user.dir").replace("\\", "/"));
+		builder.append(StringUtils.replace(System.getProperty("user.dir"), "\\", "/"));
 		builder.append("/target/cucumber-sshots/sshot_");
 		builder.append(System.currentTimeMillis());
 		builder.append(".png");

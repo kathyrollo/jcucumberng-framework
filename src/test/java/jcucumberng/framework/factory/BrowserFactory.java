@@ -38,7 +38,7 @@ public final class BrowserFactory {
 		WebDriver driver = null;
 
 		StringBuilder builder = new StringBuilder();
-		builder.append(System.getProperty("user.dir").replace("\\", "/"));
+		builder.append(StringUtils.replace(System.getProperty("user.dir"), "\\", "/"));
 		builder.append("/src/test/resources/jcucumberng/framework/drivers/");
 		String driverPath = builder.toString().trim();
 
