@@ -36,7 +36,7 @@ public final class ConfigLoader {
 	public static String frameworkConf(String key) throws IOException {
 		String propsFileName = "framework.properties";
 		StringBuilder builder = new StringBuilder();
-		builder.append(System.getProperty("user.dir").replace("\\", "/"));
+		builder.append(StringUtils.replace(System.getProperty("user.dir"), "\\", "/"));
 		builder.append("/src/test/resources/jcucumberng/framework/");
 		builder.append(propsFileName);
 
@@ -51,7 +51,7 @@ public final class ConfigLoader {
 			throw new NoSuchKeyException(Messages.NO_SUCH_KEY + builder.toString());
 		}
 
-		return value.trim();
+		return StringUtils.trim(value);
 	}
 
 	/**
@@ -66,7 +66,7 @@ public final class ConfigLoader {
 	public static String projectConf(String key) throws IOException {
 		String propsFileName = "project.properties";
 		StringBuilder builder = new StringBuilder();
-		builder.append(System.getProperty("user.dir").replace("\\", "/"));
+		builder.append(StringUtils.replace(System.getProperty("user.dir"), "\\", "/"));
 		builder.append("/src/test/resources/jcucumberng/project/");
 		builder.append(propsFileName);
 
@@ -81,7 +81,7 @@ public final class ConfigLoader {
 			throw new NoSuchKeyException(Messages.NO_SUCH_KEY + builder.toString());
 		}
 
-		return value.trim();
+		return StringUtils.trim(value);
 	}
 
 	/**
@@ -96,7 +96,7 @@ public final class ConfigLoader {
 		}
 
 		StringBuilder builder = new StringBuilder();
-		builder.append(System.getProperty("user.dir").replace("\\", "/"));
+		builder.append(StringUtils.replace(System.getProperty("user.dir"), "\\", "/"));
 		builder.append("/src/test/resources/jcucumberng/framework/");
 		builder.append(cfgFile);
 
@@ -116,7 +116,7 @@ public final class ConfigLoader {
 	public static String uiMap(String key) throws IOException {
 		String propsFileName = "ui-map.properties";
 		StringBuilder builder = new StringBuilder();
-		builder.append(System.getProperty("user.dir").replace("\\", "/"));
+		builder.append(StringUtils.replace(System.getProperty("user.dir"), "\\", "/"));
 		builder.append("/src/test/resources/jcucumberng/project/");
 		builder.append(propsFileName);
 
@@ -131,7 +131,7 @@ public final class ConfigLoader {
 			throw new NoSuchKeyException(Messages.NO_SUCH_KEY + builder.toString());
 		}
 
-		return value.trim();
+		return StringUtils.trim(value);
 	}
 
 }

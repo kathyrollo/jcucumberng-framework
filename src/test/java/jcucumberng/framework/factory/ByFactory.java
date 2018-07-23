@@ -4,14 +4,19 @@ import java.io.IOException;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ByIdOrName;
+import org.openqa.selenium.support.pagefactory.ByChained;
 
 import com.paulhammant.ngwebdriver.ByAngular;
 
+import cucumber.api.PendingException;
 import jcucumberng.framework.api.ConfigLoader;
+import jcucumberng.framework.api.Selenium;
 import jcucumberng.framework.enums.ByMethod;
 import jcucumberng.framework.exceptions.InvalidPatternException;
 import jcucumberng.framework.exceptions.UnsupportedByMethodException;
 import jcucumberng.framework.strings.Messages;
+import jcucumberng.framework.strings.Text;
 
 /**
  * {@code ByFactory} handles actions for manipulating the Selenium {@code By}
@@ -33,22 +38,34 @@ public final class ByFactory {
 	 * @throws IOException
 	 */
 	public static By getInstance(String key) throws IOException {
+		String method = null;
+		String selector = null;
+		String text = null;
+		String keys[] = {};
+
 		String value = ConfigLoader.uiMap(key);
+		if (StringUtils.isBlank(value)) {
+			value = Text.BLANK;
+		}
 		if (!value.matches(".+:.+")) {
 			throw new InvalidPatternException(Messages.INVALID_UI_PATTERN + value);
 		}
 
-		String text = null;
-		String method = StringUtils.substringBefore(value, ":").toUpperCase();
-		String selector = StringUtils.substringAfter(value, ":");
-		if (selector.contains("|")) {
+		if (StringUtils.containsIgnoreCase(value, "by_chained")) {
+			keys = StringUtils.split(StringUtils.substringAfter(value, ":"), "|");
+		}
+
+		method = StringUtils.substringBefore(value, ":");
+
+		selector = StringUtils.substringAfter(value, ":");
+		if (StringUtils.contains(selector, "|")) {
 			text = StringUtils.substringAfter(selector, "|");
 			selector = StringUtils.substringBefore(selector, "|");
 		}
 
 		By by = null;
 		try {
-			ByMethod byMethod = ByMethod.valueOf(method);
+			ByMethod byMethod = ByMethod.valueOf(StringUtils.upperCase(method));
 			switch (byMethod) {
 			case ID:
 				by = By.id(selector);
@@ -73,6 +90,18 @@ public final class ByFactory {
 				break;
 			case XPATH:
 				by = By.xpath(selector);
+				break;
+			case BY_ALL:
+				// TODO Implement ByAll
+				throw new PendingException("Not yet implemented. Use ByAll normally.");
+			case BY_CHAINED:
+				selector = null;
+				text = null;
+				By[] bys = Selenium.getBys(keys);
+				by = new ByChained(bys);
+				break;
+			case BY_ID_OR_NAME:
+				by = new ByIdOrName(selector);
 				break;
 			case BINDING:
 				by = ByAngular.binding(selector);
@@ -105,7 +134,10 @@ public final class ByFactory {
 				// Handled in try-catch
 				break;
 			}
-		} catch (IllegalArgumentException iae) {
+		} catch (IllegalArgumentException | NullPointerException ex) {
+			if (StringUtils.isBlank(method)) {
+				method = Text.BLANK;
+			}
 			throw new UnsupportedByMethodException(Messages.UNSUPPORTED_BY_METHOD + method);
 		}
 

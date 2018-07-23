@@ -14,6 +14,7 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import jcucumberng.framework.enums.Browser;
 import jcucumberng.framework.exceptions.UnsupportedBrowserException;
 import jcucumberng.framework.strings.Messages;
+import jcucumberng.framework.strings.Text;
 
 /**
  * {@code BrowserFactory} handles actions for instantiating or terminating the
@@ -38,12 +39,12 @@ public final class BrowserFactory {
 		WebDriver driver = null;
 
 		StringBuilder builder = new StringBuilder();
-		builder.append(System.getProperty("user.dir").replace("\\", "/"));
+		builder.append(StringUtils.replace(System.getProperty("user.dir"), "\\", "/"));
 		builder.append("/src/test/resources/jcucumberng/framework/drivers/");
-		String driverPath = builder.toString().trim();
+		String driverPath = builder.toString();
 
 		try {
-			Browser browser = Browser.valueOf(browserConfig.toUpperCase());
+			Browser browser = Browser.valueOf(StringUtils.upperCase(browserConfig));
 			switch (browser) {
 			case CHROME32:
 				System.setProperty("webdriver.chrome.driver", driverPath + "chromedriver_win32.exe");
@@ -85,9 +86,9 @@ public final class BrowserFactory {
 				// Handled in try-catch
 				break;
 			}
-		} catch (IllegalArgumentException iae) {
+		} catch (IllegalArgumentException | NullPointerException ex) {
 			if (StringUtils.isBlank(browserConfig)) {
-				browserConfig = "BLANK";
+				browserConfig = Text.BLANK;
 			}
 			throw new UnsupportedBrowserException(Messages.UNSUPPORTED_BROWSER + browserConfig);
 		}
