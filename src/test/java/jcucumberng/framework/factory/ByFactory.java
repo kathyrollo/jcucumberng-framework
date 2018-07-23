@@ -16,6 +16,7 @@ import jcucumberng.framework.enums.ByMethod;
 import jcucumberng.framework.exceptions.InvalidPatternException;
 import jcucumberng.framework.exceptions.UnsupportedByMethodException;
 import jcucumberng.framework.strings.Messages;
+import jcucumberng.framework.strings.Text;
 
 /**
  * {@code ByFactory} handles actions for manipulating the Selenium {@code By}
@@ -44,7 +45,7 @@ public final class ByFactory {
 
 		String value = ConfigLoader.uiMap(key);
 		if (StringUtils.isBlank(value)) {
-			value = "BLANK";
+			value = Text.BLANK;
 		}
 		if (!value.matches(".+:.+")) {
 			throw new InvalidPatternException(Messages.INVALID_UI_PATTERN + value);
@@ -135,7 +136,7 @@ public final class ByFactory {
 			}
 		} catch (IllegalArgumentException | NullPointerException ex) {
 			if (StringUtils.isBlank(method)) {
-				method = "BLANK";
+				method = Text.BLANK;
 			}
 			throw new UnsupportedByMethodException(Messages.UNSUPPORTED_BY_METHOD + method);
 		}

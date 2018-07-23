@@ -14,6 +14,7 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import jcucumberng.framework.enums.Browser;
 import jcucumberng.framework.exceptions.UnsupportedBrowserException;
 import jcucumberng.framework.strings.Messages;
+import jcucumberng.framework.strings.Text;
 
 /**
  * {@code BrowserFactory} handles actions for instantiating or terminating the
@@ -87,7 +88,7 @@ public final class BrowserFactory {
 			}
 		} catch (IllegalArgumentException | NullPointerException ex) {
 			if (StringUtils.isBlank(browserConfig)) {
-				browserConfig = "BLANK";
+				browserConfig = Text.BLANK;
 			}
 			throw new UnsupportedBrowserException(Messages.UNSUPPORTED_BROWSER + browserConfig);
 		}
