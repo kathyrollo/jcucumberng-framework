@@ -129,7 +129,7 @@ public final class FileIO {
 				cell = cellIterator.next();
 
 				// Format cell value to String
-				testData[rowIndex][columnIndex] = dataFormatter.formatCellValue(cell).trim();
+				testData[rowIndex][columnIndex] = StringUtils.trim(dataFormatter.formatCellValue(cell));
 
 				columnIndex++;
 
