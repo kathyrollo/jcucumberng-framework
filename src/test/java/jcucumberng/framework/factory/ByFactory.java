@@ -116,6 +116,9 @@ public final class ByFactory {
 				break;
 			}
 		} catch (IllegalArgumentException iae) {
+			if (StringUtils.isBlank(value)) {
+				method = "BLANK";
+			}
 			throw new UnsupportedByMethodException(Messages.UNSUPPORTED_BY_METHOD + method);
 		}
 
