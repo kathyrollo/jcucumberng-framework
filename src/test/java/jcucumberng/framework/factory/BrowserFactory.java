@@ -43,7 +43,7 @@ public final class BrowserFactory {
 		String driverPath = builder.toString().trim();
 
 		try {
-			Browser browser = Browser.valueOf(browserConfig.toUpperCase());
+			Browser browser = Browser.valueOf(StringUtils.upperCase(browserConfig));
 			switch (browser) {
 			case CHROME32:
 				System.setProperty("webdriver.chrome.driver", driverPath + "chromedriver_win32.exe");
