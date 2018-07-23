@@ -43,7 +43,7 @@ Artefacts are created in the `/target/` directory after the build is successful.
 
 ### Reporting
 Below is the generated dynamic HTML report in `/target/cucumber-html-reports/`:
-![dynamic_report](https://user-images.githubusercontent.com/28589393/43045835-81c09f18-8df2-11e8-8b84-e2f6a2ef63f6.gif)
+![dynamic_report](https://user-images.githubusercontent.com/28589393/43090686-acbd9c00-8eda-11e8-9c08-d74c1a86e03b.gif)
 
 ### Logging
 Below is a sample of the generated logs in `/target/cucumber-logs/`:
