@@ -51,16 +51,18 @@ public final class ByFactory {
 			throw new InvalidPatternException(Messages.INVALID_UI_PATTERN + value);
 		}
 
-		if (StringUtils.containsIgnoreCase(value, "by_chained")) {
-			keys = StringUtils.split(StringUtils.substringAfter(value, ":"), "|");
-		}
-
 		method = StringUtils.substringBefore(value, ":");
 
 		selector = StringUtils.substringAfter(value, ":");
 		if (StringUtils.contains(selector, "|")) {
-			text = StringUtils.substringAfter(selector, "|");
-			selector = StringUtils.substringBefore(selector, "|");
+			if (StringUtils.containsIgnoreCase(value, ByMethod.BY_CHAINED.toString())) {
+				keys = StringUtils.split(StringUtils.substringAfter(value, ":"), "|");
+				selector = null;
+			}
+			if (StringUtils.containsIgnoreCase(value, ByMethod.CSS_CONTAINING_TEXT.toString())) {
+				text = StringUtils.substringAfter(selector, "|");
+				selector = StringUtils.substringBefore(selector, "|");
+			}
 		}
 
 		By by = null;
@@ -95,8 +97,6 @@ public final class ByFactory {
 				// TODO Implement ByAll
 				throw new PendingException("Not yet implemented. Use ByAll normally.");
 			case BY_CHAINED:
-				selector = null;
-				text = null;
 				By[] bys = Selenium.getBys(keys);
 				by = new ByChained(bys);
 				break;
