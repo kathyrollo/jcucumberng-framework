@@ -1,4 +1,4 @@
-package jcucumberng.project.runners;
+package jcucumberng.project;
 
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
@@ -14,7 +14,7 @@ import jcucumberng.framework.api.ConfigLoader;
 				"pretty", "html:target/cucumber-html-default", "json:target/cucumber-report.json",
 				"junit:target/cucumber-report.xml" }, snippets = SnippetType.UNDERSCORE, monochrome = true, strict = true, dryRun = false)
 
-public class BalanceProjectorRunner {
+public class RunCukesTest {
 	private static boolean isLoaded = false;
 
 	// No edit
