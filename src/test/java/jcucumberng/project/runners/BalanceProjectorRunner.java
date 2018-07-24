@@ -17,8 +17,9 @@ import jcucumberng.framework.api.ConfigLoader;
 public class BalanceProjectorRunner {
 	private static boolean isLoaded = false;
 
+	// No edit
 	@BeforeClass
-	public static void loadLoggerConf() { // No edit
+	public static void loadLoggerConf() {
 		if (!isLoaded) {
 			ConfigLoader.loggerConf();
 			isLoaded = true;
