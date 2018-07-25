@@ -33,9 +33,11 @@ Run the following commands in the cmdline:
 ~~~
 $ cd /path/to/workspace/
 $ git clone <https or ssh>
-$ cd jcucumberng-framework
+$ cd jcucumberng-framework/
 $ mvn verify
 ~~~
+
+Maven performs a one-time download of all dependencies for the first run. Execute `mvn verify` again after the downloads complete to begin test execution.
 
 ![mvn_verify](https://user-images.githubusercontent.com/28589393/43071460-79da3de6-8ea5-11e8-9935-a6afc02d62d8.gif)
 
