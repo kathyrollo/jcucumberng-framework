@@ -1,14 +1,14 @@
 # jCucumberNG-Framework
 
 ## Overview
-Allows automation testers to easily write Feature/Gherkin files for Cucumber and implement step definitions in plain Java classes. ngWebDriver (Protractor) offers support for Angular/JS web applications.
+Allows automation testers to easily write Feature/Gherkin files for Cucumber and implement step definitions in plain Java classes. ngWebDriver (Protractor) offers extended support for Angular/JS web applications.
 
 ## Features
 Supports the following capabilities:
 - API for commonly used web testing actions
 - Central object repository for UI elements
 - Cucumber PicoContainer for dependency injection
-- Compatibile with IE11, Edge, Chrome, Firefox (extendable)
+- Compatible with IE11, Edge, Chrome, Firefox (add drivers as needed)
 - Uses Maven for build and test execution via cmdline
 - Uses Log4j2 for logging mechanism with daily rolling file
 - Automated test result generation in HTML, JSON, XML
