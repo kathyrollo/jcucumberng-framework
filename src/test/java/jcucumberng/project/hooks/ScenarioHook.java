@@ -34,7 +34,7 @@ public class ScenarioHook {
 
 	@After
 	public void afterScenario() throws Throwable {
-		if (Boolean.valueOf(ConfigLoader.frameworkConf("screenshot.on.fail"))) {
+		if (Boolean.parseBoolean(ConfigLoader.frameworkConf("screenshot.on.fail"))) {
 			if (scenario.isFailed()) {
 				Selenium.embedScreenshot(driver, scenario);
 			}
