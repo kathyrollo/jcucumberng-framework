@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 
 import cucumber.api.Scenario;
 import cucumber.api.java.AfterStep;
+import jcucumberng.framework.api.ConfigLoader;
 import jcucumberng.framework.api.Selenium;
 
 public class StepHook {
@@ -18,7 +19,9 @@ public class StepHook {
 
 	@AfterStep
 	public void afterStep() throws Throwable {
-		Selenium.embedScreenshot(driver, scenario);
+		if (!Boolean.parseBoolean(ConfigLoader.frameworkConf("screenshot.on.fail"))) {
+			Selenium.embedScreenshot(driver, scenario);
+		}
 	}
 
 }
