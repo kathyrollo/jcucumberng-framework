@@ -34,7 +34,7 @@ Supports the following features and technology stack:
 - AssertJ for fluent assertions
 - Compatible with IE11, Edge, Chrome, Firefox (extendable)
 - Maven for build and test execution via cmdline
-- SLF4J/Log4j2 for logging mechanism with daily rolling file
+- SLF4J/Log4j2 for logging mechanism
 - Automated test result generation in HTML, JSON, XML
 - Embedded screenshots in HTML reports
 
@@ -81,7 +81,7 @@ TBA
 TBA
 
 ### Logging
-Logs found in `/target/cucumber-logs/`:
+Writes logs to a daily rolling file. Logs found in `/target/cucumber-logs/`:
 ~~~
 [INFO ] 2018-07-21 22:02:40,107 ScenarioHook.beforeScenario() - BEGIN TEST -> Verify Page Title
 [INFO ] 2018-07-21 22:02:44,191 ScenarioHook.beforeScenario() - Browser=CHROME32_NOHEAD
