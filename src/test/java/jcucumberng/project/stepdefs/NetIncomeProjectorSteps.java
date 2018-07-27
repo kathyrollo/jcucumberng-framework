@@ -26,58 +26,58 @@ public class NetIncomeProjectorSteps {
 	}
 
 	@When("I Enter My Start Balance: {word}")
-	public void I_Enter_My_Start_Balance(String startBalance) throws Throwable {
-		Selenium.enterText(driver, startBalance, "start.balance.txt");
-		LOGGER.debug("Start Balance=" + startBalance);
+	public void I_Enter_My_Start_Balance(String value) throws Throwable {
+		Selenium.enterText(driver, value, "start.balance");
+		LOGGER.debug("Start Balance=" + value);
 		this.scrollToDivBox(0);
 	}
 
 	@When("I Enter My Regular Income Sources")
 	public void I_Enter_My_Regular_Income_Sources(DataTable table) throws Throwable {
 		List<Transaction> txns = table.asList(Transaction.class);
-		this.enterTransaction(txns, "income.add.btn", "income.name.txt", "income.amount.txt", "income.freq.select");
+		this.enterTransaction(txns, "income.add", "income.name", "income.amount", "income.freq");
 		this.scrollToDivBox(1);
 	}
 
 	@When("I Enter My Regular Expenses")
 	public void I_Enter_My_Regular_Expenses(DataTable table) throws Throwable {
 		List<Transaction> txns = table.asList(Transaction.class);
-		this.enterTransaction(txns, "expense.add.btn", "expense.name.txt", "expense.amount.txt", "expense.freq.select");
+		this.enterTransaction(txns, "expense.add", "expense.name", "expense.amount", "expense.freq");
 		this.scrollToDivBox(2);
 	}
 
 	@Then("I Should See Net Income Per Month: {word}")
-	public void I_Should_See_Net_Income_Per_Month(String netPerMonth) throws Throwable {
-		WebElement netPerMonthTd = driver.findElement(Selenium.by("net.per.month.td"));
-		String netPerMonthText = netPerMonthTd.getText();
-		Assertions.assertThat(netPerMonthText).isEqualTo(netPerMonth);
-		LOGGER.debug("Net Per Month=" + netPerMonthText);
-		Selenium.scrollToElement(driver, netPerMonthTd);
+	public void I_Should_See_Net_Income_Per_Month(String expected) throws Throwable {
+		WebElement netPerMonth = driver.findElement(Selenium.by("net.per.month"));
+		String actual = netPerMonth.getText();
+		Assertions.assertThat(actual).isEqualTo(expected);
+		LOGGER.debug("Net Per Month=" + actual);
+		Selenium.scrollToElement(driver, netPerMonth);
 	}
 
 	@Then("I Should See Net Income Per Year: {word}")
-	public void I_Should_See_Net_Income_Per_Year(String netPerYear) throws Throwable {
-		WebElement netPerYearTd = driver.findElement(Selenium.by("net.per.year.td"));
-		String netPerYearText = netPerYearTd.getText();
-		Assertions.assertThat(netPerYearText).isEqualTo(netPerYear);
-		LOGGER.debug("Net Per Year=" + netPerYearText);
-		Selenium.scrollToElement(driver, netPerYearTd);
+	public void I_Should_See_Net_Income_Per_Year(String expected) throws Throwable {
+		WebElement netPerYear = driver.findElement(Selenium.by("net.per.year"));
+		String actual = netPerYear.getText();
+		Assertions.assertThat(actual).isEqualTo(expected);
+		LOGGER.debug("Net Per Year=" + actual);
+		Selenium.scrollToElement(driver, netPerYear);
 	}
 
-	private void enterTransaction(List<Transaction> txns, String addBtnKey, String nameFldKey, String amtFldKey,
-			String freqSelKey) throws Throwable {
+	private void enterTransaction(List<Transaction> txns, String add, String name, String amount, String freq)
+			throws Throwable {
 		// Click Add button
 		for (int ctr = 0; ctr < txns.size() - 1; ctr++) {
-			Selenium.clickElement(driver, addBtnKey);
+			Selenium.clickElement(driver, add);
 		}
 		// Enter details
-		List<WebElement> nameFields = driver.findElements(Selenium.by(nameFldKey));
-		List<WebElement> amtFields = driver.findElements(Selenium.by(amtFldKey));
-		List<Select> freqSelects = Selenium.getSelectElements(driver, freqSelKey);
+		List<WebElement> names = driver.findElements(Selenium.by(name));
+		List<WebElement> amounts = driver.findElements(Selenium.by(amount));
+		List<Select> freqs = Selenium.getSelectElements(driver, freq);
 		for (int ctr = 0; ctr < txns.size(); ctr++) {
-			Selenium.enterText(driver, txns.get(ctr).getName(), nameFields.get(ctr));
-			Selenium.enterText(driver, txns.get(ctr).getAmount(), amtFields.get(ctr));
-			freqSelects.get(ctr).selectByVisibleText(txns.get(ctr).getFrequency());
+			Selenium.enterText(driver, txns.get(ctr).getName(), names.get(ctr));
+			Selenium.enterText(driver, txns.get(ctr).getAmount(), amounts.get(ctr));
+			freqs.get(ctr).selectByVisibleText(txns.get(ctr).getFrequency());
 			LOGGER.debug(txns.get(ctr).toString());
 		}
 	}

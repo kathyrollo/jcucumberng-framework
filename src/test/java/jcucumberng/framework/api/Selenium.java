@@ -45,7 +45,7 @@ public final class Selenium {
 	 * <pre>
 	 * {@code
 	 * ui-map.properties:
-	 * income.add.btn=css:button[ng-click='addIncome();']
+	 * income.add=css:button[ng-click='addIncome();']
 	 * 
 	 * Where:
 	 * method = css

@@ -107,10 +107,10 @@ public final class ConfigLoader {
 	/**
 	 * Reads web elements from {@code ui-map.properties}.
 	 * 
-	 * @param key the element key (Example: {@code first.name.txt=id:firstName}, key
-	 *            = {@code first.name.txt})
+	 * @param key the element key (Example: {@code first.name=id:firstName}, key =
+	 *            {@code first.name})
 	 * @return String - the value corresponding to the given key (Example:
-	 *         {@code first.name.txt=id:firstName}, value = {@code id:firstName})
+	 *         {@code first.name=id:firstName}, value = {@code id:firstName})
 	 * @throws IOException
 	 */
 	public static String uiMap(String key) throws IOException {

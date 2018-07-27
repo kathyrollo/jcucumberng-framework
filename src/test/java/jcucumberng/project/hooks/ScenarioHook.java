@@ -10,6 +10,7 @@ import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import jcucumberng.framework.api.ConfigLoader;
 import jcucumberng.framework.api.LocalSystem;
+import jcucumberng.framework.api.Selenium;
 import jcucumberng.framework.factory.BrowserFactory;
 
 public class ScenarioHook {
@@ -33,6 +34,12 @@ public class ScenarioHook {
 
 	@After
 	public void afterScenario() throws Throwable {
+		if (Boolean.parseBoolean(ConfigLoader.frameworkConf("screenshot.on.fail"))) {
+			if (scenario.isFailed()) {
+				Selenium.embedScreenshot(driver, scenario);
+			}
+		}
+
 		LOGGER.info("END TEST -> " + scenario.getName() + " - " + scenario.getStatus());
 		driver.quit();
 	}
