@@ -3,14 +3,38 @@
 ## Overview
 Allows automation testers to easily write Feature/Gherkin files for Cucumber and implement step definitions in plain Java classes. ngWebDriver (Protractor) offers extended support for Angular/JS web applications.
 
-## Features
-Supports the following capabilities:
+### ui-map.properties:
+~~~
+net.per.month=binding:roundDown(monthlyNet())
+~~~
+
+### Feature/Gherkin:
+~~~
+Then I Should See Net Income Per Month: 23769
+~~~
+
+### Step Definition:
+~~~
+@Then("I Should See Net Income Per Month: {word}")
+public void I_Should_See_Net_Income_Per_Month(String expected) throws Throwable {
+    WebElement netPerMonth = driver.findElement(Selenium.by("net.per.month"));
+    String actual = netPerMonth.getText();
+    Assertions.assertThat(actual).isEqualTo(expected);
+    LOGGER.debug("Net Per Month=" + actual);
+    Selenium.scrollToElement(driver, netPerMonth);
+}
+~~~
+
+## Capabilities
+Supports the following features and technology stack:
 - API for commonly used web testing actions
 - Central object repository for UI elements
+- ngWebDriver for Angular/JS web applications
 - Cucumber PicoContainer for dependency injection
-- Compatible with IE11, Edge, Chrome, Firefox (add drivers as needed)
-- Uses Maven for build and test execution via cmdline
-- Uses Log4j2 for logging mechanism with daily rolling file
+- AssertJ for fluent assertions
+- Compatible with IE11, Edge, Chrome, Firefox (extendable)
+- Maven for build and test execution via cmdline
+- SLF4J/Log4j2 for logging mechanism with daily rolling file
 - Automated test result generation in HTML, JSON, XML
 - Embedded screenshots in HTML reports
 
@@ -44,11 +68,19 @@ Maven performs a one-time download of all dependencies for the first run. Execut
 Artefacts are created in the `/target/` directory after the build is successful.
 
 ### Reporting
-Below is the generated dynamic HTML report in `/target/cucumber-html-reports/`:
+Generates two (2) rich HTML reports with dynamic visuals and statistics.
+
+#### Maven Cucumber Reporting
+Sample report in `/target/cucumber-html-reports/`:
 ![dynamic_report](https://user-images.githubusercontent.com/28589393/43090686-acbd9c00-8eda-11e8-9c08-d74c1a86e03b.gif)
 
+#### Cucumber Extent Reporter
+Sample report in `/target/cucumber-html-extent/`:
+
+TBA
+
 ### Logging
-Below is a sample of the generated logs in `/target/cucumber-logs/`:
+Sample logs in `/target/cucumber-logs/`:
 ~~~
 [INFO ] 2018-07-21 22:02:40,107 ScenarioHook.beforeScenario() - BEGIN TEST -> Verify Page Title
 [INFO ] 2018-07-21 22:02:44,191 ScenarioHook.beforeScenario() - Browser=CHROME32_NOHEAD
