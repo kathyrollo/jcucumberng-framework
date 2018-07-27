@@ -5,23 +5,26 @@
 	<artifactId>jcucumberng-framework</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
+
 	<name>jCucumberNG-Framework</name>
 	<description>A test framework using Selenium, Cucumber, and ngWebDriver (Protractor) in Java.</description>
 	<url>https://github.com/kathyrollo/jcucumberng-framework</url>
+
 	<properties>
-		<!-- Project Properties -->
+		<!-- Project -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<app.name>Simply Do - Balance Projector</app.name>
 		<jcucumberng.output>${project.build.directory}/jcucumberng-output</jcucumberng.output>
-		<!-- Maven Properties -->
+		<!-- Maven -->
 		<timestamp>${maven.build.timestamp}</timestamp>
 		<maven.build.timestamp.format>yyyyMMdd'T'HHmmss,SSS'Z'</maven.build.timestamp.format>
-		<!-- Framework Core Dependencies -->
+		<!-- Core Dependencies -->
 		<selenium.version>3.13.0</selenium.version>
 		<ngwebdriver.version>1.1.4</ngwebdriver.version>
 		<cucumber.version>3.0.2</cucumber.version>
 		<java.version>1.8</java.version>
 	</properties>
+
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-server -->
 		<dependency>
@@ -80,6 +83,7 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
 	<build>
 		<plugins>
 			<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-site-plugin -->
