@@ -68,19 +68,20 @@ Maven performs a one-time download of all dependencies for the first run. Execut
 Artefacts are created in the `/target/` directory after the build is successful.
 
 ### Reporting
-Generates two (2) rich HTML reports with dynamic visuals and statistics.
+Generates rich HTML reports with dynamic visuals and statistics.
 
 #### Maven Cucumber Reporting
-Sample report in `/target/cucumber-html-reports/`:
+Report found in `/target/cucumber-html-reports/`:
 ![dynamic_report](https://user-images.githubusercontent.com/28589393/43090686-acbd9c00-8eda-11e8-9c08-d74c1a86e03b.gif)
 
 #### Cucumber Extent Reporter
-Sample report in `/target/cucumber-html-extent/`:
+TBA
 
+#### Allure Test Report
 TBA
 
 ### Logging
-Sample logs in `/target/cucumber-logs/`:
+Logs found in `/target/cucumber-logs/`:
 ~~~
 [INFO ] 2018-07-21 22:02:40,107 ScenarioHook.beforeScenario() - BEGIN TEST -> Verify Page Title
 [INFO ] 2018-07-21 22:02:44,191 ScenarioHook.beforeScenario() - Browser=CHROME32_NOHEAD
