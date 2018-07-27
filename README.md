@@ -1,5 +1,5 @@
 # jCucumberNG-Framework
-_Write tests, not page objects. Less maintenance, faster ROI._
+_Write tests, not page objects._
 
 ## Overview
 Allows automation testers to easily write Feature/Gherkin files for Cucumber and implement step definitions in plain Java classes. ngWebDriver (Protractor) offers extended support for Angular/JS web applications.
@@ -52,7 +52,7 @@ Setup and installation are not in the scope of this guide. Check the correspondi
 ## Getting Started
 Visit the application under test (AUT) here: http://simplydo.com/projector/
 
-No further configurations needed at this point. The tests will run against the AUT in [headless](https://en.wikipedia.org/wiki/Headless_browser) mode using ChromeDriver as defined in the default framework settings.
+No further configurations needed at this point. The tests will run against the AUT in [headless browser](https://en.wikipedia.org/wiki/Headless_browser) mode using ChromeDriver as defined in the default framework settings.
 
 Run the following commands in the cmdline:
 ~~~
