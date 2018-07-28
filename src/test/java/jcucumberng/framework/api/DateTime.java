@@ -1,8 +1,5 @@
 package jcucumberng.framework.api;
 
-import jcucumberng.framework.exceptions.OutOfRangeException;
-import jcucumberng.framework.strings.Messages;
-
 /**
  * {@code DateTime} handles actions for manipulating date and time.
  * 
@@ -15,7 +12,9 @@ public final class DateTime {
 	}
 
 	/**
-	 * Converts seconds to millis with specified range.
+	 * Converts seconds to millis with specified range. Defaults to given
+	 * {@code begin} or {@code end} if {@code waitTime} is less than or greater than
+	 * respectively.
 	 * 
 	 * @param waitTime value in seconds from a {@code .properties} file
 	 * @param begin    lowerbound value of the range in seconds, inclusive
@@ -23,13 +22,14 @@ public final class DateTime {
 	 * @return int - value in millis
 	 */
 	public static int convertSecondsToMillisWithRange(String waitTime, int begin, int end) {
-		int millis = Integer.parseInt(waitTime) * 1000;
-		begin *= 1000;
-		end *= 1000;
-		if (!(millis >= begin && millis <= end)) {
-			throw new OutOfRangeException(Messages.OUT_OF_RANGE + millis);
+		int secs = Integer.parseInt(waitTime);
+		if (secs < begin) {
+			secs = begin;
 		}
-		return millis;
+		if (secs > end) {
+			secs = end;
+		}
+		return secs * 1000;
 	}
 
 }
