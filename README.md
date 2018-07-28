@@ -30,7 +30,7 @@ public void I_Should_See_Net_Income_Per_Month(String expected) throws Throwable 
 Supports the following features and technology stack:
 - API for commonly used web testing actions
 - Central object repository for UI elements
-- ngWebDriver for Angular/JS web applications
+- ngWebDriver (Protractor) for Angular/JS web applications
 - Cucumber PicoContainer for dependency injection
 - AssertJ for fluent assertions
 - Compatible with IE11, Edge, Chrome, Firefox (extendable)
@@ -66,7 +66,7 @@ Maven performs a one-time download of all dependencies for the first run. Execut
 
 ![mvn_verify](https://user-images.githubusercontent.com/28589393/43071460-79da3de6-8ea5-11e8-9935-a6afc02d62d8.gif)
 
-Artefacts are created in the `/target/` directory after the build is successful.
+Test artefacts are created in the `/target/` directory after the build is successful.
 
 ### Reporting
 Generates rich HTML reports with dynamic visuals and statistics.
