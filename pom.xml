@@ -98,6 +98,18 @@
 				<artifactId>maven-project-info-reports-plugin</artifactId>
 				<version>3.0.0</version>
 			</plugin>
+			<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-jar-plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.1.0</version>
+				<configuration>
+					<classesDirectory>src</classesDirectory>
+					<excludes>
+						<exclude>**</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
 			<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -119,18 +131,6 @@
 					</includes>
 					<testFailureIgnore>false</testFailureIgnore>
 					<reportsDirectory>${project.build.directory}/junit-reports/${timestamp}</reportsDirectory>
-				</configuration>
-			</plugin>
-			<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-jar-plugin -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<version>3.1.0</version>
-				<configuration>
-					<classesDirectory>src</classesDirectory>
-					<excludes>
-						<exclude>**</exclude>
-					</excludes>
 				</configuration>
 			</plugin>
 			<!-- https://mvnrepository.com/artifact/net.masterthought/maven-cucumber-reporting -->
