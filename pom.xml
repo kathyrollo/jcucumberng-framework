@@ -121,6 +121,18 @@
 					<reportsDirectory>${project.build.directory}/junit-reports/${timestamp}</reportsDirectory>
 				</configuration>
 			</plugin>
+			<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-jar-plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.1.0</version>
+				<configuration>
+					<classesDirectory>src</classesDirectory>
+					<excludes>
+						<exclude>**</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
 			<!-- https://mvnrepository.com/artifact/net.masterthought/maven-cucumber-reporting -->
 			<plugin>
 				<groupId>net.masterthought</groupId>

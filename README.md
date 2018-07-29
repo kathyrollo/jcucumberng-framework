@@ -66,8 +66,6 @@ Maven performs a one-time download of all dependencies for the first run. Execut
 
 ![mvn_verify](https://user-images.githubusercontent.com/28589393/43071460-79da3de6-8ea5-11e8-9935-a6afc02d62d8.gif)
 
-Optionally, running `mvn verify -q` (or `--quiet`) only displays error messages in Maven logging. This can be used to suppress the warning message resulting from an empty JAR file which can be ignored.
-
 Test artefacts are created in the `/target/` directory after the build is successful.
 
 ### Reporting
