@@ -108,6 +108,7 @@
 					<excludes>
 						<exclude>**</exclude>
 					</excludes>
+					<skipIfEmpty>true</skipIfEmpty>
 				</configuration>
 			</plugin>
 			<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
