@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>krollo.jcucumberng</groupId>
 	<artifactId>jcucumberng-framework</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.0-EMPTY</version>
 	<packaging>jar</packaging>
 
 	<name>jCucumberNG-Framework</name>
@@ -103,13 +103,13 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
 				<version>3.1.0</version>
-				<configuration>
-					<classesDirectory>src</classesDirectory>
-					<excludes>
-						<exclude>**</exclude>
-					</excludes>
-					<skipIfEmpty>true</skipIfEmpty>
-				</configuration>
+				<!-- Skip JAR creation -->
+				<executions>
+					<execution>
+						<id>default-jar</id>
+						<phase>none</phase>
+					</execution>
+				</executions>
 			</plugin>
 			<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
 			<plugin>
