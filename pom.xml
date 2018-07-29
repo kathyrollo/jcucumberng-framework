@@ -131,7 +131,7 @@
 						<include>**/RunCukesTest.java</include>
 					</includes>
 					<testFailureIgnore>false</testFailureIgnore>
-					<reportsDirectory>${project.build.directory}/junit-reports/${timestamp}</reportsDirectory>
+					<reportsDirectory>${project.build.directory}/test-output/${timestamp}</reportsDirectory>
 				</configuration>
 			</plugin>
 			<!-- https://mvnrepository.com/artifact/net.masterthought/maven-cucumber-reporting -->
