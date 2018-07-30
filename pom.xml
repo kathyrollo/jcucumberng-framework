@@ -102,14 +102,14 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
-				<version>[3.1.0,4.0.0)</version>
-				<!-- Skip JAR creation -->
-				<executions>
-					<execution>
-						<id>default-jar</id>
-						<phase>none</phase>
-					</execution>
-				</executions>
+				<version>3.1.0</version>
+				<!-- Ignore src/main in JAR packaging -->
+				<configuration>
+					<classesDirectory>src</classesDirectory>
+					<excludes>
+						<exclude>main</exclude>
+					</excludes>
+				</configuration>
 			</plugin>
 			<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
 			<plugin>
