@@ -45,7 +45,7 @@ The following are required:
 - [Eclipse IDE](http://www.eclipse.org/downloads/eclipse-packages/) / [VSCode](https://code.visualstudio.com/download) / [IntelliJ](https://www.jetbrains.com/idea/download/#section=windows)
 - [Git](https://git-scm.com/downloads)
 - [Maven](https://maven.apache.org/download.cgi)
-- [Cmder](http://cmder.net/) (optional, includes Git for Windows)
+- [Cmder](http://cmder.net/) (recommended, includes Git for Windows)
 
 Setup and installation are not in the scope of this guide. Check the corresponding documentation or tutorials accordingly.
 
