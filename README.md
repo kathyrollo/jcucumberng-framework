@@ -22,7 +22,6 @@ public void I_Should_See_Net_Income_Per_Month(String expected) throws Throwable 
     String actual = netPerMonth.getText();
     Assertions.assertThat(actual).isEqualTo(expected);
     LOGGER.debug("Net Per Month=" + actual);
-    Selenium.scrollToElement(driver, netPerMonth);
 }
 ~~~
 
