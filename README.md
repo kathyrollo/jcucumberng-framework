@@ -74,12 +74,6 @@ Generates rich HTML reports with dynamic visuals and statistics.
 Report found in `/target/cucumber-html-reports/`:
 ![dynamic_report](https://user-images.githubusercontent.com/28589393/43090686-acbd9c00-8eda-11e8-9c08-d74c1a86e03b.gif)
 
-#### Cucumber Extent Reporter
-TBA
-
-#### Allure Test Report
-TBA
-
 ### Logging
 Writes logs to a daily rolling file. Logs found in `/target/cucumber-logs/`:
 ~~~
