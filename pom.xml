@@ -87,6 +87,7 @@
 			<groupId>com.codoid.products</groupId>
 			<artifactId>fillo</artifactId>
 			<version>1.18</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
