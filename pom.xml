@@ -14,7 +14,6 @@
 		<!-- Project -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<app.name>Simply Do - Balance Projector</app.name>
-		<jcucumberng.output>${project.build.directory}/jcucumberng-output</jcucumberng.output>
 		<!-- Maven -->
 		<timestamp>${maven.build.timestamp}</timestamp>
 		<maven.build.timestamp.format>yyyyMMdd'T'HHmmss'Z'</maven.build.timestamp.format>
