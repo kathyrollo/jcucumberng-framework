@@ -65,6 +65,21 @@ public final class Selenium {
 	}
 
 	/**
+	 * Checks if the element is found on the web page.
+	 * 
+	 * @param driver the Selenium WebDriver
+	 * @param keys   the key(s) from {@code ui-map.properties}
+	 * @return {@code true} - if at least one matching element is found on the web
+	 *         page
+	 * @throws IOException
+	 */
+	public static boolean isElementPresent(WebDriver driver, String... keys) throws IOException {
+		By[] bys = Selenium.getBys(keys);
+		List<WebElement> elements = driver.findElements(new ByChained(bys));
+		return elements.size() > 0 ? true : false;
+	}
+
+	/**
 	 * Clicks an element on the web page.
 	 * 
 	 * @param driver the Selenium WebDriver
