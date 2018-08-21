@@ -89,7 +89,7 @@ public final class Selenium {
 	 */
 	public static WebElement clickElement(WebDriver driver, String... keys) throws IOException {
 		By[] bys = Selenium.getBys(keys);
-		WebDriverWait wait = new WebDriverWait(driver, 3);
+		WebDriverWait wait = new WebDriverWait(driver, Integer.parseInt(ConfigLoader.frameworkConf("webdriver.wait")));
 		WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(new ByChained(bys)));
 		element.click();
 		return element;
@@ -106,7 +106,7 @@ public final class Selenium {
 	 */
 	public static WebElement enterText(WebDriver driver, String text, String... keys) throws IOException {
 		By[] bys = Selenium.getBys(keys);
-		WebDriverWait wait = new WebDriverWait(driver, 3);
+		WebDriverWait wait = new WebDriverWait(driver, Integer.parseInt(ConfigLoader.frameworkConf("webdriver.wait")));
 		WebElement field = wait.until(ExpectedConditions.visibilityOfElementLocated(new ByChained(bys)));
 		field.clear();
 		field.sendKeys(text);
@@ -135,7 +135,7 @@ public final class Selenium {
 	 */
 	public static List<Select> getSelectElements(WebDriver driver, String... keys) throws IOException {
 		By[] bys = Selenium.getBys(keys);
-		WebDriverWait wait = new WebDriverWait(driver, 3);
+		WebDriverWait wait = new WebDriverWait(driver, Integer.parseInt(ConfigLoader.frameworkConf("webdriver.wait")));
 		List<WebElement> elements = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(new ByChained(bys)));
 		List<Select> selectElements = new ArrayList<>();
 		for (WebElement element : elements) {
@@ -165,7 +165,7 @@ public final class Selenium {
 	public static String openNewWindowByElement(WebDriver driver, String... keys) throws IOException {
 		String parentHandle = driver.getWindowHandle(); // Save parent window
 		Selenium.clickElement(driver, keys); // Open child window
-		WebDriverWait wait = new WebDriverWait(driver, 5);
+		WebDriverWait wait = new WebDriverWait(driver, Integer.parseInt(ConfigLoader.frameworkConf("webdriver.wait")));
 		boolean isChildWindowOpen = wait.until(ExpectedConditions.numberOfWindowsToBe(2));
 		if (isChildWindowOpen) {
 			Set<String> handles = driver.getWindowHandles();
@@ -191,7 +191,7 @@ public final class Selenium {
 	public static String openNewWindowByLink(WebDriver driver, String url) {
 		String parentHandle = driver.getWindowHandle();
 		driver.get(url);
-		WebDriverWait wait = new WebDriverWait(driver, 5);
+		WebDriverWait wait = new WebDriverWait(driver, Integer.parseInt(ConfigLoader.frameworkConf("webdriver.wait")));
 		boolean isChildWindowOpen = wait.until(ExpectedConditions.numberOfWindowsToBe(2));
 		if (isChildWindowOpen) {
 			Set<String> handles = driver.getWindowHandles();
