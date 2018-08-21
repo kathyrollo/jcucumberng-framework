@@ -37,9 +37,9 @@ Supports the following features and technology stack:
 - [Cucumber PicoContainer](https://github.com/cucumber/cucumber-jvm/tree/master/picocontainer) for dependency injection
 - [AssertJ](http://joel-costigliola.github.io/assertj/) for fluent assertions
 - Compatible with IE11, Edge, Chrome, Firefox (extendable)
-- Maven for build and test execution via cmdline
-- SLF4J/Log4j2 for logging mechanism
-- Automated test result generation in HTML, JSON, XML
+- [Maven](https://maven.apache.org/) for build and test execution via cmdline
+- [Log4j2](https://logging.apache.org/log4j/2.x/) with [SLF4J](https://www.slf4j.org/) wrapper for logging mechanism
+- Automated test result generation in [HTML](https://github.com/damianszczepanik/maven-cucumber-reporting), JSON, XML
 - Embedded screenshots in HTML reports
 
 ## Prerequisites
