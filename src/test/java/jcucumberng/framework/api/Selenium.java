@@ -135,7 +135,8 @@ public final class Selenium {
 	 */
 	public static List<Select> getSelectElements(WebDriver driver, String... keys) throws IOException {
 		By[] bys = Selenium.getBys(keys);
-		List<WebElement> elements = driver.findElements(new ByChained(bys));
+		WebDriverWait wait = new WebDriverWait(driver, 3);
+		List<WebElement> elements = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(new ByChained(bys)));
 		List<Select> selectElements = new ArrayList<>();
 		for (WebElement element : elements) {
 			selectElements.add(new Select(element));
@@ -164,7 +165,7 @@ public final class Selenium {
 	public static String openNewWindowByElement(WebDriver driver, String... keys) throws IOException {
 		String parentHandle = driver.getWindowHandle(); // Save parent window
 		Selenium.clickElement(driver, keys); // Open child window
-		WebDriverWait wait = new WebDriverWait(driver, 5); // Timeout in 5s
+		WebDriverWait wait = new WebDriverWait(driver, 5);
 		boolean isChildWindowOpen = wait.until(ExpectedConditions.numberOfWindowsToBe(2));
 		if (isChildWindowOpen) {
 			Set<String> handles = driver.getWindowHandles();
