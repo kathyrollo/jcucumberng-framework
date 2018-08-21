@@ -1,12 +1,14 @@
 # jCucumberNG-Framework
-_Write tests, not page objects._
 
 ## Overview
-**jCucumberNG-Framework** allows automation testers to write Feature/Gherkin files for Cucumber and implement step definitions in plain Java classes without the Page Object Model - the de facto design pattern for most.
+Allows automation testers to write Feature/Gherkin files for Cucumber and implement step definitions in plain Java classes. ngWebDriver (Protractor) offers extended support for Angular/JS web applications.
 
-Cucumber PicoContainer (as recommended in the [official docs](https://docs.cucumber.io/cucumber/state/#dependency-injection)) removes the tight coupling of page objects to step definitions focusing on writing tests instead of maintaining a design pattern. Each step is an independent unit that can be reused anywhere.
+## Write Tests, Not Page Objects
+This framework deliberately removes the Page Object Model (POM). Test automation should be focused on _testing_ instead of continually maintaining a design pattern. If POM is slowing you down as the test suite grows, it is already an [anti-pattern](https://blog.getgauge.io/are-page-objects-anti-pattern-21b6e337880f).
 
-ngWebDriver (Protractor) offers extended support for Angular/JS web applications.
+Cucumber PicoContainer (recommended in the [official docs](https://docs.cucumber.io/cucumber/state/#dependency-injection)) removes the tight coupling of page objects to step definitions by sharing states in the step classes using [dependency injection](http://picocontainer.com/injection.html). Each step is an independent unit that can be reused anywhere.
+
+If dependency injection confused you, here is how easy it is to immediately begin writing test scripts without the added overhead of setting up page objects:
 
 ### ui-map.properties:
 ~~~
@@ -20,6 +22,13 @@ Then I Should See Net Income Per Month: 23769
 
 ### Step Definition:
 ~~~
+private WebDriver driver = null;
+
+// PicoContainer injects ScenarioHook class
+public NetIncomeProjectorSteps(ScenarioHook scenarioHook) {
+    driver = scenarioHook.getDriver();
+}
+
 @Then("I Should See Net Income Per Month: {word}")
 public void I_Should_See_Net_Income_Per_Month(String expected) throws Throwable {
     WebElement netPerMonth = driver.findElement(Selenium.by("net.per.month"));
@@ -30,17 +39,17 @@ public void I_Should_See_Net_Income_Per_Month(String expected) throws Throwable 
 ~~~
 
 ## Capabilities
-Supports the following features and technology stack:
+Supports the following features:
 - [ngWebDriver](https://github.com/paul-hammant/ngWebDriver) (Protractor) for Angular/JS locators
-- API for commonly used web testing actions
-- Central object repository for UI elements
 - [Cucumber PicoContainer](https://github.com/cucumber/cucumber-jvm/tree/master/picocontainer) for dependency injection
 - [AssertJ](http://joel-costigliola.github.io/assertj/) for fluent assertions
-- Compatible with IE11, Edge, Chrome, Firefox (extendable)
 - [Maven](https://maven.apache.org/) for build and test execution via cmdline
 - [Log4j2](https://logging.apache.org/log4j/2.x/) with [SLF4J](https://www.slf4j.org/) wrapper for logging mechanism
 - Automated test result generation in [HTML](https://github.com/damianszczepanik/maven-cucumber-reporting), JSON, XML
-- Embedded screenshots in HTML reports
+- Embedded screenshots on generated HTML reports
+- API for commonly used web testing actions
+- Central object repository for UI elements
+- Compatible with IE11, Edge, Chrome, Firefox (extendable)
 
 ## Prerequisites
 The following are required:
@@ -77,6 +86,12 @@ Generates rich HTML reports with dynamic visuals and statistics.
 #### Maven Cucumber Reporting
 Report found in `/target/cucumber-html-reports/`:
 ![dynamic_report](https://user-images.githubusercontent.com/28589393/43090686-acbd9c00-8eda-11e8-9c08-d74c1a86e03b.gif)
+
+#### Cucumber Extent Reporter
+Plugin does not support latest version of Cucumber-JVM.
+
+#### Allure Test Report
+Plugin does not support latest version of Cucumber-JVM.
 
 ### Logging
 Writes logs to a daily rolling file. Logs found in `/target/cucumber-logs/`:
