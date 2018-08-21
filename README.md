@@ -2,7 +2,11 @@
 _Write tests, not page objects._
 
 ## Overview
-Allows automation testers to easily write Feature/Gherkin files for Cucumber and implement step definitions in plain Java classes. ngWebDriver (Protractor) offers extended support for Angular/JS web applications.
+**jCucumberNG-Framework** allows automation testers to write Feature/Gherkin files for Cucumber and implement step definitions in plain Java classes without the Page Object Model - the de facto design pattern for most.
+
+Cucumber PicoContainer (as recommended in the [official docs](https://docs.cucumber.io/cucumber/state/#dependency-injection)) removes the tight coupling of page objects to step definitions focusing on writing tests instead of maintaining a design pattern. Each step is an independent unit that can be reused anywhere.
+
+ngWebDriver (Protractor) offers extended support for Angular/JS web applications.
 
 ### ui-map.properties:
 ~~~
@@ -27,11 +31,11 @@ public void I_Should_See_Net_Income_Per_Month(String expected) throws Throwable 
 
 ## Capabilities
 Supports the following features and technology stack:
+- [ngWebDriver](https://github.com/paul-hammant/ngWebDriver) (Protractor) for Angular/JS locators
 - API for commonly used web testing actions
 - Central object repository for UI elements
-- ngWebDriver (Protractor) for Angular/JS web applications
-- Cucumber PicoContainer for dependency injection
-- AssertJ for fluent assertions
+- [Cucumber PicoContainer](https://github.com/cucumber/cucumber-jvm/tree/master/picocontainer) for dependency injection
+- [AssertJ](http://joel-costigliola.github.io/assertj/) for fluent assertions
 - Compatible with IE11, Edge, Chrome, Firefox (extendable)
 - Maven for build and test execution via cmdline
 - SLF4J/Log4j2 for logging mechanism
