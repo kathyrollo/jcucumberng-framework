@@ -188,7 +188,7 @@ public final class Selenium {
 	 * @param url    the link to the child window
 	 * @return String - the handle of the parent window
 	 */
-	public static String openNewWindowByLink(WebDriver driver, String url) {
+	public static String openNewWindowByLink(WebDriver driver, String url) throws IOException {
 		String parentHandle = driver.getWindowHandle();
 		driver.get(url);
 		WebDriverWait wait = new WebDriverWait(driver, Integer.parseInt(ConfigLoader.frameworkConf("webdriver.wait")));
