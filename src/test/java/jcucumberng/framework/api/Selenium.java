@@ -75,7 +75,8 @@ public final class Selenium {
 	 */
 	public static boolean isElementPresent(WebDriver driver, String... keys) throws IOException {
 		By[] bys = Selenium.getBys(keys);
-		List<WebElement> elements = driver.findElements(new ByChained(bys));
+		WebDriverWait wait = new WebDriverWait(driver, Integer.parseInt(ConfigLoader.frameworkConf("webdriver.wait")));
+		List<WebElement> elements = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(new ByChained(bys)));
 		return elements.size() > 0 ? true : false;
 	}
 
