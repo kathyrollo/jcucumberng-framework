@@ -4,11 +4,12 @@
 Allows automation testers to write Feature/Gherkin files for Cucumber and implement step definitions in plain Java classes. ngWebDriver (Protractor) offers extended support for Angular/JS web applications.
 
 ## Write Tests, Not Page Objects
-This framework deliberately removes the Page Object Model (POM). _Test automation should be focused on testing_ instead of continually over-engineering a design pattern -- or [anti-pattern](https://blog.getgauge.io/are-page-objects-anti-pattern-21b6e337880f).
+The popular Page Object Model (POM) is deliberately removed from the framework. The focus of test automation is _testing_, not sustaining a design pattern. An anti-pattern occurs when adhering to the design in the longer run bloats the codebase and becomes the larger chore of automation efforts instead of writing sensible tests.
 
-Cucumber PicoContainer ([officially recommended](https://docs.cucumber.io/cucumber/state/#dependency-injection)) removes the tight coupling of page objects to step definitions by sharing states in the step classes using [dependency injection](http://picocontainer.com/injection.html). Each step is an independent unit that can be reused anywhere.
+Cucumber PicoContainer ([officially recommended](https://docs.cucumber.io/cucumber/state/#dependency-injection)) eliminates the tight coupling of page objects to step definitions by sharing states in the step classes using [dependency injection](http://picocontainer.com/injection.html) (DI), reducing the codebase to maintain. Steps are independent units that can be reused anywhere and become "lego blocks" of subsequent Feature files.
 
-Here is how easy it is to immediately begin writing test scripts without the additional overhead of setting up page objects:
+## How It Works
+Below code snippet shows a faster method to begin writing test scripts without the increased overhead of setting up page objects. An object repository has been a known approach for storing UI elements but becomes more efficient with DI.
 
 ### ui-map.properties:
 ~~~
@@ -41,7 +42,7 @@ public void I_Should_See_Net_Income_Per_Month(String expected) throws Throwable 
 ## Capabilities
 Supports the following features:
 - [ngWebDriver](https://github.com/paul-hammant/ngWebDriver) (Protractor) for Angular/JS locators
-- [Cucumber PicoContainer](https://github.com/cucumber/cucumber-jvm/tree/master/picocontainer) for dependency injection
+- [Cucumber PicoContainer](https://github.com/cucumber/cucumber-jvm/tree/master/picocontainer) for DI module
 - [AssertJ](http://joel-costigliola.github.io/assertj/) for fluent assertions
 - [Maven](https://maven.apache.org/) for build and test execution via cmdline
 - [Log4j2](https://logging.apache.org/log4j/2.x/) with [SLF4J](https://www.slf4j.org/) wrapper for logging mechanism
