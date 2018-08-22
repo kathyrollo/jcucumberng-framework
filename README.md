@@ -1,8 +1,15 @@
 # jCucumberNG-Framework
-_Write tests, not page objects._
 
 ## Overview
-Allows automation testers to easily write Feature/Gherkin files for Cucumber and implement step definitions in plain Java classes. ngWebDriver (Protractor) offers extended support for Angular/JS web applications.
+Allows automation testers to write Feature/Gherkin files for Cucumber and implement step definitions in plain Java classes. ngWebDriver (Protractor) offers extended support for Angular/JS web applications.
+
+## Write Tests, Not Page Objects
+The popular Page Object Model (POM) is deliberately removed from the framework. The focus of test automation is _testing_, not sustaining a design pattern. An anti-pattern occurs when adhering to the design in the longer run bloats the codebase and becomes the larger chore of automation efforts instead of writing sensible tests.
+
+Cucumber PicoContainer ([officially recommended](https://docs.cucumber.io/cucumber/state/#dependency-injection)) eliminates the tight coupling of page objects to step definitions by sharing states in the step classes using [dependency injection](http://picocontainer.com/injection.html) (DI), reducing the codebase to maintain. Steps are independent units that can be reused anywhere and become "lego blocks" of subsequent Feature files.
+
+## How It Works
+Below code snippet shows a faster method to begin writing test scripts without the increased overhead of setting up page objects. An object repository has been a known approach for storing UI elements but becomes more efficient with DI.
 
 ### ui-map.properties:
 ~~~
@@ -16,6 +23,13 @@ Then I Should See Net Income Per Month: 23769
 
 ### Step Definition:
 ~~~
+private WebDriver driver = null;
+
+// PicoContainer injects ScenarioHook class
+public NetIncomeProjectorSteps(ScenarioHook scenarioHook) {
+    driver = scenarioHook.getDriver();
+}
+
 @Then("I Should See Net Income Per Month: {word}")
 public void I_Should_See_Net_Income_Per_Month(String expected) throws Throwable {
     WebElement netPerMonth = driver.findElement(Selenium.by("net.per.month"));
@@ -26,17 +40,17 @@ public void I_Should_See_Net_Income_Per_Month(String expected) throws Throwable 
 ~~~
 
 ## Capabilities
-Supports the following features and technology stack:
+Supports the following features:
+- [ngWebDriver](https://github.com/paul-hammant/ngWebDriver) (Protractor) for Angular/JS locators
+- [Cucumber PicoContainer](https://github.com/cucumber/cucumber-jvm/tree/master/picocontainer) for DI module
+- [AssertJ](http://joel-costigliola.github.io/assertj/) for fluent assertions
+- [Maven](https://maven.apache.org/) for build and test execution via cmdline
+- [Log4j2](https://logging.apache.org/log4j/2.x/) with [SLF4J](https://www.slf4j.org/) wrapper for logging mechanism
+- Automated test result generation in [HTML](https://github.com/damianszczepanik/maven-cucumber-reporting), JSON, XML
+- Embedded screenshots on generated HTML reports
 - API for commonly used web testing actions
 - Central object repository for UI elements
-- ngWebDriver (Protractor) for Angular/JS web applications
-- Cucumber PicoContainer for dependency injection
-- AssertJ for fluent assertions
 - Compatible with IE11, Edge, Chrome, Firefox (extendable)
-- Maven for build and test execution via cmdline
-- SLF4J/Log4j2 for logging mechanism
-- Automated test result generation in HTML, JSON, XML
-- Embedded screenshots in HTML reports
 
 ## Prerequisites
 The following are required:
@@ -51,7 +65,7 @@ Setup and installation are not in the scope of this guide. Check the correspondi
 ## Getting Started
 Visit the application under test (AUT) here: http://simplydo.com/projector/
 
-No further configurations needed at this point. The tests will run against the AUT in [headless browser](https://en.wikipedia.org/wiki/Headless_browser) mode using ChromeDriver as defined in the default framework settings.
+No further configurations needed at this point. The tests will run against the AUT in [headless browser](https://en.wikipedia.org/wiki/Headless_browser) mode using ChromeDriver as defined in `framework.properties`.
 
 Run the following commands in the cmdline:
 ~~~
@@ -73,6 +87,12 @@ Generates rich HTML reports with dynamic visuals and statistics.
 #### Maven Cucumber Reporting
 Report found in `/target/cucumber-html-reports/`:
 ![dynamic_report](https://user-images.githubusercontent.com/28589393/43090686-acbd9c00-8eda-11e8-9c08-d74c1a86e03b.gif)
+
+#### Cucumber Extent Reporter
+Plugin does not support Cucumber-JVM 3.x.x.
+
+#### Allure Test Report
+Plugin does not support Cucumber-JVM 3.x.x.
 
 ### Logging
 Writes logs to a daily rolling file. Logs found in `/target/cucumber-logs/`:

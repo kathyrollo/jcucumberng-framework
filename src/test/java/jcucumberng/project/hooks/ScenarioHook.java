@@ -1,6 +1,9 @@
 package jcucumberng.project.hooks;
 
+import com.paulhammant.ngwebdriver.NgWebDriver;
+
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +28,12 @@ public class ScenarioHook {
 
 		String browserConfig = ConfigLoader.frameworkConf("browser");
 		driver = BrowserFactory.getInstance(browserConfig);
+		// TODO: Add config for Angular
+		boolean flag = false;
+		if (flag) {
+			NgWebDriver ngWebDriver = new NgWebDriver((JavascriptExecutor) driver);
+			ngWebDriver.waitForAngularRequestsToFinish();
+		}
 		LOGGER.info("Browser=" + browserConfig);
 
 		Dimension dimension = LocalSystem.getDimension();
