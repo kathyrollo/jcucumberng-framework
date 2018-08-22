@@ -20,6 +20,9 @@ import jcucumberng.framework.strings.Messages;
  */
 public final class ConfigLoader {
 
+	private static final String FRAMEWORK_CONF_DIR = "/src/test/resources/jcucumberng/framework/";
+	private static final String PROJECT_CONF_DIR = "/src/test/resources/jcucumberng/project/";
+
 	private ConfigLoader() {
 		// Prevent instantiation
 	}
@@ -37,7 +40,7 @@ public final class ConfigLoader {
 		String propsFileName = "framework.properties";
 		StringBuilder builder = new StringBuilder();
 		builder.append(StringUtils.replace(System.getProperty("user.dir"), "\\", "/"));
-		builder.append("/src/test/resources/jcucumberng/framework/");
+		builder.append(FRAMEWORK_CONF_DIR);
 		builder.append(propsFileName);
 
 		InputStream inputStream = new FileInputStream(builder.toString());
@@ -67,7 +70,7 @@ public final class ConfigLoader {
 		String propsFileName = "project.properties";
 		StringBuilder builder = new StringBuilder();
 		builder.append(StringUtils.replace(System.getProperty("user.dir"), "\\", "/"));
-		builder.append("/src/test/resources/jcucumberng/project/");
+		builder.append(PROJECT_CONF_DIR);
 		builder.append(propsFileName);
 
 		InputStream inputStream = new FileInputStream(builder.toString());
@@ -97,7 +100,7 @@ public final class ConfigLoader {
 
 		StringBuilder builder = new StringBuilder();
 		builder.append(StringUtils.replace(System.getProperty("user.dir"), "\\", "/"));
-		builder.append("/src/test/resources/jcucumberng/framework/");
+		builder.append(FRAMEWORK_CONF_DIR);
 		builder.append(cfgFile);
 
 		File log4j2File = new File(builder.toString());
@@ -117,7 +120,7 @@ public final class ConfigLoader {
 		String propsFileName = "ui-map.properties";
 		StringBuilder builder = new StringBuilder();
 		builder.append(StringUtils.replace(System.getProperty("user.dir"), "\\", "/"));
-		builder.append("/src/test/resources/jcucumberng/project/");
+		builder.append(PROJECT_CONF_DIR);
 		builder.append(propsFileName);
 
 		InputStream inputStream = new FileInputStream(builder.toString());
