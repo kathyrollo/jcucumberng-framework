@@ -87,7 +87,7 @@ public final class Selenium {
 	 * @return WebElement - the clickable element
 	 * @throws IOException
 	 */
-	public static WebElement clickElement(WebDriver driver, String... keys) throws IOException {
+	public static WebElement click(WebDriver driver, String... keys) throws IOException {
 		By[] bys = Selenium.getBys(keys);
 		WebDriverWait wait = new WebDriverWait(driver, Integer.parseInt(ConfigLoader.frameworkConf("webdriver.wait")));
 		WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(new ByChained(bys)));
@@ -104,7 +104,7 @@ public final class Selenium {
 	 * @return WebElement - the textfield or textarea element
 	 * @throws IOException
 	 */
-	public static WebElement enterText(WebDriver driver, String text, String... keys) throws IOException {
+	public static WebElement type(WebDriver driver, String text, String... keys) throws IOException {
 		By[] bys = Selenium.getBys(keys);
 		WebDriverWait wait = new WebDriverWait(driver, Integer.parseInt(ConfigLoader.frameworkConf("webdriver.wait")));
 		WebElement field = wait.until(ExpectedConditions.visibilityOfElementLocated(new ByChained(bys)));
@@ -120,7 +120,7 @@ public final class Selenium {
 	 * @param text   the text to be entered
 	 * @param field  the textfield or textarea element
 	 */
-	public static void enterText(WebDriver driver, String text, WebElement field) {
+	public static void type(WebDriver driver, String text, WebElement field) {
 		field.clear();
 		field.sendKeys(text);
 	}
@@ -162,9 +162,9 @@ public final class Selenium {
 	 * @return String - the handle of the parent window
 	 * @throws IOException
 	 */
-	public static String openNewWindowByElement(WebDriver driver, String... keys) throws IOException {
+	public static String openWindowByElement(WebDriver driver, String... keys) throws IOException {
 		String parentHandle = driver.getWindowHandle(); // Save parent window
-		Selenium.clickElement(driver, keys); // Open child window
+		Selenium.click(driver, keys); // Open child window
 		WebDriverWait wait = new WebDriverWait(driver, Integer.parseInt(ConfigLoader.frameworkConf("webdriver.wait")));
 		boolean isChildWindowOpen = wait.until(ExpectedConditions.numberOfWindowsToBe(2));
 		if (isChildWindowOpen) {
@@ -188,7 +188,7 @@ public final class Selenium {
 	 * @param url    the link to the child window
 	 * @return String - the handle of the parent window
 	 */
-	public static String openNewWindowByLink(WebDriver driver, String url) throws IOException {
+	public static String openWindowByLink(WebDriver driver, String url) throws IOException {
 		String parentHandle = driver.getWindowHandle();
 		driver.get(url);
 		WebDriverWait wait = new WebDriverWait(driver, Integer.parseInt(ConfigLoader.frameworkConf("webdriver.wait")));

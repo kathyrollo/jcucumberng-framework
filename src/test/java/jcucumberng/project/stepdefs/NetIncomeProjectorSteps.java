@@ -27,7 +27,7 @@ public class NetIncomeProjectorSteps {
 
 	@When("I Enter My Start Balance: {word}")
 	public void I_Enter_My_Start_Balance(String value) throws Throwable {
-		Selenium.enterText(driver, value, "start.balance");
+		Selenium.type(driver, value, "start.balance");
 		LOGGER.debug("Start Balance=" + value);
 		this.scrollToDivBox(0);
 	}
@@ -68,15 +68,15 @@ public class NetIncomeProjectorSteps {
 			throws Throwable {
 		// Click Add button
 		for (int ctr = 0; ctr < txns.size() - 1; ctr++) {
-			Selenium.clickElement(driver, add);
+			Selenium.click(driver, add);
 		}
 		// Enter details
 		List<WebElement> names = driver.findElements(Selenium.by(name));
 		List<WebElement> amounts = driver.findElements(Selenium.by(amount));
 		List<Select> freqs = Selenium.getSelectElements(driver, freq);
 		for (int ctr = 0; ctr < txns.size(); ctr++) {
-			Selenium.enterText(driver, txns.get(ctr).getName(), names.get(ctr));
-			Selenium.enterText(driver, txns.get(ctr).getAmount(), amounts.get(ctr));
+			Selenium.type(driver, txns.get(ctr).getName(), names.get(ctr));
+			Selenium.type(driver, txns.get(ctr).getAmount(), amounts.get(ctr));
 			freqs.get(ctr).selectByVisibleText(txns.get(ctr).getFrequency());
 			LOGGER.debug(txns.get(ctr).toString());
 		}
