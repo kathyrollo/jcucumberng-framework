@@ -8,10 +8,10 @@ An anti-pattern occurs when adhering to the design becomes the larger chore of a
 
 The focus of test automation is _testing_, not sustaining a design pattern.
 
-[Cucumber PicoContainer](https://docs.cucumber.io/cucumber/state/#dependency-injection) eliminates the tight coupling of page objects to step definitions by sharing states in the step classes using [dependency injection](http://picocontainer.com/injection.html) (DI), reducing the codebase to maintain. Steps become independent units that can be reused anywhere.
+[PicoContainer](https://docs.cucumber.io/cucumber/state/#dependency-injection), as recommended in Cucumber's official docs, eliminates the tight coupling of page objects to step definitions by sharing states in the step classes using [dependency injection](http://picocontainer.com/injection.html) (DI). Steps easily become independent units that can be reused anywhere.
 
 ## How It Works
-Below code snippet shows a faster method to begin writing test scripts without the increased overhead of setting up page objects. An object repository has been a known approach for storing UI elements but becomes more efficient with DI.
+Below code snippet shows a faster method to begin writing test scripts without the increased overhead of setting up page objects. An object repository is a known approach for storing UI elements but becomes more efficient with DI.
 
 ### ui-map.properties:
 ~~~
