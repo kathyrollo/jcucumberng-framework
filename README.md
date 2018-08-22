@@ -4,11 +4,11 @@
 Allows automation testers to write Feature/Gherkin files for Cucumber and implement step definitions in plain Java classes. ngWebDriver (Protractor) offers extended support for Angular/JS web applications.
 
 ## Write Tests, Not Page Objects
-This framework deliberately removes the Page Object Model (POM). _Test automation should be focused on testing_ instead of continually over-engineering a design pattern or [anti-pattern](https://blog.getgauge.io/are-page-objects-anti-pattern-21b6e337880f).
+This framework deliberately removes the Page Object Model (POM). _Test automation should be focused on testing_ instead of continually over-engineering a design pattern -- or [anti-pattern](https://blog.getgauge.io/are-page-objects-anti-pattern-21b6e337880f).
 
-Cucumber PicoContainer (from the [official docs](https://docs.cucumber.io/cucumber/state/#dependency-injection)) removes the tight coupling of page objects to step definitions by sharing states in the step classes using [dependency injection](http://picocontainer.com/injection.html). Each step is an independent unit that can be reused anywhere.
+Cucumber PicoContainer ([officially recommended](https://docs.cucumber.io/cucumber/state/#dependency-injection)) removes the tight coupling of page objects to step definitions by sharing states in the step classes using [dependency injection](http://picocontainer.com/injection.html). Each step is an independent unit that can be reused anywhere.
 
-If dependency injection confused you, here is how easy it is to immediately begin writing test scripts without the added overhead of setting up page objects:
+If dependency injection confused you, here is how easy it is to immediately begin writing test scripts without the additional overhead of setting up page objects:
 
 ### ui-map.properties:
 ~~~
