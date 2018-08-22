@@ -28,9 +28,7 @@ public class ScenarioHook {
 
 		String browserConfig = ConfigLoader.frameworkConf("browser");
 		driver = BrowserFactory.getInstance(browserConfig);
-		// TODO: Add config for Angular
-		boolean flag = false;
-		if (flag) {
+		if (Boolean.parseBoolean(ConfigLoader.frameworkConf("wait.for.angular"))) {
 			NgWebDriver ngWebDriver = new NgWebDriver((JavascriptExecutor) driver);
 			ngWebDriver.waitForAngularRequestsToFinish();
 		}
@@ -48,7 +46,6 @@ public class ScenarioHook {
 				Selenium.embedScreenshot(driver, scenario);
 			}
 		}
-
 		LOGGER.info("END TEST -> " + scenario.getName() + " - " + scenario.getStatus());
 		driver.quit();
 	}
