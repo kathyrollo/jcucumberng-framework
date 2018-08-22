@@ -4,9 +4,11 @@
 Allows automation testers to write Feature/Gherkin files for Cucumber and implement step definitions in plain Java classes. ngWebDriver (Protractor) offers extended support for Angular/JS web applications.
 
 ## Write Tests, Not Page Objects
-The popular Page Object Model (POM) is deliberately removed from the framework. The focus of test automation is _testing_, not sustaining a design pattern. An anti-pattern occurs when adhering to the design in the longer run bloats the codebase and becomes the larger chore of automation efforts instead of writing sensible tests.
+An anti-pattern occurs when adhering to the design becomes the larger chore of automation efforts instead of writing sensible tests. This is the common pitfall of the popular Page Object Model (POM), where automation testers find themselves refactoring page objects after page objects as the application under test (AUT) evolves in the long run.
 
-Cucumber PicoContainer ([officially recommended](https://docs.cucumber.io/cucumber/state/#dependency-injection)) eliminates the tight coupling of page objects to step definitions by sharing states in the step classes using [dependency injection](http://picocontainer.com/injection.html) (DI), reducing the codebase to maintain. Steps are independent units that can be reused anywhere and become "lego blocks" of subsequent Feature files.
+The focus of test automation is _testing_, not sustaining a design pattern.
+
+[Cucumber PicoContainer](https://docs.cucumber.io/cucumber/state/#dependency-injection) eliminates the tight coupling of page objects to step definitions by sharing states in the step classes using [dependency injection](http://picocontainer.com/injection.html) (DI), reducing the codebase to maintain. Steps become independent units that can be reused anywhere.
 
 ## How It Works
 Below code snippet shows a faster method to begin writing test scripts without the increased overhead of setting up page objects. An object repository has been a known approach for storing UI elements but becomes more efficient with DI.
@@ -63,7 +65,7 @@ The following are required:
 Setup and installation are not in the scope of this guide. Check the corresponding documentation or tutorials accordingly.
 
 ## Getting Started
-Visit the application under test (AUT) here: http://simplydo.com/projector/
+Visit the AUT here: http://simplydo.com/projector/
 
 No further configurations needed at this point. The tests will run against the AUT in [headless browser](https://en.wikipedia.org/wiki/Headless_browser) mode using ChromeDriver as defined in `framework.properties`.
 
