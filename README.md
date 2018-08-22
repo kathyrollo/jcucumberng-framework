@@ -64,7 +64,7 @@ Setup and installation are not in the scope of this guide. Check the correspondi
 ## Getting Started
 Visit the application under test (AUT) here: http://simplydo.com/projector/
 
-No further configurations needed at this point. The tests will run against the AUT in [headless browser](https://en.wikipedia.org/wiki/Headless_browser) mode using ChromeDriver as defined in the default framework settings.
+No further configurations needed at this point. The tests will run against the AUT in [headless browser](https://en.wikipedia.org/wiki/Headless_browser) mode using ChromeDriver as defined in `framework.properties`.
 
 Run the following commands in the cmdline:
 ~~~
