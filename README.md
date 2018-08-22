@@ -8,7 +8,7 @@ This framework deliberately removes the Page Object Model (POM). _Test automatio
 
 Cucumber PicoContainer ([officially recommended](https://docs.cucumber.io/cucumber/state/#dependency-injection)) removes the tight coupling of page objects to step definitions by sharing states in the step classes using [dependency injection](http://picocontainer.com/injection.html). Each step is an independent unit that can be reused anywhere.
 
-If dependency injection confused you, here is how easy it is to immediately begin writing test scripts without the additional overhead of setting up page objects:
+Here is how easy it is to immediately begin writing test scripts without the additional overhead of setting up page objects:
 
 ### ui-map.properties:
 ~~~
