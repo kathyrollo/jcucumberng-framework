@@ -65,7 +65,7 @@ Here, everything the step needs is contained within the method.
 Setup and installation are not in the scope of this guide.
 
 ## Getting Started
-Visit the AUT here: http://simplydo.com/projector/
+Visit the application under test (AUT) here: http://simplydo.com/projector/
 
 No further configurations needed at this point. The tests will run against the AUT in [headless browser](https://en.wikipedia.org/wiki/Headless_browser) mode using ChromeDriver as defined in `framework.properties`.
 
@@ -86,7 +86,7 @@ Maven performs a one-time download of all dependencies for the first run. Execut
 Test artefacts are created in the `/target/` directory after the build is successful.
 
 ### Reporting
-Rich HTML reports are generated with dynamic visuals and statistics.
+HTML reports are generated with dynamic visuals and statistics.
 
 #### [Maven Cucumber Reporting](https://github.com/damianszczepanik/maven-cucumber-reporting)
 Directory: `/target/cucumber-html-reports/`
