@@ -48,7 +48,7 @@ public class NetIncomeProjectorSteps {
 
 	@Then("I Should See Net Income Per Month: {word}")
 	public void I_Should_See_Net_Income_Per_Month(String expected) throws Throwable {
-		WebElement netPerMonth = driver.findElement(Selenium.by("net.per.month"));
+		WebElement netPerMonth = Selenium.getVisibleElement(driver, "net.per.month");
 		String actual = netPerMonth.getText();
 		Assertions.assertThat(actual).isEqualTo(expected);
 		LOGGER.debug("Net Per Month=" + actual);
@@ -57,7 +57,7 @@ public class NetIncomeProjectorSteps {
 
 	@Then("I Should See Net Income Per Year: {word}")
 	public void I_Should_See_Net_Income_Per_Year(String expected) throws Throwable {
-		WebElement netPerYear = driver.findElement(Selenium.by("net.per.year"));
+		WebElement netPerYear = Selenium.getVisibleElement(driver, "net.per.year");
 		String actual = netPerYear.getText();
 		Assertions.assertThat(actual).isEqualTo(expected);
 		LOGGER.debug("Net Per Year=" + actual);
@@ -71,8 +71,8 @@ public class NetIncomeProjectorSteps {
 			Selenium.click(driver, add);
 		}
 		// Enter details
-		List<WebElement> names = driver.findElements(Selenium.by(name));
-		List<WebElement> amounts = driver.findElements(Selenium.by(amount));
+		List<WebElement> names = Selenium.getVisibleElements(driver, name);
+		List<WebElement> amounts = Selenium.getVisibleElements(driver, amount);
 		List<Select> freqs = Selenium.getSelectElements(driver, freq);
 		for (int ctr = 0; ctr < txns.size(); ctr++) {
 			Selenium.type(driver, txns.get(ctr).getName(), names.get(ctr));
@@ -83,7 +83,7 @@ public class NetIncomeProjectorSteps {
 	}
 
 	private void scrollToDivBox(int index) throws Throwable {
-		List<WebElement> divBoxes = driver.findElements(Selenium.by("div.boxes"));
+		List<WebElement> divBoxes = Selenium.getVisibleElements(driver, "div.boxes");
 		Selenium.scrollToElement(driver, divBoxes.get(index));
 	}
 
