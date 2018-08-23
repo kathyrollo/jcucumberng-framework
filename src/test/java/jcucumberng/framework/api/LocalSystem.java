@@ -18,8 +18,15 @@ public final class LocalSystem {
 	private static String keyPressWait = null;
 
 	// Prevent instantiation
-	private LocalSystem() throws IOException {
-		keyPressWait = ConfigLoader.frameworkConf("key.press.wait");
+	private LocalSystem() {
+	}
+
+	static {
+		try {
+			keyPressWait = ConfigLoader.frameworkConf("key.press.wait");
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+		}
 	}
 
 	/**

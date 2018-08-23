@@ -32,8 +32,18 @@ import jcucumberng.framework.strings.Messages;
  */
 public final class Selenium {
 
+	private static int timeOut = 0;
+
 	// Prevent instantiation
 	private Selenium() {
+	}
+
+	static {
+		try {
+			timeOut = Integer.parseInt(ConfigLoader.frameworkConf("webdriver.wait"));
+		} catch (NumberFormatException | IOException ex) {
+			ex.printStackTrace();
+		}
 	}
 
 	/**
@@ -95,8 +105,7 @@ public final class Selenium {
 	 */
 	public static WebElement getVisibleElement(WebDriver driver, String... keys) throws IOException {
 		By[] bys = Selenium.getBys(keys);
-		int secs = Integer.parseInt(ConfigLoader.frameworkConf("webdriver.wait"));
-		WebElement element = Selenium.wait(driver, secs)
+		WebElement element = Selenium.wait(driver, timeOut)
 				.until(ExpectedConditions.visibilityOfElementLocated(new ByChained(bys)));
 		return element;
 	}
@@ -111,8 +120,7 @@ public final class Selenium {
 	 */
 	public static List<WebElement> getVisibleElements(WebDriver driver, String... keys) throws IOException {
 		By[] bys = Selenium.getBys(keys);
-		int secs = Integer.parseInt(ConfigLoader.frameworkConf("webdriver.wait"));
-		List<WebElement> elements = Selenium.wait(driver, secs)
+		List<WebElement> elements = Selenium.wait(driver, timeOut)
 				.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(new ByChained(bys)));
 		return elements;
 	}
@@ -211,8 +219,7 @@ public final class Selenium {
 	public static String openWindowByElement(WebDriver driver, String... keys) throws IOException {
 		String parentHandle = driver.getWindowHandle(); // Save parent window
 		Selenium.click(driver, keys); // Open child window
-		int secs = Integer.parseInt(ConfigLoader.frameworkConf("webdriver.wait"));
-		boolean isChildWindowOpen = Selenium.wait(driver, secs).until(ExpectedConditions.numberOfWindowsToBe(2));
+		boolean isChildWindowOpen = Selenium.wait(driver, timeOut).until(ExpectedConditions.numberOfWindowsToBe(2));
 		if (isChildWindowOpen) {
 			Set<String> handles = driver.getWindowHandles();
 			// Switch to child window
@@ -237,8 +244,7 @@ public final class Selenium {
 	public static String openWindowByLink(WebDriver driver, String url) throws IOException {
 		String parentHandle = driver.getWindowHandle();
 		driver.get(url);
-		int secs = Integer.parseInt(ConfigLoader.frameworkConf("webdriver.wait"));
-		boolean isChildWindowOpen = Selenium.wait(driver, secs).until(ExpectedConditions.numberOfWindowsToBe(2));
+		boolean isChildWindowOpen = Selenium.wait(driver, timeOut).until(ExpectedConditions.numberOfWindowsToBe(2));
 		if (isChildWindowOpen) {
 			Set<String> handles = driver.getWindowHandles();
 			for (String handle : handles) {
@@ -351,8 +357,15 @@ public final class Selenium {
 		scenario.embed(srcBytes, "image/png");
 	}
 
-	private static WebDriverWait wait(WebDriver driver, int secs) {
-		return new WebDriverWait(driver, secs);
+	/**
+	 * Returns the explicit wait object.
+	 * 
+	 * @param driver  the Selenium WebDriver
+	 * @param timeOut the wait time in seconds
+	 * @return WebDriverWait - the wait object
+	 */
+	private static WebDriverWait wait(WebDriver driver, int timeOut) {
+		return new WebDriverWait(driver, timeOut);
 	}
 
 }
