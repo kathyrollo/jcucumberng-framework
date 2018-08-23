@@ -88,9 +88,7 @@ public final class Selenium {
 	 * @throws IOException
 	 */
 	public static WebElement click(WebDriver driver, String... keys) throws IOException {
-		By[] bys = Selenium.getBys(keys);
-		WebDriverWait wait = new WebDriverWait(driver, Integer.parseInt(ConfigLoader.frameworkConf("webdriver.wait")));
-		WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(new ByChained(bys)));
+		WebElement element = Selenium.getVisibleElement(driver, keys);
 		element.click();
 		return element;
 	}
@@ -105,9 +103,7 @@ public final class Selenium {
 	 * @throws IOException
 	 */
 	public static WebElement type(WebDriver driver, String text, String... keys) throws IOException {
-		By[] bys = Selenium.getBys(keys);
-		WebDriverWait wait = new WebDriverWait(driver, Integer.parseInt(ConfigLoader.frameworkConf("webdriver.wait")));
-		WebElement field = wait.until(ExpectedConditions.visibilityOfElementLocated(new ByChained(bys)));
+		WebElement field = Selenium.getVisibleElement(driver, keys);
 		field.clear();
 		field.sendKeys(text);
 		return field;
@@ -134,9 +130,7 @@ public final class Selenium {
 	 * @throws IOException
 	 */
 	public static List<Select> getSelectElements(WebDriver driver, String... keys) throws IOException {
-		By[] bys = Selenium.getBys(keys);
-		WebDriverWait wait = new WebDriverWait(driver, Integer.parseInt(ConfigLoader.frameworkConf("webdriver.wait")));
-		List<WebElement> elements = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(new ByChained(bys)));
+		List<WebElement> elements = Selenium.getVisibleElements(driver, keys);
 		List<Select> selectElements = new ArrayList<>();
 		for (WebElement element : elements) {
 			selectElements.add(new Select(element));
@@ -325,14 +319,34 @@ public final class Selenium {
 		return bys;
 	}
 
-	// TODO
-	private static WebElement getVisibleElement(WebDriver driver, String... keys) {
-		return null;
+	/**
+	 * Returns a visible web element. Uses explicit wait.
+	 * 
+	 * @param driver the Selenium WebDriver
+	 * @param keys   the key(s) from {@code ui-map.properties}
+	 * @return WebElement - the web element found
+	 * @throws IOException
+	 */
+	private static WebElement getVisibleElement(WebDriver driver, String... keys) throws IOException {
+		By[] bys = Selenium.getBys(keys);
+		WebDriverWait wait = new WebDriverWait(driver, Integer.parseInt(ConfigLoader.frameworkConf("webdriver.wait")));
+		WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(new ByChained(bys)));
+		return element;
 	}
 
-	// TODO
-	private static List<WebElement> getVisibleElements(WebDriver driver, String... keys) {
-		return null;
+	/**
+	 * Returns visible web elements. Uses explicit wait.
+	 * 
+	 * @param driver the Selenium WebDriver
+	 * @param keys   the key(s) from {@code ui-map.properties}
+	 * @return List - the List of web elements found
+	 * @throws IOException
+	 */
+	private static List<WebElement> getVisibleElements(WebDriver driver, String... keys) throws IOException {
+		By[] bys = Selenium.getBys(keys);
+		WebDriverWait wait = new WebDriverWait(driver, Integer.parseInt(ConfigLoader.frameworkConf("webdriver.wait")));
+		List<WebElement> elements = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(new ByChained(bys)));
+		return elements;
 	}
 
 }
