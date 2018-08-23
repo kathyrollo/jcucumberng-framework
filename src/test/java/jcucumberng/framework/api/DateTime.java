@@ -7,8 +7,8 @@ package jcucumberng.framework.api;
  */
 public final class DateTime {
 
+	// Prevent instantiation
 	private DateTime() {
-		// Prevent instantiation
 	}
 
 	/**

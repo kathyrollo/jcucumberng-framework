@@ -15,8 +15,11 @@ import org.openqa.selenium.Dimension;
  */
 public final class LocalSystem {
 
-	private LocalSystem() {
-		// Prevent instantiation
+	private static String keyPressWait = null;
+
+	// Prevent instantiation
+	private LocalSystem() throws IOException {
+		keyPressWait = ConfigLoader.frameworkConf("key.press.wait");
 	}
 
 	/**
@@ -44,7 +47,7 @@ public final class LocalSystem {
 		Robot robot = new Robot();
 		robot.keyPress(key);
 		robot.keyRelease(key);
-		int millis = DateTime.convertSecondsToMillisWithRange(ConfigLoader.frameworkConf("key.press.wait"), 1, 60);
+		int millis = DateTime.convertSecondsToMillisWithRange(keyPressWait, 1, 60);
 		robot.delay(millis);
 		robot = null; // Destroy robot
 	}
@@ -64,7 +67,7 @@ public final class LocalSystem {
 		for (int ctr = 0; ctr < keys.length; ctr++) {
 			robot.keyPress(keys[ctr]); // Press and hold keys
 		}
-		int millis = DateTime.convertSecondsToMillisWithRange(ConfigLoader.frameworkConf("key.press.wait"), 1, 60);
+		int millis = DateTime.convertSecondsToMillisWithRange(keyPressWait, 1, 60);
 		robot.delay(millis);
 		for (int ctr = keys.length - 1; ctr > -1; ctr--) {
 			robot.keyRelease(keys[ctr]); // Release keys in reverse order

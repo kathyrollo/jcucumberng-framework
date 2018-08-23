@@ -23,8 +23,8 @@ public final class ConfigLoader {
 	private static final String FRAMEWORK_CONF_DIR = "/src/test/resources/jcucumberng/framework/";
 	private static final String PROJECT_CONF_DIR = "/src/test/resources/jcucumberng/project/";
 
+	// Prevent instantiation
 	private ConfigLoader() {
-		// Prevent instantiation
 	}
 
 	/**
