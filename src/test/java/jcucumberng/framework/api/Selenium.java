@@ -158,8 +158,8 @@ public final class Selenium {
 	public static String openWindowByElement(WebDriver driver, String... keys) throws IOException {
 		String parentHandle = driver.getWindowHandle(); // Save parent window
 		Selenium.click(driver, keys); // Open child window
-		WebDriverWait wait = new WebDriverWait(driver, Integer.parseInt(ConfigLoader.frameworkConf("webdriver.wait")));
-		boolean isChildWindowOpen = wait.until(ExpectedConditions.numberOfWindowsToBe(2));
+		int secs = Integer.parseInt(ConfigLoader.frameworkConf("webdriver.wait"));
+		boolean isChildWindowOpen = Selenium.wait(driver, secs).until(ExpectedConditions.numberOfWindowsToBe(2));
 		if (isChildWindowOpen) {
 			Set<String> handles = driver.getWindowHandles();
 			// Switch to child window
@@ -184,8 +184,8 @@ public final class Selenium {
 	public static String openWindowByLink(WebDriver driver, String url) throws IOException {
 		String parentHandle = driver.getWindowHandle();
 		driver.get(url);
-		WebDriverWait wait = new WebDriverWait(driver, Integer.parseInt(ConfigLoader.frameworkConf("webdriver.wait")));
-		boolean isChildWindowOpen = wait.until(ExpectedConditions.numberOfWindowsToBe(2));
+		int secs = Integer.parseInt(ConfigLoader.frameworkConf("webdriver.wait"));
+		boolean isChildWindowOpen = Selenium.wait(driver, secs).until(ExpectedConditions.numberOfWindowsToBe(2));
 		if (isChildWindowOpen) {
 			Set<String> handles = driver.getWindowHandles();
 			for (String handle : handles) {
@@ -328,8 +328,9 @@ public final class Selenium {
 	 */
 	public static WebElement getVisibleElement(WebDriver driver, String... keys) throws IOException {
 		By[] bys = Selenium.getBys(keys);
-		WebDriverWait wait = new WebDriverWait(driver, Integer.parseInt(ConfigLoader.frameworkConf("webdriver.wait")));
-		WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(new ByChained(bys)));
+		int secs = Integer.parseInt(ConfigLoader.frameworkConf("webdriver.wait"));
+		WebElement element = Selenium.wait(driver, secs)
+				.until(ExpectedConditions.visibilityOfElementLocated(new ByChained(bys)));
 		return element;
 	}
 
@@ -343,9 +344,14 @@ public final class Selenium {
 	 */
 	public static List<WebElement> getVisibleElements(WebDriver driver, String... keys) throws IOException {
 		By[] bys = Selenium.getBys(keys);
-		WebDriverWait wait = new WebDriverWait(driver, Integer.parseInt(ConfigLoader.frameworkConf("webdriver.wait")));
-		List<WebElement> elements = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(new ByChained(bys)));
+		int secs = Integer.parseInt(ConfigLoader.frameworkConf("webdriver.wait"));
+		List<WebElement> elements = Selenium.wait(driver, secs)
+				.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(new ByChained(bys)));
 		return elements;
+	}
+
+	private static WebDriverWait wait(WebDriver driver, int secs) {
+		return new WebDriverWait(driver, secs);
 	}
 
 }
