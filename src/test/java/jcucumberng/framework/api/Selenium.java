@@ -229,7 +229,7 @@ public final class Selenium {
 	}
 
 	/**
-	 * Scroll the screen horizontally.
+	 * Scroll the screen left or right.
 	 * 
 	 * @param driver the Selenium WebDriver
 	 * @param xPos   negative value to scroll left, positive value to scroll right
@@ -240,7 +240,7 @@ public final class Selenium {
 	}
 
 	/**
-	 * Scroll the screen vertically.
+	 * Scroll the screen up or down.
 	 * 
 	 * @param driver the Selenium WebDriver
 	 * @param yPos   positive value to scroll down, negative value to scroll up
@@ -251,7 +251,7 @@ public final class Selenium {
 	}
 
 	/**
-	 * Scroll to specific element on web page.
+	 * Scroll to specific element on the web page.
 	 * 
 	 * @param driver the Selenium WebDriver
 	 * @param keys   the key(s) from {@code ui-map.properties}
@@ -265,7 +265,7 @@ public final class Selenium {
 	}
 
 	/**
-	 * Scroll to specific element on web page.
+	 * Scroll to specific element on the web page.
 	 * 
 	 * @param driver  the Selenium WebDriver
 	 * @param element the element to scroll to
