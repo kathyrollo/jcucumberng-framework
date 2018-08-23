@@ -325,4 +325,14 @@ public final class Selenium {
 		return bys;
 	}
 
+	// TODO
+	private static WebElement getVisibleElement(WebDriver driver, String... keys) {
+		return null;
+	}
+
+	// TODO
+	private static List<WebElement> getVisibleElements(WebDriver driver, String... keys) {
+		return null;
+	}
+
 }
