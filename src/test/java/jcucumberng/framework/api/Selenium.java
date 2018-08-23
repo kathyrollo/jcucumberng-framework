@@ -326,7 +326,7 @@ public final class Selenium {
 	 * @return WebElement - the web element found
 	 * @throws IOException
 	 */
-	private static WebElement getVisibleElement(WebDriver driver, String... keys) throws IOException {
+	public static WebElement getVisibleElement(WebDriver driver, String... keys) throws IOException {
 		By[] bys = Selenium.getBys(keys);
 		WebDriverWait wait = new WebDriverWait(driver, Integer.parseInt(ConfigLoader.frameworkConf("webdriver.wait")));
 		WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(new ByChained(bys)));
@@ -341,7 +341,7 @@ public final class Selenium {
 	 * @return List - the List of web elements found
 	 * @throws IOException
 	 */
-	private static List<WebElement> getVisibleElements(WebDriver driver, String... keys) throws IOException {
+	public static List<WebElement> getVisibleElements(WebDriver driver, String... keys) throws IOException {
 		By[] bys = Selenium.getBys(keys);
 		WebDriverWait wait = new WebDriverWait(driver, Integer.parseInt(ConfigLoader.frameworkConf("webdriver.wait")));
 		List<WebElement> elements = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(new ByChained(bys)));
