@@ -47,8 +47,8 @@ Supports the following features:
 - [PicoContainer](http://picocontainer.com/) for DI module
 - [AssertJ](http://joel-costigliola.github.io/assertj/) for fluent assertions
 - [Maven](https://maven.apache.org/) for build and test execution via cmdline
-- [Log4j2](https://logging.apache.org/log4j/2.x/) with [SLF4J](https://www.slf4j.org/) wrapper for logging mechanism
-- Automated test result generation in [HTML](https://github.com/damianszczepanik/maven-cucumber-reporting), JSON, XML
+- [Log4j2](https://logging.apache.org/log4j/2.x/) / [SLF4J](https://www.slf4j.org/) for logging mechanism
+- Automated test result generation in HTML, JSON, XML
 - Embedded screenshots on generated HTML reports
 - API for commonly used web testing actions
 - Central object repository for UI elements
@@ -88,15 +88,15 @@ Test artefacts are created in the `/target/` directory after the build is succes
 ### Reporting
 Generates rich HTML reports with dynamic visuals and statistics.
 
-#### Maven Cucumber Reporting
+#### [Maven Cucumber Reporting](https://github.com/damianszczepanik/maven-cucumber-reporting)
 Report found in `/target/cucumber-html-reports/`:
 ![dynamic_report](https://user-images.githubusercontent.com/28589393/43090686-acbd9c00-8eda-11e8-9c08-d74c1a86e03b.gif)
 
-#### Cucumber Extent Reporter
-Plugin does not support Cucumber-JVM 3.x.x.
+#### [Cucumber Extent Reporter](https://github.com/email2vimalraj/CucumberExtentReporter)
+TODO
 
-#### Allure Test Report
-Plugin does not support Cucumber-JVM 3.x.x.
+#### [Allure Test Report](https://github.com/allure-framework)
+TODO
 
 ### Logging
 Writes logs to a daily rolling file. Logs found in `/target/cucumber-logs/`:
