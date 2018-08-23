@@ -4,11 +4,11 @@
 Allows automation testers to write feature/gherkin files for Cucumber and implement step definitions in plain Java classes. ngWebDriver (Protractor) offers extended support for Angular/JS web applications.
 
 ## The Design: Write Tests, Not Page Objects
-The focus of test automation is _testing_, not sustaining a design pattern. An anti-pattern occurs when adhering to the design becomes the larger chore of automation efforts instead of writing sensible tests, which is the common pitfall of the popular [Page Object](https://github.com/SeleniumHQ/selenium/wiki/PageObjects) Model (POM). The design pattern becomes the priority, not the tests.
+The priority of test automation is _testing_, not sustaining a design pattern. An anti-pattern occurs when adhering to the design becomes the larger chore of automation efforts instead of writing sensible tests, which is the common pitfall of the popular [Page Object](https://github.com/SeleniumHQ/selenium/wiki/PageObjects) Model (POM).
 
-PicoContainer, as recommended in Cucumber's [official docs](https://docs.cucumber.io/cucumber/state/#dependency-injection), eliminates the tight coupling of page objects to step definitions by sharing states in the glue code using [dependency injection](http://picocontainer.com/injection.html) (DI). Each step definition is an independent unit remaining true to the nature of a Java method.
+PicoContainer, as recommended in Cucumber's [official docs](https://docs.cucumber.io/cucumber/state/#dependency-injection), eliminates the tight coupling of page objects to step definitions by sharing states in the glue code using [dependency injection](http://picocontainer.com/injection.html) (DI). Each step definition is an autonomous unit as is the nature of a Java method.
 
-This framework deliberately forgoes POM to take advantage of Cucumber's intended design - to build a library of loosely coupled steps which can be reused anywhere. Writing new feature files becomes a simple matter of combining steps in the proper order.
+This framework deliberately forgoes POM to take advantage of Cucumber's intended design - to build a library of loosely coupled steps which can be independently called anywhere. Writing new feature files becomes a simple matter of reusing and combining steps in the proper order.
 
 ## How It Works
 Below code snippet shows a faster method to begin writing test scripts without the increased overhead of setting up page objects. An object repository is a known approach for storing UI elements but becomes more efficient with DI.
