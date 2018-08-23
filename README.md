@@ -99,7 +99,7 @@ TODO
 TODO
 
 ### Logging
-Logs are written to a daily rolling file. Executions from the previous day will be saved with a datestamp in a separate file.
+Logs are written to a daily rolling file. Executions from the previous day are saved with a datestamp in a separate file.
 
 ![logs](https://user-images.githubusercontent.com/28589393/44533398-089f7b00-a728-11e8-9d0e-cb70e0a4c840.png)
 
