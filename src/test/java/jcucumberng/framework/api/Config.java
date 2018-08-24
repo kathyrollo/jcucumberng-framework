@@ -36,7 +36,7 @@ public final class Config {
 	 *         {@code browser=CHROME32}, value = {@code CHROME32})
 	 * @throws IOException
 	 */
-	public static String frameworkConf(String key) throws IOException {
+	public static String framework(String key) throws IOException {
 		String propsFileName = "framework.properties";
 		StringBuilder builder = new StringBuilder();
 		builder.append(StringUtils.replace(System.getProperty("user.dir"), "\\", "/"));
@@ -66,7 +66,7 @@ public final class Config {
 	 *         {@code base.url=www.google.com}, value = {@code www.google.com})
 	 * @throws IOException
 	 */
-	public static String projectConf(String key) throws IOException {
+	public static String project(String key) throws IOException {
 		String propsFileName = "project.properties";
 		StringBuilder builder = new StringBuilder();
 		builder.append(StringUtils.replace(System.getProperty("user.dir"), "\\", "/"));
@@ -90,10 +90,10 @@ public final class Config {
 	/**
 	 * Loads {@code log4j2.conf.file} from {@code framework.properties}.
 	 */
-	public static void loggerConf() {
+	public static void logger() {
 		String cfgFile = null;
 		try {
-			cfgFile = Config.frameworkConf("log4j2.conf.file");
+			cfgFile = Config.framework("log4j2.conf.file");
 		} catch (IOException ioe) {
 			throw new LoggerConfigException(Messages.LOGGER_CONFIG_FAIL + cfgFile);
 		}

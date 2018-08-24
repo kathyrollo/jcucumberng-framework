@@ -19,7 +19,7 @@ public class StepHook {
 
 	@AfterStep
 	public void afterStep() throws Throwable {
-		if (!Boolean.parseBoolean(Config.frameworkConf("screenshot.on.fail"))) {
+		if (!Boolean.parseBoolean(Config.framework("screenshot.on.fail"))) {
 			Selenium.embedScreenshot(driver, scenario);
 		}
 	}

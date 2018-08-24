@@ -26,9 +26,9 @@ public class ScenarioHook {
 		this.scenario = scenario;
 		LOGGER.info("BEGIN TEST -> " + scenario.getName());
 
-		String browserConfig = Config.frameworkConf("browser");
+		String browserConfig = Config.framework("browser");
 		driver = BrowserFactory.getInstance(browserConfig);
-		if (Boolean.parseBoolean(Config.frameworkConf("wait.for.angular"))) {
+		if (Boolean.parseBoolean(Config.framework("wait.for.angular"))) {
 			NgWebDriver ngWebDriver = new NgWebDriver((JavascriptExecutor) driver);
 			ngWebDriver.waitForAngularRequestsToFinish();
 		}
@@ -41,7 +41,7 @@ public class ScenarioHook {
 
 	@After
 	public void afterScenario() throws Throwable {
-		if (Boolean.parseBoolean(Config.frameworkConf("screenshot.on.fail"))) {
+		if (Boolean.parseBoolean(Config.framework("screenshot.on.fail"))) {
 			if (scenario.isFailed()) {
 				Selenium.embedScreenshot(driver, scenario);
 			}

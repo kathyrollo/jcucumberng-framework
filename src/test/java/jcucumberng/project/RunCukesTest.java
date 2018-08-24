@@ -19,9 +19,9 @@ public class RunCukesTest {
 
 	// No edit
 	@BeforeClass
-	public static void loadLoggerConf() {
+	public static void loadLogger() {
 		if (!isLoaded) {
-			Config.loggerConf();
+			Config.logger();
 			isLoaded = true;
 		}
 	}
