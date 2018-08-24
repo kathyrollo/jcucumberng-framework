@@ -1,12 +1,13 @@
 # jCucumberNG-Framework
 
 ## Overview
-Allows automation testers to write feature/gherkin files for Cucumber and implement step definitions in plain Java classes. ngWebDriver (Protractor) offers extended support for Angular/JS web applications.
+Allows automation testers to write feature/gherkin files for Cucumber and implement step definitions in basic Java classes. ngWebDriver (Protractor) offers extended support for Angular/JS web applications.
 
 ## The Design: Write Tests, Not Page Objects
-An anti-pattern occurs when adhering to the design becomes the larger chore of automation efforts instead of writing sensible tests which is the common pitfall of the popular [Page Object](https://github.com/SeleniumHQ/selenium/wiki/PageObjects) Model (POM). The priority becomes maintaining the design pattern, not _testing_. Returning page objects within step definitions does not make much sense since Cucumber calls steps to move from one state to another.
 
-PicoContainer, as recommended in Cucumber's [official docs](https://docs.cucumber.io/cucumber/state/#dependency-injection), eliminates the tight coupling of page objects to step definitions by sharing states in the glue code using [dependency injection](http://picocontainer.com/injection.html) (DI). Each step definition is an autonomous unit being the nature of a Java method. [User Interface Mapping](https://www.seleniumhq.org/docs/06_test_design_considerations.jsp#user-interface-mapping) is a known approach for storing web elements but becomes more efficient with DI.
+An anti-pattern occurs when adhering to the design becomes the larger chore of automation efforts instead of writing sensible tests which is the common pitfall of the popular [Page Object Model (POM)](https://github.com/SeleniumHQ/selenium/wiki/PageObjects). The priority becomes maintaining the design pattern, not _testing_. Returning page objects within step definitions does not make much sense since Cucumber calls steps to move from one state to another.
+
+PicoContainer, from the [official docs](https://docs.cucumber.io/cucumber/state/#dependency-injection), eliminates the tight coupling of page objects to step definitions by sharing states in the glue code using [dependency injection (DI)](http://picocontainer.com/injection.html). Each step definition is an autonomous unit as is the nature of a Java method. [User Interface (UI) Mapping](https://www.seleniumhq.org/docs/06_test_design_considerations.jsp#user-interface-mapping) is a known approach for storing web elements but becomes more efficient with DI.
 
 The framework deliberately foregoes the added complexity and abstraction of POM to take advantage of Cucumber's intended design - to build a library of loosely coupled steps which can be independently called anywhere. Writing new feature files becomes a matter of reusing and combining steps in the proper order.
 
@@ -43,17 +44,19 @@ public void I_Should_See_Net_Income_Per_Month(String expected) throws Throwable 
 }
 ~~~
 
-Here, everything the step needs is contained within the method.
+Here, everything the step needs is contained within the method in plain sight.
 
 ## Capabilities & Technology Stack
+- [Selenium WebDriver 3](https://www.seleniumhq.org/) for browser automation
+- [Cucumber-JVM](https://github.com/cucumber/cucumber-jvm) for behavior driven test framework
 - [ngWebDriver](https://github.com/paul-hammant/ngWebDriver) (Protractor) for Angular/JS locators
 - [PicoContainer](http://picocontainer.com/) for DI module
 - [AssertJ](http://joel-costigliola.github.io/assertj/) for fluent assertions
-- [Maven](https://maven.apache.org/) for build and test execution via cmdline
+- [Maven](https://maven.apache.org/) for dependency management and build execution
 - [Log4j2](https://logging.apache.org/log4j/2.x/) / [SLF4J](https://www.slf4j.org/) for logging mechanism
-- Selenium API for commonly used web testing actions
-- UI Map as central object repository
-- Compatible with IE11, Edge, Chrome, Firefox (extendable)
+- Extended API for commonly used web testing actions
+- UI Map for central object repository of web elements
+- Compatible with IE11, Edge, Chrome, Firefox
 - Test result generation in HTML, JSON, XML
 - Embedded screenshots on generated HTML reports
 
@@ -102,8 +105,14 @@ TODO
 
 ### Logging
 Logs are written to a daily rolling file. Executions from the previous day are saved with a datestamp in a separate file.
-
-![logs](https://user-images.githubusercontent.com/28589393/44533398-089f7b00-a728-11e8-9d0e-cb70e0a4c840.png)
+~~~
+target/
+|__ cucumber-logs/
+    |__ cucumber_2018-07-19.log
+    |__ cucumber_2018-07-20.log
+    |__ cucumber_2018-07-21.log
+    |__ cucumber.log
+~~~
 
 #### Sample Logs
 Directory: `/target/cucumber-logs/`
