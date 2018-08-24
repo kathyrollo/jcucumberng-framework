@@ -4,16 +4,16 @@
 Allows automation testers to write feature/gherkin files for Cucumber and implement step definitions in plain Java classes. ngWebDriver (Protractor) offers extended support for Angular/JS web applications.
 
 ## The Design: Write Tests, Not Page Objects
-An anti-pattern occurs when adhering to the design becomes the larger chore of automation efforts instead of writing sensible tests which is the common pitfall of the popular [Page Object](https://github.com/SeleniumHQ/selenium/wiki/PageObjects) Model (POM). The priority becomes maintaining the design pattern, not _testing_. Returning page objects within step definitions does not make much sense, as Cucumber calls steps to move from one state to another.
+An anti-pattern occurs when adhering to the design becomes the larger chore of automation efforts instead of writing sensible tests which is the common pitfall of the popular [Page Object](https://github.com/SeleniumHQ/selenium/wiki/PageObjects) Model (POM). The priority becomes maintaining the design pattern, not _testing_. Returning page objects within step definitions does not make much sense since Cucumber calls steps to move from one state to another.
 
-PicoContainer, as recommended in Cucumber's [official docs](https://docs.cucumber.io/cucumber/state/#dependency-injection), eliminates the tight coupling of page objects to step definitions by sharing states in the glue code using [dependency injection](http://picocontainer.com/injection.html) (DI). Each step definition is an autonomous unit as is the nature of a Java method. [User Interface Mapping](https://www.seleniumhq.org/docs/06_test_design_considerations.jsp#user-interface-mapping) is a known approach for storing web elements but becomes more efficient with DI.
+PicoContainer, as recommended in Cucumber's [official docs](https://docs.cucumber.io/cucumber/state/#dependency-injection), eliminates the tight coupling of page objects to step definitions by sharing states in the glue code using [dependency injection](http://picocontainer.com/injection.html) (DI). Each step definition is an autonomous unit being the nature of a Java method. [User Interface Mapping](https://www.seleniumhq.org/docs/06_test_design_considerations.jsp#user-interface-mapping) is a known approach for storing web elements but becomes more efficient with DI.
 
 The framework deliberately foregoes the added complexity and abstraction of POM to take advantage of Cucumber's intended design - to build a library of loosely coupled steps which can be independently called anywhere. Writing new feature files becomes a matter of reusing and combining steps in the proper order.
 
 _TL;DR: POM and Cucumber do not mix._
 
 ## How It Works
-The code snippet below shows writing test scripts _directly_ into step definitions without the overhead of setting up page objects.
+The code snippet below shows writing test scripts directly into step definitions without the overhead of setting up page objects.
 
 ### ui-map.properties:
 ~~~
