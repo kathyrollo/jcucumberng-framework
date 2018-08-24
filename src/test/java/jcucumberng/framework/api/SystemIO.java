@@ -8,15 +8,15 @@ import java.io.IOException;
 import org.openqa.selenium.Dimension;
 
 /**
- * {@code LocalSystem} handles actions relating to the user's machine such as
- * screen resolution or input devices.
+ * {@code SystemIO} handles actions relating to the user's machine such as input
+ * and output devices.
  * 
  * @author Kat Rollo <rollo.katherine@gmail.com>
  */
-public final class LocalSystem {
+public final class SystemIO {
 
 	// Prevent instantiation
-	private LocalSystem() {
+	private SystemIO() {
 	}
 
 	/**
