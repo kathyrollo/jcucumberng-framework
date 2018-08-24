@@ -10,7 +10,7 @@ import org.openqa.selenium.support.pagefactory.ByChained;
 
 import com.paulhammant.ngwebdriver.ByAngular;
 
-import jcucumberng.framework.api.ConfigLoader;
+import jcucumberng.framework.api.Config;
 import jcucumberng.framework.api.Selenium;
 import jcucumberng.framework.enums.ByMethod;
 import jcucumberng.framework.exceptions.InvalidPatternException;
@@ -26,8 +26,8 @@ import jcucumberng.framework.strings.Text;
  */
 public final class ByFactory {
 
+	// Prevent instantiation
 	private ByFactory() {
-		// Prevent instantiation
 	}
 
 	/**
@@ -44,7 +44,7 @@ public final class ByFactory {
 		String keys[] = {};
 		By[] bys = null;
 
-		String value = ConfigLoader.uiMap(key);
+		String value = Config.uiMap(key);
 		if (StringUtils.isBlank(value)) {
 			value = Text.BLANK;
 		}

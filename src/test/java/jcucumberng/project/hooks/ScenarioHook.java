@@ -1,19 +1,19 @@
 package jcucumberng.project.hooks;
 
-import com.paulhammant.ngwebdriver.NgWebDriver;
-
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.paulhammant.ngwebdriver.NgWebDriver;
+
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
-import jcucumberng.framework.api.ConfigLoader;
-import jcucumberng.framework.api.SystemIO;
+import jcucumberng.framework.api.Config;
 import jcucumberng.framework.api.Selenium;
+import jcucumberng.framework.api.SystemIO;
 import jcucumberng.framework.factory.BrowserFactory;
 
 public class ScenarioHook {
@@ -26,9 +26,9 @@ public class ScenarioHook {
 		this.scenario = scenario;
 		LOGGER.info("BEGIN TEST -> " + scenario.getName());
 
-		String browserConfig = ConfigLoader.frameworkConf("browser");
+		String browserConfig = Config.frameworkConf("browser");
 		driver = BrowserFactory.getInstance(browserConfig);
-		if (Boolean.parseBoolean(ConfigLoader.frameworkConf("wait.for.angular"))) {
+		if (Boolean.parseBoolean(Config.frameworkConf("wait.for.angular"))) {
 			NgWebDriver ngWebDriver = new NgWebDriver((JavascriptExecutor) driver);
 			ngWebDriver.waitForAngularRequestsToFinish();
 		}
@@ -41,7 +41,7 @@ public class ScenarioHook {
 
 	@After
 	public void afterScenario() throws Throwable {
-		if (Boolean.parseBoolean(ConfigLoader.frameworkConf("screenshot.on.fail"))) {
+		if (Boolean.parseBoolean(Config.frameworkConf("screenshot.on.fail"))) {
 			if (scenario.isFailed()) {
 				Selenium.embedScreenshot(driver, scenario);
 			}

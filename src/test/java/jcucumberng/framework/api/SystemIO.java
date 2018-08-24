@@ -44,7 +44,7 @@ public final class SystemIO {
 		Robot robot = new Robot();
 		robot.keyPress(key);
 		robot.keyRelease(key);
-		int waitTime = Integer.parseInt(ConfigLoader.frameworkConf("key.press.wait"));
+		int waitTime = Integer.parseInt(Config.frameworkConf("key.press.wait"));
 		int millis = DateTime.convertSecsToMillisWithRange(waitTime, 1, 60);
 		robot.delay(millis);
 		robot = null; // Destroy robot
@@ -65,7 +65,7 @@ public final class SystemIO {
 		for (int ctr = 0; ctr < keys.length; ctr++) {
 			robot.keyPress(keys[ctr]); // Press and hold keys
 		}
-		int waitTime = Integer.parseInt(ConfigLoader.frameworkConf("key.press.wait"));
+		int waitTime = Integer.parseInt(Config.frameworkConf("key.press.wait"));
 		int millis = DateTime.convertSecsToMillisWithRange(waitTime, 1, 60);
 		robot.delay(millis);
 		for (int ctr = keys.length - 1; ctr > -1; ctr--) {

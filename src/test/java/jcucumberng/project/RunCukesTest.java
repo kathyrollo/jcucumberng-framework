@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 import cucumber.api.CucumberOptions;
 import cucumber.api.SnippetType;
 import cucumber.api.junit.Cucumber;
-import jcucumberng.framework.api.ConfigLoader;
+import jcucumberng.framework.api.Config;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(features = { "src/test/resources/jcucumberng/project/features" }, tags = { "not @ignore" }, glue = {
@@ -21,7 +21,7 @@ public class RunCukesTest {
 	@BeforeClass
 	public static void loadLoggerConf() {
 		if (!isLoaded) {
-			ConfigLoader.loggerConf();
+			Config.loggerConf();
 			isLoaded = true;
 		}
 	}

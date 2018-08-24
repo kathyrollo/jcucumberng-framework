@@ -13,18 +13,18 @@ import jcucumberng.framework.exceptions.NoSuchKeyException;
 import jcucumberng.framework.strings.Messages;
 
 /**
- * {@code ConfigLoader} handles actions for reading/loading various
- * configuration files.
+ * {@code Config} handles actions for reading/loading various configuration
+ * files.
  * 
  * @author Kat Rollo <rollo.katherine@gmail.com>
  */
-public final class ConfigLoader {
+public final class Config {
 
 	private static final String FRAMEWORK_CONF_DIR = "/src/test/resources/jcucumberng/framework/";
 	private static final String PROJECT_CONF_DIR = "/src/test/resources/jcucumberng/project/";
 
 	// Prevent instantiation
-	private ConfigLoader() {
+	private Config() {
 	}
 
 	/**
@@ -93,7 +93,7 @@ public final class ConfigLoader {
 	public static void loggerConf() {
 		String cfgFile = null;
 		try {
-			cfgFile = ConfigLoader.frameworkConf("log4j2.conf.file");
+			cfgFile = Config.frameworkConf("log4j2.conf.file");
 		} catch (IOException ioe) {
 			throw new LoggerConfigException(Messages.LOGGER_CONFIG_FAIL + cfgFile);
 		}
