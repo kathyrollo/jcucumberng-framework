@@ -21,7 +21,7 @@ public final class DateTime {
 	 * @param end      upperbound value of the range in seconds, inclusive
 	 * @return int - value in millis
 	 */
-	public static int convertSecondsToMillisWithRange(int waitTime, int begin, int end) {
+	public static int convertSecsToMillisWithRange(int waitTime, int begin, int end) {
 		if (waitTime < begin) {
 			waitTime = begin;
 		}
