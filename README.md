@@ -47,16 +47,16 @@ Then I Should See Net Income Per Month: 23769
 
 ### Step Definition:
 ~~~
-private Selenium selenium = null;
+private Selenium selenium = null; // Extended Selenium API
 
 // PicoContainer injects ScenarioHook object
-public NetIncomeProjectorSteps(ScenarioHook scenarioHook) {
-    selenium = scenarioHook.getSelenium(); // Extended API
+public NetIncomeProjectorSteps(ScenarioHook scenarioHook) { // ScenarioHook instantiates Selenium object
+    selenium = scenarioHook.getSelenium();
 }
 
 @Then("I Should See Net Income Per Month: {word}")
 public void I_Should_See_Net_Income_Per_Month(String expected) throws Throwable {
-    WebElement netPerMonth = selenium.getVisibleElement("net.per.month"); // Pass the key from ui-map.properties
+    WebElement netPerMonth = selenium.getVisibleElement("net.per.month"); // Use injected Selenium object
     String actual = netPerMonth.getText();
     Assertions.assertThat(actual).isEqualTo(expected);
     LOGGER.debug("Net Per Month=" + actual);
