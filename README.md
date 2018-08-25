@@ -67,7 +67,7 @@ public void I_Should_See_Net_Income_Per_Month(String expected) throws Throwable 
 
 ## Capabilities & Technology Stack
 - [Selenium WebDriver 3](https://www.seleniumhq.org/) for browser automation
-- [Cucumber-JVM](https://github.com/cucumber/cucumber-jvm) for behavior-driven test framework
+- [Cucumber-JVM 3](https://github.com/cucumber/cucumber-jvm) for behavior-driven test framework
 - [ngWebDriver](https://github.com/paul-hammant/ngWebDriver) (Protractor) for Angular/JS support
 - [PicoContainer](http://picocontainer.com/) for DI module
 - [AssertJ](http://joel-costigliola.github.io/assertj/) for fluent assertions
