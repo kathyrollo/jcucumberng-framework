@@ -5,6 +5,7 @@ import jcucumberng.framework.api.Config;
 import jcucumberng.framework.api.Selenium;
 
 public class StepHook {
+
 	private Selenium selenium = null;
 
 	// PicoContainer injects ScenarioHook object

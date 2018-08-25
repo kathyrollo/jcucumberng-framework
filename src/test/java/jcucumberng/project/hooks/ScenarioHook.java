@@ -17,45 +17,42 @@ import jcucumberng.framework.api.SystemIO;
 import jcucumberng.framework.factory.BrowserFactory;
 
 public class ScenarioHook {
-	private static final Logger LOGGER = LoggerFactory.getLogger(ScenarioHook.class);
 
-	private Scenario scenario = null;
-	private WebDriver driver = null;
+	private static final Logger LOGGER = LoggerFactory.getLogger(ScenarioHook.class);
 	private Selenium selenium = null;
 
 	@Before
 	public void beforeScenario(Scenario scenario) throws Throwable {
-		this.scenario = scenario;
-		LOGGER.info("BEGIN TEST -> " + this.scenario.getName());
+		LOGGER.info("BEGIN TEST -> " + scenario.getName());
 
 		String browserConfig = Config.framework("browser");
-		this.driver = BrowserFactory.getInstance(browserConfig);
+		WebDriver driver = BrowserFactory.getInstance(browserConfig);
 		if (Boolean.parseBoolean(Config.framework("wait.for.angular"))) {
-			NgWebDriver ngWebDriver = new NgWebDriver((JavascriptExecutor) this.driver);
+			NgWebDriver ngWebDriver = new NgWebDriver((JavascriptExecutor) driver);
 			ngWebDriver.waitForAngularRequestsToFinish();
 		}
 		LOGGER.info("Browser=" + browserConfig);
 
-		this.selenium = new Selenium(this.driver, this.scenario);
+		selenium = new Selenium(driver, scenario);
 
 		Dimension dimension = SystemIO.getDimension();
-		this.driver.manage().window().setSize(dimension);
+		selenium.getDriver().manage().window().setSize(dimension);
 		LOGGER.info("Screen Resolution (WxH)=" + dimension.getWidth() + "x" + dimension.getHeight());
 	}
 
 	@After
 	public void afterScenario() throws Throwable {
 		if (Boolean.parseBoolean(Config.framework("screenshot.on.fail"))) {
-			if (this.scenario.isFailed()) {
-				this.selenium.embedScreenshot();
+			if (selenium.getScenario().isFailed()) {
+				selenium.embedScreenshot();
 			}
 		}
-		LOGGER.info("END TEST -> " + this.scenario.getName() + " - " + this.scenario.getStatus());
-		this.driver.quit();
+		LOGGER.info("END TEST -> " + selenium.getScenario().getName() + " - " + selenium.getScenario().getStatus());
+		selenium.getDriver().quit();
 	}
 
 	public Selenium getSelenium() {
-		return this.selenium;
+		return selenium;
 	}
 
 }
