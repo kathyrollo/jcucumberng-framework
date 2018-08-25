@@ -21,6 +21,7 @@ public class DataTableConfigurer implements TypeRegistryConfigurer {
 
 	@Override
 	public void configureTypeRegistry(TypeRegistry registry) {
+		// Horizontal datatable with header row
 		registry.defineDataTableType(new DataTableType(Transaction.class, new TableEntryTransformer<Transaction>() {
 			@Override
 			public Transaction transform(Map<String, String> entry) {

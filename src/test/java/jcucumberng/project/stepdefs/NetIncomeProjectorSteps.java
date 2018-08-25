@@ -32,6 +32,7 @@ public class NetIncomeProjectorSteps {
 		this.scrollToDivBox(0);
 	}
 
+	// TODO Convert to vertical table
 	@When("I Enter My Regular Income Sources")
 	public void I_Enter_My_Regular_Income_Sources(DataTable table) throws Throwable {
 		List<Transaction> txns = table.asList(Transaction.class);
