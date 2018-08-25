@@ -24,8 +24,8 @@ import jcucumberng.framework.strings.Text;
  */
 public final class BrowserFactory {
 
-	// Prevent instantiation
 	private BrowserFactory() {
+		// Prevent instantiation
 	}
 
 	/**
