@@ -42,7 +42,20 @@ public class NetIncomeProjectorSteps {
 	@When("I Enter My Regular Expenses")
 	public void I_Enter_My_Regular_Expenses(DataTable table) throws Throwable {
 		List<Transaction> txns = table.asList(Transaction.class);
-		enterTransaction(txns, "expense.add", "expense.name", "expense.amount", "expense.freq");
+		// Click Add button
+		for (int ctr = 0; ctr < txns.size() - 1; ctr++) {
+			selenium.click("expense.add");
+		}
+		// Enter details
+		List<WebElement> names = selenium.getVisibleElements("expense.name");
+		List<WebElement> amounts = selenium.getVisibleElements("expense.amount");
+		List<Select> freqs = selenium.getSelectElements("expense.freq");
+		for (int ctr = 0; ctr < txns.size(); ctr++) {
+			selenium.type(txns.get(ctr).getName(), names.get(ctr));
+			selenium.type(txns.get(ctr).getAmount(), amounts.get(ctr));
+			freqs.get(ctr).selectByVisibleText(txns.get(ctr).getFrequency());
+			LOGGER.debug(txns.get(ctr).toString());
+		}
 		scrollToDivBox(2);
 	}
 
@@ -62,24 +75,6 @@ public class NetIncomeProjectorSteps {
 		//Assertions.assertThat(actual).isEqualTo(expected);
 		LOGGER.debug("Net Per Year=" + actual);
 		selenium.scrollToElement(netPerYear);
-	}
-
-	private void enterTransaction(List<Transaction> txns, String add, String name, String amount, String freq)
-			throws Throwable {
-		// Click Add button
-		for (int ctr = 0; ctr < txns.size() - 1; ctr++) {
-			selenium.click(add);
-		}
-		// Enter details
-		List<WebElement> names = selenium.getVisibleElements(name);
-		List<WebElement> amounts = selenium.getVisibleElements(amount);
-		List<Select> freqs = selenium.getSelectElements(freq);
-		for (int ctr = 0; ctr < txns.size(); ctr++) {
-			selenium.type(txns.get(ctr).getName(), names.get(ctr));
-			selenium.type(txns.get(ctr).getAmount(), amounts.get(ctr));
-			freqs.get(ctr).selectByVisibleText(txns.get(ctr).getFrequency());
-			LOGGER.debug(txns.get(ctr).toString());
-		}
 	}
 
 	private void scrollToDivBox(int index) throws Throwable {
