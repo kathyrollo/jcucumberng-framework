@@ -27,13 +27,13 @@ Why then, is POM a pervasive design pattern seen in most test automation suites?
 
 **jCucumberNG-Framework** deliberately foregoes the added complexity and abstraction of POM to take advantage of Cucumber's intended design (along with other nifty things) - to build a library of loosely coupled steps which can be independently called anywhere while Selenium simply drives browser actions. Writing new feature files becomes a matter of reusing and combining steps in the proper order.
 
-_TL;DR:_
-- Selenium + POM = OK
-- Selenium + Cucumber + POM = Not OK
-- Selenium + Cucumber + DI = ROI (the thing that matters)
+> **_TL;DR:_**
+> - Selenium + POM = OK
+> - Selenium + Cucumber + POM = Not OK
+> - Selenium + Cucumber + DI = ROI (the thing that matters)
 
 ## How It Works
-The code snippet below shows writing test scripts directly into step definitions without the overhead of setting up page objects.
+The code snippet below shows writing test scripts directly into step definitions because why not?
 
 ### ui-map.properties:
 ~~~
@@ -63,7 +63,7 @@ public void I_Should_See_Net_Income_Per_Month(String expected) throws Throwable 
 }
 ~~~
 
-[User Interface (UI) Mapping](https://www.seleniumhq.org/docs/06_test_design_considerations.jsp#user-interface-mapping) is a known approach for storing web elements but becomes more efficient with DI. Here, everything the step needs is contained within the method in plain sight.
+[User Interface (UI) Mapping](https://www.seleniumhq.org/docs/06_test_design_considerations.jsp#user-interface-mapping) is a known approach for storing web elements but becomes more efficient with DI. The `WebDriver` is not exposed while containing eveything within the method in plain sight. No need to plow through 43 page objects.
 
 ## Capabilities & Technology Stack
 - [Selenium WebDriver 3](https://www.seleniumhq.org/) for browser automation
