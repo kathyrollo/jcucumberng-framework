@@ -1,11 +1,19 @@
 package jcucumberng.project.domain;
 
+import java.util.Map;
+
 public class Transaction {
 
 	private String name = null;
 	private String amount = null;
 	private String frequency = null;
 	private String month = null;
+
+	public Transaction(Map<String, String> map) {
+		this.name = map.get("name");
+		this.amount = map.get("amount");
+		this.frequency = map.get("frequency");
+	}
 
 	public Transaction(String name, String amount, String frequency, String month) {
 		this.name = name;

@@ -5,8 +5,10 @@ import java.util.Map;
 
 import cucumber.api.TypeRegistry;
 import cucumber.api.TypeRegistryConfigurer;
+import io.cucumber.datatable.DataTable;
 import io.cucumber.datatable.DataTableType;
 import io.cucumber.datatable.TableEntryTransformer;
+import io.cucumber.datatable.TableTransformer;
 import jcucumberng.project.domain.Transaction;
 
 /*
@@ -21,12 +23,21 @@ public class DataTableConfigurer implements TypeRegistryConfigurer {
 
 	@Override
 	public void configureTypeRegistry(TypeRegistry registry) {
-		// Horizontal datatable with header row
+		// Horizontal datatable with header row, multiple objects of Type<T>
 		registry.defineDataTableType(new DataTableType(Transaction.class, new TableEntryTransformer<Transaction>() {
 			@Override
 			public Transaction transform(Map<String, String> entry) {
 				return new Transaction(entry.get("name"), entry.get("amount"), entry.get("frequency"),
 						entry.get("month"));
+			}
+		}));
+
+		// Vertical datatable with label column, single object of Type<T>
+		registry.defineDataTableType(new DataTableType(Transaction.class, new TableTransformer<Transaction>() {
+			@Override
+			public Transaction transform(DataTable dataTable) throws Throwable {
+				Map<String, String> map = dataTable.asMaps().get(0);
+				return new Transaction(map);
 			}
 		}));
 	}
