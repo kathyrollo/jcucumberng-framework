@@ -23,6 +23,7 @@ import cucumber.api.Scenario;
 import jcucumberng.framework.exceptions.MissingArgumentsException;
 import jcucumberng.framework.factory.ByFactory;
 import jcucumberng.framework.strings.Messages;
+import jcucumberng.framework.utils.Config;
 
 /**
  * {@code Selenium} handles actions for interacting with web applications using

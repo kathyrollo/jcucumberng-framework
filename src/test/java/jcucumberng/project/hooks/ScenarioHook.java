@@ -11,10 +11,10 @@ import com.paulhammant.ngwebdriver.NgWebDriver;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
-import jcucumberng.framework.api.Config;
 import jcucumberng.framework.api.Selenium;
-import jcucumberng.framework.api.SystemIO;
 import jcucumberng.framework.factory.BrowserFactory;
+import jcucumberng.framework.utils.Config;
+import jcucumberng.framework.utils.SystemIO;
 
 public class ScenarioHook {
 

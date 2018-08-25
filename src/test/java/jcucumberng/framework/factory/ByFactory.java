@@ -10,13 +10,13 @@ import org.openqa.selenium.support.pagefactory.ByChained;
 
 import com.paulhammant.ngwebdriver.ByAngular;
 
-import jcucumberng.framework.api.Config;
 import jcucumberng.framework.api.Selenium;
 import jcucumberng.framework.enums.ByMethod;
 import jcucumberng.framework.exceptions.InvalidPatternException;
 import jcucumberng.framework.exceptions.UnsupportedByMethodException;
 import jcucumberng.framework.strings.Messages;
 import jcucumberng.framework.strings.Text;
+import jcucumberng.framework.utils.Config;
 
 /**
  * {@code ByFactory} handles actions for manipulating the Selenium {@code By}
