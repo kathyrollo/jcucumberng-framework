@@ -9,8 +9,9 @@ So that I can see my net income per month and per year
 		Given I Am At The Home Page
 		When I Enter My Start Balance: 348000
 		And I Enter My Regular Income Sources
-			| name   | amount | frequency     |
-			| Salary | 25000  | every 2 weeks |
+			| name      | Salary        |
+			| amount    | 25000         |
+			| frequency | every 2 weeks |
 		And I Enter My Regular Expenses
 			| name        | amount | frequency     |
 			| Electricity | 5500   | Monthly       |
@@ -24,8 +25,9 @@ So that I can see my net income per month and per year
 		Given I Am At The Home Page
 		When I Enter My Start Balance: 353000
 		And I Enter My Regular Income Sources
-			| name   | amount | frequency |
-			| Salary | 2180   | work days |
+			| name      | Salary    |
+			| amount    | 2180      |
+			| frequency | work days |
 		And I Enter My Regular Expenses
 			| name        | amount | frequency     |
 			| Electricity | 5500   | Monthly       |

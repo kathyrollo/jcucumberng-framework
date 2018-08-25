@@ -10,13 +10,13 @@ import org.openqa.selenium.support.pagefactory.ByChained;
 
 import com.paulhammant.ngwebdriver.ByAngular;
 
-import jcucumberng.framework.api.ConfigLoader;
 import jcucumberng.framework.api.Selenium;
 import jcucumberng.framework.enums.ByMethod;
 import jcucumberng.framework.exceptions.InvalidPatternException;
 import jcucumberng.framework.exceptions.UnsupportedByMethodException;
 import jcucumberng.framework.strings.Messages;
 import jcucumberng.framework.strings.Text;
+import jcucumberng.framework.utils.Config;
 
 /**
  * {@code ByFactory} handles actions for manipulating the Selenium {@code By}
@@ -43,8 +43,9 @@ public final class ByFactory {
 		String text = null;
 		String keys[] = {};
 		By[] bys = null;
+		Selenium selenium = new Selenium();
 
-		String value = ConfigLoader.uiMap(key);
+		String value = Config.uiMap(key);
 		if (StringUtils.isBlank(value)) {
 			value = Text.BLANK;
 		}
@@ -58,12 +59,12 @@ public final class ByFactory {
 		if (StringUtils.contains(selector, "|")) {
 			if (StringUtils.containsIgnoreCase(value, ByMethod.BY_ALL.toString())) {
 				keys = StringUtils.split(StringUtils.substringAfter(value, ":"), "|");
-				bys = Selenium.getBys(keys);
+				bys = selenium.getBys(keys);
 				selector = null;
 			}
 			if (StringUtils.containsIgnoreCase(value, ByMethod.BY_CHAINED.toString())) {
 				keys = StringUtils.split(StringUtils.substringAfter(value, ":"), "|");
-				bys = Selenium.getBys(keys);
+				bys = selenium.getBys(keys);
 				selector = null;
 			}
 			if (StringUtils.containsIgnoreCase(value, ByMethod.CSS_CONTAINING_TEXT.toString())) {
@@ -140,7 +141,7 @@ public final class ByFactory {
 				// Handled in try-catch
 				break;
 			}
-		} catch (IllegalArgumentException | NullPointerException ex) {
+		} catch (IllegalArgumentException | NullPointerException e) {
 			if (StringUtils.isBlank(method)) {
 				method = Text.BLANK;
 			}

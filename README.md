@@ -1,62 +1,104 @@
 # jCucumberNG-Framework
-_Write tests, not page objects._
 
 ## Overview
-Allows automation testers to easily write Feature/Gherkin files for Cucumber and implement step definitions in plain Java classes. ngWebDriver (Protractor) offers extended support for Angular/JS web applications.
+Allows automation testers to write feature/gherkin files for Cucumber and implement step definitions in basic Java classes. ngWebDriver (Protractor) offers extended support for Angular/JS web applications.
+
+## The Design: Write Tests, Not Page Objects (optional reading)
+
+### An Analogy
+Like arithmetic, there are many ways to arrive to the same answer. Some longer, some shorter.
+
+Page Object Model (POM) is like this:
+~~~
+[(2 + 2) * 3 - 7] / 1 = 5
+~~~
+
+Dependency Injection (DI) is like this:
+~~~
+2 + 3 = 5
+~~~
+
+### The Ra(n)tionale
+An anti-pattern occurs when adhering to the design becomes the larger chore of automation efforts instead of writing sensible tests which is the common pitfall of the popular [Page Object Model](https://github.com/SeleniumHQ/selenium/wiki/PageObjects). The priority becomes over engineering a design pattern, not _testing_. Returning page objects within step definitions does not make much sense since Cucumber inherently calls steps to move from one state to the next.
+
+PicoContainer ([official docs](https://docs.cucumber.io/cucumber/state/#dependency-injection)) eliminates the tight coupling of page objects to step definitions by sharing states in the glue code using [Dependency Injection](http://picocontainer.com/injection.html). In fact, there is no mention of POM in [The Cucumber for Java Book](https://pragprog.com/book/srjcuc/the-cucumber-for-java-book) (authored by Cucumber's creators) but there is a dedicated chapter for DI. Each step definition is an autonomous unit as is the nature of a Java method.
+
+Why then, is POM a pervasive design pattern seen in most test automation suites? Tradition. This comes from the days of "pure" Selenium tests that do not offer behavior-driven (BDD)/step-based capabilities. Add that to the fact that Selenium actively promotes the pattern and comes with `PageFactory` to support it, automation testers simply incorporated it to their BDD test frameworks by default. _POM complements Selenium, not Cucumber._
+
+**jCucumberNG-Framework** deliberately foregoes the added complexity and abstraction of POM to take advantage of Cucumber's intended design - to build a library of loosely coupled steps which can be independently called anywhere while Selenium simply drives browser actions. Writing new feature files becomes a matter of reusing and combining steps in the proper order.
+
+> **_TL;DR:_**
+> - Selenium + POM = OK
+> - Selenium + Cucumber + POM = Not OK
+> - Selenium + Cucumber + DI = ROI (the thing that matters)
+
+## How It Works
+The code snippet below shows writing test scripts directly into step definitions because why not?
 
 ### ui-map.properties:
 ~~~
 net.per.month=binding:roundDown(monthlyNet())
 ~~~
 
-### Feature/Gherkin:
+### Feature File:
 ~~~
 Then I Should See Net Income Per Month: 23769
 ~~~
 
 ### Step Definition:
 ~~~
+private Selenium selenium = null;
+
+// PicoContainer injects ScenarioHook object
+public NetIncomeProjectorSteps(ScenarioHook scenarioHook) {
+    selenium = scenarioHook.getSelenium();
+}
+
 @Then("I Should See Net Income Per Month: {word}")
 public void I_Should_See_Net_Income_Per_Month(String expected) throws Throwable {
-    WebElement netPerMonth = driver.findElement(Selenium.by("net.per.month"));
+    WebElement netPerMonth = selenium.getVisibleElement("net.per.month");
     String actual = netPerMonth.getText();
     Assertions.assertThat(actual).isEqualTo(expected);
     LOGGER.debug("Net Per Month=" + actual);
 }
 ~~~
 
-## Capabilities
-Supports the following features and technology stack:
-- API for commonly used web testing actions
-- Central object repository for UI elements
-- ngWebDriver (Protractor) for Angular/JS web applications
-- Cucumber PicoContainer for dependency injection
-- AssertJ for fluent assertions
-- Compatible with IE11, Edge, Chrome, Firefox (extendable)
-- Maven for build and test execution via cmdline
-- SLF4J/Log4j2 for logging mechanism
-- Automated test result generation in HTML, JSON, XML
-- Embedded screenshots in HTML reports
+[User Interface (UI) Mapping](https://www.seleniumhq.org/docs/06_test_design_considerations.jsp#user-interface-mapping) is a familiar approach for storing web elements and becomes more productive with DI. The `WebDriver` is not exposed while containing eveything within the method in plain sight. No need to plow through 27 page objects.
+
+## Capabilities & Technology Stack
+- [Selenium WebDriver 3](https://www.seleniumhq.org/) for browser automation
+- [Cucumber-JVM 3](https://github.com/cucumber/cucumber-jvm) for behavior-driven test framework
+- [ngWebDriver](https://github.com/paul-hammant/ngWebDriver) (Protractor) for Angular/JS support
+- [PicoContainer](http://picocontainer.com/) for DI module
+- [AssertJ](http://joel-costigliola.github.io/assertj/) for fluent assertions
+- [Maven](https://maven.apache.org/) for dependency management and build execution
+- [Log4j2](https://logging.apache.org/log4j/2.x/) / [SLF4J](https://www.slf4j.org/) for logging mechanism
+- Extended API for commonly used web testing actions
+- UI Map for central object repository of web elements
+- Compatible with IE11, Edge, Chrome, Firefox
+- Test result generation in HTML, JSON, XML
+- Embedded screenshots on generated HTML reports
 
 ## Prerequisites
-The following are required:
 - [JDK 1.8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) or higher
 - [Eclipse IDE](http://www.eclipse.org/downloads/eclipse-packages/) / [VSCode](https://code.visualstudio.com/download) / [IntelliJ](https://www.jetbrains.com/idea/download/#section=windows)
 - [Git](https://git-scm.com/downloads)
 - [Maven](https://maven.apache.org/download.cgi)
 - [Cmder](http://cmder.net/) (recommended, includes Git for Windows)
 
-Setup and installation are not in the scope of this guide. Check the corresponding documentation or tutorials accordingly.
+Setup and installation are not in the scope of this guide.
 
 ## Getting Started
 Visit the application under test (AUT) here: http://simplydo.com/projector/
 
-No further configurations needed at this point. The tests will run against the AUT in [headless browser](https://en.wikipedia.org/wiki/Headless_browser) mode using ChromeDriver as defined in the default framework settings.
+No further configurations needed at this point. The tests will run against the AUT in [headless browser](https://en.wikipedia.org/wiki/Headless_browser) mode using ChromeDriver as defined in `framework.properties`.
+
+### Test Execution
 
 Run the following commands in the cmdline:
 ~~~
 $ cd /path/to/workspace/
-$ git clone <https or ssh>
+$ git clone <repo-url>
 $ cd jcucumberng-framework/
 $ mvn verify
 ~~~
@@ -68,14 +110,31 @@ Maven performs a one-time download of all dependencies for the first run. Execut
 Test artefacts are created in the `/target/` directory after the build is successful.
 
 ### Reporting
-Generates rich HTML reports with dynamic visuals and statistics.
+HTML reports are generated with dynamic visuals and statistics.
 
-#### Maven Cucumber Reporting
-Report found in `/target/cucumber-html-reports/`:
+#### [Maven Cucumber Reporting](https://github.com/damianszczepanik/maven-cucumber-reporting)
+Directory: `/target/cucumber-html-reports/`
 ![dynamic_report](https://user-images.githubusercontent.com/28589393/43090686-acbd9c00-8eda-11e8-9c08-d74c1a86e03b.gif)
 
+#### [Cucumber Extent Reporter](https://github.com/email2vimalraj/CucumberExtentReporter)
+TODO
+
+#### [Allure Test Report](https://github.com/allure-framework)
+TODO
+
 ### Logging
-Writes logs to a daily rolling file. Logs found in `/target/cucumber-logs/`:
+Logs are written to a daily rolling file. Executions from the previous day are saved with a datestamp in a separate file.
+~~~
+target/
+|__ cucumber-logs/
+    |__ cucumber_2018-07-19.log
+    |__ cucumber_2018-07-20.log
+    |__ cucumber_2018-07-21.log
+    |__ cucumber.log
+~~~
+
+#### Sample Logs
+Directory: `/target/cucumber-logs/`
 ~~~
 [INFO ] 2018-07-21 22:02:40,107 ScenarioHook.beforeScenario() - BEGIN TEST -> Verify Page Title
 [INFO ] 2018-07-21 22:02:44,191 ScenarioHook.beforeScenario() - Browser=CHROME32_NOHEAD

@@ -1,4 +1,4 @@
-package jcucumberng.framework.api;
+package jcucumberng.framework.utils;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -13,14 +13,17 @@ import jcucumberng.framework.exceptions.NoSuchKeyException;
 import jcucumberng.framework.strings.Messages;
 
 /**
- * {@code ConfigLoader} handles actions for reading/loading various
- * configuration files.
+ * {@code Config} handles actions for reading/loading various configuration
+ * files.
  * 
  * @author Kat Rollo <rollo.katherine@gmail.com>
  */
-public final class ConfigLoader {
+public final class Config {
 
-	private ConfigLoader() {
+	private static final String FRAMEWORK_CONF_DIR = "/src/test/resources/jcucumberng/framework/";
+	private static final String PROJECT_CONF_DIR = "/src/test/resources/jcucumberng/project/";
+
+	private Config() {
 		// Prevent instantiation
 	}
 
@@ -33,11 +36,11 @@ public final class ConfigLoader {
 	 *         {@code browser=CHROME32}, value = {@code CHROME32})
 	 * @throws IOException
 	 */
-	public static String frameworkConf(String key) throws IOException {
+	public static String framework(String key) throws IOException {
 		String propsFileName = "framework.properties";
 		StringBuilder builder = new StringBuilder();
 		builder.append(StringUtils.replace(System.getProperty("user.dir"), "\\", "/"));
-		builder.append("/src/test/resources/jcucumberng/framework/");
+		builder.append(FRAMEWORK_CONF_DIR);
 		builder.append(propsFileName);
 
 		InputStream inputStream = new FileInputStream(builder.toString());
@@ -63,11 +66,11 @@ public final class ConfigLoader {
 	 *         {@code base.url=www.google.com}, value = {@code www.google.com})
 	 * @throws IOException
 	 */
-	public static String projectConf(String key) throws IOException {
+	public static String project(String key) throws IOException {
 		String propsFileName = "project.properties";
 		StringBuilder builder = new StringBuilder();
 		builder.append(StringUtils.replace(System.getProperty("user.dir"), "\\", "/"));
-		builder.append("/src/test/resources/jcucumberng/project/");
+		builder.append(PROJECT_CONF_DIR);
 		builder.append(propsFileName);
 
 		InputStream inputStream = new FileInputStream(builder.toString());
@@ -87,17 +90,17 @@ public final class ConfigLoader {
 	/**
 	 * Loads {@code log4j2.conf.file} from {@code framework.properties}.
 	 */
-	public static void loggerConf() {
+	public static void logger() {
 		String cfgFile = null;
 		try {
-			cfgFile = ConfigLoader.frameworkConf("log4j2.conf.file");
+			cfgFile = Config.framework("log4j2.conf.file");
 		} catch (IOException ioe) {
 			throw new LoggerConfigException(Messages.LOGGER_CONFIG_FAIL + cfgFile);
 		}
 
 		StringBuilder builder = new StringBuilder();
 		builder.append(StringUtils.replace(System.getProperty("user.dir"), "\\", "/"));
-		builder.append("/src/test/resources/jcucumberng/framework/");
+		builder.append(FRAMEWORK_CONF_DIR);
 		builder.append(cfgFile);
 
 		File log4j2File = new File(builder.toString());
@@ -117,7 +120,7 @@ public final class ConfigLoader {
 		String propsFileName = "ui-map.properties";
 		StringBuilder builder = new StringBuilder();
 		builder.append(StringUtils.replace(System.getProperty("user.dir"), "\\", "/"));
-		builder.append("/src/test/resources/jcucumberng/project/");
+		builder.append(PROJECT_CONF_DIR);
 		builder.append(propsFileName);
 
 		InputStream inputStream = new FileInputStream(builder.toString());

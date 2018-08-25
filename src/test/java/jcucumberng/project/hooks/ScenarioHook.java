@@ -1,55 +1,58 @@
 package jcucumberng.project.hooks;
 
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.paulhammant.ngwebdriver.NgWebDriver;
+
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
-import jcucumberng.framework.api.ConfigLoader;
-import jcucumberng.framework.api.LocalSystem;
 import jcucumberng.framework.api.Selenium;
 import jcucumberng.framework.factory.BrowserFactory;
+import jcucumberng.framework.utils.Config;
+import jcucumberng.framework.utils.SystemIO;
 
 public class ScenarioHook {
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(ScenarioHook.class);
-	private Scenario scenario = null;
-	private WebDriver driver = null;
+	private Selenium selenium = null;
 
 	@Before
 	public void beforeScenario(Scenario scenario) throws Throwable {
-		this.scenario = scenario;
 		LOGGER.info("BEGIN TEST -> " + scenario.getName());
 
-		String browserConfig = ConfigLoader.frameworkConf("browser");
-		driver = BrowserFactory.getInstance(browserConfig);
+		String browserConfig = Config.framework("browser");
+		WebDriver driver = BrowserFactory.getInstance(browserConfig);
+		if (Boolean.parseBoolean(Config.framework("wait.for.angular"))) {
+			NgWebDriver ngWebDriver = new NgWebDriver((JavascriptExecutor) driver);
+			ngWebDriver.waitForAngularRequestsToFinish();
+		}
 		LOGGER.info("Browser=" + browserConfig);
 
-		Dimension dimension = LocalSystem.getDimension();
-		driver.manage().window().setSize(dimension);
+		selenium = new Selenium(driver, scenario);
+
+		Dimension dimension = SystemIO.getDimension();
+		selenium.getDriver().manage().window().setSize(dimension);
 		LOGGER.info("Screen Resolution (WxH)=" + dimension.getWidth() + "x" + dimension.getHeight());
 	}
 
 	@After
 	public void afterScenario() throws Throwable {
-		if (Boolean.parseBoolean(ConfigLoader.frameworkConf("screenshot.on.fail"))) {
-			if (scenario.isFailed()) {
-				Selenium.embedScreenshot(driver, scenario);
+		if (Boolean.parseBoolean(Config.framework("screenshot.on.fail"))) {
+			if (selenium.getScenario().isFailed()) {
+				selenium.embedScreenshot();
 			}
 		}
-
-		LOGGER.info("END TEST -> " + scenario.getName() + " - " + scenario.getStatus());
-		driver.quit();
+		LOGGER.info("END TEST -> " + selenium.getScenario().getName() + " - " + selenium.getScenario().getStatus());
+		selenium.getDriver().quit();
 	}
 
-	public Scenario getScenario() {
-		return scenario;
-	}
-
-	public WebDriver getDriver() {
-		return driver;
+	public Selenium getSelenium() {
+		return selenium;
 	}
 
 }

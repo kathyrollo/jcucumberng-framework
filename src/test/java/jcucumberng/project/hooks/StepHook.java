@@ -1,26 +1,22 @@
 package jcucumberng.project.hooks;
 
-import org.openqa.selenium.WebDriver;
-
-import cucumber.api.Scenario;
 import cucumber.api.java.AfterStep;
-import jcucumberng.framework.api.ConfigLoader;
 import jcucumberng.framework.api.Selenium;
+import jcucumberng.framework.utils.Config;
 
 public class StepHook {
-	private Scenario scenario = null;
-	private WebDriver driver = null;
 
-	// PicoContainer injects ScenarioHook class
+	private Selenium selenium = null;
+
+	// PicoContainer injects ScenarioHook object
 	public StepHook(ScenarioHook scenarioHook) {
-		scenario = scenarioHook.getScenario();
-		driver = scenarioHook.getDriver();
+		selenium = scenarioHook.getSelenium();
 	}
 
 	@AfterStep
 	public void afterStep() throws Throwable {
-		if (!Boolean.parseBoolean(ConfigLoader.frameworkConf("screenshot.on.fail"))) {
-			Selenium.embedScreenshot(driver, scenario);
+		if (!Boolean.parseBoolean(Config.framework("screenshot.on.fail"))) {
+			selenium.embedScreenshot();
 		}
 	}
 

@@ -1,4 +1,4 @@
-package jcucumberng.framework.api;
+package jcucumberng.framework.utils;
 
 /**
  * {@code DateTime} handles actions for manipulating date and time.
@@ -21,15 +21,14 @@ public final class DateTime {
 	 * @param end      upperbound value of the range in seconds, inclusive
 	 * @return int - value in millis
 	 */
-	public static int convertSecondsToMillisWithRange(String waitTime, int begin, int end) {
-		int secs = Integer.parseInt(waitTime);
-		if (secs < begin) {
-			secs = begin;
+	public static int convertSecsToMillisWithRange(int waitTime, int begin, int end) {
+		if (waitTime < begin) {
+			waitTime = begin;
 		}
-		if (secs > end) {
-			secs = end;
+		if (waitTime > end) {
+			waitTime = end;
 		}
-		return secs * 1000;
+		return waitTime * 1000;
 	}
 
 }

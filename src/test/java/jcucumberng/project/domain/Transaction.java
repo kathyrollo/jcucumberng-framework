@@ -1,5 +1,7 @@
 package jcucumberng.project.domain;
 
+import java.util.Map;
+
 public class Transaction {
 
 	private String name = null;
@@ -12,6 +14,13 @@ public class Transaction {
 		this.amount = amount;
 		this.frequency = frequency;
 		this.month = month;
+	}
+
+	public Transaction(Map<String, String> map) {
+		this.name = map.get("name");
+		this.amount = map.get("amount");
+		this.frequency = map.get("frequency");
+		this.month = map.get("month");
 	}
 
 	public String getName() {

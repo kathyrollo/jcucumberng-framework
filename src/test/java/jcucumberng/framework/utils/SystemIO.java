@@ -1,4 +1,4 @@
-package jcucumberng.framework.api;
+package jcucumberng.framework.utils;
 
 import java.awt.AWTException;
 import java.awt.Robot;
@@ -8,14 +8,14 @@ import java.io.IOException;
 import org.openqa.selenium.Dimension;
 
 /**
- * {@code LocalSystem} handles actions relating to the user's machine such as
- * screen resolution or input devices.
+ * {@code SystemIO} handles actions relating to the user's machine such as input
+ * and output devices.
  * 
  * @author Kat Rollo <rollo.katherine@gmail.com>
  */
-public final class LocalSystem {
+public final class SystemIO {
 
-	private LocalSystem() {
+	private SystemIO() {
 		// Prevent instantiation
 	}
 
@@ -44,7 +44,8 @@ public final class LocalSystem {
 		Robot robot = new Robot();
 		robot.keyPress(key);
 		robot.keyRelease(key);
-		int millis = DateTime.convertSecondsToMillisWithRange(ConfigLoader.frameworkConf("key.press.wait"), 1, 60);
+		int waitTime = Integer.parseInt(Config.framework("key.press.wait"));
+		int millis = DateTime.convertSecsToMillisWithRange(waitTime, 1, 60);
 		robot.delay(millis);
 		robot = null; // Destroy robot
 	}
@@ -64,7 +65,8 @@ public final class LocalSystem {
 		for (int ctr = 0; ctr < keys.length; ctr++) {
 			robot.keyPress(keys[ctr]); // Press and hold keys
 		}
-		int millis = DateTime.convertSecondsToMillisWithRange(ConfigLoader.frameworkConf("key.press.wait"), 1, 60);
+		int waitTime = Integer.parseInt(Config.framework("key.press.wait"));
+		int millis = DateTime.convertSecsToMillisWithRange(waitTime, 1, 60);
 		robot.delay(millis);
 		for (int ctr = keys.length - 1; ctr > -1; ctr--) {
 			robot.keyRelease(keys[ctr]); // Release keys in reverse order
