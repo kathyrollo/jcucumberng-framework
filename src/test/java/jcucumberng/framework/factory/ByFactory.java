@@ -17,6 +17,7 @@ import jcucumberng.framework.exceptions.InvalidPatternException;
 import jcucumberng.framework.exceptions.UnsupportedByMethodException;
 import jcucumberng.framework.strings.Messages;
 import jcucumberng.framework.strings.Text;
+import jcucumberng.project.hooks.ScenarioHook;
 
 /**
  * {@code ByFactory} handles actions for manipulating the Selenium {@code By}
@@ -26,8 +27,11 @@ import jcucumberng.framework.strings.Text;
  */
 public final class ByFactory {
 
-	// Prevent instantiation
-	private ByFactory() {
+	private static Selenium selenium = null;
+
+	// PicoContainer injects ScenarioHook class
+	private ByFactory(ScenarioHook scenarioHook) {
+		selenium = scenarioHook.getSelenium();
 	}
 
 	/**
@@ -58,12 +62,12 @@ public final class ByFactory {
 		if (StringUtils.contains(selector, "|")) {
 			if (StringUtils.containsIgnoreCase(value, ByMethod.BY_ALL.toString())) {
 				keys = StringUtils.split(StringUtils.substringAfter(value, ":"), "|");
-				bys = Selenium.getBys(keys);
+				bys = selenium.getBys(keys);
 				selector = null;
 			}
 			if (StringUtils.containsIgnoreCase(value, ByMethod.BY_CHAINED.toString())) {
 				keys = StringUtils.split(StringUtils.substringAfter(value, ":"), "|");
-				bys = Selenium.getBys(keys);
+				bys = selenium.getBys(keys);
 				selector = null;
 			}
 			if (StringUtils.containsIgnoreCase(value, ByMethod.CSS_CONTAINING_TEXT.toString())) {
