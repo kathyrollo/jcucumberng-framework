@@ -19,7 +19,7 @@ public class NetIncomeProjectorSteps {
 	private static final Logger LOGGER = LoggerFactory.getLogger(NetIncomeProjectorSteps.class);
 	private Selenium selenium = null;
 
-	// PicoContainer injects ScenarioHook class
+	// PicoContainer injects ScenarioHook object
 	public NetIncomeProjectorSteps(ScenarioHook scenarioHook) {
 		selenium = scenarioHook.getSelenium();
 	}

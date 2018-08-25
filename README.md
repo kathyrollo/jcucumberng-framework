@@ -30,7 +30,7 @@ Then I Should See Net Income Per Month: 23769
 ~~~
 private WebDriver driver = null;
 
-// PicoContainer injects ScenarioHook class
+// PicoContainer injects ScenarioHook object
 public NetIncomeProjectorSteps(ScenarioHook scenarioHook) {
     driver = scenarioHook.getDriver();
 }
