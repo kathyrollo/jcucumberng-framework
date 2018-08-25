@@ -3,15 +3,34 @@
 ## Overview
 Allows automation testers to write feature/gherkin files for Cucumber and implement step definitions in basic Java classes. ngWebDriver (Protractor) offers extended support for Angular/JS web applications.
 
-## The Design: Write Tests, Not Page Objects
+## The Design: Write Tests, Not Page Objects (optional reading)
 
-An anti-pattern occurs when adhering to the design becomes the larger chore of automation efforts instead of writing sensible tests which is the common pitfall of the popular [Page Object Model (POM)](https://github.com/SeleniumHQ/selenium/wiki/PageObjects). The priority becomes maintaining the design pattern, not _testing_. Returning page objects within step definitions does not make much sense since Cucumber calls steps to move from one state to another.
+### An Analogy
+Like arithmetic, there are many ways to arrive to the same answer. Some longer, some shorter.
 
-PicoContainer, from the [official docs](https://docs.cucumber.io/cucumber/state/#dependency-injection), eliminates the tight coupling of page objects to step definitions by sharing states in the glue code using [dependency injection (DI)](http://picocontainer.com/injection.html). Each step definition is an autonomous unit as is the nature of a Java method. [User Interface (UI) Mapping](https://www.seleniumhq.org/docs/06_test_design_considerations.jsp#user-interface-mapping) is a known approach for storing web elements but becomes more efficient with DI.
+Page Object Model (POM) is like this:
+~~~
+[(2 + 2) * 3 - 7] / 1 = 5
+~~~
 
-The framework deliberately foregoes the added complexity and abstraction of POM to take advantage of Cucumber's intended design - to build a library of loosely coupled steps which can be independently called anywhere. Writing new feature files becomes a matter of reusing and combining steps in the proper order.
+Dependency Injection (DI) is like this:
+~~~
+2 + 3 = 5
+~~~
 
-_TL;DR: POM and Cucumber do not mix._
+### The Ra(n)tionale
+An anti-pattern occurs when adhering to the design becomes the larger chore of automation efforts instead of writing sensible tests which is the common pitfall of the popular [Page Object Model](https://github.com/SeleniumHQ/selenium/wiki/PageObjects). The priority becomes over engineering a design pattern, not _testing_. Returning page objects within step definitions does not make much sense since Cucumber inherently calls steps to move from one state to the next.
+
+PicoContainer, from the [official docs](https://docs.cucumber.io/cucumber/state/#dependency-injection), eliminates the tight coupling of page objects to step definitions by sharing states in the glue code using [Dependency Injection](http://picocontainer.com/injection.html). In fact, there is no mention of POM in [The Cucumber for Java Book](https://pragprog.com/book/srjcuc/the-cucumber-for-java-book) (authored by Cucumber's creators) but there is a dedicated chapter for DI. Each step definition is an autonomous unit as is the nature of a Java method.
+
+Why then, is POM a pervasive design pattern seen in most test automation suites? Tradition. This comes from the days of "pure" Selenium tests that do not offer behavior-driven (BDD)/step-based capabilities. Add that to the fact that Selenium actively promotes the pattern and comes with `PageFactory` to support it, automation testers simply incorporated it to their BDD test frameworks by default. _POM complements Selenium, not Cucumber._
+
+**jCucumberNG-Framework** deliberately foregoes the added complexity and abstraction of POM to take advantage of Cucumber's intended design (along with other nifty things) - to build a library of loosely coupled steps which can be independently called anywhere while Selenium simply drives browser actions. Writing new feature files becomes a matter of reusing and combining steps in the proper order.
+
+_TL;DR:_
+- Selenium + POM = OK
+- Selenium + Cucumber + POM = Not OK
+- Selenium + Cucumber + DI = ROI (the thing that matters)
 
 ## How It Works
 The code snippet below shows writing test scripts directly into step definitions without the overhead of setting up page objects.
@@ -28,27 +47,27 @@ Then I Should See Net Income Per Month: 23769
 
 ### Step Definition:
 ~~~
-private WebDriver driver = null;
+private Selenium selenium = null;
 
 // PicoContainer injects ScenarioHook object
 public NetIncomeProjectorSteps(ScenarioHook scenarioHook) {
-    driver = scenarioHook.getDriver();
+    selenium = scenarioHook.getSelenium();
 }
 
 @Then("I Should See Net Income Per Month: {word}")
 public void I_Should_See_Net_Income_Per_Month(String expected) throws Throwable {
-    WebElement netPerMonth = Selenium.getVisibleElement(driver, "net.per.month");
+    WebElement netPerMonth = selenium.getVisibleElement("net.per.month");
     String actual = netPerMonth.getText();
     Assertions.assertThat(actual).isEqualTo(expected);
     LOGGER.debug("Net Per Month=" + actual);
 }
 ~~~
 
-Here, everything the step needs is contained within the method in plain sight.
+[User Interface (UI) Mapping](https://www.seleniumhq.org/docs/06_test_design_considerations.jsp#user-interface-mapping) is a known approach for storing web elements but becomes more efficient with DI. Here, everything the step needs is contained within the method in plain sight.
 
 ## Capabilities & Technology Stack
 - [Selenium WebDriver 3](https://www.seleniumhq.org/) for browser automation
-- [Cucumber-JVM](https://github.com/cucumber/cucumber-jvm) for behavior driven test framework
+- [Cucumber-JVM](https://github.com/cucumber/cucumber-jvm) for behavior-driven test framework
 - [ngWebDriver](https://github.com/paul-hammant/ngWebDriver) (Protractor) for Angular/JS locators
 - [PicoContainer](http://picocontainer.com/) for DI module
 - [AssertJ](http://joel-costigliola.github.io/assertj/) for fluent assertions
