@@ -11,6 +11,7 @@ import jcucumberng.framework.utils.Config;
 import jcucumberng.project.hooks.ScenarioHook;
 
 public class HomePageNavigationSteps {
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(HomePageNavigationSteps.class);
 	private Selenium selenium = null;
 

@@ -16,6 +16,7 @@ import jcucumberng.project.domain.Transaction;
 import jcucumberng.project.hooks.ScenarioHook;
 
 public class NetIncomeProjectorSteps {
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(NetIncomeProjectorSteps.class);
 	private Selenium selenium = null;
 
@@ -28,22 +29,22 @@ public class NetIncomeProjectorSteps {
 	public void I_Enter_My_Start_Balance(String value) throws Throwable {
 		selenium.type(value, "start.balance");
 		LOGGER.debug("Start Balance=" + value);
-		this.scrollToDivBox(0);
+		scrollToDivBox(0);
 	}
 
 	// TODO Convert to vertical table
 	@When("I Enter My Regular Income Sources")
 	public void I_Enter_My_Regular_Income_Sources(DataTable table) throws Throwable {
 		List<Transaction> txns = table.asList(Transaction.class);
-		this.enterTransaction(txns, "income.add", "income.name", "income.amount", "income.freq");
-		this.scrollToDivBox(1);
+		enterTransaction(txns, "income.add", "income.name", "income.amount", "income.freq");
+		scrollToDivBox(1);
 	}
 
 	@When("I Enter My Regular Expenses")
 	public void I_Enter_My_Regular_Expenses(DataTable table) throws Throwable {
 		List<Transaction> txns = table.asList(Transaction.class);
-		this.enterTransaction(txns, "expense.add", "expense.name", "expense.amount", "expense.freq");
-		this.scrollToDivBox(2);
+		enterTransaction(txns, "expense.add", "expense.name", "expense.amount", "expense.freq");
+		scrollToDivBox(2);
 	}
 
 	@Then("I Should See Net Income Per Month: {word}")
