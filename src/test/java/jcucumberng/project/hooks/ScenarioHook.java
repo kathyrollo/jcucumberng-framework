@@ -19,9 +19,9 @@ import jcucumberng.framework.factory.BrowserFactory;
 public class ScenarioHook {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ScenarioHook.class);
 
-	public Scenario scenario = null;
-	public WebDriver driver = null;
-	public Selenium selenium = null;
+	private Scenario scenario = null;
+	private WebDriver driver = null;
+	private Selenium selenium = null;
 
 	@Before
 	public void beforeScenario(Scenario scenario) throws Throwable {
@@ -52,6 +52,10 @@ public class ScenarioHook {
 		}
 		LOGGER.info("END TEST -> " + this.scenario.getName() + " - " + this.scenario.getStatus());
 		this.driver.quit();
+	}
+
+	public Selenium getSelenium() {
+		return this.selenium;
 	}
 
 }
