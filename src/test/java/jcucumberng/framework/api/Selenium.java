@@ -88,7 +88,7 @@ public final class Selenium {
 		By[] bys = new By[keys.length];
 		By by = null;
 		for (int ctr = 0; ctr < bys.length; ctr++) {
-			by = this.by(keys[ctr]);
+			by = by(keys[ctr]);
 			bys[ctr] = by;
 		}
 		return bys;
@@ -101,7 +101,7 @@ public final class Selenium {
 	 * @return WebDriverWait - the wait object
 	 */
 	public WebDriverWait wait(int timeOut) {
-		return new WebDriverWait(this.driver, timeOut);
+		return new WebDriverWait(driver, timeOut);
 	}
 
 	/**
@@ -112,10 +112,9 @@ public final class Selenium {
 	 * @throws IOException
 	 */
 	public WebElement getVisibleElement(String... keys) throws IOException {
-		By[] bys = this.getBys(keys);
+		By[] bys = getBys(keys);
 		int timeOut = Integer.parseInt(Config.framework("webdriver.wait"));
-		WebElement element = this.wait(timeOut)
-				.until(ExpectedConditions.visibilityOfElementLocated(new ByChained(bys)));
+		WebElement element = wait(timeOut).until(ExpectedConditions.visibilityOfElementLocated(new ByChained(bys)));
 		return element;
 	}
 
@@ -127,9 +126,9 @@ public final class Selenium {
 	 * @throws IOException
 	 */
 	public List<WebElement> getVisibleElements(String... keys) throws IOException {
-		By[] bys = this.getBys(keys);
+		By[] bys = getBys(keys);
 		int timeOut = Integer.parseInt(Config.framework("webdriver.wait"));
-		List<WebElement> elements = this.wait(timeOut)
+		List<WebElement> elements = wait(timeOut)
 				.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(new ByChained(bys)));
 		return elements;
 	}
@@ -142,7 +141,7 @@ public final class Selenium {
 	 * @throws IOException
 	 */
 	public List<Select> getSelectElements(String... keys) throws IOException {
-		List<WebElement> elements = this.getVisibleElements(keys);
+		List<WebElement> elements = getVisibleElements(keys);
 		List<Select> selectElements = new ArrayList<>();
 		for (WebElement element : elements) {
 			selectElements.add(new Select(element));
@@ -156,7 +155,7 @@ public final class Selenium {
 	 * @return String - the text within HTML body tags
 	 */
 	public String getBodyText() {
-		return this.driver.findElement(By.tagName("body")).getText();
+		return driver.findElement(By.tagName("body")).getText();
 	}
 
 	/**
@@ -168,7 +167,7 @@ public final class Selenium {
 	 * @throws IOException
 	 */
 	public boolean isElementPresent(String... keys) throws IOException {
-		List<WebElement> elements = this.getVisibleElements(keys);
+		List<WebElement> elements = getVisibleElements(keys);
 		return 0 < elements.size() ? true : false;
 	}
 
@@ -180,7 +179,7 @@ public final class Selenium {
 	 * @throws IOException
 	 */
 	public WebElement click(String... keys) throws IOException {
-		WebElement element = this.getVisibleElement(keys);
+		WebElement element = getVisibleElement(keys);
 		element.click();
 		return element;
 	}
@@ -194,7 +193,7 @@ public final class Selenium {
 	 * @throws IOException
 	 */
 	public WebElement type(String text, String... keys) throws IOException {
-		WebElement field = this.getVisibleElement(keys);
+		WebElement field = getVisibleElement(keys);
 		field.clear();
 		field.sendKeys(text);
 		return field;
@@ -219,20 +218,20 @@ public final class Selenium {
 	 * @throws IOException
 	 */
 	public String openWindowByElement(String... keys) throws IOException {
-		String parentHandle = this.driver.getWindowHandle(); // Save parent window
-		this.click(keys); // Open child window
+		String parentHandle = driver.getWindowHandle(); // Save parent window
+		click(keys); // Open child window
 		int timeOut = Integer.parseInt(Config.framework("webdriver.wait"));
-		boolean isChildWindowOpen = this.wait(timeOut).until(ExpectedConditions.numberOfWindowsToBe(2));
+		boolean isChildWindowOpen = wait(timeOut).until(ExpectedConditions.numberOfWindowsToBe(2));
 		if (isChildWindowOpen) {
-			Set<String> handles = this.driver.getWindowHandles();
+			Set<String> handles = driver.getWindowHandles();
 			// Switch to child window
 			for (String handle : handles) {
 				if (StringUtils.equals(parentHandle, handle)) {
-					this.driver.switchTo().window(handle);
+					driver.switchTo().window(handle);
 					break;
 				}
 			}
-			this.driver.manage().window().maximize();
+			driver.manage().window().maximize();
 		}
 		return parentHandle; // Returns parent window if need to switch back
 	}
@@ -244,19 +243,19 @@ public final class Selenium {
 	 * @return String - the handle of the parent window
 	 */
 	public String openWindowByLink(String url) throws IOException {
-		String parentHandle = this.driver.getWindowHandle();
-		this.driver.get(url);
+		String parentHandle = driver.getWindowHandle();
+		driver.get(url);
 		int timeOut = Integer.parseInt(Config.framework("webdriver.wait"));
-		boolean isChildWindowOpen = this.wait(timeOut).until(ExpectedConditions.numberOfWindowsToBe(2));
+		boolean isChildWindowOpen = wait(timeOut).until(ExpectedConditions.numberOfWindowsToBe(2));
 		if (isChildWindowOpen) {
-			Set<String> handles = this.driver.getWindowHandles();
+			Set<String> handles = driver.getWindowHandles();
 			for (String handle : handles) {
 				if (StringUtils.equals(parentHandle, handle)) {
-					this.driver.switchTo().window(handle);
+					driver.switchTo().window(handle);
 					break;
 				}
 			}
-			this.driver.manage().window().maximize();
+			driver.manage().window().maximize();
 		}
 		return parentHandle;
 	}
@@ -268,16 +267,16 @@ public final class Selenium {
 	 * @return String - the handle of the parent window
 	 */
 	public String switchToWindowByTitle(String windowTitle) {
-		Set<String> handles = this.driver.getWindowHandles();
-		String parentHandle = this.driver.getWindowHandle();
+		Set<String> handles = driver.getWindowHandles();
+		String parentHandle = driver.getWindowHandle();
 		if (1 < handles.size()) {
 			for (String handle : handles) {
-				this.driver.switchTo().window(handle);
-				if (StringUtils.equalsIgnoreCase(windowTitle, this.driver.getTitle())) {
+				driver.switchTo().window(handle);
+				if (StringUtils.equalsIgnoreCase(windowTitle, driver.getTitle())) {
 					break;
 				}
 			}
-			this.driver.manage().window().maximize();
+			driver.manage().window().maximize();
 		}
 		return parentHandle;
 	}
@@ -288,7 +287,7 @@ public final class Selenium {
 	 * @param xPos negative value to scroll left, positive value to scroll right
 	 */
 	public void scrollHorizontal(int xPos) {
-		JavascriptExecutor jsExecutor = (JavascriptExecutor) this.driver;
+		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
 		jsExecutor.executeScript("scroll(" + xPos + ", 0);");
 	}
 
@@ -298,7 +297,7 @@ public final class Selenium {
 	 * @param yPos positive value to scroll down, negative value to scroll up
 	 */
 	public void scrollVertical(int yPos) {
-		JavascriptExecutor jsExecutor = (JavascriptExecutor) this.driver;
+		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
 		jsExecutor.executeScript("scroll(0, " + yPos + ");");
 	}
 
@@ -309,9 +308,9 @@ public final class Selenium {
 	 * @throws IOException
 	 */
 	public void scrollToElement(String... keys) throws IOException {
-		By[] bys = this.getBys(keys);
-		WebElement element = this.driver.findElement(new ByChained(bys));
-		JavascriptExecutor jsExecutor = (JavascriptExecutor) this.driver;
+		By[] bys = getBys(keys);
+		WebElement element = driver.findElement(new ByChained(bys));
+		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
 		jsExecutor.executeScript("arguments[0].scrollIntoView();", element);
 	}
 
@@ -321,7 +320,7 @@ public final class Selenium {
 	 * @param element the element to scroll to
 	 */
 	public void scrollToElement(WebElement element) {
-		JavascriptExecutor jsExecutor = (JavascriptExecutor) this.driver;
+		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
 		jsExecutor.executeScript("arguments[0].scrollIntoView();", element);
 	}
 
@@ -338,7 +337,7 @@ public final class Selenium {
 		builder.append(System.currentTimeMillis());
 		builder.append(".png");
 		String screenshot = builder.toString();
-		File srcFile = ((TakesScreenshot) this.driver).getScreenshotAs(OutputType.FILE);
+		File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		FileUtils.copyFile(srcFile, new File(screenshot));
 	}
 
@@ -349,16 +348,16 @@ public final class Selenium {
 	 * @param scenario the Scenario object
 	 */
 	public void embedScreenshot() {
-		byte[] srcBytes = ((TakesScreenshot) this.driver).getScreenshotAs(OutputType.BYTES);
-		this.scenario.embed(srcBytes, "image/png");
+		byte[] srcBytes = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+		scenario.embed(srcBytes, "image/png");
 	}
 
 	public WebDriver getDriver() {
-		return this.driver;
+		return driver;
 	}
 
 	public Scenario getScenario() {
-		return this.scenario;
+		return scenario;
 	}
 
 }
