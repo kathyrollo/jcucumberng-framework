@@ -21,11 +21,11 @@ Dependency Injection (DI) is like this:
 ### The Ra(n)tionale
 An anti-pattern occurs when adhering to the design becomes the larger chore of automation efforts instead of writing sensible tests which is the common pitfall of the popular [Page Object Model](https://github.com/SeleniumHQ/selenium/wiki/PageObjects). The priority becomes over engineering a design pattern, not _testing_. Returning page objects within step definitions does not make much sense since Cucumber inherently calls steps to move from one state to the next.
 
-PicoContainer, from the [official docs](https://docs.cucumber.io/cucumber/state/#dependency-injection), eliminates the tight coupling of page objects to step definitions by sharing states in the glue code using [Dependency Injection](http://picocontainer.com/injection.html). In fact, there is no mention of POM in [The Cucumber for Java Book](https://pragprog.com/book/srjcuc/the-cucumber-for-java-book) (authored by Cucumber's creators) but there is a dedicated chapter for DI. Each step definition is an autonomous unit as is the nature of a Java method.
+PicoContainer ([official docs](https://docs.cucumber.io/cucumber/state/#dependency-injection)) eliminates the tight coupling of page objects to step definitions by sharing states in the glue code using [Dependency Injection](http://picocontainer.com/injection.html). In fact, there is no mention of POM in [The Cucumber for Java Book](https://pragprog.com/book/srjcuc/the-cucumber-for-java-book) (authored by Cucumber's creators) but there is a dedicated chapter for DI. Each step definition is an autonomous unit as is the nature of a Java method.
 
 Why then, is POM a pervasive design pattern seen in most test automation suites? Tradition. This comes from the days of "pure" Selenium tests that do not offer behavior-driven (BDD)/step-based capabilities. Add that to the fact that Selenium actively promotes the pattern and comes with `PageFactory` to support it, automation testers simply incorporated it to their BDD test frameworks by default. _POM complements Selenium, not Cucumber._
 
-**jCucumberNG-Framework** deliberately foregoes the added complexity and abstraction of POM to take advantage of Cucumber's intended design (along with other nifty things) - to build a library of loosely coupled steps which can be independently called anywhere while Selenium simply drives browser actions. Writing new feature files becomes a matter of reusing and combining steps in the proper order.
+**jCucumberNG-Framework** deliberately foregoes the added complexity and abstraction of POM to take advantage of Cucumber's intended design - to build a library of loosely coupled steps which can be independently called anywhere while Selenium simply drives browser actions. Writing new feature files becomes a matter of reusing and combining steps in the proper order.
 
 > **_TL;DR:_**
 > - Selenium + POM = OK
@@ -63,12 +63,12 @@ public void I_Should_See_Net_Income_Per_Month(String expected) throws Throwable 
 }
 ~~~
 
-[User Interface (UI) Mapping](https://www.seleniumhq.org/docs/06_test_design_considerations.jsp#user-interface-mapping) is a known approach for storing web elements but becomes more efficient with DI. The `WebDriver` is not exposed while containing eveything within the method in plain sight. No need to plow through 43 page objects.
+[User Interface (UI) Mapping](https://www.seleniumhq.org/docs/06_test_design_considerations.jsp#user-interface-mapping) is a known approach for storing web elements but becomes more efficient with DI. The `WebDriver` is not exposed while containing eveything within the method in plain sight. No need to plow through 27 page objects.
 
 ## Capabilities & Technology Stack
 - [Selenium WebDriver 3](https://www.seleniumhq.org/) for browser automation
 - [Cucumber-JVM](https://github.com/cucumber/cucumber-jvm) for behavior-driven test framework
-- [ngWebDriver](https://github.com/paul-hammant/ngWebDriver) (Protractor) for Angular/JS locators
+- [ngWebDriver](https://github.com/paul-hammant/ngWebDriver) (Protractor) for Angular/JS support
 - [PicoContainer](http://picocontainer.com/) for DI module
 - [AssertJ](http://joel-costigliola.github.io/assertj/) for fluent assertions
 - [Maven](https://maven.apache.org/) for dependency management and build execution
