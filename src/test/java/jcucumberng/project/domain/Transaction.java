@@ -9,17 +9,18 @@ public class Transaction {
 	private String frequency = null;
 	private String month = null;
 
-	public Transaction(Map<String, String> map) {
-		this.name = map.get("name");
-		this.amount = map.get("amount");
-		this.frequency = map.get("frequency");
-	}
-
 	public Transaction(String name, String amount, String frequency, String month) {
 		this.name = name;
 		this.amount = amount;
 		this.frequency = frequency;
 		this.month = month;
+	}
+
+	public Transaction(Map<String, String> map) {
+		this.name = map.get("name");
+		this.amount = map.get("amount");
+		this.frequency = map.get("frequency");
+		this.month = map.get("month");
 	}
 
 	public String getName() {

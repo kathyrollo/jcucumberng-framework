@@ -35,6 +35,9 @@ public class NetIncomeProjectorSteps {
 
 	@When("I Enter My Regular Income Sources")
 	public void I_Enter_My_Regular_Income_Sources(@Transpose Transaction txn) throws Throwable {
+		selenium.type(txn.getName(), "income.name");
+		selenium.type(txn.getAmount(), "income.amount");
+		selenium.selectByVisibleText(txn.getFrequency(), "income.freq");
 		LOGGER.debug(txn.toString());
 		scrollToDivBox(1);
 	}
@@ -63,7 +66,7 @@ public class NetIncomeProjectorSteps {
 	public void I_Should_See_Net_Income_Per_Month(String expected) throws Throwable {
 		WebElement netPerMonth = selenium.getVisibleElement("net.per.month");
 		String actual = netPerMonth.getText();
-		//Assertions.assertThat(actual).isEqualTo(expected);
+		Assertions.assertThat(actual).isEqualTo(expected);
 		LOGGER.debug("Net Per Month=" + actual);
 		selenium.scrollToElement(netPerMonth);
 	}
@@ -72,7 +75,7 @@ public class NetIncomeProjectorSteps {
 	public void I_Should_See_Net_Income_Per_Year(String expected) throws Throwable {
 		WebElement netPerYear = selenium.getVisibleElement("net.per.year");
 		String actual = netPerYear.getText();
-		//Assertions.assertThat(actual).isEqualTo(expected);
+		Assertions.assertThat(actual).isEqualTo(expected);
 		LOGGER.debug("Net Per Year=" + actual);
 		selenium.scrollToElement(netPerYear);
 	}

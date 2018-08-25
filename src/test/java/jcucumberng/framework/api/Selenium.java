@@ -141,12 +141,11 @@ public final class Selenium {
 	 * @throws IOException
 	 */
 	public List<Select> getSelectElements(String... keys) throws IOException {
-		List<WebElement> elements = getVisibleElements(keys);
-		List<Select> selectElements = new ArrayList<>();
-		for (WebElement element : elements) {
-			selectElements.add(new Select(element));
+		List<Select> selects = new ArrayList<>();
+		for (WebElement element : getVisibleElements(keys)) {
+			selects.add(new Select(element));
 		}
-		return selectElements;
+		return selects;
 	}
 
 	/**
@@ -167,8 +166,7 @@ public final class Selenium {
 	 * @throws IOException
 	 */
 	public boolean isElementPresent(String... keys) throws IOException {
-		List<WebElement> elements = getVisibleElements(keys);
-		return 0 < elements.size() ? true : false;
+		return 0 < getVisibleElements(keys).size() ? true : false;
 	}
 
 	/**
@@ -208,6 +206,20 @@ public final class Selenium {
 	public void type(String text, WebElement field) {
 		field.clear();
 		field.sendKeys(text);
+	}
+
+	/**
+	 * Selects dropdown value by visible text.
+	 * 
+	 * @param text the visible text from the dropdown options
+	 * @param keys the key(s) from {@code ui-map.properties}
+	 * @return Select - the Select object
+	 * @throws IOException
+	 */
+	public Select selectByVisibleText(String text, String... keys) throws IOException {
+		Select select = new Select(getVisibleElement(keys));
+		select.selectByVisibleText(text);
+		return select;
 	}
 
 	/**
@@ -308,10 +320,8 @@ public final class Selenium {
 	 * @throws IOException
 	 */
 	public void scrollToElement(String... keys) throws IOException {
-		By[] bys = getBys(keys);
-		WebElement element = driver.findElement(new ByChained(bys));
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
-		jsExecutor.executeScript("arguments[0].scrollIntoView();", element);
+		jsExecutor.executeScript("arguments[0].scrollIntoView();", getVisibleElement(keys));
 	}
 
 	/**
