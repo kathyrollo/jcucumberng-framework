@@ -348,4 +348,12 @@ public final class Selenium {
 		return new WebDriverWait(this.driver, timeOut);
 	}
 
+	public WebDriver getDriver() {
+		return this.driver;
+	}
+
+	public Scenario getScenario() {
+		return this.scenario;
+	}
+
 }
