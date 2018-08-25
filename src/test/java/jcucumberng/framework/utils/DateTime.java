@@ -1,4 +1,4 @@
-package jcucumberng.framework.api;
+package jcucumberng.framework.utils;
 
 /**
  * {@code DateTime} handles actions for manipulating date and time.
@@ -7,8 +7,8 @@ package jcucumberng.framework.api;
  */
 public final class DateTime {
 
-	// Prevent instantiation
 	private DateTime() {
+		// Prevent instantiation
 	}
 
 	/**

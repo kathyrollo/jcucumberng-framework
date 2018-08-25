@@ -1,4 +1,4 @@
-package jcucumberng.framework.api;
+package jcucumberng.framework.utils;
 
 import java.awt.AWTException;
 import java.awt.Robot;
@@ -15,8 +15,8 @@ import org.openqa.selenium.Dimension;
  */
 public final class SystemIO {
 
-	// Prevent instantiation
 	private SystemIO() {
+		// Prevent instantiation
 	}
 
 	/**

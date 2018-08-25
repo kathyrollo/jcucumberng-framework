@@ -1,4 +1,4 @@
-package jcucumberng.framework.api;
+package jcucumberng.framework.utils;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -24,8 +24,8 @@ import com.itextpdf.text.pdf.parser.PdfTextExtractor;
  */
 public final class FileIO {
 
-	// Prevent instantiation
 	private FileIO() {
+		// Prevent instantiation
 	}
 
 	/**
