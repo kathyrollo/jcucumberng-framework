@@ -17,7 +17,6 @@ import jcucumberng.framework.exceptions.InvalidPatternException;
 import jcucumberng.framework.exceptions.UnsupportedByMethodException;
 import jcucumberng.framework.strings.Messages;
 import jcucumberng.framework.strings.Text;
-import jcucumberng.project.hooks.ScenarioHook;
 
 /**
  * {@code ByFactory} handles actions for manipulating the Selenium {@code By}
@@ -27,11 +26,8 @@ import jcucumberng.project.hooks.ScenarioHook;
  */
 public final class ByFactory {
 
-	private static Selenium selenium = null;
-
-	// PicoContainer injects ScenarioHook class
-	private ByFactory(ScenarioHook scenarioHook) {
-		selenium = scenarioHook.getSelenium();
+	private ByFactory() {
+		// Prevent instantiation
 	}
 
 	/**
@@ -47,6 +43,7 @@ public final class ByFactory {
 		String text = null;
 		String keys[] = {};
 		By[] bys = null;
+		Selenium selenium = new Selenium();
 
 		String value = Config.uiMap(key);
 		if (StringUtils.isBlank(value)) {
@@ -144,7 +141,7 @@ public final class ByFactory {
 				// Handled in try-catch
 				break;
 			}
-		} catch (IllegalArgumentException | NullPointerException ex) {
+		} catch (IllegalArgumentException | NullPointerException e) {
 			if (StringUtils.isBlank(method)) {
 				method = Text.BLANK;
 			}

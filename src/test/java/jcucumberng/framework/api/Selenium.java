@@ -32,8 +32,12 @@ import jcucumberng.framework.strings.Messages;
  */
 public final class Selenium {
 
-	private final WebDriver driver;
-	private final Scenario scenario;
+	private WebDriver driver = null;
+	private Scenario scenario = null;
+
+	public Selenium() {
+		// Empty constructor
+	}
 
 	public Selenium(WebDriver driver, Scenario scenario) {
 		this.driver = driver;
@@ -87,6 +91,16 @@ public final class Selenium {
 			bys[ctr] = by;
 		}
 		return bys;
+	}
+
+	/**
+	 * Returns the explicit wait object.
+	 * 
+	 * @param timeOut the wait time in seconds
+	 * @return WebDriverWait - the wait object
+	 */
+	public WebDriverWait wait(int timeOut) {
+		return new WebDriverWait(this.driver, timeOut);
 	}
 
 	/**
@@ -336,16 +350,6 @@ public final class Selenium {
 	public void embedScreenshot() {
 		byte[] srcBytes = ((TakesScreenshot) this.driver).getScreenshotAs(OutputType.BYTES);
 		this.scenario.embed(srcBytes, "image/png");
-	}
-
-	/**
-	 * Returns the explicit wait object.
-	 * 
-	 * @param timeOut the wait time in seconds
-	 * @return WebDriverWait - the wait object
-	 */
-	private WebDriverWait wait(int timeOut) {
-		return new WebDriverWait(this.driver, timeOut);
 	}
 
 	public WebDriver getDriver() {
