@@ -15,8 +15,8 @@ import org.openqa.selenium.Dimension;
  */
 public final class SystemIO {
 
-	// Prevent instantiation
 	private SystemIO() {
+		// Prevent instantiation
 	}
 
 	/**

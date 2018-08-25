@@ -24,8 +24,8 @@ import com.itextpdf.text.pdf.parser.PdfTextExtractor;
  */
 public final class FileIO {
 
-	// Prevent instantiation
 	private FileIO() {
+		// Prevent instantiation
 	}
 
 	/**
