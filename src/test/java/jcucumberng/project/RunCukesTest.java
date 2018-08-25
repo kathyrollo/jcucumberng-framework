@@ -15,9 +15,10 @@ import jcucumberng.framework.utils.Config;
 				"junit:target/cucumber-report.xml" }, snippets = SnippetType.UNDERSCORE, monochrome = true, strict = true, dryRun = false)
 
 public class RunCukesTest {
-	private static boolean isLoaded = false;
 
 	// No edit
+	private static boolean isLoaded = false;
+
 	@BeforeClass
 	public static void loadLogger() {
 		if (!isLoaded) {

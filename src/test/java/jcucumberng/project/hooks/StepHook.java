@@ -10,13 +10,13 @@ public class StepHook {
 
 	// PicoContainer injects ScenarioHook object
 	public StepHook(ScenarioHook scenarioHook) {
-		this.selenium = scenarioHook.getSelenium();
+		selenium = scenarioHook.getSelenium();
 	}
 
 	@AfterStep
 	public void afterStep() throws Throwable {
 		if (!Boolean.parseBoolean(Config.framework("screenshot.on.fail"))) {
-			this.selenium.embedScreenshot();
+			selenium.embedScreenshot();
 		}
 	}
 
