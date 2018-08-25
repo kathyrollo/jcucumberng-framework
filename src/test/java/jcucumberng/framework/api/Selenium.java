@@ -35,14 +35,16 @@ public final class Selenium {
 
 	private WebDriver driver = null;
 	private Scenario scenario = null;
+	private int timeOut = 0;
 
 	public Selenium() {
 		// Empty constructor
 	}
 
-	public Selenium(WebDriver driver, Scenario scenario) {
+	public Selenium(WebDriver driver, Scenario scenario) throws Throwable {
 		this.driver = driver;
 		this.scenario = scenario;
+		this.timeOut = Integer.parseInt(Config.framework("webdriver.wait"));
 	}
 
 	/**
@@ -100,7 +102,7 @@ public final class Selenium {
 	 * @param timeOut the wait time in seconds
 	 * @return WebDriverWait - the wait object
 	 */
-	public WebDriverWait wait(int timeOut) {
+	public WebDriverWait explicitWait() {
 		return new WebDriverWait(driver, timeOut);
 	}
 
@@ -113,8 +115,7 @@ public final class Selenium {
 	 */
 	public WebElement getVisibleElement(String... keys) throws IOException {
 		By[] bys = getBys(keys);
-		int timeOut = Integer.parseInt(Config.framework("webdriver.wait"));
-		WebElement element = wait(timeOut).until(ExpectedConditions.visibilityOfElementLocated(new ByChained(bys)));
+		WebElement element = explicitWait().until(ExpectedConditions.visibilityOfElementLocated(new ByChained(bys)));
 		return element;
 	}
 
@@ -127,8 +128,7 @@ public final class Selenium {
 	 */
 	public List<WebElement> getVisibleElements(String... keys) throws IOException {
 		By[] bys = getBys(keys);
-		int timeOut = Integer.parseInt(Config.framework("webdriver.wait"));
-		List<WebElement> elements = wait(timeOut)
+		List<WebElement> elements = explicitWait()
 				.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(new ByChained(bys)));
 		return elements;
 	}
@@ -232,8 +232,7 @@ public final class Selenium {
 	public String openWindowByElement(String... keys) throws IOException {
 		String parentHandle = driver.getWindowHandle(); // Save parent window
 		click(keys); // Open child window
-		int timeOut = Integer.parseInt(Config.framework("webdriver.wait"));
-		boolean isChildWindowOpen = wait(timeOut).until(ExpectedConditions.numberOfWindowsToBe(2));
+		boolean isChildWindowOpen = explicitWait().until(ExpectedConditions.numberOfWindowsToBe(2));
 		if (isChildWindowOpen) {
 			Set<String> handles = driver.getWindowHandles();
 			// Switch to child window
@@ -257,8 +256,7 @@ public final class Selenium {
 	public String openWindowByLink(String url) throws IOException {
 		String parentHandle = driver.getWindowHandle();
 		driver.get(url);
-		int timeOut = Integer.parseInt(Config.framework("webdriver.wait"));
-		boolean isChildWindowOpen = wait(timeOut).until(ExpectedConditions.numberOfWindowsToBe(2));
+		boolean isChildWindowOpen = explicitWait().until(ExpectedConditions.numberOfWindowsToBe(2));
 		if (isChildWindowOpen) {
 			Set<String> handles = driver.getWindowHandles();
 			for (String handle : handles) {
