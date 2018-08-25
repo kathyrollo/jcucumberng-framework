@@ -32,8 +32,12 @@ import jcucumberng.framework.strings.Messages;
  */
 public final class Selenium {
 
-	// Prevent instantiation
-	private Selenium() {
+	private final WebDriver driver;
+	private final Scenario scenario;
+
+	public Selenium(WebDriver driver, Scenario scenario) {
+		this.driver = driver;
+		this.scenario = scenario;
 	}
 
 	/**
@@ -61,7 +65,7 @@ public final class Selenium {
 	 * @return By - the {@code By} object
 	 * @throws IOException
 	 */
-	public static By by(String key) throws IOException {
+	public By by(String key) throws IOException {
 		return ByFactory.getInstance(key);
 	}
 
@@ -72,14 +76,14 @@ public final class Selenium {
 	 * @return By[ ] - the By array
 	 * @throws IOException
 	 */
-	public static By[] getBys(String... keys) throws IOException {
+	public By[] getBys(String... keys) throws IOException {
 		if (0 == keys.length) {
 			throw new MissingArgumentsException(Messages.MISSING_ARGS);
 		}
 		By[] bys = new By[keys.length];
 		By by = null;
 		for (int ctr = 0; ctr < bys.length; ctr++) {
-			by = Selenium.by(keys[ctr]);
+			by = this.by(keys[ctr]);
 			bys[ctr] = by;
 		}
 		return bys;
@@ -88,15 +92,14 @@ public final class Selenium {
 	/**
 	 * Returns a visible web element. Uses explicit wait.
 	 * 
-	 * @param driver the Selenium WebDriver
-	 * @param keys   the key(s) from {@code ui-map.properties}
+	 * @param keys the key(s) from {@code ui-map.properties}
 	 * @return WebElement - the web element found
 	 * @throws IOException
 	 */
-	public static WebElement getVisibleElement(WebDriver driver, String... keys) throws IOException {
-		By[] bys = Selenium.getBys(keys);
+	public WebElement getVisibleElement(String... keys) throws IOException {
+		By[] bys = this.getBys(keys);
 		int timeOut = Integer.parseInt(Config.framework("webdriver.wait"));
-		WebElement element = Selenium.wait(driver, timeOut)
+		WebElement element = this.wait(timeOut)
 				.until(ExpectedConditions.visibilityOfElementLocated(new ByChained(bys)));
 		return element;
 	}
@@ -104,15 +107,14 @@ public final class Selenium {
 	/**
 	 * Returns visible web elements. Uses explicit wait.
 	 * 
-	 * @param driver the Selenium WebDriver
-	 * @param keys   the key(s) from {@code ui-map.properties}
+	 * @param keys the key(s) from {@code ui-map.properties}
 	 * @return List - the List of web elements found
 	 * @throws IOException
 	 */
-	public static List<WebElement> getVisibleElements(WebDriver driver, String... keys) throws IOException {
-		By[] bys = Selenium.getBys(keys);
+	public List<WebElement> getVisibleElements(String... keys) throws IOException {
+		By[] bys = this.getBys(keys);
 		int timeOut = Integer.parseInt(Config.framework("webdriver.wait"));
-		List<WebElement> elements = Selenium.wait(driver, timeOut)
+		List<WebElement> elements = this.wait(timeOut)
 				.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(new ByChained(bys)));
 		return elements;
 	}
@@ -120,13 +122,12 @@ public final class Selenium {
 	/**
 	 * Returns a List of all Select elements.
 	 * 
-	 * @param driver the Selenium WebDriver
-	 * @param keys   the key(s) from {@code ui-map.properties}
+	 * @param keys the key(s) from {@code ui-map.properties}
 	 * @return List - the List of Select elements
 	 * @throws IOException
 	 */
-	public static List<Select> getSelectElements(WebDriver driver, String... keys) throws IOException {
-		List<WebElement> elements = Selenium.getVisibleElements(driver, keys);
+	public List<Select> getSelectElements(String... keys) throws IOException {
+		List<WebElement> elements = this.getVisibleElements(keys);
 		List<Select> selectElements = new ArrayList<>();
 		for (WebElement element : elements) {
 			selectElements.add(new Select(element));
@@ -137,37 +138,34 @@ public final class Selenium {
 	/**
 	 * Returns all text inside the body tag in HTML.
 	 * 
-	 * @param driver the Selenium WebDriver
 	 * @return String - the text within HTML body tags
 	 */
-	public static String getBodyText(WebDriver driver) {
-		return driver.findElement(By.tagName("body")).getText();
+	public String getBodyText() {
+		return this.driver.findElement(By.tagName("body")).getText();
 	}
 
 	/**
 	 * Checks if the element is found on the web page.
 	 * 
-	 * @param driver the Selenium WebDriver
-	 * @param keys   the key(s) from {@code ui-map.properties}
+	 * @param keys the key(s) from {@code ui-map.properties}
 	 * @return {@code true} - if at least one matching element is found on the web
 	 *         page
 	 * @throws IOException
 	 */
-	public static boolean isElementPresent(WebDriver driver, String... keys) throws IOException {
-		List<WebElement> elements = Selenium.getVisibleElements(driver, keys);
+	public boolean isElementPresent(String... keys) throws IOException {
+		List<WebElement> elements = this.getVisibleElements(keys);
 		return 0 < elements.size() ? true : false;
 	}
 
 	/**
 	 * Clicks an element on the web page.
 	 * 
-	 * @param driver the Selenium WebDriver
-	 * @param keys   the key(s) from {@code ui-map.properties}
+	 * @param keys the key(s) from {@code ui-map.properties}
 	 * @return WebElement - the clickable element
 	 * @throws IOException
 	 */
-	public static WebElement click(WebDriver driver, String... keys) throws IOException {
-		WebElement element = Selenium.getVisibleElement(driver, keys);
+	public WebElement click(String... keys) throws IOException {
+		WebElement element = this.getVisibleElement(keys);
 		element.click();
 		return element;
 	}
@@ -175,14 +173,13 @@ public final class Selenium {
 	/**
 	 * Enters text into a textfield or textarea.
 	 * 
-	 * @param driver the Selenium WebDriver
-	 * @param text   the text to be entered
-	 * @param keys   the key(s) from {@code ui-map.properties}
+	 * @param text the text to be entered
+	 * @param keys the key(s) from {@code ui-map.properties}
 	 * @return WebElement - the textfield or textarea element
 	 * @throws IOException
 	 */
-	public static WebElement type(WebDriver driver, String text, String... keys) throws IOException {
-		WebElement field = Selenium.getVisibleElement(driver, keys);
+	public WebElement type(String text, String... keys) throws IOException {
+		WebElement field = this.getVisibleElement(keys);
 		field.clear();
 		field.sendKeys(text);
 		return field;
@@ -191,11 +188,10 @@ public final class Selenium {
 	/**
 	 * Enters text into a textfield or textarea.
 	 * 
-	 * @param driver the Selenium WebDriver
-	 * @param text   the text to be entered
-	 * @param field  the textfield or textarea element
+	 * @param text  the text to be entered
+	 * @param field the textfield or textarea element
 	 */
-	public static void type(WebDriver driver, String text, WebElement field) {
+	public void type(String text, WebElement field) {
 		field.clear();
 		field.sendKeys(text);
 	}
@@ -203,26 +199,25 @@ public final class Selenium {
 	/**
 	 * Opens a new window by clicking an element and switches to that window.
 	 * 
-	 * @param driver the Selenium WebDriver
-	 * @param keys   the key(s) from {@code ui-map.properties}
+	 * @param keys the key(s) from {@code ui-map.properties}
 	 * @return String - the handle of the parent window
 	 * @throws IOException
 	 */
-	public static String openWindowByElement(WebDriver driver, String... keys) throws IOException {
-		String parentHandle = driver.getWindowHandle(); // Save parent window
-		Selenium.click(driver, keys); // Open child window
+	public String openWindowByElement(String... keys) throws IOException {
+		String parentHandle = this.driver.getWindowHandle(); // Save parent window
+		this.click(keys); // Open child window
 		int timeOut = Integer.parseInt(Config.framework("webdriver.wait"));
-		boolean isChildWindowOpen = Selenium.wait(driver, timeOut).until(ExpectedConditions.numberOfWindowsToBe(2));
+		boolean isChildWindowOpen = this.wait(timeOut).until(ExpectedConditions.numberOfWindowsToBe(2));
 		if (isChildWindowOpen) {
-			Set<String> handles = driver.getWindowHandles();
+			Set<String> handles = this.driver.getWindowHandles();
 			// Switch to child window
 			for (String handle : handles) {
 				if (StringUtils.equals(parentHandle, handle)) {
-					driver.switchTo().window(handle);
+					this.driver.switchTo().window(handle);
 					break;
 				}
 			}
-			driver.manage().window().maximize();
+			this.driver.manage().window().maximize();
 		}
 		return parentHandle; // Returns parent window if need to switch back
 	}
@@ -230,24 +225,23 @@ public final class Selenium {
 	/**
 	 * Opens a new window by clicking a link and switches to that window.
 	 * 
-	 * @param driver the Selenium WebDriver
-	 * @param url    the link to the child window
+	 * @param url the link to the child window
 	 * @return String - the handle of the parent window
 	 */
-	public static String openWindowByLink(WebDriver driver, String url) throws IOException {
-		String parentHandle = driver.getWindowHandle();
-		driver.get(url);
+	public String openWindowByLink(String url) throws IOException {
+		String parentHandle = this.driver.getWindowHandle();
+		this.driver.get(url);
 		int timeOut = Integer.parseInt(Config.framework("webdriver.wait"));
-		boolean isChildWindowOpen = Selenium.wait(driver, timeOut).until(ExpectedConditions.numberOfWindowsToBe(2));
+		boolean isChildWindowOpen = this.wait(timeOut).until(ExpectedConditions.numberOfWindowsToBe(2));
 		if (isChildWindowOpen) {
-			Set<String> handles = driver.getWindowHandles();
+			Set<String> handles = this.driver.getWindowHandles();
 			for (String handle : handles) {
 				if (StringUtils.equals(parentHandle, handle)) {
-					driver.switchTo().window(handle);
+					this.driver.switchTo().window(handle);
 					break;
 				}
 			}
-			driver.manage().window().maximize();
+			this.driver.manage().window().maximize();
 		}
 		return parentHandle;
 	}
@@ -255,21 +249,20 @@ public final class Selenium {
 	/**
 	 * Switches to an existing open window by window title.
 	 * 
-	 * @param driver      the Selenium WebDriver
 	 * @param windowTitle the title of the window
 	 * @return String - the handle of the parent window
 	 */
-	public static String switchToWindowByTitle(WebDriver driver, String windowTitle) {
-		Set<String> handles = driver.getWindowHandles();
-		String parentHandle = driver.getWindowHandle();
+	public String switchToWindowByTitle(String windowTitle) {
+		Set<String> handles = this.driver.getWindowHandles();
+		String parentHandle = this.driver.getWindowHandle();
 		if (1 < handles.size()) {
 			for (String handle : handles) {
-				driver.switchTo().window(handle);
-				if (StringUtils.equalsIgnoreCase(windowTitle, driver.getTitle())) {
+				this.driver.switchTo().window(handle);
+				if (StringUtils.equalsIgnoreCase(windowTitle, this.driver.getTitle())) {
 					break;
 				}
 			}
-			driver.manage().window().maximize();
+			this.driver.manage().window().maximize();
 		}
 		return parentHandle;
 	}
@@ -277,47 +270,43 @@ public final class Selenium {
 	/**
 	 * Scroll the screen left or right.
 	 * 
-	 * @param driver the Selenium WebDriver
-	 * @param xPos   negative value to scroll left, positive value to scroll right
+	 * @param xPos negative value to scroll left, positive value to scroll right
 	 */
-	public static void scrollHorizontal(WebDriver driver, int xPos) {
-		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+	public void scrollHorizontal(int xPos) {
+		JavascriptExecutor jsExecutor = (JavascriptExecutor) this.driver;
 		jsExecutor.executeScript("scroll(" + xPos + ", 0);");
 	}
 
 	/**
 	 * Scroll the screen up or down.
 	 * 
-	 * @param driver the Selenium WebDriver
-	 * @param yPos   positive value to scroll down, negative value to scroll up
+	 * @param yPos positive value to scroll down, negative value to scroll up
 	 */
-	public static void scrollVertical(WebDriver driver, int yPos) {
-		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+	public void scrollVertical(int yPos) {
+		JavascriptExecutor jsExecutor = (JavascriptExecutor) this.driver;
 		jsExecutor.executeScript("scroll(0, " + yPos + ");");
 	}
 
 	/**
 	 * Scroll to specific element on the web page.
 	 * 
-	 * @param driver the Selenium WebDriver
-	 * @param keys   the key(s) from {@code ui-map.properties}
+	 * @param keys the key(s) from {@code ui-map.properties}
 	 * @throws IOException
 	 */
-	public static void scrollToElement(WebDriver driver, String... keys) throws IOException {
-		By[] bys = Selenium.getBys(keys);
-		WebElement element = driver.findElement(new ByChained(bys));
-		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+	public void scrollToElement(String... keys) throws IOException {
+		By[] bys = this.getBys(keys);
+		WebElement element = this.driver.findElement(new ByChained(bys));
+		JavascriptExecutor jsExecutor = (JavascriptExecutor) this.driver;
 		jsExecutor.executeScript("arguments[0].scrollIntoView();", element);
 	}
 
 	/**
 	 * Scroll to specific element on the web page.
 	 * 
-	 * @param driver  the Selenium WebDriver
 	 * @param element the element to scroll to
 	 */
-	public static void scrollToElement(WebDriver driver, WebElement element) {
-		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+	public void scrollToElement(WebElement element) {
+		JavascriptExecutor jsExecutor = (JavascriptExecutor) this.driver;
 		jsExecutor.executeScript("arguments[0].scrollIntoView();", element);
 	}
 
@@ -325,17 +314,16 @@ public final class Selenium {
 	 * Captures and saves screenshot in PNG format. Images are stored in
 	 * {@code /target/cucumber-sshots/}.
 	 * 
-	 * @param driver the Selenium WebDriver
 	 * @throws IOException
 	 */
-	public static void captureScreenshot(WebDriver driver) throws IOException {
+	public void captureScreenshot() throws IOException {
 		StringBuilder builder = new StringBuilder();
 		builder.append(StringUtils.replace(System.getProperty("user.dir"), "\\", "/"));
 		builder.append("/target/cucumber-sshots/sshot_");
 		builder.append(System.currentTimeMillis());
 		builder.append(".png");
 		String screenshot = builder.toString();
-		File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		File srcFile = ((TakesScreenshot) this.driver).getScreenshotAs(OutputType.FILE);
 		FileUtils.copyFile(srcFile, new File(screenshot));
 	}
 
@@ -344,22 +332,20 @@ public final class Selenium {
 	 * in {@code /target/}.
 	 * 
 	 * @param scenario the Scenario object
-	 * @param driver   the Selenium WebDriver
 	 */
-	public static void embedScreenshot(WebDriver driver, Scenario scenario) {
-		byte[] srcBytes = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-		scenario.embed(srcBytes, "image/png");
+	public void embedScreenshot() {
+		byte[] srcBytes = ((TakesScreenshot) this.driver).getScreenshotAs(OutputType.BYTES);
+		this.scenario.embed(srcBytes, "image/png");
 	}
 
 	/**
 	 * Returns the explicit wait object.
 	 * 
-	 * @param driver  the Selenium WebDriver
 	 * @param timeOut the wait time in seconds
 	 * @return WebDriverWait - the wait object
 	 */
-	private static WebDriverWait wait(WebDriver driver, int timeOut) {
-		return new WebDriverWait(driver, timeOut);
+	private WebDriverWait wait(int timeOut) {
+		return new WebDriverWait(this.driver, timeOut);
 	}
 
 }
