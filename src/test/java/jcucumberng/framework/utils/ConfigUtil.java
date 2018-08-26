@@ -9,19 +9,18 @@ import java.util.Properties;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- * {@code Config} handles actions for reading/loading various configuration
- * files.
+ * {@code ConfigUtil} handles actions for reading/loading configuration files.
  * 
  * @author Kat Rollo &lt;rollo.katherine@gmail.com&gt;
  */
-public final class Config {
+public final class ConfigUtil {
 
 	private static final String FRAMEWORK_CONF_DIR = "/src/test/resources/jcucumberng/framework/";
 	private static final String PROJECT_CONF_DIR = "/src/test/resources/jcucumberng/project/";
 
 	private static final String NO_SUCH_KEY = "Key not found in ";
 
-	private Config() {
+	private ConfigUtil() {
 		// Prevent instantiation
 	}
 
@@ -91,7 +90,7 @@ public final class Config {
 	public static void logger() {
 		String cfgFile = null;
 		try {
-			cfgFile = Config.framework("log4j2.conf.file");
+			cfgFile = ConfigUtil.framework("log4j2.conf.file");
 		} catch (IOException ioe) {
 			throw new LoggerConfigException("The logger config file failed to load: " + cfgFile);
 		}

@@ -2,7 +2,7 @@ package jcucumberng.project.hooks;
 
 import cucumber.api.java.AfterStep;
 import jcucumberng.framework.api.Selenium;
-import jcucumberng.framework.utils.Config;
+import jcucumberng.framework.utils.ConfigUtil;
 
 public class StepHook {
 
@@ -15,7 +15,7 @@ public class StepHook {
 
 	@AfterStep
 	public void afterStep() throws Throwable {
-		if (!Boolean.parseBoolean(Config.framework("screenshot.on.fail"))) {
+		if (!Boolean.parseBoolean(ConfigUtil.framework("screenshot.on.fail"))) {
 			selenium.embedScreenshot();
 		}
 	}

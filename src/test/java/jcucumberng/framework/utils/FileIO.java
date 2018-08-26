@@ -39,7 +39,7 @@ public final class FileIO {
 	 * @throws IOException
 	 */
 	public static boolean doesFileExist(String prefix, String suffix) throws IOException {
-		String directory = Config.framework("file.dir");
+		String directory = ConfigUtil.framework("file.dir");
 		File[] files = new File(directory).listFiles();
 
 		String fileName = null;
@@ -65,7 +65,7 @@ public final class FileIO {
 	 * @throws IOException
 	 */
 	public static String extractPdfText() throws IOException {
-		PdfReader pdfReader = new PdfReader(Config.framework("pdf.file.path"));
+		PdfReader pdfReader = new PdfReader(ConfigUtil.framework("pdf.file.path"));
 		int pages = pdfReader.getNumberOfPages();
 
 		String pdfText = "";

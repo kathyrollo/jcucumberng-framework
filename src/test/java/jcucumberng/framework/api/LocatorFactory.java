@@ -10,7 +10,7 @@ import org.openqa.selenium.support.pagefactory.ByChained;
 
 import com.paulhammant.ngwebdriver.ByAngular;
 
-import jcucumberng.framework.utils.Config;
+import jcucumberng.framework.utils.ConfigUtil;
 
 /**
  * {@code LocatorFactory} handles actions for creating the Selenium {@code By}
@@ -41,7 +41,7 @@ public final class LocatorFactory {
 		By[] bys = null;
 		Selenium selenium = new Selenium();
 
-		String value = Config.uiMap(key);
+		String value = ConfigUtil.uiMap(key);
 		if (StringUtils.isBlank(value)) {
 			value = BLANK;
 		}

@@ -20,7 +20,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import cucumber.api.Scenario;
-import jcucumberng.framework.utils.Config;
+import jcucumberng.framework.utils.ConfigUtil;
 
 /**
  * {@code Selenium} handles actions for interacting with web applications using
@@ -41,7 +41,7 @@ public final class Selenium {
 	public Selenium(WebDriver driver, Scenario scenario) throws Throwable {
 		this.driver = driver;
 		this.scenario = scenario;
-		this.timeOut = Integer.parseInt(Config.framework("webdriver.wait"));
+		this.timeOut = Integer.parseInt(ConfigUtil.framework("webdriver.wait"));
 	}
 
 	/**
