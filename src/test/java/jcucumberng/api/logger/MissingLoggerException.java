@@ -1,4 +1,4 @@
-package jcucumberng.framework.api;
+package jcucumberng.api.logger;
 
 /**
  * {@code MissingLoggerException} is thrown when no log4j2 config file is

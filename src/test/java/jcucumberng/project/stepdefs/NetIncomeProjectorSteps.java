@@ -12,7 +12,7 @@ import cucumber.api.Transpose;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import io.cucumber.datatable.DataTable;
-import jcucumberng.framework.api.Selenium;
+import jcucumberng.api.selenium.Selenium;
 import jcucumberng.project.domain.Transaction;
 import jcucumberng.project.hooks.ScenarioHook;
 

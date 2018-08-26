@@ -1,4 +1,4 @@
-package jcucumberng.framework.api;
+package jcucumberng.api.locator;
 
 import java.io.IOException;
 
@@ -10,7 +10,8 @@ import org.openqa.selenium.support.pagefactory.ByChained;
 
 import com.paulhammant.ngwebdriver.ByAngular;
 
-import jcucumberng.framework.utils.PropsUtil;
+import jcucumberng.api.selenium.Selenium;
+import jcucumberng.api.utils.PropsUtil;
 
 /**
  * {@code LocatorFactory} handles actions for creating the Selenium {@code By}

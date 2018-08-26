@@ -1,4 +1,4 @@
-package jcucumberng.framework.api;
+package jcucumberng.api.selenium;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,7 +20,8 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import cucumber.api.Scenario;
-import jcucumberng.framework.utils.PropsUtil;
+import jcucumberng.api.locator.LocatorFactory;
+import jcucumberng.api.utils.PropsUtil;
 
 /**
  * {@code Selenium} handles actions for interacting with web applications using

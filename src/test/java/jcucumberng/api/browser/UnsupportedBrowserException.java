@@ -1,4 +1,4 @@
-package jcucumberng.framework.api;
+package jcucumberng.api.browser;
 
 /**
  * {@code UnsupportedBrowserException} is thrown when the specified
