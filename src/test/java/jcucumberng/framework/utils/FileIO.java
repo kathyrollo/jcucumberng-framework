@@ -20,7 +20,7 @@ import com.itextpdf.text.pdf.parser.PdfTextExtractor;
 /**
  * {@code FileIO} handles actions for manipulating files or documents.
  * 
- * @author Kat Rollo <rollo.katherine@gmail.com>
+ * @author Kat Rollo &lt;rollo.katherine@gmail.com&gt;
  */
 public final class FileIO {
 

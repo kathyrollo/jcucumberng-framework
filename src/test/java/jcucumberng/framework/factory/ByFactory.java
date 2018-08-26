@@ -22,7 +22,7 @@ import jcucumberng.framework.utils.Config;
  * {@code ByFactory} handles actions for manipulating the Selenium {@code By}
  * object.
  * 
- * @author Kat Rollo <rollo.katherine@gmail.com>
+ * @author Kat Rollo &lt;rollo.katherine@gmail.com&gt;
  */
 public final class ByFactory {
 

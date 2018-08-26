@@ -11,7 +11,7 @@ import org.openqa.selenium.Dimension;
  * {@code SystemIO} handles actions relating to the user's machine such as input
  * and output devices.
  * 
- * @author Kat Rollo <rollo.katherine@gmail.com>
+ * @author Kat Rollo &lt;rollo.katherine@gmail.com&gt;
  */
 public final class SystemIO {
 

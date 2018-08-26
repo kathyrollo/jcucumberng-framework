@@ -3,7 +3,7 @@ package jcucumberng.framework.utils;
 /**
  * {@code DateTime} handles actions for manipulating date and time.
  * 
- * @author Kat Rollo <rollo.katherine@gmail.com>
+ * @author Kat Rollo &lt;rollo.katherine@gmail.com&gt;
  */
 public final class DateTime {
 

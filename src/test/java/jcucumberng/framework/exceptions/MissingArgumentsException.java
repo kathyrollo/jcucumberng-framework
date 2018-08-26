@@ -5,7 +5,7 @@ package jcucumberng.framework.exceptions;
  * varargs of a method is empty. All varargs in
  * {@code jcucumberng.framework.api.Selenium} require at least 1 parameter.
  * 
- * @author Kat Rollo <rollo.katherine@gmail.com>
+ * @author Kat Rollo &lt;rollo.katherine@gmail.com&gt;
  */
 @SuppressWarnings("serial")
 public class MissingArgumentsException extends RuntimeException {

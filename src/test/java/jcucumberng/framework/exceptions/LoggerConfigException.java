@@ -4,7 +4,7 @@ package jcucumberng.framework.exceptions;
  * {@code LoggerConfigException} is thrown when an exception is encountered
  * while loading the log4j2 config file from a specified directory.
  * 
- * @author Kat Rollo <rollo.katherine@gmail.com>
+ * @author Kat Rollo &lt;rollo.katherine@gmail.com&gt;
  */
 @SuppressWarnings("serial")
 public class LoggerConfigException extends RuntimeException {

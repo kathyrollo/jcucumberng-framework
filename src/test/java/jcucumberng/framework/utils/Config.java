@@ -16,7 +16,7 @@ import jcucumberng.framework.strings.Messages;
  * {@code Config} handles actions for reading/loading various configuration
  * files.
  * 
- * @author Kat Rollo <rollo.katherine@gmail.com>
+ * @author Kat Rollo &lt;rollo.katherine@gmail.com&gt;
  */
 public final class Config {
 
