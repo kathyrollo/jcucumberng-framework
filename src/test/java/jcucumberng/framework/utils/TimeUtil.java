@@ -1,13 +1,13 @@
 package jcucumberng.framework.utils;
 
 /**
- * {@code DateTime} handles actions for manipulating date and time.
+ * {@code TimeUtil} handles actions for manipulating time.
  * 
  * @author Kat Rollo &lt;rollo.katherine@gmail.com&gt;
  */
-public final class DateTime {
+public final class TimeUtil {
 
-	private DateTime() {
+	private TimeUtil() {
 		// Prevent instantiation
 	}
 

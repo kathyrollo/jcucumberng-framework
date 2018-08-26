@@ -45,7 +45,7 @@ public final class SystemIO {
 		robot.keyPress(key);
 		robot.keyRelease(key);
 		int waitTime = Integer.parseInt(ConfigUtil.framework("key.press.wait"));
-		int millis = DateTime.convertSecsToMillisWithRange(waitTime, 1, 60);
+		int millis = TimeUtil.convertSecsToMillisWithRange(waitTime, 1, 60);
 		robot.delay(millis);
 		robot = null; // Destroy robot
 	}
@@ -66,7 +66,7 @@ public final class SystemIO {
 			robot.keyPress(keys[ctr]); // Press and hold keys
 		}
 		int waitTime = Integer.parseInt(ConfigUtil.framework("key.press.wait"));
-		int millis = DateTime.convertSecsToMillisWithRange(waitTime, 1, 60);
+		int millis = TimeUtil.convertSecsToMillisWithRange(waitTime, 1, 60);
 		robot.delay(millis);
 		for (int ctr = keys.length - 1; ctr > -1; ctr--) {
 			robot.keyRelease(keys[ctr]); // Release keys in reverse order
