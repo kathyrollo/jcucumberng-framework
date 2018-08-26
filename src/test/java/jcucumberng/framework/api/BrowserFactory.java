@@ -11,8 +11,6 @@ import org.openqa.selenium.firefox.FirefoxDriverLogLevel;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 
-import jcucumberng.framework.strings.Text;
-
 /**
  * {@code BrowserFactory} handles actions for instantiating the Selenium
  * WebDriver.
@@ -85,7 +83,7 @@ public final class BrowserFactory {
 			}
 		} catch (IllegalArgumentException | NullPointerException ex) {
 			if (StringUtils.isBlank(browserConfig)) {
-				browserConfig = Text.BLANK;
+				browserConfig = "BLANK";
 			}
 			throw new UnsupportedBrowserException(
 					"Unsupported browser specified in framework.properties: " + browserConfig);

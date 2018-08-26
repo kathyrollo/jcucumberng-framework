@@ -10,7 +10,6 @@ import org.openqa.selenium.support.pagefactory.ByChained;
 
 import com.paulhammant.ngwebdriver.ByAngular;
 
-import jcucumberng.framework.strings.Text;
 import jcucumberng.framework.utils.Config;
 
 /**
@@ -20,6 +19,8 @@ import jcucumberng.framework.utils.Config;
  * @author Kat Rollo &lt;rollo.katherine@gmail.com&gt;
  */
 public final class LocatorFactory {
+
+	private static final String BLANK = "BLANK";
 
 	private LocatorFactory() {
 		// Prevent instantiation
@@ -42,7 +43,7 @@ public final class LocatorFactory {
 
 		String value = Config.uiMap(key);
 		if (StringUtils.isBlank(value)) {
-			value = Text.BLANK;
+			value = BLANK;
 		}
 		if (!value.matches(".+:.+")) {
 			throw new InvalidPatternException("Does not match expected pattern in ui-map.properties: " + value);
@@ -138,7 +139,7 @@ public final class LocatorFactory {
 			}
 		} catch (IllegalArgumentException | NullPointerException e) {
 			if (StringUtils.isBlank(method)) {
-				method = Text.BLANK;
+				method = BLANK;
 			}
 			throw new UnsupportedLocatorException("Unsupported method specified in ui-map.properties: " + method);
 		}
