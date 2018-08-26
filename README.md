@@ -21,11 +21,11 @@ Dependency Injection (DI) is like this:
 ### The Design
 An anti-pattern occurs when adhering to the design becomes the larger chore of automation efforts instead of writing sensible tests which is the common pitfall of the popular [Page Object Model](https://github.com/SeleniumHQ/selenium/wiki/PageObjects). The priority becomes sustaining the design pattern, not _testing_. Automation testers find themselves spending more time overengineering page objects than writing high quality tests that provide actual value.
 
-Cucumber inherently calls steps to move from one state to the next so returning page objects within step definitions does not make much sense. PicoContainer eliminates the tight coupling of page objects to step definitions by sharing states in the glue code using [Dependency Injection](http://picocontainer.com/injection.html). It requires [minimal configuration](https://docs.cucumber.io/cucumber/state/#dependency-injection) and injects the needed classes via the constructor. With shared objects, each step definition becomes an autonomous unit as is the nature of a Java method. In fact, there is no mention of POM in [The Cucumber for Java Book](https://pragprog.com/book/srjcuc/the-cucumber-for-java-book) (authored by [Aslak Hellesøy](https://twitter.com/aslak_hellesoy)) but there is _Chapter 11: Simplifying Design with Dependency Injection_.
+Cucumber inherently calls steps to move from one state to the next so mapping the user journey by returning page objects within step definitions does not make much sense. [PicoContainer](https://docs.cucumber.io/cucumber/state/#dependency-injection) (developed by [Aslak Hellesøy](https://twitter.com/aslak_hellesoy)) eliminates the tight coupling of page objects to step definitions by sharing states in the glue code using [Dependency Injection](http://picocontainer.com/injection.html). It requires minimal configuration and injects the needed classes via the constructor. With shared objects, each step definition becomes an autonomous unit as is the nature of a Java method. In fact, there is no mention of POM in [The Cucumber for Java Book](https://pragprog.com/book/srjcuc/the-cucumber-for-java-book) but there is _Chapter 11: Simplifying Design with Dependency Injection_.
 
 Why then, is POM a pervasive design pattern seen in many test automation suites? Tradition. This comes from the days of "pure" Selenium tests that do not offer behavior-driven (BDD) or step-based capabilities. Add that to the fact that Selenium actively promotes the pattern and comes with `PageFactory` to support it, automation testers simply incorporated it to their BDD test frameworks by default. _POM complements Selenium, not Cucumber._
 
-**jCucumberNG-Framework** deliberately foregoes the added complexity and abstraction of POM to take advantage of Cucumber's intended design - to build a library of loosely coupled steps which can be independently called anywhere while Selenium WebDriver merely automates browser actions. That's it! Writing new feature files becomes a matter of reusing and combining steps in the proper order.
+**jCucumberNG-Framework** deliberately foregoes the added complexity and abstraction of POM to take advantage of Cucumber's intended design - to build a library of loosely coupled steps which can be independently called anywhere while Selenium WebDriver automates browser actions as it is supposed to. Writing new feature files means reusing and combining steps in the proper order. That's it!
 
 > **TL;DR:**
 > - Selenium WebDriver + POM = OK
@@ -65,7 +65,7 @@ public void I_Should_See_Net_Income_Per_Month(String expected) throws Throwable 
 
 [User Interface (UI) Mapping](https://www.seleniumhq.org/docs/06_test_design_considerations.jsp#user-interface-mapping) is a familiar approach for storing web elements and works well with DI. The `WebDriver` is not exposed while containing eveything within the method in plain sight.
 
-<!-- No need to plow through # page objects. Based on a true story. -->
+<!-- No need to plow through # page objects. That number is based on a true story. -->
 
 ## Capabilities & Technology Stack
 - [Selenium WebDriver 3](https://www.seleniumhq.org/) for browser automation
