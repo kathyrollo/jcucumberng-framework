@@ -1,4 +1,4 @@
-package jcucumberng.framework.exceptions;
+package jcucumberng.framework.utils;
 
 /**
  * {@code NoSuchKeyException} is thrown when the expected key is not found in a

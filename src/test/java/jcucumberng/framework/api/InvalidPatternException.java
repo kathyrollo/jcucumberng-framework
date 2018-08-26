@@ -1,4 +1,4 @@
-package jcucumberng.framework.exceptions;
+package jcucumberng.framework.api;
 
 /**
  * {@code InvalidPatternException} is thrown when the specified pattern does not

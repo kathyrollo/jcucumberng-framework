@@ -11,8 +11,6 @@ import org.openqa.selenium.firefox.FirefoxDriverLogLevel;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 
-import jcucumberng.framework.api.Browser;
-import jcucumberng.framework.exceptions.UnsupportedBrowserException;
 import jcucumberng.framework.strings.ExceptionMessages;
 import jcucumberng.framework.strings.Text;
 

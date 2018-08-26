@@ -1,4 +1,4 @@
-package jcucumberng.framework.exceptions;
+package jcucumberng.framework.utils;
 
 /**
  * {@code LoggerConfigException} is thrown when an exception is encountered

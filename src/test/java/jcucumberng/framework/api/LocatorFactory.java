@@ -10,8 +10,6 @@ import org.openqa.selenium.support.pagefactory.ByChained;
 
 import com.paulhammant.ngwebdriver.ByAngular;
 
-import jcucumberng.framework.exceptions.InvalidPatternException;
-import jcucumberng.framework.exceptions.UnsupportedLocatorException;
 import jcucumberng.framework.strings.ExceptionMessages;
 import jcucumberng.framework.strings.Text;
 import jcucumberng.framework.utils.Config;

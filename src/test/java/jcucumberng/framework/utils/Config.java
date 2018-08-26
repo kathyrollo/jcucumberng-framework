@@ -8,8 +8,6 @@ import java.util.Properties;
 
 import org.apache.commons.lang3.StringUtils;
 
-import jcucumberng.framework.exceptions.LoggerConfigException;
-import jcucumberng.framework.exceptions.NoSuchKeyException;
 import jcucumberng.framework.strings.ExceptionMessages;
 
 /**
