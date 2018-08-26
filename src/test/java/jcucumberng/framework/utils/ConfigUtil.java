@@ -92,7 +92,7 @@ public final class ConfigUtil {
 		try {
 			cfgFile = ConfigUtil.framework("log4j2.conf.file");
 		} catch (IOException ioe) {
-			throw new LoggerConfigException("The logger config file failed to load: " + cfgFile);
+			throw new NoLoggerConfigException("Cannot find logger config file: " + cfgFile);
 		}
 
 		StringBuilder builder = new StringBuilder();
