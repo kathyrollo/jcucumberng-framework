@@ -13,7 +13,7 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 
 import jcucumberng.framework.api.Browser;
 import jcucumberng.framework.exceptions.UnsupportedBrowserException;
-import jcucumberng.framework.strings.Messages;
+import jcucumberng.framework.strings.ExceptionMessages;
 import jcucumberng.framework.strings.Text;
 
 /**
@@ -90,7 +90,7 @@ public final class BrowserFactory {
 			if (StringUtils.isBlank(browserConfig)) {
 				browserConfig = Text.BLANK;
 			}
-			throw new UnsupportedBrowserException(Messages.UNSUPPORTED_BROWSER + browserConfig);
+			throw new UnsupportedBrowserException(ExceptionMessages.UNSUPPORTED_BROWSER + browserConfig);
 		}
 
 		return driver;

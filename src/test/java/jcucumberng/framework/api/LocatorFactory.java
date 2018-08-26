@@ -12,7 +12,7 @@ import com.paulhammant.ngwebdriver.ByAngular;
 
 import jcucumberng.framework.exceptions.InvalidPatternException;
 import jcucumberng.framework.exceptions.UnsupportedLocatorException;
-import jcucumberng.framework.strings.Messages;
+import jcucumberng.framework.strings.ExceptionMessages;
 import jcucumberng.framework.strings.Text;
 import jcucumberng.framework.utils.Config;
 
@@ -48,7 +48,7 @@ public final class LocatorFactory {
 			value = Text.BLANK;
 		}
 		if (!value.matches(".+:.+")) {
-			throw new InvalidPatternException(Messages.INVALID_UI_PATTERN + value);
+			throw new InvalidPatternException(ExceptionMessages.INVALID_UI_PATTERN + value);
 		}
 
 		method = StringUtils.substringBefore(value, ":");
@@ -143,7 +143,7 @@ public final class LocatorFactory {
 			if (StringUtils.isBlank(method)) {
 				method = Text.BLANK;
 			}
-			throw new UnsupportedLocatorException(Messages.UNSUPPORTED_BY_METHOD + method);
+			throw new UnsupportedLocatorException(ExceptionMessages.UNSUPPORTED_LOCATOR + method);
 		}
 
 		return by;

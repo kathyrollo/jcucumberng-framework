@@ -21,7 +21,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import cucumber.api.Scenario;
 import jcucumberng.framework.exceptions.MissingArgumentsException;
-import jcucumberng.framework.strings.Messages;
+import jcucumberng.framework.strings.ExceptionMessages;
 import jcucumberng.framework.utils.Config;
 
 /**
@@ -84,7 +84,7 @@ public final class Selenium {
 	 */
 	public By[] getBys(String... keys) throws IOException {
 		if (0 == keys.length) {
-			throw new MissingArgumentsException(Messages.MISSING_ARGS);
+			throw new MissingArgumentsException(ExceptionMessages.MISSING_ARGS);
 		}
 		By[] bys = new By[keys.length];
 		By by = null;
