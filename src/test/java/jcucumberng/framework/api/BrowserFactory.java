@@ -11,7 +11,6 @@ import org.openqa.selenium.firefox.FirefoxDriverLogLevel;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 
-import jcucumberng.framework.strings.ExceptionMessages;
 import jcucumberng.framework.strings.Text;
 
 /**
@@ -88,7 +87,8 @@ public final class BrowserFactory {
 			if (StringUtils.isBlank(browserConfig)) {
 				browserConfig = Text.BLANK;
 			}
-			throw new UnsupportedBrowserException(ExceptionMessages.UNSUPPORTED_BROWSER + browserConfig);
+			throw new UnsupportedBrowserException(
+					"Unsupported browser specified in framework.properties: " + browserConfig);
 		}
 
 		return driver;

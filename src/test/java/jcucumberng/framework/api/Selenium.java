@@ -20,7 +20,6 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import cucumber.api.Scenario;
-import jcucumberng.framework.strings.ExceptionMessages;
 import jcucumberng.framework.utils.Config;
 
 /**
@@ -83,7 +82,8 @@ public final class Selenium {
 	 */
 	public By[] getBys(String... keys) throws IOException {
 		if (0 == keys.length) {
-			throw new MissingArgumentsException(ExceptionMessages.MISSING_ARGS);
+			throw new MissingArgumentsException(
+					"No arguments found for arbitrary parameters. Length must not be equal to 0.");
 		}
 		By[] bys = new By[keys.length];
 		By by = null;

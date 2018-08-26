@@ -8,8 +8,6 @@ import java.util.Properties;
 
 import org.apache.commons.lang3.StringUtils;
 
-import jcucumberng.framework.strings.ExceptionMessages;
-
 /**
  * {@code Config} handles actions for reading/loading various configuration
  * files.
@@ -20,6 +18,8 @@ public final class Config {
 
 	private static final String FRAMEWORK_CONF_DIR = "/src/test/resources/jcucumberng/framework/";
 	private static final String PROJECT_CONF_DIR = "/src/test/resources/jcucumberng/project/";
+
+	private static final String NO_SUCH_KEY = "Key not found in ";
 
 	private Config() {
 		// Prevent instantiation
@@ -49,7 +49,7 @@ public final class Config {
 		if (StringUtils.isBlank(value)) {
 			builder.setLength(0);
 			builder.append(propsFileName + ": " + key);
-			throw new NoSuchKeyException(ExceptionMessages.NO_SUCH_KEY + builder.toString());
+			throw new NoSuchKeyException(NO_SUCH_KEY + builder.toString());
 		}
 
 		return StringUtils.trim(value);
@@ -79,7 +79,7 @@ public final class Config {
 		if (StringUtils.isBlank(value)) {
 			builder.setLength(0);
 			builder.append(propsFileName + ": " + key);
-			throw new NoSuchKeyException(ExceptionMessages.NO_SUCH_KEY + builder.toString());
+			throw new NoSuchKeyException(NO_SUCH_KEY + builder.toString());
 		}
 
 		return StringUtils.trim(value);
@@ -93,7 +93,7 @@ public final class Config {
 		try {
 			cfgFile = Config.framework("log4j2.conf.file");
 		} catch (IOException ioe) {
-			throw new LoggerConfigException(ExceptionMessages.LOGGER_CONFIG_FAIL + cfgFile);
+			throw new LoggerConfigException("The logger config file failed to load: " + cfgFile);
 		}
 
 		StringBuilder builder = new StringBuilder();
@@ -129,7 +129,7 @@ public final class Config {
 		if (StringUtils.isBlank(value)) {
 			builder.setLength(0);
 			builder.append(propsFileName + ": " + key);
-			throw new NoSuchKeyException(ExceptionMessages.NO_SUCH_KEY + builder.toString());
+			throw new NoSuchKeyException(NO_SUCH_KEY + builder.toString());
 		}
 
 		return StringUtils.trim(value);
