@@ -11,7 +11,7 @@ import com.paulhammant.ngwebdriver.NgWebDriver;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
-import jcucumberng.framework.api.BrowserFactory;
+import jcucumberng.api.browser.BrowserFactory;
 import jcucumberng.framework.api.Selenium;
 import jcucumberng.framework.utils.PropsUtil;
 import jcucumberng.framework.utils.SystemUtil;
