@@ -11,7 +11,7 @@ import org.openqa.selenium.support.pagefactory.ByChained;
 import com.paulhammant.ngwebdriver.ByAngular;
 
 import jcucumberng.framework.exceptions.InvalidPatternException;
-import jcucumberng.framework.exceptions.UnsupportedByMethodException;
+import jcucumberng.framework.exceptions.UnsupportedLocatorException;
 import jcucumberng.framework.strings.Messages;
 import jcucumberng.framework.strings.Text;
 import jcucumberng.framework.utils.Config;
@@ -143,7 +143,7 @@ public final class LocatorFactory {
 			if (StringUtils.isBlank(method)) {
 				method = Text.BLANK;
 			}
-			throw new UnsupportedByMethodException(Messages.UNSUPPORTED_BY_METHOD + method);
+			throw new UnsupportedLocatorException(Messages.UNSUPPORTED_BY_METHOD + method);
 		}
 
 		return by;
