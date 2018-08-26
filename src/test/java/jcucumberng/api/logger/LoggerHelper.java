@@ -1,11 +1,11 @@
-package jcucumberng.framework.api;
+package jcucumberng.api.logger;
 
 import java.io.File;
 import java.io.IOException;
 
 import org.apache.commons.lang3.StringUtils;
 
-import jcucumberng.framework.utils.PropsUtil;
+import jcucumberng.api.utils.PropsUtil;
 
 /**
  * {@code LoggerHelper} handles the logging mechanism of the framework.

@@ -10,9 +10,8 @@ import org.openqa.selenium.support.pagefactory.ByChained;
 
 import com.paulhammant.ngwebdriver.ByAngular;
 
-import jcucumberng.framework.api.InvalidPatternException;
-import jcucumberng.framework.api.Selenium;
-import jcucumberng.framework.utils.PropsUtil;
+import jcucumberng.api.selenium.Selenium;
+import jcucumberng.api.utils.PropsUtil;
 
 /**
  * {@code LocatorFactory} handles actions for creating the Selenium {@code By}

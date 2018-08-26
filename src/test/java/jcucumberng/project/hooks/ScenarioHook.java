@@ -12,9 +12,9 @@ import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import jcucumberng.api.browser.BrowserFactory;
-import jcucumberng.framework.api.Selenium;
-import jcucumberng.framework.utils.PropsUtil;
-import jcucumberng.framework.utils.SystemUtil;
+import jcucumberng.api.selenium.Selenium;
+import jcucumberng.api.utils.PropsUtil;
+import jcucumberng.api.utils.SystemUtil;
 
 public class ScenarioHook {
 

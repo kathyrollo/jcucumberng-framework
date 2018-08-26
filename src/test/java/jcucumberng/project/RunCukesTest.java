@@ -6,7 +6,7 @@ import org.junit.runner.RunWith;
 import cucumber.api.CucumberOptions;
 import cucumber.api.SnippetType;
 import cucumber.api.junit.Cucumber;
-import jcucumberng.framework.api.LoggerHelper;
+import jcucumberng.api.logger.LoggerHelper;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(features = { "src/test/resources/jcucumberng/project/features" }, tags = { "not @ignore" }, glue = {
