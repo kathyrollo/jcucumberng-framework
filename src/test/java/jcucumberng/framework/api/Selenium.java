@@ -20,31 +20,28 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import cucumber.api.Scenario;
-import jcucumberng.framework.exceptions.MissingArgumentsException;
-import jcucumberng.framework.factory.ByFactory;
-import jcucumberng.framework.strings.Messages;
-import jcucumberng.framework.utils.Config;
+import jcucumberng.framework.utils.PropsUtil;
 
 /**
  * {@code Selenium} handles actions for interacting with web applications using
  * the Selenium WebDriver.
  * 
- * @author Kat Rollo <rollo.katherine@gmail.com>
+ * @author Kat Rollo &lt;rollo.katherine@gmail.com&gt;
  */
 public final class Selenium {
 
+	private int timeOut = 0;
 	private WebDriver driver = null;
 	private Scenario scenario = null;
-	private int timeOut = 0;
 
 	public Selenium() {
 		// Empty constructor
 	}
 
 	public Selenium(WebDriver driver, Scenario scenario) throws Throwable {
+		this.timeOut = Integer.parseInt(PropsUtil.frameworkConf("webdriver.wait"));
 		this.driver = driver;
 		this.scenario = scenario;
-		this.timeOut = Integer.parseInt(Config.framework("webdriver.wait"));
 	}
 
 	/**
@@ -73,7 +70,7 @@ public final class Selenium {
 	 * @throws IOException
 	 */
 	public By by(String key) throws IOException {
-		return ByFactory.getInstance(key);
+		return LocatorFactory.getInstance(key);
 	}
 
 	/**
@@ -85,7 +82,8 @@ public final class Selenium {
 	 */
 	public By[] getBys(String... keys) throws IOException {
 		if (0 == keys.length) {
-			throw new MissingArgumentsException(Messages.MISSING_ARGS);
+			throw new MissingArgumentsException(
+					"No arguments found for arbitrary parameters. Length must not be equal to 0.");
 		}
 		By[] bys = new By[keys.length];
 		By by = null;

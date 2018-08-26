@@ -1,4 +1,4 @@
-package jcucumberng.project.typeregistry;
+package jcucumberng.project.datatable;
 
 import java.util.Locale;
 import java.util.Map;
@@ -11,10 +11,10 @@ import io.cucumber.datatable.TableEntryTransformer;
 import io.cucumber.datatable.TableTransformer;
 import jcucumberng.project.domain.Transaction;
 
-/*
- * Maps DataTables in feature files to custom domain objects.
+/**
+ * Maps DataTable in feature file to domain objects.
  */
-public class DataTableConfigurer implements TypeRegistryConfigurer {
+public class Configurer implements TypeRegistryConfigurer {
 
 	@Override
 	public Locale locale() {
@@ -23,7 +23,8 @@ public class DataTableConfigurer implements TypeRegistryConfigurer {
 
 	@Override
 	public void configureTypeRegistry(TypeRegistry registry) {
-		// DataTable with header row, multiple objects of Type<T>
+
+		// With header row, multiple objects of Type<T>
 		registry.defineDataTableType(new DataTableType(Transaction.class, new TableEntryTransformer<Transaction>() {
 			@Override
 			public Transaction transform(Map<String, String> entry) {
@@ -32,7 +33,7 @@ public class DataTableConfigurer implements TypeRegistryConfigurer {
 			}
 		}));
 
-		// DataTable with label column, single object of Type<T>
+		// With label column, single object of Type<T>
 		registry.defineDataTableType(new DataTableType(Transaction.class, new TableTransformer<Transaction>() {
 			@Override
 			public Transaction transform(DataTable dataTable) throws Throwable {
@@ -40,6 +41,7 @@ public class DataTableConfigurer implements TypeRegistryConfigurer {
 				return new Transaction(map);
 			}
 		}));
+
 	}
 
 }

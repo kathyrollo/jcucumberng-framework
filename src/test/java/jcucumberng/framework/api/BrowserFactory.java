@@ -1,4 +1,4 @@
-package jcucumberng.framework.factory;
+package jcucumberng.framework.api;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebDriver;
@@ -11,16 +11,11 @@ import org.openqa.selenium.firefox.FirefoxDriverLogLevel;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 
-import jcucumberng.framework.enums.Browser;
-import jcucumberng.framework.exceptions.UnsupportedBrowserException;
-import jcucumberng.framework.strings.Messages;
-import jcucumberng.framework.strings.Text;
-
 /**
- * {@code BrowserFactory} handles actions for instantiating or terminating the
- * Selenium WebDriver.
+ * {@code BrowserFactory} handles actions for instantiating the Selenium
+ * WebDriver.
  * 
- * @author Kat Rollo <rollo.katherine@gmail.com>
+ * @author Kat Rollo &lt;rollo.katherine@gmail.com&gt;
  */
 public final class BrowserFactory {
 
@@ -86,11 +81,12 @@ public final class BrowserFactory {
 				// Handled in try-catch
 				break;
 			}
-		} catch (IllegalArgumentException | NullPointerException ex) {
+		} catch (IllegalArgumentException | NullPointerException e) {
 			if (StringUtils.isBlank(browserConfig)) {
-				browserConfig = Text.BLANK;
+				browserConfig = "BLANK";
 			}
-			throw new UnsupportedBrowserException(Messages.UNSUPPORTED_BROWSER + browserConfig);
+			throw new UnsupportedBrowserException(
+					"Unsupported browser specified in framework.properties: " + browserConfig);
 		}
 
 		return driver;

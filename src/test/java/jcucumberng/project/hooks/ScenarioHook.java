@@ -11,10 +11,10 @@ import com.paulhammant.ngwebdriver.NgWebDriver;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
+import jcucumberng.framework.api.BrowserFactory;
 import jcucumberng.framework.api.Selenium;
-import jcucumberng.framework.factory.BrowserFactory;
-import jcucumberng.framework.utils.Config;
-import jcucumberng.framework.utils.SystemIO;
+import jcucumberng.framework.utils.PropsUtil;
+import jcucumberng.framework.utils.SystemUtil;
 
 public class ScenarioHook {
 
@@ -25,9 +25,9 @@ public class ScenarioHook {
 	public void beforeScenario(Scenario scenario) throws Throwable {
 		LOGGER.info("BEGIN TEST -> " + scenario.getName());
 
-		String browserConfig = Config.framework("browser");
+		String browserConfig = PropsUtil.frameworkConf("browser");
 		WebDriver driver = BrowserFactory.getInstance(browserConfig);
-		if (Boolean.parseBoolean(Config.framework("wait.for.angular"))) {
+		if (Boolean.parseBoolean(PropsUtil.frameworkConf("wait.for.angular"))) {
 			NgWebDriver ngWebDriver = new NgWebDriver((JavascriptExecutor) driver);
 			ngWebDriver.waitForAngularRequestsToFinish();
 		}
@@ -35,14 +35,14 @@ public class ScenarioHook {
 
 		selenium = new Selenium(driver, scenario);
 
-		Dimension dimension = SystemIO.getDimension();
+		Dimension dimension = SystemUtil.getDimension();
 		selenium.getDriver().manage().window().setSize(dimension);
 		LOGGER.info("Screen Resolution (WxH)=" + dimension.getWidth() + "x" + dimension.getHeight());
 	}
 
 	@After
 	public void afterScenario() throws Throwable {
-		if (Boolean.parseBoolean(Config.framework("screenshot.on.fail"))) {
+		if (Boolean.parseBoolean(PropsUtil.frameworkConf("screenshot.on.fail"))) {
 			if (selenium.getScenario().isFailed()) {
 				selenium.embedScreenshot();
 			}

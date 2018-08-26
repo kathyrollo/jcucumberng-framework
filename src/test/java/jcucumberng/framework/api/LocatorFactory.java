@@ -1,4 +1,4 @@
-package jcucumberng.framework.factory;
+package jcucumberng.framework.api;
 
 import java.io.IOException;
 
@@ -10,23 +10,17 @@ import org.openqa.selenium.support.pagefactory.ByChained;
 
 import com.paulhammant.ngwebdriver.ByAngular;
 
-import jcucumberng.framework.api.Selenium;
-import jcucumberng.framework.enums.ByMethod;
-import jcucumberng.framework.exceptions.InvalidPatternException;
-import jcucumberng.framework.exceptions.UnsupportedByMethodException;
-import jcucumberng.framework.strings.Messages;
-import jcucumberng.framework.strings.Text;
-import jcucumberng.framework.utils.Config;
+import jcucumberng.framework.utils.PropsUtil;
 
 /**
- * {@code ByFactory} handles actions for manipulating the Selenium {@code By}
+ * {@code LocatorFactory} handles actions for creating the Selenium {@code By}
  * object.
  * 
- * @author Kat Rollo <rollo.katherine@gmail.com>
+ * @author Kat Rollo &lt;rollo.katherine@gmail.com&gt;
  */
-public final class ByFactory {
+public final class LocatorFactory {
 
-	private ByFactory() {
+	private LocatorFactory() {
 		// Prevent instantiation
 	}
 
@@ -45,29 +39,29 @@ public final class ByFactory {
 		By[] bys = null;
 		Selenium selenium = new Selenium();
 
-		String value = Config.uiMap(key);
+		String value = PropsUtil.uiMap(key);
 		if (StringUtils.isBlank(value)) {
-			value = Text.BLANK;
+			value = "BLANK";
 		}
 		if (!value.matches(".+:.+")) {
-			throw new InvalidPatternException(Messages.INVALID_UI_PATTERN + value);
+			throw new InvalidPatternException("Does not match expected pattern in ui-map.properties: " + value);
 		}
 
 		method = StringUtils.substringBefore(value, ":");
 
 		selector = StringUtils.substringAfter(value, ":");
 		if (StringUtils.contains(selector, "|")) {
-			if (StringUtils.containsIgnoreCase(value, ByMethod.BY_ALL.toString())) {
+			if (StringUtils.containsIgnoreCase(value, Locator.BY_ALL.toString())) {
 				keys = StringUtils.split(StringUtils.substringAfter(value, ":"), "|");
 				bys = selenium.getBys(keys);
 				selector = null;
 			}
-			if (StringUtils.containsIgnoreCase(value, ByMethod.BY_CHAINED.toString())) {
+			if (StringUtils.containsIgnoreCase(value, Locator.BY_CHAINED.toString())) {
 				keys = StringUtils.split(StringUtils.substringAfter(value, ":"), "|");
 				bys = selenium.getBys(keys);
 				selector = null;
 			}
-			if (StringUtils.containsIgnoreCase(value, ByMethod.CSS_CONTAINING_TEXT.toString())) {
+			if (StringUtils.containsIgnoreCase(value, Locator.CSS_CONTAINING_TEXT.toString())) {
 				text = StringUtils.substringAfter(selector, "|");
 				selector = StringUtils.substringBefore(selector, "|");
 			}
@@ -75,8 +69,8 @@ public final class ByFactory {
 
 		By by = null;
 		try {
-			ByMethod byMethod = ByMethod.valueOf(StringUtils.upperCase(method));
-			switch (byMethod) {
+			Locator locator = Locator.valueOf(StringUtils.upperCase(method));
+			switch (locator) {
 			case ID:
 				by = By.id(selector);
 				break;
@@ -143,9 +137,9 @@ public final class ByFactory {
 			}
 		} catch (IllegalArgumentException | NullPointerException e) {
 			if (StringUtils.isBlank(method)) {
-				method = Text.BLANK;
+				method = "BLANK";
 			}
-			throw new UnsupportedByMethodException(Messages.UNSUPPORTED_BY_METHOD + method);
+			throw new UnsupportedLocatorException("Unsupported method specified in ui-map.properties: " + method);
 		}
 
 		return by;

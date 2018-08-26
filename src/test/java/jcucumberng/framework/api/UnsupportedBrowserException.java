@@ -1,10 +1,10 @@
-package jcucumberng.framework.exceptions;
+package jcucumberng.framework.api;
 
 /**
  * {@code UnsupportedBrowserException} is thrown when the specified
  * {@code browser} is empty or invalid in {@code framework.properties}.
  * 
- * @author Kat Rollo <rollo.katherine@gmail.com>
+ * @author Kat Rollo &lt;rollo.katherine@gmail.com&gt;
  */
 @SuppressWarnings("serial")
 public class UnsupportedBrowserException extends RuntimeException {

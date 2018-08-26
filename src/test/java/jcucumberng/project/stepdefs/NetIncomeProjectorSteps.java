@@ -27,37 +27,37 @@ public class NetIncomeProjectorSteps {
 	}
 
 	@When("I Enter My Start Balance: {word}")
-	public void I_Enter_My_Start_Balance(String value) throws Throwable {
-		selenium.type(value, "start.balance");
-		LOGGER.debug("Start Balance=" + value);
+	public void I_Enter_My_Start_Balance(String startBalance) throws Throwable {
+		selenium.type(startBalance, "start.balance");
+		LOGGER.debug("Start Balance=" + startBalance);
 		scrollToDivBox(0);
 	}
 
 	@When("I Enter My Regular Income Sources")
-	public void I_Enter_My_Regular_Income_Sources(@Transpose Transaction txn) throws Throwable {
-		selenium.type(txn.getName(), "income.name");
-		selenium.type(txn.getAmount(), "income.amount");
-		selenium.selectByVisibleText(txn.getFrequency(), "income.freq");
-		LOGGER.debug(txn.toString());
+	public void I_Enter_My_Regular_Income_Sources(@Transpose Transaction transaction) throws Throwable {
+		selenium.type(transaction.getName(), "income.name");
+		selenium.type(transaction.getAmount(), "income.amount");
+		selenium.selectByVisibleText(transaction.getFrequency(), "income.freq");
+		LOGGER.debug(transaction.toString());
 		scrollToDivBox(1);
 	}
 
 	@When("I Enter My Regular Expenses")
-	public void I_Enter_My_Regular_Expenses(DataTable table) throws Throwable {
-		List<Transaction> txns = table.asList(Transaction.class);
+	public void I_Enter_My_Regular_Expenses(DataTable dataTable) throws Throwable {
+		List<Transaction> transactions = dataTable.asList(Transaction.class);
 		// Click Add button
-		for (int ctr = 0; ctr < txns.size() - 1; ctr++) {
+		for (int ctr = 0; ctr < transactions.size() - 1; ctr++) {
 			selenium.click("expense.add");
 		}
 		// Enter details
 		List<WebElement> names = selenium.getVisibleElements("expense.name");
 		List<WebElement> amounts = selenium.getVisibleElements("expense.amount");
 		List<Select> freqs = selenium.getSelectElements("expense.freq");
-		for (int ctr = 0; ctr < txns.size(); ctr++) {
-			selenium.type(txns.get(ctr).getName(), names.get(ctr));
-			selenium.type(txns.get(ctr).getAmount(), amounts.get(ctr));
-			freqs.get(ctr).selectByVisibleText(txns.get(ctr).getFrequency());
-			LOGGER.debug(txns.get(ctr).toString());
+		for (int ctr = 0; ctr < transactions.size(); ctr++) {
+			selenium.type(transactions.get(ctr).getName(), names.get(ctr));
+			selenium.type(transactions.get(ctr).getAmount(), amounts.get(ctr));
+			freqs.get(ctr).selectByVisibleText(transactions.get(ctr).getFrequency());
+			LOGGER.debug(transactions.get(ctr).toString());
 		}
 		scrollToDivBox(2);
 	}

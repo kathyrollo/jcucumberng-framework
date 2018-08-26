@@ -1,13 +1,13 @@
 package jcucumberng.framework.utils;
 
 /**
- * {@code DateTime} handles actions for manipulating date and time.
+ * {@code TimeUtil} handles actions for manipulating time.
  * 
- * @author Kat Rollo <rollo.katherine@gmail.com>
+ * @author Kat Rollo &lt;rollo.katherine@gmail.com&gt;
  */
-public final class DateTime {
+public final class TimeUtil {
 
-	private DateTime() {
+	private TimeUtil() {
 		// Prevent instantiation
 	}
 
@@ -16,7 +16,7 @@ public final class DateTime {
 	 * {@code begin} or {@code end} if {@code waitTime} is less than or greater than
 	 * respectively.
 	 * 
-	 * @param waitTime value in seconds from a {@code .properties} file
+	 * @param waitTime value in seconds
 	 * @param begin    lowerbound value of the range in seconds, inclusive
 	 * @param end      upperbound value of the range in seconds, inclusive
 	 * @return int - value in millis

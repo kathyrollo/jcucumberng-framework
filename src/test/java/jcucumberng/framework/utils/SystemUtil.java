@@ -8,14 +8,14 @@ import java.io.IOException;
 import org.openqa.selenium.Dimension;
 
 /**
- * {@code SystemIO} handles actions relating to the user's machine such as input
- * and output devices.
+ * {@code SystemUtil} handles actions relating to the user's machine such as
+ * input and output devices.
  * 
- * @author Kat Rollo <rollo.katherine@gmail.com>
+ * @author Kat Rollo &lt;rollo.katherine@gmail.com&gt;
  */
-public final class SystemIO {
+public final class SystemUtil {
 
-	private SystemIO() {
+	private SystemUtil() {
 		// Prevent instantiation
 	}
 
@@ -44,8 +44,8 @@ public final class SystemIO {
 		Robot robot = new Robot();
 		robot.keyPress(key);
 		robot.keyRelease(key);
-		int waitTime = Integer.parseInt(Config.framework("key.press.wait"));
-		int millis = DateTime.convertSecsToMillisWithRange(waitTime, 1, 60);
+		int waitTime = Integer.parseInt(PropsUtil.frameworkConf("key.press.wait"));
+		int millis = TimeUtil.convertSecsToMillisWithRange(waitTime, 1, 60);
 		robot.delay(millis);
 		robot = null; // Destroy robot
 	}
@@ -65,8 +65,8 @@ public final class SystemIO {
 		for (int ctr = 0; ctr < keys.length; ctr++) {
 			robot.keyPress(keys[ctr]); // Press and hold keys
 		}
-		int waitTime = Integer.parseInt(Config.framework("key.press.wait"));
-		int millis = DateTime.convertSecsToMillisWithRange(waitTime, 1, 60);
+		int waitTime = Integer.parseInt(PropsUtil.frameworkConf("key.press.wait"));
+		int millis = TimeUtil.convertSecsToMillisWithRange(waitTime, 1, 60);
 		robot.delay(millis);
 		for (int ctr = keys.length - 1; ctr > -1; ctr--) {
 			robot.keyRelease(keys[ctr]); // Release keys in reverse order
