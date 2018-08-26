@@ -1,4 +1,4 @@
-package jcucumberng.framework.api;
+package jcucumberng.api.locator;
 
 /**
  * {@code UnsupportedLocatorException} is thrown when the method in

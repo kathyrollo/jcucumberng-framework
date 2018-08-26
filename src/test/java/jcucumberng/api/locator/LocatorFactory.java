@@ -1,4 +1,4 @@
-package jcucumberng.framework.api;
+package jcucumberng.api.locator;
 
 import java.io.IOException;
 
@@ -10,6 +10,8 @@ import org.openqa.selenium.support.pagefactory.ByChained;
 
 import com.paulhammant.ngwebdriver.ByAngular;
 
+import jcucumberng.framework.api.InvalidPatternException;
+import jcucumberng.framework.api.Selenium;
 import jcucumberng.framework.utils.PropsUtil;
 
 /**
