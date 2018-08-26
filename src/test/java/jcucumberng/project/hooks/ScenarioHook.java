@@ -14,7 +14,7 @@ import cucumber.api.java.Before;
 import jcucumberng.framework.api.BrowserFactory;
 import jcucumberng.framework.api.Selenium;
 import jcucumberng.framework.utils.ConfigUtil;
-import jcucumberng.framework.utils.SystemIO;
+import jcucumberng.framework.utils.SystemUtil;
 
 public class ScenarioHook {
 
@@ -35,7 +35,7 @@ public class ScenarioHook {
 
 		selenium = new Selenium(driver, scenario);
 
-		Dimension dimension = SystemIO.getDimension();
+		Dimension dimension = SystemUtil.getDimension();
 		selenium.getDriver().manage().window().setSize(dimension);
 		LOGGER.info("Screen Resolution (WxH)=" + dimension.getWidth() + "x" + dimension.getHeight());
 	}

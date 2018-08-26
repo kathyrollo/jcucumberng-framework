@@ -16,7 +16,7 @@ public final class TimeUtil {
 	 * {@code begin} or {@code end} if {@code waitTime} is less than or greater than
 	 * respectively.
 	 * 
-	 * @param waitTime value in seconds from a {@code .properties} file
+	 * @param waitTime value in seconds
 	 * @param begin    lowerbound value of the range in seconds, inclusive
 	 * @param end      upperbound value of the range in seconds, inclusive
 	 * @return int - value in millis

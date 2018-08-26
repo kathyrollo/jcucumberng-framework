@@ -8,14 +8,14 @@ import java.io.IOException;
 import org.openqa.selenium.Dimension;
 
 /**
- * {@code SystemIO} handles actions relating to the user's machine such as input
- * and output devices.
+ * {@code SystemUtil} handles actions relating to the user's machine such as
+ * input and output devices.
  * 
  * @author Kat Rollo &lt;rollo.katherine@gmail.com&gt;
  */
-public final class SystemIO {
+public final class SystemUtil {
 
-	private SystemIO() {
+	private SystemUtil() {
 		// Prevent instantiation
 	}
 
