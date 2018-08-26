@@ -3,7 +3,7 @@
 ## Overview
 Allows automation testers to write feature/gherkin files for Cucumber and implement step definitions in basic Java classes. ngWebDriver (Protractor) offers extended support for Angular/JS web applications.
 
-## The Design: Write tests, not page objects (optional reading)
+## Write Tests, Not Page Objects (optional reading)
 
 ### An Analogy
 Like arithmetic, there are many ways to arrive to the same answer. Some longer, some shorter.
@@ -18,22 +18,22 @@ Dependency Injection (DI) is like this:
 2 + 3 = 5
 ~~~
 
-### The Rantionale: A rant with a rationale
-An anti-pattern occurs when adhering to the design becomes the larger chore of automation efforts instead of writing sensible tests which is the common pitfall of the popular [Page Object Model](https://github.com/SeleniumHQ/selenium/wiki/PageObjects). The priority becomes sustaining the design pattern, not _testing_. Automation testers find themselves spending more time overengineering page objects than delivering test results that provide value.
+### The Design
+An anti-pattern occurs when adhering to the design becomes the larger chore of automation efforts instead of writing sensible tests which is the common pitfall of the popular [Page Object Model](https://github.com/SeleniumHQ/selenium/wiki/PageObjects). The priority becomes sustaining the design pattern, not _testing_. Automation testers find themselves spending more time overengineering page objects than writing high quality tests that provide actual value.
 
-Returning page objects within step definitions does not make much sense because Cucumber inherently calls steps to move from one state to the next. PicoContainer eliminates the tight coupling of page objects to step definitions by sharing states in the glue code using [Dependency Injection](http://picocontainer.com/injection.html). It requires [minimal configuration](https://docs.cucumber.io/cucumber/state/#dependency-injection) and injects the needed classes via the constructor. With shared objects, each step definition becomes an autonomous unit as is the nature of a Java method.
+Cucumber inherently calls steps to move from one state to the next so returning page objects within step definitions does not make much sense. PicoContainer eliminates the tight coupling of page objects to step definitions by sharing states in the glue code using [Dependency Injection](http://picocontainer.com/injection.html). It requires [minimal configuration](https://docs.cucumber.io/cucumber/state/#dependency-injection) and injects the needed classes via the constructor. With shared objects, each step definition becomes an autonomous unit as is the nature of a Java method. In fact, there is no mention of POM in [The Cucumber for Java Book](https://pragprog.com/book/srjcuc/the-cucumber-for-java-book) (authored by [Aslak Hellesøy](https://twitter.com/aslak_hellesoy)) but there is _Chapter 11: Simplifying Design with Dependency Injection_.
 
-In fact, there is no mention of POM in [The Cucumber for Java Book](https://pragprog.com/book/srjcuc/the-cucumber-for-java-book) (authored by the creator and developer of Cucumber and PicoContainer, [Aslak Hellesøy](https://github.com/aslakhellesoy)) but there is _Chapter 11: Simplifying Design with Dependency Injection_. Why then, is POM a pervasive design pattern seen in most test automation suites? Tradition. This comes from the days of "pure" Selenium tests that do not offer behavior-driven (BDD)/step-based capabilities. Add that to the fact that Selenium actively promotes the pattern and comes with `PageFactory` to support it, automation testers simply incorporated it to their BDD test frameworks by default. _POM complements Selenium, not Cucumber._
+Why then, is POM a pervasive design pattern seen in many test automation suites? Tradition. This comes from the days of "pure" Selenium tests that do not offer behavior-driven (BDD) or step-based capabilities. Add that to the fact that Selenium actively promotes the pattern and comes with `PageFactory` to support it, automation testers simply incorporated it to their BDD test frameworks by default. _POM complements Selenium, not Cucumber._
 
-**jCucumberNG-Framework** deliberately foregoes the added complexity and abstraction of POM to take advantage of Cucumber's intended design - to build a library of loosely coupled steps which can be independently called anywhere while Selenium WebDriver, true to its official definition, automates browser actions. That's it! Writing new feature files becomes a matter of reusing and combining steps in the proper order.
+**jCucumberNG-Framework** deliberately foregoes the added complexity and abstraction of POM to take advantage of Cucumber's intended design - to build a library of loosely coupled steps which can be independently called anywhere while Selenium WebDriver merely automates browser actions. That's it! Writing new feature files becomes a matter of reusing and combining steps in the proper order.
 
-> **_TL;DR:_**
+> **TL;DR:**
 > - Selenium WebDriver + POM = OK
 > - Selenium WebDriver + Cucumber + POM = Not OK
 > - Selenium WebDriver + Cucumber + DI = ROI (fast and simple)
 
 ## How It Works
-The code snippet below shows writing test scripts directly into step definitions because why not?
+The code below shows writing test scripts directly into step definitions because why not?
 
 ### ui-map.properties:
 ~~~
@@ -75,8 +75,8 @@ public void I_Should_See_Net_Income_Per_Month(String expected) throws Throwable 
 - [AssertJ](http://joel-costigliola.github.io/assertj/) for fluent assertions
 - [Maven](https://maven.apache.org/) for dependency management and build execution
 - [Log4j2](https://logging.apache.org/log4j/2.x/) / [SLF4J](https://www.slf4j.org/) for logging mechanism
-- [Extended Selenium API](https://github.com/kathyrollo/jcucumberng-framework/blob/develop/src/test/java/jcucumberng/framework/api/Selenium.java) for commonly used web testing actions
-- [UI Map](https://github.com/kathyrollo/jcucumberng-framework/blob/develop/src/test/resources/jcucumberng/project/ui-map.properties) for central object repository of web elements
+- Extended Selenium API for commonly used web testing actions
+- UI Map for central object repository of web elements
 - Compatible with IE11, Edge, Chrome, Firefox
 - Test result generation in HTML, JSON, XML
 - Embedded screenshots on generated HTML reports
@@ -87,8 +87,6 @@ public void I_Should_See_Net_Income_Per_Month(String expected) throws Throwable 
 - [Git](https://git-scm.com/downloads)
 - [Maven](https://maven.apache.org/download.cgi)
 - [Cmder](http://cmder.net/) (recommended, includes Git for Windows)
-
-Setup and installation are not in the scope of this guide.
 
 ## Getting Started
 Visit the application under test (AUT) here: http://simplydo.com/projector/
