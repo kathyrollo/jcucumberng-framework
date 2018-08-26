@@ -17,8 +17,8 @@ import jcucumberng.framework.strings.Messages;
 import jcucumberng.framework.strings.Text;
 
 /**
- * {@code BrowserFactory} handles actions for instantiating or terminating the
- * Selenium WebDriver.
+ * {@code BrowserFactory} handles actions for instantiating the Selenium
+ * WebDriver.
  * 
  * @author Kat Rollo &lt;rollo.katherine@gmail.com&gt;
  */
