@@ -1,4 +1,4 @@
-package jcucumberng.framework.factory;
+package jcucumberng.framework.api;
 
 import java.io.IOException;
 
@@ -10,8 +10,6 @@ import org.openqa.selenium.support.pagefactory.ByChained;
 
 import com.paulhammant.ngwebdriver.ByAngular;
 
-import jcucumberng.framework.api.Selenium;
-import jcucumberng.framework.enums.ByMethod;
 import jcucumberng.framework.exceptions.InvalidPatternException;
 import jcucumberng.framework.exceptions.UnsupportedByMethodException;
 import jcucumberng.framework.strings.Messages;
@@ -19,14 +17,14 @@ import jcucumberng.framework.strings.Text;
 import jcucumberng.framework.utils.Config;
 
 /**
- * {@code ByFactory} handles actions for manipulating the Selenium {@code By}
+ * {@code LocatorFactory} handles actions for creating the Selenium {@code By}
  * object.
  * 
  * @author Kat Rollo &lt;rollo.katherine@gmail.com&gt;
  */
-public final class ByFactory {
+public final class LocatorFactory {
 
-	private ByFactory() {
+	private LocatorFactory() {
 		// Prevent instantiation
 	}
 
@@ -57,17 +55,17 @@ public final class ByFactory {
 
 		selector = StringUtils.substringAfter(value, ":");
 		if (StringUtils.contains(selector, "|")) {
-			if (StringUtils.containsIgnoreCase(value, ByMethod.BY_ALL.toString())) {
+			if (StringUtils.containsIgnoreCase(value, Locator.BY_ALL.toString())) {
 				keys = StringUtils.split(StringUtils.substringAfter(value, ":"), "|");
 				bys = selenium.getBys(keys);
 				selector = null;
 			}
-			if (StringUtils.containsIgnoreCase(value, ByMethod.BY_CHAINED.toString())) {
+			if (StringUtils.containsIgnoreCase(value, Locator.BY_CHAINED.toString())) {
 				keys = StringUtils.split(StringUtils.substringAfter(value, ":"), "|");
 				bys = selenium.getBys(keys);
 				selector = null;
 			}
-			if (StringUtils.containsIgnoreCase(value, ByMethod.CSS_CONTAINING_TEXT.toString())) {
+			if (StringUtils.containsIgnoreCase(value, Locator.CSS_CONTAINING_TEXT.toString())) {
 				text = StringUtils.substringAfter(selector, "|");
 				selector = StringUtils.substringBefore(selector, "|");
 			}
@@ -75,8 +73,8 @@ public final class ByFactory {
 
 		By by = null;
 		try {
-			ByMethod byMethod = ByMethod.valueOf(StringUtils.upperCase(method));
-			switch (byMethod) {
+			Locator locator = Locator.valueOf(StringUtils.upperCase(method));
+			switch (locator) {
 			case ID:
 				by = By.id(selector);
 				break;

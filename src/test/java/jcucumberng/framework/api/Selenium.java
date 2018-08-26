@@ -21,7 +21,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import cucumber.api.Scenario;
 import jcucumberng.framework.exceptions.MissingArgumentsException;
-import jcucumberng.framework.factory.ByFactory;
 import jcucumberng.framework.strings.Messages;
 import jcucumberng.framework.utils.Config;
 
@@ -73,7 +72,7 @@ public final class Selenium {
 	 * @throws IOException
 	 */
 	public By by(String key) throws IOException {
-		return ByFactory.getInstance(key);
+		return LocatorFactory.getInstance(key);
 	}
 
 	/**

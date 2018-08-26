@@ -1,4 +1,4 @@
-package jcucumberng.framework.factory;
+package jcucumberng.framework.api;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebDriver;
@@ -11,7 +11,7 @@ import org.openqa.selenium.firefox.FirefoxDriverLogLevel;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 
-import jcucumberng.framework.enums.Browser;
+import jcucumberng.framework.api.Browser;
 import jcucumberng.framework.exceptions.UnsupportedBrowserException;
 import jcucumberng.framework.strings.Messages;
 import jcucumberng.framework.strings.Text;
