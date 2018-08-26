@@ -18,13 +18,13 @@ import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.parser.PdfTextExtractor;
 
 /**
- * {@code FileIO} handles actions for manipulating files or documents.
+ * {@code FileUtil} handles actions for manipulating files or documents.
  * 
  * @author Kat Rollo &lt;rollo.katherine@gmail.com&gt;
  */
-public final class FileIO {
+public final class FileUtil {
 
-	private FileIO() {
+	private FileUtil() {
 		// Prevent instantiation
 	}
 
@@ -105,7 +105,7 @@ public final class FileIO {
 		}
 
 		int totalRows = sheet.getLastRowNum(); // Remove header row
-		int totalColumns = FileIO.getColumnCount(sheet);
+		int totalColumns = FileUtil.getColumnCount(sheet);
 		String[][] testData = new String[totalRows][totalColumns];
 
 		int rowIndex = 0;
