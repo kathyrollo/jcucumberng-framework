@@ -10,7 +10,7 @@ import jcucumberng.framework.api.LoggerHelper;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(features = { "src/test/resources/jcucumberng/project/features" }, tags = { "not @ignore" }, glue = {
-		"jcucumberng.project.datatable", "jcucumberng.project.stepdefs", "jcucumberng.project.hooks" }, plugin = {
+		"jcucumberng.project.datatable", "jcucumberng.project.hooks", "jcucumberng.project.stepdefs" }, plugin = {
 				"pretty", "html:target/cucumber-html-default", "json:target/cucumber-report.json",
 				"junit:target/cucumber-report.xml" }, snippets = SnippetType.UNDERSCORE, monochrome = true, strict = true, dryRun = false)
 
