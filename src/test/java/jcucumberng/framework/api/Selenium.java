@@ -20,7 +20,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import cucumber.api.Scenario;
-import jcucumberng.framework.utils.ConfigUtil;
+import jcucumberng.framework.utils.PropsUtil;
 
 /**
  * {@code Selenium} handles actions for interacting with web applications using
@@ -30,18 +30,18 @@ import jcucumberng.framework.utils.ConfigUtil;
  */
 public final class Selenium {
 
+	private int timeOut = 0;
 	private WebDriver driver = null;
 	private Scenario scenario = null;
-	private int timeOut = 0;
 
 	public Selenium() {
 		// Empty constructor
 	}
 
 	public Selenium(WebDriver driver, Scenario scenario) throws Throwable {
+		this.timeOut = Integer.parseInt(PropsUtil.frameworkConf("webdriver.wait"));
 		this.driver = driver;
 		this.scenario = scenario;
-		this.timeOut = Integer.parseInt(ConfigUtil.framework("webdriver.wait"));
 	}
 
 	/**

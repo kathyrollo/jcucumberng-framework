@@ -10,7 +10,7 @@ import org.openqa.selenium.support.pagefactory.ByChained;
 
 import com.paulhammant.ngwebdriver.ByAngular;
 
-import jcucumberng.framework.utils.ConfigUtil;
+import jcucumberng.framework.utils.PropsUtil;
 
 /**
  * {@code LocatorFactory} handles actions for creating the Selenium {@code By}
@@ -19,8 +19,6 @@ import jcucumberng.framework.utils.ConfigUtil;
  * @author Kat Rollo &lt;rollo.katherine@gmail.com&gt;
  */
 public final class LocatorFactory {
-
-	private static final String BLANK = "BLANK";
 
 	private LocatorFactory() {
 		// Prevent instantiation
@@ -41,9 +39,9 @@ public final class LocatorFactory {
 		By[] bys = null;
 		Selenium selenium = new Selenium();
 
-		String value = ConfigUtil.uiMap(key);
+		String value = PropsUtil.uiMap(key);
 		if (StringUtils.isBlank(value)) {
-			value = BLANK;
+			value = "BLANK";
 		}
 		if (!value.matches(".+:.+")) {
 			throw new InvalidPatternException("Does not match expected pattern in ui-map.properties: " + value);
@@ -139,7 +137,7 @@ public final class LocatorFactory {
 			}
 		} catch (IllegalArgumentException | NullPointerException e) {
 			if (StringUtils.isBlank(method)) {
-				method = BLANK;
+				method = "BLANK";
 			}
 			throw new UnsupportedLocatorException("Unsupported method specified in ui-map.properties: " + method);
 		}

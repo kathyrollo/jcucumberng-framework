@@ -1,6 +1,5 @@
 package jcucumberng.framework.utils;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,18 +8,13 @@ import java.util.Properties;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- * {@code ConfigUtil} handles actions for reading/loading configuration files.
+ * {@code PropsUtil} handles actions for reading {@code .properties} files.
  * 
  * @author Kat Rollo &lt;rollo.katherine@gmail.com&gt;
  */
-public final class ConfigUtil {
+public final class PropsUtil {
 
-	private static final String FRAMEWORK_CONF_DIR = "/src/test/resources/jcucumberng/framework/";
-	private static final String PROJECT_CONF_DIR = "/src/test/resources/jcucumberng/project/";
-
-	private static final String NO_SUCH_KEY = "Key not found in ";
-
-	private ConfigUtil() {
+	private PropsUtil() {
 		// Prevent instantiation
 	}
 
@@ -33,11 +27,11 @@ public final class ConfigUtil {
 	 *         {@code browser=CHROME32}, value = {@code CHROME32})
 	 * @throws IOException
 	 */
-	public static String framework(String key) throws IOException {
+	public static String frameworkConf(String key) throws IOException {
 		String propsFileName = "framework.properties";
 		StringBuilder builder = new StringBuilder();
 		builder.append(StringUtils.replace(System.getProperty("user.dir"), "\\", "/"));
-		builder.append(FRAMEWORK_CONF_DIR);
+		builder.append("/src/test/resources/jcucumberng/framework/");
 		builder.append(propsFileName);
 
 		InputStream inputStream = new FileInputStream(builder.toString());
@@ -48,7 +42,7 @@ public final class ConfigUtil {
 		if (StringUtils.isBlank(value)) {
 			builder.setLength(0);
 			builder.append(propsFileName + ": " + key);
-			throw new NoSuchKeyException(NO_SUCH_KEY + builder.toString());
+			throw new NoSuchKeyException("Key not found in " + builder.toString());
 		}
 
 		return StringUtils.trim(value);
@@ -63,11 +57,11 @@ public final class ConfigUtil {
 	 *         {@code base.url=www.google.com}, value = {@code www.google.com})
 	 * @throws IOException
 	 */
-	public static String project(String key) throws IOException {
+	public static String projectConf(String key) throws IOException {
 		String propsFileName = "project.properties";
 		StringBuilder builder = new StringBuilder();
 		builder.append(StringUtils.replace(System.getProperty("user.dir"), "\\", "/"));
-		builder.append(PROJECT_CONF_DIR);
+		builder.append("/src/test/resources/jcucumberng/project/");
 		builder.append(propsFileName);
 
 		InputStream inputStream = new FileInputStream(builder.toString());
@@ -78,30 +72,10 @@ public final class ConfigUtil {
 		if (StringUtils.isBlank(value)) {
 			builder.setLength(0);
 			builder.append(propsFileName + ": " + key);
-			throw new NoSuchKeyException(NO_SUCH_KEY + builder.toString());
+			throw new NoSuchKeyException("Key not found in " + builder.toString());
 		}
 
 		return StringUtils.trim(value);
-	}
-
-	/**
-	 * Loads {@code log4j2.conf.file} from {@code framework.properties}.
-	 */
-	public static void logger() {
-		String cfgFile = null;
-		try {
-			cfgFile = ConfigUtil.framework("log4j2.conf.file");
-		} catch (IOException ioe) {
-			throw new NoLoggerConfigException("Cannot find logger config file: " + cfgFile);
-		}
-
-		StringBuilder builder = new StringBuilder();
-		builder.append(StringUtils.replace(System.getProperty("user.dir"), "\\", "/"));
-		builder.append(FRAMEWORK_CONF_DIR);
-		builder.append(cfgFile);
-
-		File log4j2File = new File(builder.toString());
-		System.setProperty("log4j2.configurationFile", log4j2File.toURI().toString());
 	}
 
 	/**
@@ -117,7 +91,7 @@ public final class ConfigUtil {
 		String propsFileName = "ui-map.properties";
 		StringBuilder builder = new StringBuilder();
 		builder.append(StringUtils.replace(System.getProperty("user.dir"), "\\", "/"));
-		builder.append(PROJECT_CONF_DIR);
+		builder.append("/src/test/resources/jcucumberng/project/");
 		builder.append(propsFileName);
 
 		InputStream inputStream = new FileInputStream(builder.toString());
@@ -128,7 +102,7 @@ public final class ConfigUtil {
 		if (StringUtils.isBlank(value)) {
 			builder.setLength(0);
 			builder.append(propsFileName + ": " + key);
-			throw new NoSuchKeyException(NO_SUCH_KEY + builder.toString());
+			throw new NoSuchKeyException("Key not found in " + builder.toString());
 		}
 
 		return StringUtils.trim(value);
