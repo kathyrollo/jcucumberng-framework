@@ -113,8 +113,8 @@ public final class Selenium {
 	 * @throws IOException
 	 */
 	public WebElement getVisibleElement(String... keys) throws IOException {
-		By[] bys = getBys(keys);
-		WebElement element = explicitWait().until(ExpectedConditions.visibilityOfElementLocated(new ByChained(bys)));
+		WebElement element = explicitWait()
+				.until(ExpectedConditions.visibilityOfElementLocated(new ByChained(getBys(keys))));
 		return element;
 	}
 
@@ -126,9 +126,8 @@ public final class Selenium {
 	 * @throws IOException
 	 */
 	public List<WebElement> getVisibleElements(String... keys) throws IOException {
-		By[] bys = getBys(keys);
 		List<WebElement> elements = explicitWait()
-				.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(new ByChained(bys)));
+				.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(new ByChained(getBys(keys))));
 		return elements;
 	}
 
@@ -222,6 +221,16 @@ public final class Selenium {
 	}
 
 	/**
+	 * Selects dropdown value by visible text.
+	 * 
+	 * @param text   the visible text from the dropdown options
+	 * @param select the Select element
+	 */
+	public void selectByVisibleText(String text, Select select) {
+		select.selectByVisibleText(text);
+	}
+
+	/**
 	 * Opens a new window by clicking an element and switches to that window.
 	 * 
 	 * @param keys the key(s) from {@code ui-map.properties}
@@ -296,8 +305,8 @@ public final class Selenium {
 	 * @param xPos negative value to scroll left, positive value to scroll right
 	 */
 	public void scrollHorizontal(int xPos) {
-		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
-		jsExecutor.executeScript("scroll(" + xPos + ", 0);");
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("scroll(" + xPos + ", 0);");
 	}
 
 	/**
@@ -306,8 +315,8 @@ public final class Selenium {
 	 * @param yPos positive value to scroll down, negative value to scroll up
 	 */
 	public void scrollVertical(int yPos) {
-		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
-		jsExecutor.executeScript("scroll(0, " + yPos + ");");
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("scroll(0, " + yPos + ");");
 	}
 
 	/**
@@ -317,8 +326,8 @@ public final class Selenium {
 	 * @throws IOException
 	 */
 	public void scrollToElement(String... keys) throws IOException {
-		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
-		jsExecutor.executeScript("arguments[0].scrollIntoView();", getVisibleElement(keys));
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView();", getVisibleElement(keys));
 	}
 
 	/**
@@ -327,8 +336,8 @@ public final class Selenium {
 	 * @param element the element to scroll to
 	 */
 	public void scrollToElement(WebElement element) {
-		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
-		jsExecutor.executeScript("arguments[0].scrollIntoView();", element);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView();", element);
 	}
 
 	/**
