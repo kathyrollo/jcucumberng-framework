@@ -18,19 +18,25 @@ Dependency Injection (DI) is like this:
 2 + 3 = 5
 ~~~
 
-### The Design
-An anti-pattern occurs when adhering to the design becomes the larger chore of automation efforts instead of writing sensible tests which is the common pitfall of the popular [Page Object Model](https://github.com/SeleniumHQ/selenium/wiki/PageObjects). The priority becomes sustaining the design pattern, not _testing_. Automation testers find themselves spending more time overengineering page objects than writing high quality tests that provide actual value.
+### POM and BDD
+An anti-pattern occurs when adhering to the design becomes the larger chore of automation efforts instead of writing sensible tests which is the common pitfall of the popular [Page Object Model](https://www.seleniumhq.org/docs/06_test_design_considerations.jsp#page-object-design-pattern). The priority becomes sustaining the design pattern, not _testing_. Automation testers find themselves spending more time overengineering page objects than writing high quality tests that provide actual value.
 
-Cucumber inherently calls steps to move from one state to the next so mapping the user journey by returning page objects within step definitions does not make much sense. [PicoContainer](https://docs.cucumber.io/cucumber/state/#dependency-injection) (developed by [Aslak Hellesøy](https://twitter.com/aslak_hellesoy)) eliminates the tight coupling of page objects to step definitions by sharing states in the glue code using [Dependency Injection](http://picocontainer.com/injection.html). It requires minimal configuration and injects the needed classes via the constructor. With shared objects, each step definition becomes an autonomous unit as is the nature of a Java method. In fact, there is no mention of POM in [The Cucumber for Java Book](https://pragprog.com/book/srjcuc/the-cucumber-for-java-book) but there is _Chapter 11: Simplifying Design with Dependency Injection_.
+Why then, is POM a pervasive design pattern seen in many test automation suites? Tradition. This comes from the days of "pure" Selenium tests that do not offer [behavior-driven (BDD)](https://dzone.com/articles/the-basics-of-bdd-in-testing) or step-based capabilities. Add that to the fact that Selenium actively promotes the pattern and comes with `PageFactory` to support it, automation testers simply incorporated it to their BDD test frameworks by default and not by design.
 
-Why then, is POM a pervasive design pattern seen in many test automation suites? Tradition. This comes from the days of "pure" Selenium tests that do not offer behavior-driven (BDD) or step-based capabilities. Add that to the fact that Selenium actively promotes the pattern and comes with `PageFactory` to support it, automation testers simply incorporated it to their BDD test frameworks by default. _POM complements Selenium, not Cucumber._
+> **TL;DR:**
+>
+> POM and BDD do not mix.
 
-**jCucumberNG-Framework** deliberately foregoes the added complexity and abstraction of POM to take advantage of Cucumber's intended design - to build a library of loosely coupled steps which can be independently called anywhere while Selenium WebDriver automates browser actions as it is supposed to. Writing new feature files means reusing and combining steps in the proper order. That's it!
+### Cucumber and DI
+Cucumber inherently calls steps to move from one state to the next so mapping the user journey by [returning page objects](https://github.com/SeleniumHQ/selenium/wiki/PageObjects) within step definitions does not make much sense. [PicoContainer](https://docs.cucumber.io/cucumber/state/#dependency-injection) (developed by [Aslak Hellesøy](https://twitter.com/aslak_hellesoy)) eliminates the tight coupling of page objects to step definitions by sharing states in the glue code using [Dependency Injection](http://picocontainer.com/injection.html). It requires minimal configuration and injects the needed classes via the constructor. With shared objects, each step definition becomes an autonomous unit as is the nature of a Java method. In fact, there is no mention of POM in [The Cucumber for Java Book](https://pragprog.com/book/srjcuc/the-cucumber-for-java-book) but there is _Chapter 11: Simplifying Design with Dependency Injection_. The no-frills design allows for a faster return on investment (ROI) and a compact codebase to maintain in the long haul.
 
 > **TL;DR:**
 > - Selenium WebDriver + POM = OK
 > - Selenium WebDriver + Cucumber + POM = Not OK
 > - Selenium WebDriver + Cucumber + DI = ROI (fast and simple)
+
+### The Framework
+**jCucumberNG-Framework** deliberately foregoes the added complexity and maintenance overhead of POM to take advantage of Cucumber's intended design - to build a library of loosely coupled steps which can be independently called anywhere. Selenium WebDriver automates browser actions as it is supposed to. Writing new feature files means reusing and combining steps in the proper order. That's it!
 
 ## How It Works
 The code below shows writing test scripts directly into step definitions because why not?
