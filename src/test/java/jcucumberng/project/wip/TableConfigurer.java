@@ -1,7 +1,6 @@
 package jcucumberng.project.wip;
 
 import java.util.Locale;
-import java.util.Map;
 
 import cucumber.api.TypeRegistry;
 import cucumber.api.TypeRegistryConfigurer;
