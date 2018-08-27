@@ -12,7 +12,7 @@ import io.cucumber.datatable.TableTransformer;
 import jcucumberng.project.domain.Transaction;
 
 /**
- * Maps DataTable in feature file to domain objects.
+ * Maps DataTable in feature file to objects.
  */
 public class Configurer implements TypeRegistryConfigurer {
 
@@ -27,9 +27,8 @@ public class Configurer implements TypeRegistryConfigurer {
 		// With header row, multiple objects of Type<T>
 		registry.defineDataTableType(new DataTableType(Transaction.class, new TableEntryTransformer<Transaction>() {
 			@Override
-			public Transaction transform(Map<String, String> entry) {
-				return new Transaction(entry.get("name"), entry.get("amount"), entry.get("frequency"),
-						entry.get("month"));
+			public Transaction transform(Map<String, String> map) {
+				return new Transaction(map.get("name"), map.get("amount"), map.get("frequency"), map.get("month"));
 			}
 		}));
 
@@ -37,8 +36,7 @@ public class Configurer implements TypeRegistryConfigurer {
 		registry.defineDataTableType(new DataTableType(Transaction.class, new TableTransformer<Transaction>() {
 			@Override
 			public Transaction transform(DataTable dataTable) throws Throwable {
-				Map<String, String> map = dataTable.asMaps().get(0);
-				return new Transaction(map);
+				return new Transaction(dataTable.asMaps().get(0));
 			}
 		}));
 
