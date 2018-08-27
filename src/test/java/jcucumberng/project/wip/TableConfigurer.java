@@ -11,7 +11,7 @@ import io.cucumber.datatable.TableTransformer;
 import jcucumberng.project.domain.Transaction;
 
 /**
- * Maps DataTable with label column in feature file to a single domain object of
+ * Maps DataTable with label column in feature file to a single object of
  * Type&lt;T&gt;. Left column is field name, right column is value.
  */
 public class TableConfigurer implements TypeRegistryConfigurer {
@@ -27,8 +27,7 @@ public class TableConfigurer implements TypeRegistryConfigurer {
 		registry.defineDataTableType(new DataTableType(Transaction.class, new TableTransformer<Transaction>() {
 			@Override
 			public Transaction transform(DataTable dataTable) throws Throwable {
-				Map<String, String> map = dataTable.asMaps().get(0);
-				return new Transaction(map);
+				return new Transaction(dataTable.asMaps().get(0));
 			}
 		}));
 
