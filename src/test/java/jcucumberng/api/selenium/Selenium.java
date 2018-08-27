@@ -221,6 +221,16 @@ public final class Selenium {
 	}
 
 	/**
+	 * Selects dropdown value by visible text.
+	 * 
+	 * @param text   the visible text from the dropdown options
+	 * @param select the Select element
+	 */
+	public void selectByVisibleText(String text, Select select) {
+		select.selectByVisibleText(text);
+	}
+
+	/**
 	 * Opens a new window by clicking an element and switches to that window.
 	 * 
 	 * @param keys the key(s) from {@code ui-map.properties}

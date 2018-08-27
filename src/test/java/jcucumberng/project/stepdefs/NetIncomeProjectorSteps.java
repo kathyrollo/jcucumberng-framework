@@ -56,7 +56,7 @@ public class NetIncomeProjectorSteps {
 		for (int ctr = 0; ctr < transactions.size(); ctr++) {
 			selenium.type(transactions.get(ctr).getName(), names.get(ctr));
 			selenium.type(transactions.get(ctr).getAmount(), amounts.get(ctr));
-			freqs.get(ctr).selectByVisibleText(transactions.get(ctr).getFrequency());
+			selenium.selectByVisibleText(transactions.get(ctr).getFrequency(), freqs.get(ctr));
 			LOGGER.debug(transactions.get(ctr).toString());
 		}
 		selenium.scrollToElement(selenium.getVisibleElements("div.boxes").get(2));
