@@ -30,7 +30,7 @@ public class NetIncomeProjectorSteps {
 	public void I_Enter_My_Start_Balance(String startBalance) throws Throwable {
 		selenium.type(startBalance, "start.balance");
 		LOGGER.debug("Start Balance=" + startBalance);
-		scrollToDivBox(0);
+		selenium.scrollToElement(selenium.getVisibleElements("div.boxes").get(0));
 	}
 
 	@When("I Enter My Regular Income Sources")
@@ -39,17 +39,17 @@ public class NetIncomeProjectorSteps {
 		selenium.type(transaction.getAmount(), "income.amount");
 		selenium.selectByVisibleText(transaction.getFrequency(), "income.freq");
 		LOGGER.debug(transaction.toString());
-		scrollToDivBox(1);
+		selenium.scrollToElement(selenium.getVisibleElements("div.boxes").get(1));
 	}
 
 	@When("I Enter My Regular Expenses")
 	public void I_Enter_My_Regular_Expenses(DataTable dataTable) throws Throwable {
 		List<Transaction> transactions = dataTable.asList(Transaction.class);
-		// Click Add button
+		// Click add button
 		for (int ctr = 0; ctr < transactions.size() - 1; ctr++) {
 			selenium.click("expense.add");
 		}
-		// Enter details
+		// Enter expenses
 		List<WebElement> names = selenium.getVisibleElements("expense.name");
 		List<WebElement> amounts = selenium.getVisibleElements("expense.amount");
 		List<Select> freqs = selenium.getSelectElements("expense.freq");
@@ -59,7 +59,7 @@ public class NetIncomeProjectorSteps {
 			freqs.get(ctr).selectByVisibleText(transactions.get(ctr).getFrequency());
 			LOGGER.debug(transactions.get(ctr).toString());
 		}
-		scrollToDivBox(2);
+		selenium.scrollToElement(selenium.getVisibleElements("div.boxes").get(2));
 	}
 
 	@Then("I Should See Net Income Per Month: {word}")
@@ -78,11 +78,6 @@ public class NetIncomeProjectorSteps {
 		Assertions.assertThat(actual).isEqualTo(expected);
 		LOGGER.debug("Net Per Year=" + actual);
 		selenium.scrollToElement(netPerYear);
-	}
-
-	private void scrollToDivBox(int index) throws Throwable {
-		List<WebElement> divBoxes = selenium.getVisibleElements("div.boxes");
-		selenium.scrollToElement(divBoxes.get(index));
 	}
 
 }
