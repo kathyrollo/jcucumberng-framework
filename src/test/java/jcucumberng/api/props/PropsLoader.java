@@ -31,7 +31,7 @@ public final class PropsLoader {
 		String propsFileName = "framework.properties";
 		StringBuilder builder = new StringBuilder();
 		builder.append(StringUtils.replace(System.getProperty("user.dir"), "\\", "/"));
-		builder.append("/src/test/resources/jcucumberng/framework/");
+		builder.append("/src/test/resources/");
 		builder.append(propsFileName);
 
 		InputStream inputStream = new FileInputStream(builder.toString());
@@ -61,7 +61,7 @@ public final class PropsLoader {
 		String propsFileName = "project.properties";
 		StringBuilder builder = new StringBuilder();
 		builder.append(StringUtils.replace(System.getProperty("user.dir"), "\\", "/"));
-		builder.append("/src/test/resources/jcucumberng/project/");
+		builder.append("/src/test/resources/");
 		builder.append(propsFileName);
 
 		InputStream inputStream = new FileInputStream(builder.toString());
@@ -91,7 +91,7 @@ public final class PropsLoader {
 		String propsFileName = "ui-map.properties";
 		StringBuilder builder = new StringBuilder();
 		builder.append(StringUtils.replace(System.getProperty("user.dir"), "\\", "/"));
-		builder.append("/src/test/resources/jcucumberng/project/");
+		builder.append("/src/test/resources/");
 		builder.append(propsFileName);
 
 		InputStream inputStream = new FileInputStream(builder.toString());
