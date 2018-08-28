@@ -1,4 +1,4 @@
-package jcucumberng.project.domain;
+package project.domain;
 
 import java.util.Map;
 

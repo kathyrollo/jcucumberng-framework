@@ -1,4 +1,4 @@
-package jcucumberng.project;
+package project;
 
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
@@ -10,7 +10,7 @@ import jcucumberng.api.logger.LoggerHelper;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(features = { "src/test/resources/jcucumberng/project/features" }, tags = { "not @ignore" }, glue = {
-		"jcucumberng.project.datatable", "jcucumberng.project.hooks", "jcucumberng.project.stepdefs" }, plugin = {
+		"project.datatable", "project.hooks", "project.stepdefs" }, plugin = {
 				"pretty", "html:target/cucumber-html-default", "json:target/cucumber-report.json",
 				"junit:target/cucumber-report.xml" }, snippets = SnippetType.UNDERSCORE, monochrome = true, strict = true, dryRun = false)
 

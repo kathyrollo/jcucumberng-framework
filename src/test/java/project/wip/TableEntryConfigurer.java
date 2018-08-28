@@ -1,4 +1,4 @@
-package jcucumberng.project.wip;
+package project.wip;
 
 import java.util.Locale;
 import java.util.Map;
@@ -7,7 +7,7 @@ import cucumber.api.TypeRegistry;
 import cucumber.api.TypeRegistryConfigurer;
 import io.cucumber.datatable.DataTableType;
 import io.cucumber.datatable.TableEntryTransformer;
-import jcucumberng.project.domain.Transaction;
+import project.domain.Transaction;
 
 /**
  * Maps DataTable with header row in feature file to multiple objects of

@@ -1,4 +1,4 @@
-package jcucumberng.api.utils;
+package jcucumberng.api.props;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -7,16 +7,14 @@ import java.util.Properties;
 
 import org.apache.commons.lang3.StringUtils;
 
-import jcucumberng.api.utils.exceptions.NoSuchKeyException;
-
 /**
- * {@code PropsUtil} handles actions for reading {@code .properties} files.
+ * {@code PropsLoader} handles actions for reading {@code .properties} files.
  * 
  * @author Kat Rollo &lt;rollo.katherine@gmail.com&gt;
  */
-public final class PropsUtil {
+public final class PropsLoader {
 
-	private PropsUtil() {
+	private PropsLoader() {
 		// Prevent instantiation
 	}
 
