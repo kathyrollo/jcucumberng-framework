@@ -1,4 +1,4 @@
-package jcucumberng.project.datatable;
+package project.datatable;
 
 import java.util.Locale;
 import java.util.Map;
@@ -9,7 +9,7 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.datatable.DataTableType;
 import io.cucumber.datatable.TableEntryTransformer;
 import io.cucumber.datatable.TableTransformer;
-import jcucumberng.project.domain.Transaction;
+import project.domain.Transaction;
 
 /**
  * Maps DataTable in feature file to objects.

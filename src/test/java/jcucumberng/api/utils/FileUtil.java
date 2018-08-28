@@ -17,6 +17,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.parser.PdfTextExtractor;
 
+import jcucumberng.api.props.PropsLoader;
+
 /**
  * {@code FileUtil} handles actions for manipulating files or documents.
  * 
@@ -39,7 +41,7 @@ public final class FileUtil {
 	 * @throws IOException
 	 */
 	public static boolean doesFileExist(String prefix, String suffix) throws IOException {
-		String directory = PropsUtil.frameworkConf("file.dir");
+		String directory = PropsLoader.frameworkConf("file.dir");
 		File[] files = new File(directory).listFiles();
 
 		String fileName = null;
@@ -65,7 +67,7 @@ public final class FileUtil {
 	 * @throws IOException
 	 */
 	public static String extractPdfText() throws IOException {
-		PdfReader pdfReader = new PdfReader(PropsUtil.frameworkConf("pdf.file.path"));
+		PdfReader pdfReader = new PdfReader(PropsLoader.frameworkConf("pdf.file.path"));
 		int pages = pdfReader.getNumberOfPages();
 
 		String pdfText = "";

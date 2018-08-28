@@ -10,8 +10,8 @@ import org.openqa.selenium.support.pagefactory.ByChained;
 
 import com.paulhammant.ngwebdriver.ByAngular;
 
+import jcucumberng.api.props.PropsLoader;
 import jcucumberng.api.selenium.Selenium;
-import jcucumberng.api.utils.PropsUtil;
 
 /**
  * {@code LocatorFactory} handles actions for creating the Selenium {@code By}
@@ -40,7 +40,7 @@ public final class LocatorFactory {
 		By[] bys = null;
 		Selenium selenium = new Selenium();
 
-		String value = PropsUtil.uiMap(key);
+		String value = PropsLoader.uiMap(key);
 		if (StringUtils.isBlank(value)) {
 			value = "BLANK";
 		}
