@@ -1,4 +1,4 @@
-package jcucumberng.project.stepdefs;
+package project.stepdefs;
 
 import java.util.List;
 
@@ -13,8 +13,8 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import io.cucumber.datatable.DataTable;
 import jcucumberng.api.selenium.Selenium;
-import jcucumberng.project.domain.Transaction;
-import jcucumberng.project.hooks.ScenarioHook;
+import project.domain.Transaction;
+import project.hooks.ScenarioHook;
 
 public class NetIncomeProjectorSteps {
 

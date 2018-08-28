@@ -1,4 +1,4 @@
-package jcucumberng.project.wip;
+package project.wip;
 
 import java.util.Locale;
 
@@ -7,7 +7,7 @@ import cucumber.api.TypeRegistryConfigurer;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.datatable.DataTableType;
 import io.cucumber.datatable.TableTransformer;
-import jcucumberng.project.domain.Transaction;
+import project.domain.Transaction;
 
 /**
  * Maps DataTable with label column in feature file to a single object of
