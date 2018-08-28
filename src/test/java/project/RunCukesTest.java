@@ -1,5 +1,6 @@
 package project;
 
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 
@@ -16,15 +17,24 @@ import jcucumberng.api.logger.Logger;
 
 public class RunCukesTest {
 
-	// No edit
 	private static boolean isLoaded = false;
 
+	/**
+	 * This block executes before @Before.
+	 */
 	@BeforeClass
 	public static void beforeClass() {
 		if (!isLoaded) {
 			Logger.init();
 			isLoaded = true;
 		}
+	}
+
+	/**
+	 * This block executes after @After.
+	 */
+	@AfterClass
+	public static void afterClass() {
 	}
 
 }
