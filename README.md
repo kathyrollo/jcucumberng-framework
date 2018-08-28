@@ -34,7 +34,9 @@ In fact, there is no mention of POM in [The Cucumber for Java Book](https://prag
 
 > **TL;DR:**
 > - Selenium WebDriver + POM = OK
+>
 > - Selenium WebDriver + Cucumber + POM = Not OK
+>
 > - Selenium WebDriver + Cucumber + DI = ROI (fast and simple)
 
 ### The Framework
