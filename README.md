@@ -33,8 +33,11 @@ Cucumber inherently calls steps to move from one state to the next so mapping th
 In fact, there is no mention of POM in [The Cucumber for Java Book](https://pragprog.com/book/srjcuc/the-cucumber-for-java-book) but there is _Chapter 11: Simplifying Design with Dependency Injection_. The no-frills design allows for a faster return on investment (ROI) and a compact codebase to maintain in the long haul.
 
 > **TL;DR:**
+>
 > - Selenium WebDriver + POM = OK
+>
 > - Selenium WebDriver + Cucumber + POM = Not OK
+>
 > - Selenium WebDriver + Cucumber + DI = ROI (fast and simple)
 
 ### The Framework
