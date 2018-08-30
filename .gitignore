@@ -2,8 +2,8 @@
 target/
 
 
-### TestNG ###
-test-output/
+### Allure Test Report ###
+.allure/
 
 
 ### Eclipse IDE ###
