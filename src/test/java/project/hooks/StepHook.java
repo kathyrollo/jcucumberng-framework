@@ -1,6 +1,7 @@
 package project.hooks;
 
 import cucumber.api.java.AfterStep;
+import cucumber.api.java.BeforeStep;
 import jcucumberng.api.props.PropsLoader;
 import jcucumberng.api.selenium.Selenium;
 
@@ -11,6 +12,11 @@ public class StepHook {
 	// PicoContainer injects ScenarioHook object
 	public StepHook(ScenarioHook scenarioHook) {
 		selenium = scenarioHook.getSelenium();
+	}
+
+	@BeforeStep
+	public void beforeStep() throws Throwable {
+		// Do something
 	}
 
 	@AfterStep
