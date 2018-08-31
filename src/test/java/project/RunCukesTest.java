@@ -30,11 +30,4 @@ public class RunCukesTest {
 		}
 	}
 
-	/**
-	 * This block executes after @After.
-	 */
-	@AfterClass
-	public static void afterClass() {
-	}
-
 }
