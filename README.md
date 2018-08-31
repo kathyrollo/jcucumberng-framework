@@ -137,8 +137,6 @@ This is the same action described in the preceding section. The command executes
 TODO
 
 #### [Allure Test Report](https://github.com/allure-framework)
-Test execution is separate from generating the Allure report. Run `mvn verify` then choose any method.
-
 **Method 1:** Generate report into temp folder and start web server (opens browser):
 ~~~
 mvn allure:serve
@@ -148,6 +146,8 @@ mvn allure:serve
 ~~~
 mvn allure:report
 ~~~
+
+Test execution is different from generating the report with Allure. Run `mvn verify` followed by any method.
 
 **Output:**
 <!-- insert gif -->
