@@ -124,17 +124,38 @@ Test artefacts are created in the `/target/` directory after the build is succes
 HTML reports are generated with dynamic visuals and statistics.
 
 #### [Maven Cucumber Reporting](https://github.com/damianszczepanik/maven-cucumber-reporting)
-Directory: `/target/cucumber-html-reports/`
+Generate report into directory: `/target/cucumber-html-reports/`
+~~~
+mvn verify
+~~~
+This is the same action described in the preceding section. The command executes tests and generates the report at the same time.
+
+**Output:**
 ![dynamic_report](https://user-images.githubusercontent.com/28589393/43090686-acbd9c00-8eda-11e8-9c08-d74c1a86e03b.gif)
 
 #### [Cucumber Extent Reporter](https://github.com/email2vimalraj/CucumberExtentReporter)
 TODO
 
 #### [Allure Test Report](https://github.com/allure-framework)
-TODO
+Test execution is separate from generating the Allure report. Run `mvn verify` then choose any method.
+
+**Method 1:** Generate report into temp folder and start web server (opens browser):
+~~~
+mvn allure:serve
+~~~
+
+**Method 2:** Generate report into directory: `/target/site/allure-maven-plugin/`
+~~~
+mvn allure:report
+~~~
+
+**Output:**
+<!-- insert gif -->
 
 ### Logging
-Logs are written to a daily rolling file. Executions from the previous day are saved with a datestamp in a separate file.
+Logs are written to a daily rolling file. Executions from the previous day are saved with a datestamp.
+
+**Directory:**
 ~~~
 target/
 |__ cucumber-logs/
@@ -144,8 +165,7 @@ target/
     |__ cucumber.log
 ~~~
 
-#### Sample Logs
-Directory: `/target/cucumber-logs/`
+**Output:**
 ~~~
 [INFO ] 2018-07-21 22:02:40,107 ScenarioHook.beforeScenario() - BEGIN TEST -> Verify Page Title
 [INFO ] 2018-07-21 22:02:44,191 ScenarioHook.beforeScenario() - Browser=CHROME32_NOHEAD
