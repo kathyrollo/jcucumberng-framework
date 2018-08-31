@@ -6,4 +6,4 @@ Feature: Home Page Navigation
 
 	Scenario: Verify Page Title
 		Given I Am At The Home Page
-		Then I Should See Page Title: 'Simply Do - Balance Projector'
+		Then I Should See Page Title: 'Simply Do - Balance Project'

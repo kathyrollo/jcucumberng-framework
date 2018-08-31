@@ -170,7 +170,9 @@
 					<allureDownloadUrl>https://github.com/allure-framework/allure2/releases/download/2.7.0/allure-2.7.0.zip</allureDownloadUrl>
 				</configuration>
 			</plugin>
+			
 			<!-- https://mvnrepository.com/artifact/net.masterthought/maven-cucumber-reporting -->
+			<!--
 			<plugin>
 				<groupId>net.masterthought</groupId>
 				<artifactId>maven-cucumber-reporting</artifactId>
@@ -196,6 +198,7 @@
 					</execution>
 				</executions>
 			</plugin>
+			-->
 		</plugins>
 	</build>
 </project>
