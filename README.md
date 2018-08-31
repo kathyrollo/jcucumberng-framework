@@ -3,7 +3,8 @@
 ## Overview
 Allows automation testers to write feature/gherkin files for Cucumber and implement step definitions in basic Java classes. ngWebDriver (Protractor) offers extended support for Angular/JS web applications.
 
-## Write Tests, Not Page Objects (optional reading)
+## Write Tests, Not Page Objects
+[ [Skip](#the-framework) ]
 
 ### An Analogy
 Like arithmetic, there are many ways to arrive to the same answer. Some longer, some shorter.
@@ -51,7 +52,7 @@ The code below shows writing test scripts directly into step definitions because
 net.per.month=binding:roundDown(monthlyNet())
 ~~~
 
-### Feature File:
+### Gherkin Syntax:
 ~~~
 Then I Should See Net Income Per Month: 23769
 ~~~
@@ -78,7 +79,7 @@ public void I_Should_See_Net_Income_Per_Month(String expected) throws Throwable 
 
 No need to plow through **76** page objects. Based on a true story.
 
-## Capabilities & Technology Stack
+## Features
 - [Selenium WebDriver 3](https://www.seleniumhq.org/) for browser automation
 - [Cucumber-JVM 3](https://github.com/cucumber/cucumber-jvm) for behavior-driven testing
 - [ngWebDriver](https://github.com/paul-hammant/ngWebDriver) (Protractor) for Angular/JS support
@@ -174,3 +175,5 @@ target/
 [DEBUG] 2018-07-21 22:02:50,095 HomePageNavigationSteps.I_Should_See_Page_Title() - Window Title=Simply Do - Balance Projector
 [INFO ] 2018-07-21 22:02:50,413 ScenarioHook.afterScenario() - END TEST -> Verify Page Title - PASSED
 ~~~
+
+[ [Back to Top](#overview) ]
