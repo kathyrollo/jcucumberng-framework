@@ -17,12 +17,11 @@
 		<!-- Maven -->
 		<timestamp>${maven.build.timestamp}</timestamp>
 		<maven.build.timestamp.format>yyyyMMdd'T'HHmmss'Z'</maven.build.timestamp.format>
-		<!-- Allure Test Report -->
-		<aspectj.version>1.9.1</aspectj.version>
 		<!-- Core Dependencies -->
 		<selenium.version>3.14.0</selenium.version>
 		<ngwebdriver.version>1.1.4</ngwebdriver.version>
 		<cucumber.version>3.0.2</cucumber.version>
+		<aspectj.version>1.9.1</aspectj.version>
 		<java.version>1.8</java.version>
 	</properties>
 
@@ -142,14 +141,14 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.22.0</version>
 				<configuration>
+					<testFailureIgnore>true</testFailureIgnore>
 					<includes>
 						<include>**/RunCukesTest.java</include>
 					</includes>
-					<testFailureIgnore>true</testFailureIgnore>
-					<reportsDirectory>${project.build.directory}/test-output/${timestamp}</reportsDirectory>
 					<argLine>
 						-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
 					</argLine>
+					<reportsDirectory>${project.build.directory}/test-output/${timestamp}</reportsDirectory>
 				</configuration>
 				<dependencies>
 					<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
@@ -169,9 +168,8 @@
 					<reportVersion>2.7.0</reportVersion>
 					<allureDownloadUrl>https://github.com/allure-framework/allure2/releases/download/2.7.0/allure-2.7.0.zip</allureDownloadUrl>
 				</configuration>
-			</plugin>			
+			</plugin>
 			<!-- https://mvnrepository.com/artifact/net.masterthought/maven-cucumber-reporting -->
-			<!--
 			<plugin>
 				<groupId>net.masterthought</groupId>
 				<artifactId>maven-cucumber-reporting</artifactId>
@@ -197,7 +195,6 @@
 					</execution>
 				</executions>
 			</plugin>
-			-->
 		</plugins>
 	</build>
 </project>
