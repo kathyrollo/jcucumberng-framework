@@ -1,6 +1,5 @@
 package project;
 
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 
@@ -28,13 +27,6 @@ public class RunCukesTest {
 			Logger.init();
 			isLoaded = true;
 		}
-	}
-
-	/**
-	 * This block executes after @After.
-	 */
-	@AfterClass
-	public static void afterClass() {
 	}
 
 }

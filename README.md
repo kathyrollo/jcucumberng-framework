@@ -74,7 +74,7 @@ public void I_Should_See_Net_Income_Per_Month(String expected) throws Throwable 
 }
 ~~~
 
-[User Interface (UI) Mapping](https://www.seleniumhq.org/docs/06_test_design_considerations.jsp#user-interface-mapping) complements DI and is a known approach for keeping web elements in a single file. The `WebDriver` is not exposed while containing eveything within the method in plain sight.
+[User Interface (UI) Mapping](https://www.seleniumhq.org/docs/06_test_design_considerations.jsp#user-interface-mapping) complements DI and is a known approach for keeping web elements in a single file. The `WebDriver` is not exposed while containing everything within the method in plain sight.
 
 No need to plow through **76** page objects. Based on a true story.
 
@@ -124,17 +124,38 @@ Test artefacts are created in the `/target/` directory after the build is succes
 HTML reports are generated with dynamic visuals and statistics.
 
 #### [Maven Cucumber Reporting](https://github.com/damianszczepanik/maven-cucumber-reporting)
-Directory: `/target/cucumber-html-reports/`
+Generate report into directory: `/target/cucumber-html-reports/`
+~~~
+mvn verify
+~~~
+This is the same action described in the preceding section. The command executes tests and generates the report at the same time.
+
+**Output:**
 ![dynamic_report](https://user-images.githubusercontent.com/28589393/43090686-acbd9c00-8eda-11e8-9c08-d74c1a86e03b.gif)
 
 #### [Cucumber Extent Reporter](https://github.com/email2vimalraj/CucumberExtentReporter)
 TODO
 
 #### [Allure Test Report](https://github.com/allure-framework)
-TODO
+**Method 1:** Generate report into temp folder and start web server (opens browser):
+~~~
+mvn allure:serve
+~~~
+
+**Method 2:** Generate report into directory: `/target/site/allure-maven-plugin/`
+~~~
+mvn allure:report
+~~~
+
+Test execution is different from generating the report with Allure. Run `mvn verify` followed by any method.
+
+**Output:**
+<!-- insert gif -->
 
 ### Logging
-Logs are written to a daily rolling file. Executions from the previous day are saved with a datestamp in a separate file.
+Logs are written to a daily rolling file. Executions from the previous day are saved with a datestamp.
+
+**Directory:**
 ~~~
 target/
 |__ cucumber-logs/
@@ -144,8 +165,7 @@ target/
     |__ cucumber.log
 ~~~
 
-#### Sample Logs
-Directory: `/target/cucumber-logs/`
+**Output:**
 ~~~
 [INFO ] 2018-07-21 22:02:40,107 ScenarioHook.beforeScenario() - BEGIN TEST -> Verify Page Title
 [INFO ] 2018-07-21 22:02:44,191 ScenarioHook.beforeScenario() - Browser=CHROME32_NOHEAD
