@@ -124,20 +124,9 @@ Test artefacts are created in the `/target/` directory after the build is succes
 ### Reporting
 HTML reports are generated with dynamic visuals and statistics.
 
-#### [Maven Cucumber Reporting](https://github.com/damianszczepanik/maven-cucumber-reporting)
-Generate report into directory: `/target/cucumber-html-reports/`
-~~~
-mvn verify
-~~~
-This is the same action described in the preceding section. The command executes tests and generates the report at the same time.
-
-**Output:**
-![dynamic_report](https://user-images.githubusercontent.com/28589393/43090686-acbd9c00-8eda-11e8-9c08-d74c1a86e03b.gif)
-
-#### [Cucumber Extent Reporter](https://github.com/email2vimalraj/CucumberExtentReporter)
-TODO
-
 #### [Allure Test Report](https://github.com/allure-framework)
+Choose a method to produce the report.
+
 **Method 1:** Generate report into temp folder and start web server (opens browser):
 ~~~
 mvn allure:serve
@@ -148,10 +137,12 @@ mvn allure:serve
 mvn allure:report
 ~~~
 
-Test execution is different from generating the report with Allure. Run `mvn verify` followed by any method.
-
 **Output:**
-<!-- insert gif -->
+
+<!-- insert demo gif -->
+
+#### [Cucumber Extent Reporter](https://github.com/email2vimalraj/CucumberExtentReporter)
+TODO
 
 ### Logging
 Logs are written to a daily rolling file. Executions from the previous day are saved with a datestamp.
