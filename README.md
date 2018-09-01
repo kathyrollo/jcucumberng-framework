@@ -3,7 +3,8 @@
 ## Overview
 Allows automation testers to write feature/gherkin files for Cucumber and implement step definitions in basic Java classes. ngWebDriver (Protractor) offers extended support for Angular/JS web applications.
 
-## Write Tests, Not Page Objects (optional reading)
+## Write Tests, Not Page Objects
+[ [Skip](#the-framework) ]
 
 ### An Analogy
 Like arithmetic, there are many ways to arrive to the same answer. Some longer, some shorter.
@@ -40,8 +41,8 @@ In fact, there is no mention of POM in [The Cucumber for Java Book](https://prag
 >
 > - Selenium WebDriver + Cucumber + DI = ROI (fast and simple)
 
-### The Framework
-**jCucumberNG-Framework** deliberately foregoes the added complexity and maintenance overhead of POM to take advantage of Cucumber's intended design - to build a library of loosely coupled steps which can be independently called anywhere. Selenium WebDriver automates browser actions as it is supposed to. Writing new feature files means reusing and combining steps in the proper order. That's it!
+## The Framework
+**_jCucumberNG-Framework_** deliberately foregoes the added complexity and maintenance overhead of POM to take advantage of Cucumber's intended design - to build a library of loosely coupled steps which can be independently called anywhere. Selenium WebDriver automates browser actions as it is supposed to. Writing new feature files means reusing and combining steps in the proper order. That's it!
 
 ## How It Works
 The code below shows writing test scripts directly into step definitions because why not?
@@ -51,7 +52,7 @@ The code below shows writing test scripts directly into step definitions because
 net.per.month=binding:roundDown(monthlyNet())
 ~~~
 
-### Feature File:
+### Gherkin Syntax:
 ~~~
 Then I Should See Net Income Per Month: 23769
 ~~~
@@ -74,11 +75,11 @@ public void I_Should_See_Net_Income_Per_Month(String expected) throws Throwable 
 }
 ~~~
 
-[User Interface (UI) Mapping](https://www.seleniumhq.org/docs/06_test_design_considerations.jsp#user-interface-mapping) complements DI and is a known approach for keeping web elements in a single file. The `WebDriver` is not exposed while containing eveything within the method in plain sight.
+[User Interface (UI) Mapping](https://www.seleniumhq.org/docs/06_test_design_considerations.jsp#user-interface-mapping) complements DI and is a known approach for keeping web elements in a single file. The `WebDriver` is not exposed while containing everything within the method in plain sight.
 
 No need to plow through **76** page objects. Based on a true story.
 
-## Capabilities & Technology Stack
+## Features
 - [Selenium WebDriver 3](https://www.seleniumhq.org/) for browser automation
 - [Cucumber-JVM 3](https://github.com/cucumber/cucumber-jvm) for behavior-driven testing
 - [ngWebDriver](https://github.com/paul-hammant/ngWebDriver) (Protractor) for Angular/JS support
@@ -105,7 +106,6 @@ Visit the application under test (AUT) here: http://simplydo.com/projector/
 No further configurations needed at this point. The tests will run against the AUT in [headless browser](https://en.wikipedia.org/wiki/Headless_browser) mode using ChromeDriver as defined in `framework.properties`.
 
 ### Test Execution
-
 Run the following commands in the cmdline:
 ~~~
 $ cd /path/to/workspace/
@@ -116,36 +116,52 @@ $ mvn verify
 
 Maven performs a one-time download of all dependencies for the first run. Execute `mvn verify` again after the downloads complete to begin test execution.
 
-![mvn_verify](https://user-images.githubusercontent.com/28589393/43071460-79da3de6-8ea5-11e8-9935-a6afc02d62d8.gif)
+![mvn_verify](https://user-images.githubusercontent.com/28589393/44941160-b6ff8c00-adca-11e8-9e10-5ad2949c6ee9.gif)
 
 Test artefacts are created in the `/target/` directory after the build is successful.
 
 ### Reporting
 HTML reports are generated with dynamic visuals and statistics.
 
-#### [Maven Cucumber Reporting](https://github.com/damianszczepanik/maven-cucumber-reporting)
-Directory: `/target/cucumber-html-reports/`
-![dynamic_report](https://user-images.githubusercontent.com/28589393/43090686-acbd9c00-8eda-11e8-9c08-d74c1a86e03b.gif)
+#### [Allure Test Report](https://github.com/allure-framework)
+Choose a method to produce the report.
+
+**Method 1:** Generate report into temp folder and start web server (opens browser):
+~~~
+mvn allure:serve
+~~~
+
+**Method 2:** Generate report into directory: `/target/site/allure-maven-plugin/`
+~~~
+mvn allure:report
+~~~
+
+Alternatively, test execution and report generation can be combined:
+~~~
+mvn verify allure:serve
+~~~
+
+**Output:**
+
+<!-- insert demo gif -->
 
 #### [Cucumber Extent Reporter](https://github.com/email2vimalraj/CucumberExtentReporter)
 TODO
 
-#### [Allure Test Report](https://github.com/allure-framework)
-TODO
-
 ### Logging
-Logs are written to a daily rolling file. Executions from the previous day are saved with a datestamp in a separate file.
+Logs are written to a daily rolling file. Executions from the previous day are saved with a datestamp.
+
+**Directory:**
 ~~~
 target/
-|__ cucumber-logs/
+|__ cucumber-logging/
     |__ cucumber_2018-07-19.log
     |__ cucumber_2018-07-20.log
     |__ cucumber_2018-07-21.log
     |__ cucumber.log
 ~~~
 
-#### Sample Logs
-Directory: `/target/cucumber-logs/`
+**Output:**
 ~~~
 [INFO ] 2018-07-21 22:02:40,107 ScenarioHook.beforeScenario() - BEGIN TEST -> Verify Page Title
 [INFO ] 2018-07-21 22:02:44,191 ScenarioHook.beforeScenario() - Browser=CHROME32_NOHEAD
@@ -154,3 +170,5 @@ Directory: `/target/cucumber-logs/`
 [DEBUG] 2018-07-21 22:02:50,095 HomePageNavigationSteps.I_Should_See_Page_Title() - Window Title=Simply Do - Balance Projector
 [INFO ] 2018-07-21 22:02:50,413 ScenarioHook.afterScenario() - END TEST -> Verify Page Title - PASSED
 ~~~
+
+[ [Back to Top](#overview) ]

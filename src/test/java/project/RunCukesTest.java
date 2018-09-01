@@ -1,6 +1,5 @@
 package project;
 
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 
@@ -11,8 +10,8 @@ import jcucumberng.api.logger.Logger;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(features = { "src/test/resources/features" }, tags = { "not @ignore" }, glue = { "project.datatable",
-		"project.hooks", "project.stepdefs" }, plugin = { "pretty", "html:target/cucumber-html-default",
-				"json:target/cucumber-report.json",
+		"project.hooks", "project.stepdefs" }, plugin = { "pretty", "io.qameta.allure.cucumber3jvm.AllureCucumber3Jvm",
+				"html:target/cucumber-html-default", "json:target/cucumber-report.json",
 				"junit:target/cucumber-report.xml" }, snippets = SnippetType.UNDERSCORE, monochrome = true, strict = true, dryRun = false)
 
 public class RunCukesTest {
@@ -28,13 +27,6 @@ public class RunCukesTest {
 			Logger.init();
 			isLoaded = true;
 		}
-	}
-
-	/**
-	 * This block executes after @After.
-	 */
-	@AfterClass
-	public static void afterClass() {
 	}
 
 }
