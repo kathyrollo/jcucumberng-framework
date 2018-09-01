@@ -149,7 +149,7 @@ Logs are written to a daily rolling file. Executions from the previous day are s
 **Directory:**
 ~~~
 target/
-|__ cucumber-logs/
+|__ cucumber-logging/
     |__ cucumber_2018-07-19.log
     |__ cucumber_2018-07-20.log
     |__ cucumber_2018-07-21.log
