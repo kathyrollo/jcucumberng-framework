@@ -1,4 +1,5 @@
-package project;
+package runners;
+
 
 import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
