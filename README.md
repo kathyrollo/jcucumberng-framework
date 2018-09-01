@@ -136,6 +136,11 @@ mvn allure:serve
 mvn allure:report
 ~~~
 
+Alternatively, test execution and report generation can be combined:
+~~~
+mvn verify allure:serve
+~~~
+
 **Output:**
 
 <!-- insert demo gif -->
