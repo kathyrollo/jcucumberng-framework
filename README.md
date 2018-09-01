@@ -116,7 +116,7 @@ $ mvn verify
 
 Maven performs a one-time download of all dependencies for the first run. Execute `mvn verify` again after the downloads complete to begin test execution.
 
-![mvn_verify](https://user-images.githubusercontent.com/28589393/44941160-b6ff8c00-adca-11e8-9e10-5ad2949c6ee9.gif)
+![mvn_verify](https://user-images.githubusercontent.com/28589393/44947067-ec8f8e00-ae39-11e8-988f-7959cd780427.gif)
 
 Test artefacts are created in the `/target/` directory after the build is successful.
 
