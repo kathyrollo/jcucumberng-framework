@@ -106,7 +106,6 @@ Visit the application under test (AUT) here: http://simplydo.com/projector/
 No further configurations needed at this point. The tests will run against the AUT in [headless browser](https://en.wikipedia.org/wiki/Headless_browser) mode using ChromeDriver as defined in `framework.properties`.
 
 ### Test Execution
-
 Run the following commands in the cmdline:
 ~~~
 $ cd /path/to/workspace/
@@ -117,7 +116,7 @@ $ mvn verify
 
 Maven performs a one-time download of all dependencies for the first run. Execute `mvn verify` again after the downloads complete to begin test execution.
 
-![mvn_verify](https://user-images.githubusercontent.com/28589393/43071460-79da3de6-8ea5-11e8-9935-a6afc02d62d8.gif)
+![mvn_verify](https://user-images.githubusercontent.com/28589393/44941160-b6ff8c00-adca-11e8-9e10-5ad2949c6ee9.gif)
 
 Test artefacts are created in the `/target/` directory after the build is successful.
 
