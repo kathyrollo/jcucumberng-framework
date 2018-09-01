@@ -35,7 +35,7 @@ public final class BrowserFactory {
 
 		StringBuilder builder = new StringBuilder();
 		builder.append(StringUtils.replace(System.getProperty("user.dir"), "\\", "/"));
-		builder.append("/src/test/resources/drivers/");
+		builder.append("/src/main/resources/drivers/");
 		String driverPath = builder.toString();
 
 		try {

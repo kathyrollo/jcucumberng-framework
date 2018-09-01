@@ -27,7 +27,7 @@ public final class Logger {
 
 		StringBuilder builder = new StringBuilder();
 		builder.append(StringUtils.replace(System.getProperty("user.dir"), "\\", "/"));
-		builder.append("/src/test/resources/");
+		builder.append("/src/main/resources/");
 		builder.append(cfgFile);
 
 		File log4j2File = new File(builder.toString());
