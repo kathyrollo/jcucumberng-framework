@@ -147,7 +147,7 @@ Generate report into directory: `/target/cucumber-html-reports/`
 ~~~
 mvn verify
 ~~~
-This is the same task for test execution and for report generation.
+This is the same task for test execution and report generation.
 
 **Output:**
 
@@ -171,7 +171,7 @@ mvn allure:serve
 mvn allure:report
 ~~~
 
-Alternatively, both can be combined in one command:
+Alternatively, the commands can be combined:
 ~~~
 mvn verify allure:serve
 ~~~
