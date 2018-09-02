@@ -103,8 +103,7 @@ Visit the application under test (AUT) here: http://simplydo.com/projector/
 
 No further configurations needed at this point. The tests will run against the AUT in [headless browser](https://en.wikipedia.org/wiki/Headless_browser) mode using ChromeDriver as defined in `framework.properties`.
 
-## Test Execution
-Run the following commands in the cmdline:
+Run the following in the cmdline:
 ~~~
 $ cd /path/to/workspace/
 $ git clone <repo-url>
@@ -112,7 +111,7 @@ $ cd jcucumberng-framework/
 $ mvn verify
 ~~~
 
-Maven performs a one-time download of all dependencies for the first run. Execute `mvn verify` again after the downloads complete to begin test execution.
+Maven performs a one-time download of all dependencies. Execute `mvn verify` again after the downloads complete to begin running the tests.
 
 **Output:**
 ~~~
@@ -127,7 +126,7 @@ Maven performs a one-time download of all dependencies for the first run. Execut
 ~~~
 1 scenario is purposely failed to produce variance in the test reports.
 
-## Test Results
+## Checking Results
 
 HTML reports and logs are created in the `/target/` directory after the build is successful.
 
@@ -148,7 +147,7 @@ Generate report into directory: `/target/cucumber-html-reports/`
 ~~~
 mvn verify
 ~~~
-This is the same task for test execution and for generating the report.
+This is the same task for test execution and for report generation.
 
 **Output:**
 
@@ -160,7 +159,7 @@ TODO
 #### [Allure Test Report](https://github.com/allure-framework)
 > This report is a single page application (SPA). Dynamic attributes use AJAX and need to be launched from a [running web server](https://github.com/allure-framework/allure1/issues/896#issuecomment-271599716) to view.
 
-Test execution and report generation are different tasks in Allure. Choose any method to generate the report _after_ test execution.
+In Allure, test execution and report generation are different tasks. Choose any method to generate the report _after_ test execution.
 
 **Method 1:** Generate report into temp folder and start local web server (opens browser):
 ~~~
@@ -172,7 +171,7 @@ mvn allure:serve
 mvn allure:report
 ~~~
 
-Alternatively, test execution and report generation can be combined in one command:
+Alternatively, both can be combined in one command:
 ~~~
 mvn verify allure:serve
 ~~~
@@ -183,7 +182,7 @@ This also invokes all reporting plugins.
 ![allure_report](https://user-images.githubusercontent.com/28589393/44955862-e8707880-aeec-11e8-9b07-daaa3708c02e.gif)
 
 ### Logging
-Logs are written to a daily rolling file. Executions from the previous day are saved with a datestamp. Best used for debugging.
+Logs are written to a daily rolling file. Executions from the previous day are saved with a datestamp. Best for debugging.
 
 **Directory:**
 ~~~
