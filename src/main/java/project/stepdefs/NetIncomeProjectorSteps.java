@@ -18,6 +18,8 @@ import project.hooks.ScenarioHook;
 
 public class NetIncomeProjectorSteps {
 
+	private static final String DIV_BOXES = "div.boxes";
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(NetIncomeProjectorSteps.class);
 	private Selenium selenium = null;
 
@@ -30,7 +32,7 @@ public class NetIncomeProjectorSteps {
 	public void I_Enter_My_Start_Balance(String startBalance) throws Throwable {
 		selenium.type(startBalance, "start.balance");
 		LOGGER.debug("Start Balance={}", startBalance);
-		selenium.scrollToElement(selenium.getVisibleElements("div.boxes").get(0));
+		selenium.scrollToElement(selenium.getVisibleElements(DIV_BOXES).get(0));
 	}
 
 	@When("I Enter My Regular Income Sources")
@@ -39,7 +41,7 @@ public class NetIncomeProjectorSteps {
 		selenium.type(transaction.getAmount(), "income.amount");
 		selenium.selectByVisibleText(transaction.getFrequency(), "income.freq");
 		LOGGER.debug(transaction.toString());
-		selenium.scrollToElement(selenium.getVisibleElements("div.boxes").get(1));
+		selenium.scrollToElement(selenium.getVisibleElements(DIV_BOXES).get(1));
 	}
 
 	@When("I Enter My Regular Expenses")
@@ -59,7 +61,7 @@ public class NetIncomeProjectorSteps {
 			selenium.selectByVisibleText(transactions.get(ctr).getFrequency(), freqs.get(ctr));
 			LOGGER.debug(transactions.get(ctr).toString());
 		}
-		selenium.scrollToElement(selenium.getVisibleElements("div.boxes").get(2));
+		selenium.scrollToElement(selenium.getVisibleElements(DIV_BOXES).get(2));
 	}
 
 	@Then("I Should See Net Income Per Month: {word}")

@@ -21,8 +21,13 @@ import jcucumberng.api.selenium.Selenium;
  */
 public final class LocatorFactory {
 
+	public enum Locator {
+		ID, NAME, LINK_TEXT, PARTIAL_LINK_TEXT, TAG, CLASS, CSS, XPATH, BY_ALL, BY_CHAINED, BY_ID_OR_NAME, BINDING,
+		MODEL, BUTTON_TEXT, CSS_CONTAINING_TEXT, EXACT_BINDING, EXACT_REPEATER, OPTIONS, PARTIAL_BUTTON_TEXT, REPEATER
+	}
+
 	private LocatorFactory() {
-		// Prevent instantiation
+		throw new IllegalStateException("Class must not be instantiated.");
 	}
 
 	/**
@@ -36,7 +41,7 @@ public final class LocatorFactory {
 		String method = null;
 		String selector = null;
 		String text = null;
-		String keys[] = {};
+		String[] keys = null;
 		By[] bys = null;
 		Selenium selenium = new Selenium();
 
