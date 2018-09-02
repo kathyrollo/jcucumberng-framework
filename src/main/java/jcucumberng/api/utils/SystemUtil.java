@@ -18,7 +18,7 @@ import jcucumberng.api.props.PropsLoader;
 public final class SystemUtil {
 
 	private SystemUtil() {
-		// Prevent instantiation
+		throw new IllegalStateException("Class must not be instantiated.");
 	}
 
 	/**

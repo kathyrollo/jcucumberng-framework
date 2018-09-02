@@ -36,7 +36,7 @@ public final class BrowserFactory {
 	private static final String IE64_BIN = "IEDriverServer_win64.exe";
 
 	private BrowserFactory() {
-		// Prevent instantiation
+		throw new IllegalStateException("Class must not be instantiated.");
 	}
 
 	/**

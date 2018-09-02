@@ -15,7 +15,7 @@ import org.apache.commons.lang3.StringUtils;
 public final class PropsLoader {
 
 	private PropsLoader() {
-		// Prevent instantiation
+		throw new IllegalStateException("Class must not be instantiated.");
 	}
 
 	/**
