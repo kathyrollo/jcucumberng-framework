@@ -14,6 +14,10 @@ import jcucumberng.api.props.PropsLoader;
  */
 public final class Logger {
 
+	private Logger() {
+		throw new IllegalStateException("Class must not be instantiated.");
+	}
+
 	/**
 	 * Loads {@code log4j2.conf.file} from {@code framework.properties}.
 	 */
