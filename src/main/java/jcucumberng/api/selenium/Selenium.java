@@ -113,9 +113,7 @@ public final class Selenium {
 	 * @throws IOException
 	 */
 	public WebElement getVisibleElement(String... keys) throws IOException {
-		WebElement element = explicitWait()
-				.until(ExpectedConditions.visibilityOfElementLocated(new ByChained(getBys(keys))));
-		return element;
+		return explicitWait().until(ExpectedConditions.visibilityOfElementLocated(new ByChained(getBys(keys))));
 	}
 
 	/**
@@ -126,9 +124,7 @@ public final class Selenium {
 	 * @throws IOException
 	 */
 	public List<WebElement> getVisibleElements(String... keys) throws IOException {
-		List<WebElement> elements = explicitWait()
-				.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(new ByChained(getBys(keys))));
-		return elements;
+		return explicitWait().until(ExpectedConditions.visibilityOfAllElementsLocatedBy(new ByChained(getBys(keys))));
 	}
 
 	/**
@@ -164,7 +160,7 @@ public final class Selenium {
 	 * @throws IOException
 	 */
 	public boolean isElementPresent(String... keys) throws IOException {
-		return 0 < getVisibleElements(keys).size() ? true : false;
+		return !getVisibleElements(keys).isEmpty();
 	}
 
 	/**
@@ -261,7 +257,7 @@ public final class Selenium {
 	 * @param url the link to the child window
 	 * @return String - the handle of the parent window
 	 */
-	public String openWindowByLink(String url) throws IOException {
+	public String openWindowByLink(String url) {
 		String parentHandle = driver.getWindowHandle();
 		driver.get(url);
 		boolean isChildWindowOpen = explicitWait().until(ExpectedConditions.numberOfWindowsToBe(2));
