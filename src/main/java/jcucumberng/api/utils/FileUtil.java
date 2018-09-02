@@ -2,7 +2,6 @@ package jcucumberng.api.utils;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Iterator;
@@ -89,11 +88,9 @@ public final class FileUtil {
 	 * @param sheetName    the name of the sheet to be read (defaults to first sheet
 	 *                     if blank)
 	 * @return Object[ ][ ] - the String values in 2D array
-	 * @throws FileNotFoundException
 	 * @throws IOException
 	 */
-	public static Object[][] convertExcelTo2DArray(String xlsxFilePath, String sheetName)
-			throws FileNotFoundException, IOException {
+	public static Object[][] convertExcelTo2DArray(String xlsxFilePath, String sheetName) throws IOException {
 
 		File xlsxFile = new File(xlsxFilePath);
 		InputStream inputStream = new FileInputStream(xlsxFile);
