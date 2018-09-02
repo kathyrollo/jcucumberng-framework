@@ -1,6 +1,4 @@
 # jCucumberNG-Framework
-
-## Overview
 Allows automation testers to write feature/gherkin files for Cucumber and implement step definitions in basic Java classes. ngWebDriver (Protractor) offers extended support for Angular/JS web applications.
 
 ## Write Tests, Not Page Objects
@@ -42,7 +40,7 @@ In fact, there is no mention of POM in [The Cucumber for Java Book](https://prag
 > - Selenium WebDriver + Cucumber + DI = ROI (fast and simple)
 
 ## The Framework
-**_jCucumberNG-Framework_** deliberately foregoes the added complexity and maintenance overhead of POM to take advantage of Cucumber's intended design - to build a library of loosely coupled steps which can be independently called anywhere. Selenium WebDriver automates browser actions as it is supposed to. Writing new feature files means reusing and combining steps in the proper order. That's it!
+**_jCucumberNG-Framework_** deliberately foregoes the added complexity and maintenance overhead of POM to take advantage of Cucumber's intended design - to build a library of loosely coupled steps which can be independently called anywhere. Writing new feature files means reusing and combining steps in the proper order. That's it!
 
 ## How It Works
 The code below shows writing test scripts directly into step definitions because why not?
@@ -116,7 +114,22 @@ $ mvn verify
 
 Maven performs a one-time download of all dependencies for the first run. Execute `mvn verify` again after the downloads complete to begin test execution.
 
-Test artefacts are created in the `/target/` directory after the build is successful.
+**Output:**
+~~~
+[INFO] Results:
+[INFO]
+[ERROR] Failures:
+[ERROR]   expected:<...Do - Balance Project[]"> but was:<...Do - Balance Project[or]">
+[INFO]
+[ERROR] Tests run: 3, Failures: 1, Errors: 0, Skipped: 0
+[INFO]
+[ERROR] There are test failures.
+~~~
+1 scenario is purposely failed to produce variance in the test reports.
+
+### Test Results
+
+Artefacts are created in the `/target/` directory after the build is successful.
 
 ### Reporting
 HTML reports are generated with dynamic visuals and statistics.
@@ -135,12 +148,18 @@ This is the same action described in the preceding section. The command executes
 ![cucumber_reporting](https://user-images.githubusercontent.com/28589393/43090686-acbd9c00-8eda-11e8-9c08-d74c1a86e03b.gif)
 
 #### [Cucumber Extent Reporter](https://github.com/email2vimalraj/CucumberExtentReporter)
+> This report is standalone that can be zipped and emailed to clients. Any of the HTML files can be viewed locally using the browser.
+
+TODO
+
+**Output:**
+
 TODO
 
 #### [Allure Test Report](https://github.com/allure-framework)
 > This report is a single page application (SPA). Dynamic attributes use AJAX and need to be launched from a [running web server](https://github.com/allure-framework/allure1/issues/896#issuecomment-271599716) to view.
 
-Test execution and report generation are different tasks in Allure. Choose any method to produce the report _after_ test execution.
+Test execution and report generation are different tasks in Allure. Choose any method to generate the report _after_ test execution.
 
 **Method 1:** Generate report into temp folder and start local web server (opens browser):
 ~~~
@@ -160,7 +179,7 @@ This also invokes `maven-cucumber-reporting`.
 
 **Output:**
 
-<!-- insert demo gif -->
+TODO
 
 ### Logging
 Logs are written to a daily rolling file. Executions from the previous day are saved with a datestamp.
@@ -185,4 +204,4 @@ target/
 [INFO ] 2018-07-21 22:02:50,413 ScenarioHook.afterScenario() - END TEST -> Verify Page Title - PASSED
 ~~~
 
-[ [Back to Top](#overview) ]
+[ [Back to Top](#jcucumberng-framework) ]
