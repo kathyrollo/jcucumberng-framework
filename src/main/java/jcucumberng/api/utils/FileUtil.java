@@ -91,58 +91,58 @@ public final class FileUtil {
 	 * @throws IOException
 	 */
 	public static Object[][] convertExcelTo2DArray(String xlsxFilePath, String sheetName) throws IOException {
-
 		File xlsxFile = new File(xlsxFilePath);
 		InputStream inputStream = new FileInputStream(xlsxFile);
-		XSSFWorkbook workbook = new XSSFWorkbook(inputStream);
+		String[][] testData = null;
 
-		XSSFSheet sheet = null;
-		if (StringUtils.isBlank(sheetName)) {
-			sheet = workbook.getSheetAt(0); // Default to first sheet
-		} else {
-			sheet = workbook.getSheet(sheetName);
-		}
-
-		int totalRows = sheet.getLastRowNum(); // Remove header row
-		int totalColumns = FileUtil.getColumnCount(sheet);
-		String[][] testData = new String[totalRows][totalColumns];
-
-		int rowIndex = 0;
-		int columnIndex = 0;
-		DataFormatter dataFormatter = new DataFormatter();
-
-		// Iterate each row
-		Row row = null;
-		Cell cell = null;
-		Iterator<Row> rowIterator = sheet.iterator();
-		while (rowIterator.hasNext()) {
-			row = rowIterator.next();
-
-			// Skip first row
-			if (0 == row.getRowNum())
-				continue;
-
-			// Iterate each cell in row
-			Iterator<Cell> cellIterator = row.iterator();
-			while (cellIterator.hasNext()) {
-				cell = cellIterator.next();
-
-				// Format cell value to String
-				testData[rowIndex][columnIndex] = StringUtils.trim(dataFormatter.formatCellValue(cell));
-
-				columnIndex++;
-
-				// Reset columnIndex after complete iteration of row
-				if (totalColumns == columnIndex) {
-					columnIndex = 0;
-				}
+		try (XSSFWorkbook workbook = new XSSFWorkbook(inputStream)) {
+			XSSFSheet sheet = null;
+			if (StringUtils.isBlank(sheetName)) {
+				sheet = workbook.getSheetAt(0); // Default to first sheet
+			} else {
+				sheet = workbook.getSheet(sheetName);
 			}
 
-			rowIndex++;
-		}
+			int totalRows = sheet.getLastRowNum(); // Remove header row
+			int totalColumns = FileUtil.getColumnCount(sheet);
+			testData = new String[totalRows][totalColumns];
 
-		workbook.close();
-		inputStream.close();
+			int rowIndex = 0;
+			int columnIndex = 0;
+			DataFormatter dataFormatter = new DataFormatter();
+
+			// Iterate each row
+			Row row = null;
+			Cell cell = null;
+			Iterator<Row> rowIterator = sheet.iterator();
+			while (rowIterator.hasNext()) {
+				row = rowIterator.next();
+
+				// Skip first row
+				if (0 == row.getRowNum())
+					continue;
+
+				// Iterate each cell in row
+				Iterator<Cell> cellIterator = row.iterator();
+				while (cellIterator.hasNext()) {
+					cell = cellIterator.next();
+
+					// Format cell value to String
+					testData[rowIndex][columnIndex] = StringUtils.trim(dataFormatter.formatCellValue(cell));
+
+					columnIndex++;
+
+					// Reset columnIndex after complete iteration of row
+					if (totalColumns == columnIndex) {
+						columnIndex = 0;
+					}
+				}
+
+				rowIndex++;
+			}
+		} finally {
+			inputStream.close();
+		}
 
 		return testData;
 	}
