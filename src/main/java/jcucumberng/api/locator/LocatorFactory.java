@@ -36,7 +36,7 @@ public final class LocatorFactory {
 		String method = null;
 		String selector = null;
 		String text = null;
-		String keys[] = {};
+		String[] keys = null;
 		By[] bys = null;
 		Selenium selenium = new Selenium();
 
