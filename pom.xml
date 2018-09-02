@@ -30,7 +30,7 @@
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-server</artifactId>
-			<version>${selenium.version}</version>			
+			<version>${selenium.version}</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.paulhammant/ngwebdriver -->
 		<dependency>
@@ -145,6 +145,34 @@
 					<reportVersion>2.7.0</reportVersion>
 					<allureDownloadUrl>https://github.com/allure-framework/allure2/releases/download/2.7.0/allure-2.7.0.zip</allureDownloadUrl>
 				</configuration>
+			</plugin>
+			<!-- https://mvnrepository.com/artifact/net.masterthought/maven-cucumber-reporting -->
+			<plugin>
+				<groupId>net.masterthought</groupId>
+				<artifactId>maven-cucumber-reporting</artifactId>
+				<version>3.20.0</version>
+				<executions>
+					<execution>
+						<id>execution</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<projectName>${app.name}</projectName>
+							<outputDirectory>${project.build.directory}</outputDirectory>
+							<jsonFiles>
+								<param>**/cucumber-report.json</param>
+							</jsonFiles>
+							<classificationFiles>
+								<param>**/classifications/*.properties</param>
+							</classificationFiles>
+							<parallelTesting>false</parallelTesting>
+							<!-- Set true to fail build on test failures -->
+							<checkBuildResult>false</checkBuildResult>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
