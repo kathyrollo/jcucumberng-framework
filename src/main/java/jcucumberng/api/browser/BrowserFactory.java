@@ -19,6 +19,10 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
  */
 public final class BrowserFactory {
 
+	public enum Browser {
+		CHROME32, CHROME32_NOHEAD, FF32, FF32_NOHEAD, FF64, FF64_NOHEAD, EDGE, IE32, IE64
+	}
+
 	private static final String CHROME_DRIVER = "webdriver.chrome.driver";
 	private static final String GECKO_DRIVER = "webdriver.gecko.driver";
 	private static final String EDGE_DRIVER = "webdriver.edge.driver";
