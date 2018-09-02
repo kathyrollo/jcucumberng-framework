@@ -37,7 +37,7 @@ In fact, there is no mention of POM in [The Cucumber for Java Book](https://prag
 >
 > - Selenium WebDriver + Cucumber + POM = Not OK
 >
-> - Selenium WebDriver + Cucumber + DI = ROI (fast and simple)
+> - Selenium WebDriver + Cucumber + DI = ROI (fast, simple, and lightweight)
 
 ## The Framework
 **_jCucumberNG-Framework_** deliberately foregoes the added complexity and maintenance overhead of POM to take advantage of Cucumber's intended design - to build a library of loosely coupled steps which can be independently called anywhere. Writing new feature files means reusing and combining steps in the proper order. That's it!
