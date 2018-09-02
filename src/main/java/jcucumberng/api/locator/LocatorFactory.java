@@ -21,6 +21,11 @@ import jcucumberng.api.selenium.Selenium;
  */
 public final class LocatorFactory {
 
+	public enum Locator {
+		ID, NAME, LINK_TEXT, PARTIAL_LINK_TEXT, TAG, CLASS, CSS, XPATH, BY_ALL, BY_CHAINED, BY_ID_OR_NAME, BINDING,
+		MODEL, BUTTON_TEXT, CSS_CONTAINING_TEXT, EXACT_BINDING, EXACT_REPEATER, OPTIONS, PARTIAL_BUTTON_TEXT, REPEATER
+	}
+
 	private LocatorFactory() {
 		// Prevent instantiation
 	}
