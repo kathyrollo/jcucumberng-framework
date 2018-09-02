@@ -103,7 +103,7 @@ Visit the application under test (AUT) here: http://simplydo.com/projector/
 
 No further configurations needed at this point. The tests will run against the AUT in [headless browser](https://en.wikipedia.org/wiki/Headless_browser) mode using ChromeDriver as defined in `framework.properties`.
 
-### Test Execution
+## Test Execution
 Run the following commands in the cmdline:
 ~~~
 $ cd /path/to/workspace/
@@ -127,12 +127,19 @@ Maven performs a one-time download of all dependencies for the first run. Execut
 ~~~
 1 scenario is purposely failed to produce variance in the test reports.
 
-### Test Results
+## Test Results
 
-Artefacts are created in the `/target/` directory after the build is successful.
+HTML reports and logs are created in the `/target/` directory after the build is successful.
 
-### Reporting
-HTML reports are generated with dynamic visuals and statistics.
+### Static Reporting
+Cucumber-JVM ships with its native (boring) HTML reporter that can be found in `/target/cucumber-html-default/`. Best for debugging.
+
+**Output:**
+
+![static_report](https://user-images.githubusercontent.com/28589393/44956144-d5ac7280-aef1-11e8-80ed-ccfeb9d2aaef.png)
+
+### Dyamic Reporting (3-in-1)
+Different reporting plugins generate animated visuals and colorful graphs/charts. Impressive for demos.
 
 #### [Maven Cucumber Reporting](https://github.com/damianszczepanik/maven-cucumber-reporting)
 > This report is standalone that can be zipped and emailed to clients. Any of the HTML files can be viewed locally using the browser.
@@ -141,19 +148,13 @@ Generate report into directory: `/target/cucumber-html-reports/`
 ~~~
 mvn verify
 ~~~
-This is the same action described in the preceding section. The command executes tests and generates the report at the same time.
+This is the same task for test execution and for generating the report.
 
 **Output:**
 
-![cucumber_reporting](https://user-images.githubusercontent.com/28589393/43090686-acbd9c00-8eda-11e8-9c08-d74c1a86e03b.gif)
+![maven_cucumber_reporting](https://user-images.githubusercontent.com/28589393/44955736-de4d7a80-aeea-11e8-803c-1dced0499fda.gif)
 
 #### [Cucumber Extent Reporter](https://github.com/email2vimalraj/CucumberExtentReporter)
-> This report is standalone that can be zipped and emailed to clients. Any of the HTML files can be viewed locally using the browser.
-
-TODO
-
-**Output:**
-
 TODO
 
 #### [Allure Test Report](https://github.com/allure-framework)
@@ -175,14 +176,14 @@ Alternatively, test execution and report generation can be combined in one comma
 ~~~
 mvn verify allure:serve
 ~~~
-This also invokes `maven-cucumber-reporting`.
+This also invokes all reporting plugins.
 
 **Output:**
 
-TODO
+![allure_report](https://user-images.githubusercontent.com/28589393/44955862-e8707880-aeec-11e8-9b07-daaa3708c02e.gif)
 
 ### Logging
-Logs are written to a daily rolling file. Executions from the previous day are saved with a datestamp.
+Logs are written to a daily rolling file. Executions from the previous day are saved with a datestamp. Best used for debugging.
 
 **Directory:**
 ~~~
