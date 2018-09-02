@@ -14,6 +14,10 @@ import org.apache.commons.lang3.StringUtils;
  */
 public final class PropsLoader {
 
+	private static final String USER_DIR = "user.dir";
+	private static final String RESOURCES_DIR = "/src/main/resources/";
+	private static final String NO_SUCH_KEY = "Key not found in ";
+
 	private PropsLoader() {
 		throw new IllegalStateException("Class must not be instantiated.");
 	}
@@ -30,8 +34,8 @@ public final class PropsLoader {
 	public static String frameworkConf(String key) throws IOException {
 		String propsFileName = "framework.properties";
 		StringBuilder builder = new StringBuilder();
-		builder.append(StringUtils.replace(System.getProperty("user.dir"), "\\", "/"));
-		builder.append("/src/main/resources/");
+		builder.append(StringUtils.replace(System.getProperty(USER_DIR), "\\", "/"));
+		builder.append(RESOURCES_DIR);
 		builder.append(propsFileName);
 
 		InputStream inputStream = new FileInputStream(builder.toString());
@@ -42,7 +46,7 @@ public final class PropsLoader {
 		if (StringUtils.isBlank(value)) {
 			builder.setLength(0);
 			builder.append(propsFileName + ": " + key);
-			throw new NoSuchKeyException("Key not found in " + builder.toString());
+			throw new NoSuchKeyException(NO_SUCH_KEY + builder.toString());
 		}
 
 		return StringUtils.trim(value);
@@ -60,8 +64,8 @@ public final class PropsLoader {
 	public static String projectConf(String key) throws IOException {
 		String propsFileName = "project.properties";
 		StringBuilder builder = new StringBuilder();
-		builder.append(StringUtils.replace(System.getProperty("user.dir"), "\\", "/"));
-		builder.append("/src/main/resources/");
+		builder.append(StringUtils.replace(System.getProperty(USER_DIR), "\\", "/"));
+		builder.append(RESOURCES_DIR);
 		builder.append(propsFileName);
 
 		InputStream inputStream = new FileInputStream(builder.toString());
@@ -72,7 +76,7 @@ public final class PropsLoader {
 		if (StringUtils.isBlank(value)) {
 			builder.setLength(0);
 			builder.append(propsFileName + ": " + key);
-			throw new NoSuchKeyException("Key not found in " + builder.toString());
+			throw new NoSuchKeyException(NO_SUCH_KEY + builder.toString());
 		}
 
 		return StringUtils.trim(value);
@@ -90,8 +94,8 @@ public final class PropsLoader {
 	public static String uiMap(String key) throws IOException {
 		String propsFileName = "ui-map.properties";
 		StringBuilder builder = new StringBuilder();
-		builder.append(StringUtils.replace(System.getProperty("user.dir"), "\\", "/"));
-		builder.append("/src/main/resources/");
+		builder.append(StringUtils.replace(System.getProperty(USER_DIR), "\\", "/"));
+		builder.append(RESOURCES_DIR);
 		builder.append(propsFileName);
 
 		InputStream inputStream = new FileInputStream(builder.toString());
@@ -102,7 +106,7 @@ public final class PropsLoader {
 		if (StringUtils.isBlank(value)) {
 			builder.setLength(0);
 			builder.append(propsFileName + ": " + key);
-			throw new NoSuchKeyException("Key not found in " + builder.toString());
+			throw new NoSuchKeyException(NO_SUCH_KEY + builder.toString());
 		}
 
 		return StringUtils.trim(value);
