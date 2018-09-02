@@ -19,8 +19,24 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
  */
 public final class BrowserFactory {
 
+	public enum Browser {
+		CHROME32, CHROME32_NOHEAD, FF32, FF32_NOHEAD, FF64, FF64_NOHEAD, EDGE, IE32, IE64
+	}
+
+	private static final String CHROME_DRIVER = "webdriver.chrome.driver";
+	private static final String GECKO_DRIVER = "webdriver.gecko.driver";
+	private static final String EDGE_DRIVER = "webdriver.edge.driver";
+	private static final String IE_DRIVER = "webdriver.ie.driver";
+
+	private static final String CHROME32_BIN = "chromedriver_win32.exe";
+	private static final String FF32_BIN = "geckodriver_win32.exe";
+	private static final String FF64_BIN = "geckodriver_win64.exe";
+	private static final String EDGE_BIN = "MicrosoftWebDriver.exe";
+	private static final String IE32_BIN = "IEDriverServer_win32.exe";
+	private static final String IE64_BIN = "IEDriverServer_win64.exe";
+
 	private BrowserFactory() {
-		// Prevent instantiation
+		throw new IllegalStateException("Class must not be instantiated.");
 	}
 
 	/**
@@ -42,39 +58,39 @@ public final class BrowserFactory {
 			Browser browser = Browser.valueOf(StringUtils.upperCase(browserConfig));
 			switch (browser) {
 			case CHROME32:
-				System.setProperty("webdriver.chrome.driver", driverPath + "chromedriver_win32.exe");
+				System.setProperty(CHROME_DRIVER, driverPath + CHROME32_BIN);
 				driver = new ChromeDriver();
 				break;
 			case CHROME32_NOHEAD:
-				System.setProperty("webdriver.chrome.driver", driverPath + "chromedriver_win32.exe");
+				System.setProperty(CHROME_DRIVER, driverPath + CHROME32_BIN);
 				ChromeOptions chromeOpts = new ChromeOptions();
 				chromeOpts.addArguments("--headless");
 				driver = new ChromeDriver(chromeOpts);
 				break;
 			case FF32:
-				System.setProperty("webdriver.gecko.driver", driverPath + "geckodriver_win32.exe");
+				System.setProperty(GECKO_DRIVER, driverPath + FF32_BIN);
 				driver = new FirefoxDriver();
 				break;
 			case FF32_NOHEAD:
-				driver = BrowserFactory.initFirefoxNoHead(driverPath, "geckodriver_win32.exe");
+				driver = BrowserFactory.initFirefoxNoHead(driverPath, FF32_BIN);
 				break;
 			case FF64:
-				System.setProperty("webdriver.gecko.driver", driverPath + "geckodriver_win64.exe");
+				System.setProperty(GECKO_DRIVER, driverPath + FF64_BIN);
 				driver = new FirefoxDriver();
 				break;
 			case FF64_NOHEAD:
-				driver = BrowserFactory.initFirefoxNoHead(driverPath, "geckodriver_win64.exe");
+				driver = BrowserFactory.initFirefoxNoHead(driverPath, FF64_BIN);
 				break;
 			case EDGE:
-				System.setProperty("webdriver.edge.driver", driverPath + "MicrosoftWebDriver.exe");
+				System.setProperty(EDGE_DRIVER, driverPath + EDGE_BIN);
 				driver = new EdgeDriver();
 				break;
 			case IE32:
-				System.setProperty("webdriver.ie.driver", driverPath + "IEDriverServer_win32.exe");
+				System.setProperty(IE_DRIVER, driverPath + IE32_BIN);
 				driver = new InternetExplorerDriver();
 				break;
 			case IE64:
-				System.setProperty("webdriver.ie.driver", driverPath + "IEDriverServer_win64.exe");
+				System.setProperty(IE_DRIVER, driverPath + IE64_BIN);
 				driver = new InternetExplorerDriver();
 				break;
 			default:
@@ -94,7 +110,7 @@ public final class BrowserFactory {
 
 	private static WebDriver initFirefoxNoHead(String driverPath, String driverBinary) {
 		WebDriver driver = null;
-		System.setProperty("webdriver.gecko.driver", driverPath + driverBinary);
+		System.setProperty(GECKO_DRIVER, driverPath + driverBinary);
 		FirefoxBinary ffBin = new FirefoxBinary();
 		ffBin.addCommandLineOptions("--headless");
 		FirefoxOptions ffOpts = new FirefoxOptions();
