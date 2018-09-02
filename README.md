@@ -2,7 +2,7 @@
 Allows automation testers to write feature/gherkin files for Cucumber and implement step definitions in basic Java classes. ngWebDriver (Protractor) offers extended support for Angular/JS web applications.
 
 ## Write Tests, Not Page Objects
-[ [Skip](#the-framework) ]
+[ [Jump to Getting Started](#getting-started) ]
 
 ### An Analogy
 Like arithmetic, there are many ways to arrive to the same answer. Some longer, some shorter.
