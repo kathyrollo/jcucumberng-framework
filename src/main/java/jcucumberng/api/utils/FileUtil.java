@@ -69,13 +69,14 @@ public final class FileUtil {
 		PdfReader pdfReader = new PdfReader(PropsLoader.frameworkConf("pdf.file.path"));
 		int pages = pdfReader.getNumberOfPages();
 
-		String pdfText = "";
+		StringBuilder builder = new StringBuilder();
+		// Page number cannot be 0 or will throw NPE
 		for (int ctr = 1; ctr < pages + 1; ctr++) {
-			pdfText += PdfTextExtractor.getTextFromPage(pdfReader, ctr); // Page number cannot be 0 or will throw NPE
+			builder.append(PdfTextExtractor.getTextFromPage(pdfReader, ctr));
 		}
 
 		pdfReader.close();
-		return pdfText;
+		return builder.toString();
 	}
 
 	/**
