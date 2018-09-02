@@ -168,7 +168,7 @@
 								<param>**/classifications/*.properties</param>
 							</classificationFiles>
 							<parallelTesting>false</parallelTesting>
-							<!-- Set to true to fail build on test failures -->
+							<!-- Set true to fail build on test failures -->
 							<checkBuildResult>false</checkBuildResult>
 						</configuration>
 					</execution>
