@@ -29,7 +29,7 @@ public class NetIncomeProjectorSteps {
 	@When("I Enter My Start Balance: {word}")
 	public void I_Enter_My_Start_Balance(String startBalance) throws Throwable {
 		selenium.type(startBalance, "start.balance");
-		LOGGER.debug("Start Balance=" + startBalance);
+		LOGGER.debug("Start Balance={}", startBalance);
 		selenium.scrollToElement(selenium.getVisibleElements("div.boxes").get(0));
 	}
 
@@ -67,7 +67,7 @@ public class NetIncomeProjectorSteps {
 		WebElement netPerMonth = selenium.getVisibleElement("net.per.month");
 		String actual = netPerMonth.getText();
 		Assertions.assertThat(actual).isEqualTo(expected);
-		LOGGER.debug("Net Per Month=" + actual);
+		LOGGER.debug("Net Per Month={}", actual);
 		selenium.scrollToElement(netPerMonth);
 	}
 
@@ -76,7 +76,7 @@ public class NetIncomeProjectorSteps {
 		WebElement netPerYear = selenium.getVisibleElement("net.per.year");
 		String actual = netPerYear.getText();
 		Assertions.assertThat(actual).isEqualTo(expected);
-		LOGGER.debug("Net Per Year=" + actual);
+		LOGGER.debug("Net Per Year={}", actual);
 		selenium.scrollToElement(netPerYear);
 	}
 

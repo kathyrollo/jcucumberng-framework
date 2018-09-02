@@ -23,7 +23,7 @@ public class ScenarioHook {
 
 	@Before
 	public void beforeScenario(Scenario scenario) throws Throwable {
-		LOGGER.info("BEGIN TEST -> " + scenario.getName());
+		LOGGER.info("BEGIN TEST -> {}", scenario.getName());
 
 		String browserConfig = PropsLoader.frameworkConf("browser");
 		WebDriver driver = BrowserFactory.getInstance(browserConfig);
@@ -31,13 +31,13 @@ public class ScenarioHook {
 			NgWebDriver ngWebDriver = new NgWebDriver((JavascriptExecutor) driver);
 			ngWebDriver.waitForAngularRequestsToFinish();
 		}
-		LOGGER.info("Browser=" + browserConfig);
+		LOGGER.info("Browser={}", browserConfig);
 
 		selenium = new Selenium(driver, scenario);
 
 		Dimension dimension = SystemUtil.getDimension();
 		selenium.getDriver().manage().window().setSize(dimension);
-		LOGGER.info("Screen Resolution (WxH)=" + dimension.getWidth() + "x" + dimension.getHeight());
+		LOGGER.info("Screen Resolution (WxH)={}x{}", dimension.getWidth(), dimension.getHeight());
 	}
 
 	@After
@@ -47,7 +47,7 @@ public class ScenarioHook {
 				selenium.embedScreenshot();
 			}
 		}
-		LOGGER.info("END TEST -> " + selenium.getScenario().getName() + " - " + selenium.getScenario().getStatus());
+		LOGGER.info("END TEST -> {} - {}", selenium.getScenario().getName(), selenium.getScenario().getStatus());
 		selenium.getDriver().quit();
 	}
 
