@@ -114,7 +114,7 @@ $ cd jcucumberng-framework/
 $ mvn verify
 ~~~
 
-Maven performs a one-time download of all dependencies for the first run. Execute `mvn verify` again after the downloads complete to begin test execution.
+Maven performs a one-time download of all dependencies for the first run. If needed, execute `mvn verify` again after the downloads complete to begin test execution.
 
 ![mvn_verify](https://user-images.githubusercontent.com/28589393/44947067-ec8f8e00-ae39-11e8-988f-7959cd780427.gif)
 
@@ -123,10 +123,28 @@ Test artefacts are created in the `/target/` directory after the build is succes
 ### Reporting
 HTML reports are generated with dynamic visuals and statistics.
 
-#### [Allure Test Report](https://github.com/allure-framework)
-Choose a method to produce the report.
+#### [Maven Cucumber Reporting](https://github.com/damianszczepanik/maven-cucumber-reporting)
+> This report is standalone that can be zipped and emailed to clients. Any of the HTML files can be viewed locally using the browser.
 
-**Method 1:** Generate report into temp folder and start web server (opens browser):
+Generate report into directory: `/target/cucumber-html-reports/`
+~~~
+mvn verify
+~~~
+This is the same action described in the preceding section. The command executes tests and generates the report at the same time.
+
+**Output:**
+
+![cucumber_reporting](https://user-images.githubusercontent.com/28589393/43090686-acbd9c00-8eda-11e8-9c08-d74c1a86e03b.gif)
+
+#### [Cucumber Extent Reporter](https://github.com/email2vimalraj/CucumberExtentReporter)
+TODO
+
+#### [Allure Test Report](https://github.com/allure-framework)
+> This report is a single page application (SPA). Dynamic attributes use AJAX and need to be launched from a [running web server](https://github.com/allure-framework/allure1/issues/896#issuecomment-271599716) to view.
+
+Test execution and report generation are different tasks in Allure. Choose any method to produce the report _after_ test execution.
+
+**Method 1:** Generate report into temp folder and start local web server (opens browser):
 ~~~
 mvn allure:serve
 ~~~
@@ -136,17 +154,15 @@ mvn allure:serve
 mvn allure:report
 ~~~
 
-Alternatively, test execution and report generation can be combined:
+Alternatively, test execution and report generation can be combined in one command:
 ~~~
 mvn verify allure:serve
 ~~~
+This also invokes `maven-cucumber-reporting`.
 
 **Output:**
 
 <!-- insert demo gif -->
-
-#### [Cucumber Extent Reporter](https://github.com/email2vimalraj/CucumberExtentReporter)
-TODO
 
 ### Logging
 Logs are written to a daily rolling file. Executions from the previous day are saved with a datestamp.
