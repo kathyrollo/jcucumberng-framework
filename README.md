@@ -93,17 +93,19 @@ No need to plow through **76** page objects. Based on a true story.
 
 ## Prerequisites
 - [JDK 1.8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) or higher
-- [Eclipse IDE](http://www.eclipse.org/downloads/eclipse-packages/) / [VSCode](https://code.visualstudio.com/download) / [IntelliJ](https://www.jetbrains.com/idea/download/#section=windows)
+- [Eclipse IDE](http://www.eclipse.org/downloads/eclipse-packages/) / [VSCode](https://code.visualstudio.com/download) / [IntelliJ](https://www.jetbrains.com/idea/download/#section=windows) (install relevant Cucumber/Gherkin plugins)
 - [Git](https://git-scm.com/downloads)
 - [Maven](https://maven.apache.org/download.cgi)
-- [Cmder](http://cmder.net/) (recommended, includes Git for Windows)
+- [Cmder](http://cmder.net/) (optional, includes Git for Windows)
 
 ## Getting Started
 Visit the application under test (AUT) here: http://simplydo.com/projector/
 
 No further configurations needed at this point. The tests will run against the AUT in [headless browser](https://en.wikipedia.org/wiki/Headless_browser) mode using ChromeDriver as defined in `framework.properties`.
 
-Run the following in the cmdline:
+**To run the tests:**
+
+Git Bash or Cmder is recommended.
 ~~~
 $ cd /path/to/workspace/
 $ git clone <repo-url>
@@ -159,7 +161,7 @@ TODO
 #### [Allure Test Report](https://github.com/allure-framework)
 > This report is a single page application (SPA). Dynamic attributes use AJAX and need to be launched from a [running web server](https://github.com/allure-framework/allure1/issues/896#issuecomment-271599716) to view.
 
-In Allure, test execution and report generation are different tasks. Choose any method to generate the report _after_ test execution.
+In Allure, test execution and report generation are different tasks. Choose any method to generate the report _after_ running the tests.
 
 **Method 1:** Generate report into temp folder and start local web server (opens browser):
 ~~~
@@ -179,7 +181,7 @@ This also invokes all reporting plugins.
 
 **Output:**
 
-![allure_report](https://user-images.githubusercontent.com/28589393/44955862-e8707880-aeec-11e8-9b07-daaa3708c02e.gif)
+![allure_report](https://user-images.githubusercontent.com/28589393/44995297-0913fd80-afd5-11e8-9519-850218d84e1e.gif)
 
 ### Logging
 Logs are written to a daily rolling file. Executions from the previous day are saved with a datestamp. Best for debugging.
