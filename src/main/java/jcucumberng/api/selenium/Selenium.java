@@ -46,7 +46,7 @@ public final class Selenium {
 	}
 
 	/**
-	 * Returns the {@code By} object based on the {@code method} and
+	 * Returns the {@code By} object based on the {@code locator} and
 	 * {@code selector} delimited by a colon ({@code :}) from
 	 * {@code ui-map.properties}.<br>
 	 * <br>
@@ -58,7 +58,7 @@ public final class Selenium {
 	 * income.add=css:button[ng-click='addIncome();']
 	 * 
 	 * Where:
-	 * method = css
+	 * locator = css
 	 * selector = button[ng-click='addIncome();']
 	 * 
 	 * Therefore:

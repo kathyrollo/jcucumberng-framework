@@ -145,7 +145,7 @@ public final class LocatorFactory {
 			if (StringUtils.isBlank(method)) {
 				method = "BLANK";
 			}
-			throw new UnsupportedLocatorException("Unsupported method specified in ui-map.properties: " + method);
+			throw new UnsupportedLocatorException("Unsupported locator specified in ui-map.properties: " + method);
 		}
 
 		return by;
