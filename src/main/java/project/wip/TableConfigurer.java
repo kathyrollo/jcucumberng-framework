@@ -11,7 +11,7 @@ import project.domain.Transaction;
 
 /**
  * Maps DataTable with label column in feature file to a single object of
- * Type&lt;T&gt;. Left column is field name, right column is value.<br>
+ * Type{@literal <T>}. Left column is field name, right column is value.<br>
  * <br>
  * Need fix for Issue <a href="https://bit.ly/2NSqn93">{@literal #1426}</a>.
  */

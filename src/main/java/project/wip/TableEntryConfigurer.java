@@ -11,7 +11,7 @@ import project.domain.Transaction;
 
 /**
  * Maps DataTable with header row in feature file to multiple objects of
- * Type&lt;T&gt;. Each row below the header is an object.<br>
+ * Type{@literal <T>}. Each row below the header is an object.<br>
  * <br>
  * Need fix for Issue <a href="https://bit.ly/2NSqn93">{@literal #1426}</a>.
  */
