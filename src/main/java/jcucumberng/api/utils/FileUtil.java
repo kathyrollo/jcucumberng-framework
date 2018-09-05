@@ -21,7 +21,7 @@ import jcucumberng.api.props.PropsLoader;
 /**
  * {@code FileUtil} handles actions for manipulating files or documents.
  * 
- * @author Kat Rollo &lt;rollo.katherine@gmail.com&gt;
+ * @author Kat Rollo {@literal <rollo.katherine@gmail.com>}
  */
 public final class FileUtil {
 

@@ -17,7 +17,7 @@ import jcucumberng.api.selenium.Selenium;
  * {@code LocatorFactory} handles actions for creating the Selenium {@code By}
  * object.
  * 
- * @author Kat Rollo &lt;rollo.katherine@gmail.com&gt;
+ * @author Kat Rollo {@literal <rollo.katherine@gmail.com>}
  */
 public final class LocatorFactory {
 

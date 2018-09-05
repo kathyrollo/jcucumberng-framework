@@ -3,7 +3,7 @@ package jcucumberng.api.utils;
 /**
  * {@code TimeUtil} handles actions for manipulating time.
  * 
- * @author Kat Rollo &lt;rollo.katherine@gmail.com&gt;
+ * @author Kat Rollo {@literal <rollo.katherine@gmail.com>}
  */
 public final class TimeUtil {
 

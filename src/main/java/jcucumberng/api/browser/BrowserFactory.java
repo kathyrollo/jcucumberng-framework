@@ -17,7 +17,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
  * {@code BrowserFactory} handles actions for instantiating the Selenium
  * WebDriver.
  * 
- * @author Kat Rollo &lt;rollo.katherine@gmail.com&gt;
+ * @author Kat Rollo {@literal <rollo.katherine@gmail.com>}
  */
 public final class BrowserFactory {
 

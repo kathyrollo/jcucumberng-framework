@@ -27,7 +27,7 @@ import jcucumberng.api.props.PropsLoader;
  * {@code Selenium} handles actions for interacting with web applications using
  * the Selenium WebDriver.
  * 
- * @author Kat Rollo &lt;rollo.katherine@gmail.com&gt;
+ * @author Kat Rollo {@literal <rollo.katherine@gmail.com>}
  */
 public final class Selenium {
 

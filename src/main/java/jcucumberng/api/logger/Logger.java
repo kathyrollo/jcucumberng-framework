@@ -10,7 +10,7 @@ import jcucumberng.api.props.PropsLoader;
 /**
  * {@code Logger} handles the logging mechanism of the framework.
  * 
- * @author Kat Rollo &lt;rollo.katherine@gmail.com&gt;
+ * @author Kat Rollo {@literal <rollo.katherine@gmail.com>}
  */
 public final class Logger {
 

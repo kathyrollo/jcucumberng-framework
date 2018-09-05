@@ -4,7 +4,7 @@ package jcucumberng.api.props;
  * {@code NoSuchKeyException} is thrown when the expected key is not found in a
  * {@code .properties} file.
  * 
- * @author Kat Rollo &lt;rollo.katherine@gmail.com&gt;
+ * @author Kat Rollo {@literal <rollo.katherine@gmail.com>}
  */
 @SuppressWarnings("serial")
 public class NoSuchKeyException extends RuntimeException {
