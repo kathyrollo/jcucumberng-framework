@@ -79,8 +79,9 @@ No need to plow through **76** page objects. Based on a true story.
 
 ## Features
 - [Selenium WebDriver 3](https://www.seleniumhq.org/) for browser automation
-- [Cucumber-JVM 3](https://github.com/cucumber/cucumber-jvm) for behavior-driven testing
+- [WebDriverManager](https://github.com/bonigarcia/webdrivermanager) for automatic management of webdriver binaries
 - [ngWebDriver](https://github.com/paul-hammant/ngWebDriver) (Protractor) for Angular/JS support
+- [Cucumber-JVM 3](https://github.com/cucumber/cucumber-jvm) for behavior-driven testing
 - [PicoContainer](http://picocontainer.com/) for DI module
 - [AssertJ](http://joel-costigliola.github.io/assertj/) for fluent assertions
 - [Maven](https://maven.apache.org/) for dependency management and build execution

@@ -27,7 +27,7 @@ import jcucumberng.api.props.PropsLoader;
  * {@code Selenium} handles actions for interacting with web applications using
  * the Selenium WebDriver.
  * 
- * @author Kat Rollo &lt;rollo.katherine@gmail.com&gt;
+ * @author Kat Rollo {@literal <rollo.katherine@gmail.com>}
  */
 public final class Selenium {
 
@@ -46,7 +46,7 @@ public final class Selenium {
 	}
 
 	/**
-	 * Returns the {@code By} object based on the {@code method} and
+	 * Returns the {@code By} object based on the {@code locator} and
 	 * {@code selector} delimited by a colon ({@code :}) from
 	 * {@code ui-map.properties}.<br>
 	 * <br>
@@ -58,7 +58,7 @@ public final class Selenium {
 	 * income.add=css:button[ng-click='addIncome();']
 	 * 
 	 * Where:
-	 * method = css
+	 * locator = css
 	 * selector = button[ng-click='addIncome();']
 	 * 
 	 * Therefore:
