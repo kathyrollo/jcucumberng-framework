@@ -57,14 +57,14 @@ public final class BrowserFactory {
 				driver = new FirefoxDriver();
 				break;
 			case FF32_NOHEAD:
-				driver = BrowserFactory.initFirefoxNoHead(32);
+				driver = BrowserFactory.firefoxnohead(32);
 				break;
 			case FF64:
 				WebDriverManager.firefoxdriver().arch64().setup();
 				driver = new FirefoxDriver();
 				break;
 			case FF64_NOHEAD:
-				driver = BrowserFactory.initFirefoxNoHead(64);
+				driver = BrowserFactory.firefoxnohead(64);
 				break;
 			case EDGE:
 				WebDriverManager.edgedriver().setup();
@@ -93,7 +93,7 @@ public final class BrowserFactory {
 		return driver;
 	}
 
-	private static WebDriver initFirefoxNoHead(int arch) {
+	private static WebDriver firefoxnohead(int arch) {
 		if (32 == arch) {
 			WebDriverManager.firefoxdriver().arch32().setup();
 		}
