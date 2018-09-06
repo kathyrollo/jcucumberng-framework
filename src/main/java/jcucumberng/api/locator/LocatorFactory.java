@@ -38,7 +38,7 @@ public final class LocatorFactory {
 	 * @throws IOException
 	 */
 	public static By getInstance(String key) throws IOException {
-		String method = null;
+		String loc = null;
 		String selector = null;
 		String text = null;
 		String[] keys = null;
@@ -53,7 +53,7 @@ public final class LocatorFactory {
 			throw new InvalidPatternException("Does not match expected pattern in ui-map.properties: " + value);
 		}
 
-		method = StringUtils.substringBefore(value, ":");
+		loc = StringUtils.substringBefore(value, ":");
 
 		selector = StringUtils.substringAfter(value, ":");
 		if (StringUtils.contains(selector, "|")) {
@@ -75,7 +75,7 @@ public final class LocatorFactory {
 
 		By by = null;
 		try {
-			Locator locator = Locator.valueOf(StringUtils.upperCase(method));
+			Locator locator = Locator.valueOf(StringUtils.upperCase(loc));
 			switch (locator) {
 			case ID:
 				by = By.id(selector);
@@ -142,10 +142,10 @@ public final class LocatorFactory {
 				break;
 			}
 		} catch (IllegalArgumentException | NullPointerException e) {
-			if (StringUtils.isBlank(method)) {
-				method = "BLANK";
+			if (StringUtils.isBlank(loc)) {
+				loc = "BLANK";
 			}
-			throw new UnsupportedLocatorException("Unsupported locator specified in ui-map.properties: " + method);
+			throw new UnsupportedLocatorException("Unsupported locator specified in ui-map.properties: " + loc);
 		}
 
 		return by;
