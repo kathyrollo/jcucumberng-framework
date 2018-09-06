@@ -10,7 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 /**
  * {@code PropsLoader} handles actions for reading {@code .properties} files.
  * 
- * @author Kat Rollo &lt;rollo.katherine@gmail.com&gt;
+ * @author Kat Rollo {@literal <rollo.katherine@gmail.com>}
  */
 public final class PropsLoader {
 

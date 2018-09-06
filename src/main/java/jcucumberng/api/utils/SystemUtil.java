@@ -13,7 +13,7 @@ import jcucumberng.api.props.PropsLoader;
  * {@code SystemUtil} handles actions relating to the user's machine such as
  * input and output devices.
  * 
- * @author Kat Rollo &lt;rollo.katherine@gmail.com&gt;
+ * @author Kat Rollo {@literal <rollo.katherine@gmail.com>}
  */
 public final class SystemUtil {
 
