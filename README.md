@@ -1,9 +1,15 @@
 # jCucumberNG-Framework
 Allows automation testers to write feature/gherkin files for Cucumber and implement step definitions in basic Java classes. ngWebDriver (Protractor) offers extended support for Angular/JS web applications.
 
-## Write Tests, Not Page Objects
-[ [Jump to Getting Started](#getting-started) ]
+### Table of Contents
+1. [Write Tests, Not Page Objects](#write-tests-not-page-objects)
+2. [How It Works](#how-it-works)
+3. [Features](#features)
+4. [Prerequisites](#prerequisites)
+5. [Running Tests](#running-tests)
+6. [Checking Results](#checking-results)
 
+## Write Tests, Not Page Objects
 ### An Analogy
 Like arithmetic, there are many ways to arrive to the same answer. Some longer, some shorter.
 
@@ -39,8 +45,10 @@ In fact, there is no mention of POM in [The Cucumber for Java Book](https://prag
 >
 > - Selenium WebDriver + Cucumber + DI = ROI (fast, simple, and lightweight)
 
-## The Framework
+### The Framework
 **_jCucumberNG-Framework_** deliberately foregoes the added complexity and maintenance overhead of POM to take advantage of Cucumber's intended design - to build a library of loosely coupled steps which can be independently called anywhere. Writing new feature files means reusing and combining steps in the proper order. That's it!
+
+[ [Back](#table-of-contents) ]
 
 ## How It Works
 The code below shows writing test scripts directly into step definitions because why not?
@@ -77,6 +85,8 @@ public void I_Should_See_Net_Income_Per_Month(String expected) throws Throwable 
 
 No need to plow through **76** page objects. Based on a true story.
 
+[ [Back](#table-of-contents) ]
+
 ## Features
 - [Selenium WebDriver 3](https://www.seleniumhq.org/) for browser automation
 - [WebDriverManager](https://github.com/bonigarcia/webdrivermanager) for automatic management of webdriver binaries
@@ -92,6 +102,8 @@ No need to plow through **76** page objects. Based on a true story.
 - Test result generation in HTML, JSON, XML
 - Embedded screenshots on generated HTML reports
 
+[ [Back](#table-of-contents) ]
+
 ## Prerequisites
 - [JDK 1.8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) or higher
 - [Eclipse IDE](http://www.eclipse.org/downloads/eclipse-packages/) / [VSCode](https://code.visualstudio.com/download) / [IntelliJ](https://www.jetbrains.com/idea/download/#section=windows) (install relevant Cucumber/Gherkin plugins)
@@ -99,7 +111,9 @@ No need to plow through **76** page objects. Based on a true story.
 - [Maven](https://maven.apache.org/download.cgi)
 - [Cmder](http://cmder.net/) (optional, includes Git for Windows)
 
-## Getting Started
+[ [Back](#table-of-contents) ]
+
+## Running Tests
 Visit the application under test (AUT) here: http://simplydo.com/projector/
 
 No further configurations needed at this point. The tests will run against the AUT in [headless browser](https://en.wikipedia.org/wiki/Headless_browser) mode using ChromeDriver as defined in `framework.properties`.
@@ -129,8 +143,9 @@ Maven performs a one-time download of all dependencies. Execute `mvn verify` aga
 ~~~
 1 scenario is purposely failed to produce variance in the test reports.
 
-## Checking Results
+[ [Back](#table-of-contents) ]
 
+## Checking Results
 HTML reports and logs are created in the `/target/` directory after the build is successful.
 
 ### Static Reporting
@@ -207,4 +222,4 @@ target/
 [INFO ] 2018-07-21 22:02:50,413 ScenarioHook.afterScenario() - END TEST -> Verify Page Title - PASSED
 ~~~
 
-[ [Back to Top](#jcucumberng-framework) ]
+[ [Back](#table-of-contents) ]
