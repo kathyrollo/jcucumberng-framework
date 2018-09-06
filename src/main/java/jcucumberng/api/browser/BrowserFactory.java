@@ -32,15 +32,15 @@ public final class BrowserFactory {
 	/**
 	 * Gets the Selenium WebDriver instance.
 	 * 
-	 * @param browserConfig the {@code browser} specified in
-	 *                      {@code framework.properties}
+	 * @param webBrowser the {@code web.browser} specified in
+	 *                   {@code framework.properties}
 	 * @return WebDriver - the Selenium WebDriver
 	 */
-	public static WebDriver getInstance(String browserConfig) {
+	public static WebDriver getInstance(String webBrowser) {
 		WebDriver driver = null;
 
 		try {
-			Browser browser = Browser.valueOf(StringUtils.upperCase(browserConfig));
+			Browser browser = Browser.valueOf(StringUtils.upperCase(webBrowser));
 			switch (browser) {
 			case CHROME32:
 				WebDriverManager.chromedriver().arch32().setup();
@@ -83,11 +83,11 @@ public final class BrowserFactory {
 				break;
 			}
 		} catch (IllegalArgumentException | NullPointerException e) {
-			if (StringUtils.isBlank(browserConfig)) {
-				browserConfig = "BLANK";
+			if (StringUtils.isBlank(webBrowser)) {
+				webBrowser = "BLANK";
 			}
 			throw new UnsupportedBrowserException(
-					"Unsupported browser specified in framework.properties: " + browserConfig);
+					"Unsupported browser specified in framework.properties: " + webBrowser);
 		}
 
 		return driver;
