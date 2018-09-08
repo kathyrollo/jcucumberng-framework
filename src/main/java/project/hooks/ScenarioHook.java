@@ -42,9 +42,11 @@ public class ScenarioHook {
 
 	@After
 	public void afterScenario() throws Throwable {
-		if (Boolean.parseBoolean(PropsLoader.frameworkConf("screenshot.on.fail"))) {
-			if (selenium.getScenario().isFailed()) {
-				selenium.embedScreenshot();
+		if (!Boolean.parseBoolean(PropsLoader.frameworkConf("screenshot.off"))) {
+			if (Boolean.parseBoolean(PropsLoader.frameworkConf("screenshot.on.fail"))) {
+				if (selenium.getScenario().isFailed()) {
+					selenium.embedScreenshot();
+				}
 			}
 		}
 		LOGGER.info("END TEST -> {} - {}", selenium.getScenario().getName(), selenium.getScenario().getStatus());

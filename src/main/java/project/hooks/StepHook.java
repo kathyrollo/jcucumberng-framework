@@ -15,8 +15,10 @@ public class StepHook {
 
 	@AfterStep
 	public void afterStep() throws Throwable {
-		if (!Boolean.parseBoolean(PropsLoader.frameworkConf("screenshot.on.fail"))) {
-			selenium.embedScreenshot();
+		if (!Boolean.parseBoolean(PropsLoader.frameworkConf("screenshot.off"))) {
+			if (!Boolean.parseBoolean(PropsLoader.frameworkConf("screenshot.on.fail"))) {
+				selenium.embedScreenshot();
+			}
 		}
 	}
 
