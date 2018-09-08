@@ -32,15 +32,15 @@ public final class BrowserFactory {
 	/**
 	 * Gets the Selenium WebDriver instance.
 	 * 
-	 * @param browserConfig the {@code browser} specified in
-	 *                      {@code framework.properties}
+	 * @param webBrowser the {@code web.browser} specified in
+	 *                   {@code framework.properties}
 	 * @return WebDriver - the Selenium WebDriver
 	 */
-	public static WebDriver getInstance(String browserConfig) {
+	public static WebDriver getInstance(String webBrowser) {
 		WebDriver driver = null;
 
 		try {
-			Browser browser = Browser.valueOf(StringUtils.upperCase(browserConfig));
+			Browser browser = Browser.valueOf(StringUtils.upperCase(webBrowser));
 			switch (browser) {
 			case CHROME32:
 				WebDriverManager.chromedriver().arch32().setup();
@@ -53,18 +53,16 @@ public final class BrowserFactory {
 				driver = new ChromeDriver(chromeOpts);
 				break;
 			case FF32:
-				WebDriverManager.firefoxdriver().arch32().setup();
-				driver = new FirefoxDriver();
+				driver = BrowserFactory.firefoxdriver(32, false);
 				break;
 			case FF32_NOHEAD:
-				driver = BrowserFactory.initFirefoxNoHead(32);
+				driver = BrowserFactory.firefoxdriver(32, true);
 				break;
 			case FF64:
-				WebDriverManager.firefoxdriver().arch64().setup();
-				driver = new FirefoxDriver();
+				driver = BrowserFactory.firefoxdriver(64, false);
 				break;
 			case FF64_NOHEAD:
-				driver = BrowserFactory.initFirefoxNoHead(64);
+				driver = BrowserFactory.firefoxdriver(64, true);
 				break;
 			case EDGE:
 				WebDriverManager.edgedriver().setup();
@@ -83,29 +81,43 @@ public final class BrowserFactory {
 				break;
 			}
 		} catch (IllegalArgumentException | NullPointerException e) {
-			if (StringUtils.isBlank(browserConfig)) {
-				browserConfig = "BLANK";
+			if (StringUtils.isBlank(webBrowser)) {
+				webBrowser = "BLANK";
 			}
 			throw new UnsupportedBrowserException(
-					"Unsupported browser specified in framework.properties: " + browserConfig);
+					"Unsupported browser specified in framework.properties: " + webBrowser);
 		}
 
 		return driver;
 	}
 
-	private static WebDriver initFirefoxNoHead(int arch) {
+	/**
+	 * Instantiates the Firefox WebDriver.
+	 * 
+	 * @param arch     32bit or 64bit
+	 * @param headless run in headless mode
+	 * @return WebDriver - the Firefox WebDriver
+	 */
+	private static WebDriver firefoxdriver(int arch, boolean headless) {
 		if (32 == arch) {
 			WebDriverManager.firefoxdriver().arch32().setup();
 		}
 		if (64 == arch) {
 			WebDriverManager.firefoxdriver().arch64().setup();
 		}
-		FirefoxBinary ffBin = new FirefoxBinary();
-		ffBin.addCommandLineOptions("--headless");
-		FirefoxOptions ffOpts = new FirefoxOptions();
-		ffOpts.setBinary(ffBin);
-		ffOpts.setLogLevel(FirefoxDriverLogLevel.WARN);
-		return new FirefoxDriver(ffOpts);
+
+		if (headless) {
+			FirefoxBinary ffBin = new FirefoxBinary();
+			ffBin.addCommandLineOptions("--headless");
+
+			FirefoxOptions ffOpts = new FirefoxOptions();
+			ffOpts.setBinary(ffBin);
+			ffOpts.setLogLevel(FirefoxDriverLogLevel.WARN);
+
+			return new FirefoxDriver(ffOpts);
+		}
+
+		return new FirefoxDriver();
 	}
 
 }

@@ -25,13 +25,13 @@ public class ScenarioHook {
 	public void beforeScenario(Scenario scenario) throws Throwable {
 		LOGGER.info("BEGIN TEST -> {}", scenario.getName());
 
-		String browserConfig = PropsLoader.frameworkConf("browser");
-		WebDriver driver = BrowserFactory.getInstance(browserConfig);
+		String webBrowser = PropsLoader.frameworkConf("web.browser");
+		WebDriver driver = BrowserFactory.getInstance(webBrowser);
 		if (Boolean.parseBoolean(PropsLoader.frameworkConf("wait.for.angular"))) {
 			NgWebDriver ngWebDriver = new NgWebDriver((JavascriptExecutor) driver);
 			ngWebDriver.waitForAngularRequestsToFinish();
 		}
-		LOGGER.info("Browser={}", browserConfig);
+		LOGGER.info("Browser={}", webBrowser);
 
 		selenium = new Selenium(driver, scenario);
 
@@ -42,9 +42,11 @@ public class ScenarioHook {
 
 	@After
 	public void afterScenario() throws Throwable {
-		if (Boolean.parseBoolean(PropsLoader.frameworkConf("screenshot.on.fail"))) {
-			if (selenium.getScenario().isFailed()) {
-				selenium.embedScreenshot();
+		if (!Boolean.parseBoolean(PropsLoader.frameworkConf("screenshot.off"))) {
+			if (Boolean.parseBoolean(PropsLoader.frameworkConf("screenshot.on.fail"))) {
+				if (selenium.getScenario().isFailed()) {
+					selenium.embedScreenshot();
+				}
 			}
 		}
 		LOGGER.info("END TEST -> {} - {}", selenium.getScenario().getName(), selenium.getScenario().getStatus());
