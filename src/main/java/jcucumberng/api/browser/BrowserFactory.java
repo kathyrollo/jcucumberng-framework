@@ -53,18 +53,16 @@ public final class BrowserFactory {
 				driver = new ChromeDriver(chromeOpts);
 				break;
 			case FF32:
-				WebDriverManager.firefoxdriver().arch32().setup();
-				driver = new FirefoxDriver();
+				driver = BrowserFactory.firefoxdriver(32, false);
 				break;
 			case FF32_NOHEAD:
-				driver = BrowserFactory.firefoxnohead(32);
+				driver = BrowserFactory.firefoxdriver(32, true);
 				break;
 			case FF64:
-				WebDriverManager.firefoxdriver().arch64().setup();
-				driver = new FirefoxDriver();
+				driver = BrowserFactory.firefoxdriver(64, false);
 				break;
 			case FF64_NOHEAD:
-				driver = BrowserFactory.firefoxnohead(64);
+				driver = BrowserFactory.firefoxdriver(64, true);
 				break;
 			case EDGE:
 				WebDriverManager.edgedriver().setup();
@@ -93,19 +91,26 @@ public final class BrowserFactory {
 		return driver;
 	}
 
-	private static WebDriver firefoxnohead(int arch) {
+	private static WebDriver firefoxdriver(int arch, boolean headless) {
 		if (32 == arch) {
 			WebDriverManager.firefoxdriver().arch32().setup();
 		}
 		if (64 == arch) {
 			WebDriverManager.firefoxdriver().arch64().setup();
 		}
-		FirefoxBinary ffBin = new FirefoxBinary();
-		ffBin.addCommandLineOptions("--headless");
-		FirefoxOptions ffOpts = new FirefoxOptions();
-		ffOpts.setBinary(ffBin);
-		ffOpts.setLogLevel(FirefoxDriverLogLevel.WARN);
-		return new FirefoxDriver(ffOpts);
+
+		if (headless) {
+			FirefoxBinary ffBin = new FirefoxBinary();
+			ffBin.addCommandLineOptions("--headless");
+
+			FirefoxOptions ffOpts = new FirefoxOptions();
+			ffOpts.setBinary(ffBin);
+			ffOpts.setLogLevel(FirefoxDriverLogLevel.WARN);
+
+			return new FirefoxDriver(ffOpts);
+		}
+
+		return new FirefoxDriver();
 	}
 
 }
