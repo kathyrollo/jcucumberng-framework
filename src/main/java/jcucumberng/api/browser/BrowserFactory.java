@@ -91,6 +91,13 @@ public final class BrowserFactory {
 		return driver;
 	}
 
+	/**
+	 * Instantiates the Firefox WebDriver.
+	 * 
+	 * @param arch     32bit or 64bit
+	 * @param headless run in headless mode
+	 * @return WebDriver - the Firefox WebDriver
+	 */
 	private static WebDriver firefoxdriver(int arch, boolean headless) {
 		if (32 == arch) {
 			WebDriverManager.firefoxdriver().arch32().setup();
