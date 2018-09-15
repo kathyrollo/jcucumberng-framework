@@ -8,17 +8,17 @@ import java.util.Properties;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- * {@code PropsLoader} handles actions for reading {@code .properties} files.
+ * {@code PropertiesReader} handles actions for reading {@code .properties} files.
  * 
  * @author Kat Rollo {@literal <rollo.katherine@gmail.com>}
  */
-public final class PropsLoader {
+public final class PropertiesReader {
 
 	private static final String USER_DIR = "user.dir";
 	private static final String RESOURCES_DIR = "/src/main/resources/";
 	private static final String NO_SUCH_KEY = "Key not found in ";
 
-	private PropsLoader() {
+	private PropertiesReader() {
 		// No instantiation
 	}
 
@@ -31,7 +31,7 @@ public final class PropsLoader {
 	 *         {@code browser=CHROME32}, value = {@code CHROME32})
 	 * @throws IOException
 	 */
-	public static String frameworkConf(String key) throws IOException {
+	public static String framework(String key) throws IOException {
 		String propsFileName = "framework.properties";
 		StringBuilder builder = new StringBuilder();
 		builder.append(StringUtils.replace(System.getProperty(USER_DIR), "\\", "/"));
@@ -61,7 +61,7 @@ public final class PropsLoader {
 	 *         {@code base.url=www.google.com}, value = {@code www.google.com})
 	 * @throws IOException
 	 */
-	public static String projectConf(String key) throws IOException {
+	public static String project(String key) throws IOException {
 		String propsFileName = "project.properties";
 		StringBuilder builder = new StringBuilder();
 		builder.append(StringUtils.replace(System.getProperty(USER_DIR), "\\", "/"));

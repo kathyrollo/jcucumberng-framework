@@ -5,7 +5,7 @@ import java.io.IOException;
 
 import org.apache.commons.lang3.StringUtils;
 
-import jcucumberng.api.properties.PropsLoader;
+import jcucumberng.api.properties.PropertiesReader;
 
 /**
  * {@code Logger} handles the logging mechanism of the framework.
@@ -24,7 +24,7 @@ public final class Logger {
 	public static void init() {
 		String cfgFile = null;
 		try {
-			cfgFile = PropsLoader.frameworkConf("log4j2.conf.file");
+			cfgFile = PropertiesReader.framework("log4j2.conf.file");
 		} catch (IOException ioe) {
 			throw new MissingLoggerException("Cannot find logger config file: " + cfgFile);
 		}

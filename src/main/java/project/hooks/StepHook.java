@@ -1,7 +1,7 @@
 package project.hooks;
 
 import cucumber.api.java.AfterStep;
-import jcucumberng.api.properties.PropsLoader;
+import jcucumberng.api.properties.PropertiesReader;
 import jcucumberng.api.selenium.Selenium;
 
 public class StepHook {
@@ -15,8 +15,8 @@ public class StepHook {
 
 	@AfterStep
 	public void afterStep() throws Throwable {
-		if (!Boolean.parseBoolean(PropsLoader.frameworkConf("screenshot.off"))) {
-			if (!Boolean.parseBoolean(PropsLoader.frameworkConf("screenshot.on.fail"))) {
+		if (!Boolean.parseBoolean(PropertiesReader.framework("screenshot.off"))) {
+			if (!Boolean.parseBoolean(PropertiesReader.framework("screenshot.on.fail"))) {
 				selenium.embedScreenshot();
 			}
 		}
