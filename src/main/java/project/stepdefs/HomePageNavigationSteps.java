@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
-import jcucumberng.api.props.PropsLoader;
+import jcucumberng.api.properties.PropsLoader;
 import jcucumberng.api.selenium.Selenium;
 import project.hooks.ScenarioHook;
 

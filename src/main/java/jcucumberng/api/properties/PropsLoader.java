@@ -1,4 +1,4 @@
-package jcucumberng.api.props;
+package jcucumberng.api.properties;
 
 import java.io.FileInputStream;
 import java.io.IOException;

@@ -5,7 +5,7 @@ import java.io.IOException;
 
 import org.apache.commons.lang3.StringUtils;
 
-import jcucumberng.api.props.PropsLoader;
+import jcucumberng.api.properties.PropsLoader;
 
 /**
  * {@code Logger} handles the logging mechanism of the framework.
