@@ -26,7 +26,7 @@ import jcucumberng.api.props.PropsLoader;
 public final class FileUtil {
 
 	private FileUtil() {
-		throw new IllegalStateException("Class must not be instantiated.");
+		// No instantiation
 	}
 
 	/**

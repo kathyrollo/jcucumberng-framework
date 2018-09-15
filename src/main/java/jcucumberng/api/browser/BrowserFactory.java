@@ -26,7 +26,7 @@ public final class BrowserFactory {
 	}
 
 	private BrowserFactory() {
-		throw new IllegalStateException("Class must not be instantiated.");
+		// No instantiation
 	}
 
 	/**

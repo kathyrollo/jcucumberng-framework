@@ -19,7 +19,7 @@ public final class PropsLoader {
 	private static final String NO_SUCH_KEY = "Key not found in ";
 
 	private PropsLoader() {
-		throw new IllegalStateException("Class must not be instantiated.");
+		// No instantiation
 	}
 
 	/**

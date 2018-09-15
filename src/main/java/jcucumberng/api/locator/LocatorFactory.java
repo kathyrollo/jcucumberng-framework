@@ -27,7 +27,7 @@ public final class LocatorFactory {
 	}
 
 	private LocatorFactory() {
-		throw new IllegalStateException("Class must not be instantiated.");
+		// No instantiation
 	}
 
 	/**
