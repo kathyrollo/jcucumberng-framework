@@ -26,7 +26,7 @@ public final class BrowserFactory {
 	}
 
 	private BrowserFactory() {
-		throw new IllegalStateException("Class must not be instantiated.");
+		// No instantiation
 	}
 
 	/**
@@ -102,6 +102,7 @@ public final class BrowserFactory {
 		if (32 == arch) {
 			WebDriverManager.firefoxdriver().arch32().setup();
 		}
+
 		if (64 == arch) {
 			WebDriverManager.firefoxdriver().arch64().setup();
 		}

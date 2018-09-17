@@ -1,4 +1,4 @@
-package jcucumberng.api.props;
+package jcucumberng.api.properties;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -19,7 +19,7 @@ public final class PropsLoader {
 	private static final String NO_SUCH_KEY = "Key not found in ";
 
 	private PropsLoader() {
-		throw new IllegalStateException("Class must not be instantiated.");
+		// No instantiation
 	}
 
 	/**
@@ -31,7 +31,7 @@ public final class PropsLoader {
 	 *         {@code browser=CHROME32}, value = {@code CHROME32})
 	 * @throws IOException
 	 */
-	public static String frameworkConf(String key) throws IOException {
+	public static String framework(String key) throws IOException {
 		String propsFileName = "framework.properties";
 		StringBuilder builder = new StringBuilder();
 		builder.append(StringUtils.replace(System.getProperty(USER_DIR), "\\", "/"));
@@ -61,7 +61,7 @@ public final class PropsLoader {
 	 *         {@code base.url=www.google.com}, value = {@code www.google.com})
 	 * @throws IOException
 	 */
-	public static String projectConf(String key) throws IOException {
+	public static String project(String key) throws IOException {
 		String propsFileName = "project.properties";
 		StringBuilder builder = new StringBuilder();
 		builder.append(StringUtils.replace(System.getProperty(USER_DIR), "\\", "/"));

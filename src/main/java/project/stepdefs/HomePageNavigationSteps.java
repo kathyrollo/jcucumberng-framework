@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
-import jcucumberng.api.props.PropsLoader;
+import jcucumberng.api.properties.PropsLoader;
 import jcucumberng.api.selenium.Selenium;
 import project.hooks.ScenarioHook;
 
@@ -22,7 +22,7 @@ public class HomePageNavigationSteps {
 
 	@Given("I Am At The Home Page")
 	public void I_Am_At_The_Home_Page() throws Throwable {
-		String baseUrl = PropsLoader.projectConf("base.url");
+		String baseUrl = PropsLoader.project("base.url");
 		selenium.getDriver().get(baseUrl);
 		LOGGER.debug("Base URL={}", baseUrl);
 	}

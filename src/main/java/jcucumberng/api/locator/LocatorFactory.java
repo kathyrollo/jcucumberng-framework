@@ -10,7 +10,7 @@ import org.openqa.selenium.support.pagefactory.ByChained;
 
 import com.paulhammant.ngwebdriver.ByAngular;
 
-import jcucumberng.api.props.PropsLoader;
+import jcucumberng.api.properties.PropsLoader;
 import jcucumberng.api.selenium.Selenium;
 
 /**
@@ -27,7 +27,7 @@ public final class LocatorFactory {
 	}
 
 	private LocatorFactory() {
-		throw new IllegalStateException("Class must not be instantiated.");
+		// No instantiation
 	}
 
 	/**

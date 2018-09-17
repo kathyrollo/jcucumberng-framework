@@ -8,7 +8,7 @@ package jcucumberng.api.utils;
 public final class TimeUtil {
 
 	private TimeUtil() {
-		throw new IllegalStateException("Class must not be instantiated.");
+		// No instantiation
 	}
 
 	/**

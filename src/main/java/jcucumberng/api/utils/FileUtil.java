@@ -16,7 +16,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.parser.PdfTextExtractor;
 
-import jcucumberng.api.props.PropsLoader;
+import jcucumberng.api.properties.PropsLoader;
 
 /**
  * {@code FileUtil} handles actions for manipulating files or documents.
@@ -26,7 +26,7 @@ import jcucumberng.api.props.PropsLoader;
 public final class FileUtil {
 
 	private FileUtil() {
-		throw new IllegalStateException("Class must not be instantiated.");
+		// No instantiation
 	}
 
 	/**
@@ -40,7 +40,7 @@ public final class FileUtil {
 	 * @throws IOException
 	 */
 	public static boolean doesFileExist(String prefix, String suffix) throws IOException {
-		String directory = PropsLoader.frameworkConf("file.dir");
+		String directory = PropsLoader.framework("file.dir");
 		File[] files = new File(directory).listFiles();
 
 		String fileName = null;
@@ -66,7 +66,7 @@ public final class FileUtil {
 	 * @throws IOException
 	 */
 	public static String extractPdfText() throws IOException {
-		PdfReader pdfReader = new PdfReader(PropsLoader.frameworkConf("pdf.file.path"));
+		PdfReader pdfReader = new PdfReader(PropsLoader.framework("pdf.file.path"));
 		int pages = pdfReader.getNumberOfPages();
 
 		StringBuilder builder = new StringBuilder();
