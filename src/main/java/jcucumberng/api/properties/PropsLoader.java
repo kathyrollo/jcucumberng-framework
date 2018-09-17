@@ -8,17 +8,17 @@ import java.util.Properties;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- * {@code PropertiesReader} handles actions for reading {@code .properties} files.
+ * {@code PropsLoader} handles actions for reading {@code .properties} files.
  * 
  * @author Kat Rollo {@literal <rollo.katherine@gmail.com>}
  */
-public final class PropertiesReader {
+public final class PropsLoader {
 
 	private static final String USER_DIR = "user.dir";
 	private static final String RESOURCES_DIR = "/src/main/resources/";
 	private static final String NO_SUCH_KEY = "Key not found in ";
 
-	private PropertiesReader() {
+	private PropsLoader() {
 		// No instantiation
 	}
 

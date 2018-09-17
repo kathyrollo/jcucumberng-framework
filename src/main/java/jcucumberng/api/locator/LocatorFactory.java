@@ -10,7 +10,7 @@ import org.openqa.selenium.support.pagefactory.ByChained;
 
 import com.paulhammant.ngwebdriver.ByAngular;
 
-import jcucumberng.api.properties.PropertiesReader;
+import jcucumberng.api.properties.PropsLoader;
 import jcucumberng.api.selenium.Selenium;
 
 /**
@@ -45,7 +45,7 @@ public final class LocatorFactory {
 		By[] bys = null;
 		Selenium selenium = new Selenium();
 
-		String value = PropertiesReader.uiMap(key);
+		String value = PropsLoader.uiMap(key);
 		if (StringUtils.isBlank(value)) {
 			value = "BLANK";
 		}
