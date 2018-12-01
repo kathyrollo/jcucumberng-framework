@@ -1,5 +1,6 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.kathyrollo</groupId>
 	<artifactId>jcucumberng-framework</artifactId>
@@ -26,13 +27,6 @@
 	</properties>
 
 	<dependencies>
-		<!-- https://mvnrepository.com/artifact/com.aventstack/extentreports-cucumber3-adapter -->
-		<dependency>
-			<groupId>com.aventstack</groupId>
-			<artifactId>extentreports-cucumber3-adapter</artifactId>
-			<version>1.0.0</version>
-		</dependency>
-
 		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-server -->
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
@@ -74,6 +68,12 @@
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-slf4j-impl</artifactId>
 			<version>2.11.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.aventstack/extentreports-cucumber3-adapter -->
+		<dependency>
+			<groupId>com.aventstack</groupId>
+			<artifactId>extentreports-cucumber3-adapter</artifactId>
+			<version>1.0.0</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-cucumber3-jvm -->
 		<dependency>
