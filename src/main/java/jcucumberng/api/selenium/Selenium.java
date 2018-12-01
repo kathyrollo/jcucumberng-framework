@@ -340,9 +340,11 @@ public final class Selenium {
 	 * Captures and saves screenshot in PNG format. Images are stored in
 	 * {@code /target/cucumber-sshots/}.
 	 * 
+	 * @return String - the absolute path to the saved screenshot
+	 * 
 	 * @throws IOException
 	 */
-	public void captureScreenshot() throws IOException {
+	public String captureScreenshot() throws IOException {
 		StringBuilder builder = new StringBuilder();
 		builder.append(StringUtils.replace(System.getProperty("user.dir"), "\\", "/"));
 		builder.append("/target/cucumber-sshots/sshot_");
@@ -351,13 +353,12 @@ public final class Selenium {
 		String screenshot = builder.toString();
 		File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		FileUtils.copyFile(srcFile, new File(screenshot));
+		return screenshot;
 	}
 
 	/**
 	 * Captures and embeds screenshot in generated HTML report. Reports can be found
 	 * in {@code /target/}.
-	 * 
-	 * @param scenario the Scenario object
 	 */
 	public void embedScreenshot() {
 		byte[] srcBytes = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
