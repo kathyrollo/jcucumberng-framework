@@ -359,10 +359,13 @@ public final class Selenium {
 	/**
 	 * Captures and embeds screenshot in generated HTML report. Reports can be found
 	 * in {@code /target/}.
+	 * 
+	 * @return byte[ ] - the screenshot in byte array
 	 */
-	public void embedScreenshot() {
+	public byte[] embedScreenshot() {
 		byte[] srcBytes = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
 		scenario.embed(srcBytes, "image/png");
+		return srcBytes;
 	}
 
 	public WebDriver getDriver() {
