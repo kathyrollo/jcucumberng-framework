@@ -43,7 +43,7 @@ In fact, there is no mention of POM in [The Cucumber for Java Book](https://prag
 >
 > - Selenium WebDriver + Cucumber + POM = Not OK
 >
-> - Selenium WebDriver + Cucumber + DI = ROI (fast, simple, and lightweight)
+> - Selenium WebDriver + Cucumber + DI = ROI (fast, simple, lightweight)
 
 [ [Back](#table-of-contents) ]
 
@@ -162,35 +162,42 @@ Generate report into directory: `/target/cucumber-html-reports/`
 ~~~
 mvn verify
 ~~~
-This is the same task for test execution and report generation.
 
 **Output:**
 
 ![maven_cucumber_reporting](https://user-images.githubusercontent.com/28589393/44955736-de4d7a80-aeea-11e8-803c-1dced0499fda.gif)
 
-#### [Cucumber Extent Reporter](https://github.com/email2vimalraj/CucumberExtentReporter)
-TODO
+#### [Cucumber Extent Reports](https://github.com/extent-framework)
+> This report is standalone that can be zipped and emailed to clients. Any of the HTML files can be viewed locally using the browser.
+
+Generate report into directory: `/target/extentreports-cucumber/`
+~~~
+mvn verify
+~~~
+
+**Output:**
+
 
 #### [Allure Test Report](https://github.com/allure-framework)
 > This report is a single page application (SPA). Dynamic attributes use AJAX and need to be launched from a [running web server](https://github.com/allure-framework/allure1/issues/896#issuecomment-271599716) to view.
 
-In Allure, test execution and report generation are different tasks. Choose any method to generate the report _after_ running the tests.
+Choose any method to generate the report _after_ running the tests.
 
-**Method 1:** Generate report into temp folder and start local web server (opens browser):
+**Method 1:** Generate report into temp folder and start local web server (opens browser)
 ~~~
 mvn allure:serve
 ~~~
 
-**Method 2:** Generate report into directory: `/target/site/allure-maven-plugin/`
+**Method 2:** Generate report in `/target/site/allure-maven-plugin/`
 ~~~
 mvn allure:report
 ~~~
 
-Alternatively, the commands can be combined:
+**Method 3:** Combine commands
 ~~~
 mvn verify allure:serve
 ~~~
-This also invokes all reporting plugins.
+This also invokes all 3 reporting plugins.
 
 **Output:**
 
