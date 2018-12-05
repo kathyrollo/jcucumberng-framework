@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="WARN">
 	<Properties>
-		<Property name="logPath">target/cucumber-logging</Property>
-		<Property name="rollingFileName">cucumber</Property>
+		<Property name="logPath">target/test-logs</Property>
+		<Property name="rollingFileName">jcucumberng</Property>
 	</Properties>
 	<Appenders>
 		<Console name="console" target="SYSTEM_OUT">
