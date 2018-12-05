@@ -177,6 +177,7 @@ mvn verify
 
 **Output:**
 
+![extent_reports_cucumber](https://user-images.githubusercontent.com/28589393/49515372-b139ab00-f8d1-11e8-99b3-7b077e06d572.gif)
 
 #### [Allure Test Report](https://github.com/allure-framework)
 > This report is a single page application (SPA). Dynamic attributes use AJAX and need to be launched from a [running web server](https://github.com/allure-framework/allure1/issues/896#issuecomment-271599716) to view.
