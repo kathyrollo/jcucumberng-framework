@@ -23,6 +23,7 @@
 		<ngwebdriver.version>1.1.4</ngwebdriver.version>
 		<cucumber.version>3.0.2</cucumber.version>
 		<aspectj.version>1.9.2</aspectj.version>
+		<allure.cucumber3.version>2.8.1</allure.cucumber3.version>
 		<java.version>1.8</java.version>
 	</properties>
 
@@ -79,7 +80,7 @@
 		<dependency>
 			<groupId>io.qameta.allure</groupId>
 			<artifactId>allure-cucumber3-jvm</artifactId>
-			<version>2.8.1</version>
+			<version>${allure.cucumber3.version}</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.itextpdf/itextpdf -->
 		<dependency>
@@ -155,7 +156,7 @@
 				<artifactId>allure-maven</artifactId>
 				<version>2.9</version>
 				<configuration>
-					<reportVersion>2.8.1</reportVersion>
+					<reportVersion>${allure.cucumber3.version}</reportVersion>
 					<allureDownloadUrl>https://dl.bintray.com/qameta/maven/io/qameta/allure/allure-commandline/2.8.1/allure-commandline-2.8.1.zip</allureDownloadUrl>
 				</configuration>
 			</plugin>
