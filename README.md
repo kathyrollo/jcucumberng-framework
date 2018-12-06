@@ -39,7 +39,7 @@ public void I_Should_See_Net_Income_Per_Month(String expected) throws Throwable 
 }
 ~~~
 
-This makes the automation codebase more efficient to write and maintain.
+This makes the automation codebase more efficient to develop and maintain.
 
 [ [Back](#table-of-contents) ]
 
@@ -105,7 +105,7 @@ Maven performs a one-time download of all dependencies. Execute `mvn verify` aga
 HTML reports and logs are created in the `/target/` directory after the build is successful.
 
 ### Static Reporting
-Cucumber-JVM ships with its native (boring) HTML reporter that can be found in `/target/cucumber-html-default/`. Best for debugging.
+Cucumber-JVM ships with its native HTML reporter that can be found in `/target/cucumber-html-default/`. Best for debugging.
 
 **Output:**
 
@@ -157,7 +157,7 @@ mvn allure:report
 ~~~
 mvn verify allure:serve
 ~~~
-This also invokes all 3 reporting plugins.
+This invokes all 3 reporting plugins.
 
 **Output:**
 
