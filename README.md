@@ -2,53 +2,14 @@
 Allows automation testers to write feature/gherkin files for Cucumber and implement step definitions in basic Java classes. ngWebDriver (Protractor) offers extended support for Angular/JS web applications.
 
 ### Table of Contents
-1. [Write Tests, Not Page Objects](#write-tests-not-page-objects)
-2. [How It Works](#how-it-works)
-3. [Features](#features)
-4. [Prerequisites](#prerequisites)
-5. [Running Tests](#running-tests)
-6. [Checking Results](#checking-results)
-
-## Write Tests, Not Page Objects
-### An Analogy
-Like arithmetic, there are many ways to arrive to the same answer. Some longer, some shorter.
-
-Page Object Model (POM) is like this:
-~~~
-[(2 + 2) * 3 - 7] / 1 = 5
-~~~
-
-Dependency Injection (DI) is like this:
-~~~
-2 + 3 = 5
-~~~
-
-### POM and BDD
-An anti-pattern occurs when adhering to the design becomes the larger chore of automation efforts instead of writing sensible tests which is the common pitfall of the popular [Page Object Model](https://www.seleniumhq.org/docs/06_test_design_considerations.jsp#page-object-design-pattern). The priority becomes sustaining the design pattern, not _testing_. Automation testers find themselves spending more time overengineering page objects than writing high quality tests that provide actual value.
-
-Why then, is POM a pervasive design pattern seen in many test automation suites? Tradition. This comes from the days of "pure" Selenium tests that do not offer [behavior-driven (BDD)](https://dzone.com/articles/the-basics-of-bdd-in-testing) or step-based capabilities. Add that to the fact that Selenium actively promotes the pattern and comes with `PageFactory` to support it, automation testers simply incorporated it to their BDD test frameworks by default and not by design.
-
-> **TL;DR:**
->
-> POM and BDD do not mix.
-
-### Cucumber and DI
-Cucumber inherently calls steps to move from one state to the next so mapping the user journey by [returning page objects](https://github.com/SeleniumHQ/selenium/wiki/PageObjects) within step definitions does not make much sense. [PicoContainer](https://docs.cucumber.io/cucumber/state/#dependency-injection) (developed by [Aslak Hellesøy](https://twitter.com/aslak_hellesoy)) eliminates the tight coupling of page objects to step definitions by sharing states in the glue code using [Dependency Injection](http://picocontainer.com/injection.html). It requires minimal configuration and injects the needed classes via the constructor. With shared objects, each step definition becomes an autonomous unit as is the nature of a Java method. The current step does not need to know the step before or after (loose coupling) making it much reusable.
-
-In fact, there is no mention of POM in [The Cucumber for Java Book](https://pragprog.com/book/srjcuc/the-cucumber-for-java-book) but there is _Chapter 11: Simplifying Design with Dependency Injection_. The no-frills design allows for a faster return on investment (ROI) and a compact codebase to maintain in the long haul.
-
-> **TL;DR:**
->
-> - Selenium WebDriver + POM = OK
->
-> - Selenium WebDriver + Cucumber + POM = Not OK
->
-> - Selenium WebDriver + Cucumber + DI = ROI (fast, simple, lightweight)
-
-[ [Back](#table-of-contents) ]
+1. [How It Works](#how-it-works)
+2. [Technology Stack](#technology-stack)
+3. [Prerequisites](#prerequisites)
+4. [Running Tests](#running-tests)
+5. [Checking Results](#checking-results)
 
 ## How It Works
-The code below shows writing test scripts directly into step definitions because why not?
+With Dependency Injection (DI), test scripts can be easily placed in reusable step definitions to focus test automation on [writing tests, not page objects](https://www.linkedin.com/pulse/dependency-injection-write-tests-page-objects-katherine-rollo/).
 
 ### ui-map.properties:
 ~~~
@@ -78,13 +39,11 @@ public void I_Should_See_Net_Income_Per_Month(String expected) throws Throwable 
 }
 ~~~
 
-[User Interface (UI) Mapping](https://www.seleniumhq.org/docs/06_test_design_considerations.jsp#user-interface-mapping) complements DI and is a known approach for keeping web elements in a single file. The `WebDriver` is not exposed while containing everything within the method in plain sight.
-
-No need to plow through **76** page objects. Based on a true story.
+This makes the automation codebase more efficient to write and maintain.
 
 [ [Back](#table-of-contents) ]
 
-## Features
+## Technology Stack
 - [Selenium WebDriver 3](https://www.seleniumhq.org/) for browser automation
 - [WebDriverManager](https://github.com/bonigarcia/webdrivermanager) for automatic management of webdriver binaries
 - [ngWebDriver](https://github.com/paul-hammant/ngWebDriver) (Protractor) for Angular/JS support
