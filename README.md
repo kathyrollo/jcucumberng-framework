@@ -2,14 +2,42 @@
 Allows automation testers to write feature/gherkin files for Cucumber and implement step definitions in basic Java classes. ngWebDriver (Protractor) offers extended support for Angular/JS web applications.
 
 ### Table of Contents
-1. [Usage](#usage)
-2. [Technology Stack](#technology-stack)
-3. [Prerequisites](#prerequisites)
+1. [Technology Stack](#technology-stack)
+2. [Prerequisites](#prerequisites)
+3. [Usage](#usage)
 4. [Running Tests](#running-tests)
 5. [Checking Results](#checking-results)
 
+## Technology Stack
+- [Selenium WebDriver 3](https://www.seleniumhq.org/) for browser automation
+- [WebDriverManager](https://github.com/bonigarcia/webdrivermanager) for automatic management of webdriver binaries
+- [ngWebDriver](https://github.com/paul-hammant/ngWebDriver) (Protractor) for Angular/JS support
+- [Cucumber-JVM 3](https://github.com/cucumber/cucumber-jvm) for behavior-driven testing
+- [PicoContainer](http://picocontainer.com/) for DI module
+- [AssertJ](http://joel-costigliola.github.io/assertj/) for fluent assertions
+- [Maven](https://maven.apache.org/) for dependency management and build execution
+- [Log4j2](https://logging.apache.org/log4j/2.x/) / [SLF4J](https://www.slf4j.org/) for logging mechanism
+- Extended Selenium API for commonly used web testing actions
+- UI Map for central object repository of web elements
+- Compatible with IE11, Edge, Chrome, Firefox
+- Test result generation in HTML, JSON, XML
+- Embedded screenshots on generated HTML reports
+
+[ [Back](#table-of-contents) ]
+
+## Prerequisites
+- [JDK 1.8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) or higher
+- [Eclipse IDE](http://www.eclipse.org/downloads/eclipse-packages/) / [VSCode](https://code.visualstudio.com/download) / [IntelliJ](https://www.jetbrains.com/idea/download/#section=windows) (install relevant Cucumber/Gherkin plugins)
+- [Git](https://git-scm.com/downloads)
+- [Maven](https://maven.apache.org/download.cgi)
+- [Cmder](http://cmder.net/) (optional, includes Git for Windows)
+
+[ [Back](#table-of-contents) ]
+
 ## Usage
-With Dependency Injection (DI), test scripts can be easily placed in reusable step definitions to focus test automation on [writing tests, not page objects](https://www.linkedin.com/pulse/dependency-injection-write-tests-page-objects-katherine-rollo/).
+With Dependency Injection (DI), test script logic can be placed directly in step definitions (methods) to focus test automation on [writing tests, not page objects](https://www.linkedin.com/pulse/dependency-injection-write-tests-page-objects-katherine-rollo/).
+
+This makes the codebase efficient to develop and maintain.
 
 ### ui-map.properties:
 ~~~
@@ -38,34 +66,6 @@ public void I_Should_See_Net_Income_Per_Month(String expected) throws Throwable 
     LOGGER.debug("Net Per Month={}", actual);
 }
 ~~~
-
-This makes the automation codebase more efficient to develop and maintain.
-
-[ [Back](#table-of-contents) ]
-
-## Technology Stack
-- [Selenium WebDriver 3](https://www.seleniumhq.org/) for browser automation
-- [WebDriverManager](https://github.com/bonigarcia/webdrivermanager) for automatic management of webdriver binaries
-- [ngWebDriver](https://github.com/paul-hammant/ngWebDriver) (Protractor) for Angular/JS support
-- [Cucumber-JVM 3](https://github.com/cucumber/cucumber-jvm) for behavior-driven testing
-- [PicoContainer](http://picocontainer.com/) for DI module
-- [AssertJ](http://joel-costigliola.github.io/assertj/) for fluent assertions
-- [Maven](https://maven.apache.org/) for dependency management and build execution
-- [Log4j2](https://logging.apache.org/log4j/2.x/) / [SLF4J](https://www.slf4j.org/) for logging mechanism
-- Extended Selenium API for commonly used web testing actions
-- UI Map for central object repository of web elements
-- Compatible with IE11, Edge, Chrome, Firefox
-- Test result generation in HTML, JSON, XML
-- Embedded screenshots on generated HTML reports
-
-[ [Back](#table-of-contents) ]
-
-## Prerequisites
-- [JDK 1.8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) or higher
-- [Eclipse IDE](http://www.eclipse.org/downloads/eclipse-packages/) / [VSCode](https://code.visualstudio.com/download) / [IntelliJ](https://www.jetbrains.com/idea/download/#section=windows) (install relevant Cucumber/Gherkin plugins)
-- [Git](https://git-scm.com/downloads)
-- [Maven](https://maven.apache.org/download.cgi)
-- [Cmder](http://cmder.net/) (optional, includes Git for Windows)
 
 [ [Back](#table-of-contents) ]
 
