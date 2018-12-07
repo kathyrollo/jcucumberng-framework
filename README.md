@@ -1,3 +1,6 @@
+![java_logo custom](https://user-images.githubusercontent.com/28589393/49637701-1a8bfc00-fa41-11e8-9b6a-5b8ad920607d.png) ![se_logo custom](https://user-images.githubusercontent.com/28589393/49637970-d1887780-fa41-11e8-9ab0-0edadbb4b6f2.png)
+ ![cucumber_logo custom](https://user-images.githubusercontent.com/28589393/49637727-2ecff900-fa41-11e8-8173-f103a7154d26.png) ![protractor_logo custom](https://user-images.githubusercontent.com/28589393/49638016-f0870980-fa41-11e8-9f69-8b473b319b67.png)
+
 # jCucumberNG-Framework
 Allows automation testers to write feature/gherkin files for Cucumber and implement step definitions in basic Java classes. ngWebDriver (Protractor) offers extended support for Angular/JS web applications.
 
@@ -187,3 +190,13 @@ target/
 ~~~
 
 [ [Back](#table-of-contents) ]
+
+## LICENSE
+
+Copyright 2018 Katherine L. Rollo
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+```
+   http://www.apache.org/licenses/LICENSE-2.0
+```
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
