@@ -34,7 +34,7 @@ public NetIncomeProjectorSteps(ScenarioHook scenarioHook) {
 
 @Then("I Should See Net Income Per Month: {word}")
 public void I_Should_See_Net_Income_Per_Month(String expected) throws Throwable {
-    WebElement netPerMonth = selenium.getVisibleElement("net.per.month"); // Use Selenium object from injection
+    WebElement netPerMonth = selenium.getVisibleElement("net.per.month"); // Use Selenium object in class
     String actual = netPerMonth.getText();
     Assertions.assertThat(actual).isEqualTo(expected);
     LOGGER.debug("Net Per Month={}", actual);
