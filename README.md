@@ -1,3 +1,6 @@
+![java_logo custom](https://user-images.githubusercontent.com/28589393/49637701-1a8bfc00-fa41-11e8-9b6a-5b8ad920607d.png) ![se_logo custom](https://user-images.githubusercontent.com/28589393/49637970-d1887780-fa41-11e8-9ab0-0edadbb4b6f2.png)
+ ![cucumber_logo custom](https://user-images.githubusercontent.com/28589393/49637727-2ecff900-fa41-11e8-8173-f103a7154d26.png) ![protractor_logo custom](https://user-images.githubusercontent.com/28589393/49638016-f0870980-fa41-11e8-9f69-8b473b319b67.png)
+
 # jCucumberNG-Framework
 Allows automation testers to write feature/gherkin files for Cucumber and implement step definitions in basic Java classes. ngWebDriver (Protractor) offers extended support for Angular/JS web applications.
 
