@@ -2,13 +2,13 @@
 Allows automation testers to write feature/gherkin files for Cucumber and implement step definitions in basic Java classes. ngWebDriver (Protractor) offers extended support for Angular/JS web applications.
 
 ### Table of Contents
-1. [How It Works](#how-it-works)
+1. [Usage](#usage)
 2. [Technology Stack](#technology-stack)
 3. [Prerequisites](#prerequisites)
 4. [Running Tests](#running-tests)
 5. [Checking Results](#checking-results)
 
-## How It Works
+## Usage
 With Dependency Injection (DI), test scripts can be easily placed in reusable step definitions to focus test automation on [writing tests, not page objects](https://www.linkedin.com/pulse/dependency-injection-write-tests-page-objects-katherine-rollo/).
 
 ### ui-map.properties:
@@ -26,13 +26,13 @@ Then I Should See Net Income Per Month: 23769
 private Selenium selenium = null; // Extended Selenium API
 
 // PicoContainer injects ScenarioHook object
-public NetIncomeProjectorSteps(ScenarioHook scenarioHook) { // ScenarioHook instantiates Selenium object
-    selenium = scenarioHook.getSelenium();
+public NetIncomeProjectorSteps(ScenarioHook scenarioHook) {
+    selenium = scenarioHook.getSelenium(); // Instantiate Selenium object with injected ScenarioHook
 }
 
 @Then("I Should See Net Income Per Month: {word}")
 public void I_Should_See_Net_Income_Per_Month(String expected) throws Throwable {
-    WebElement netPerMonth = selenium.getVisibleElement("net.per.month"); // Use injected Selenium object
+    WebElement netPerMonth = selenium.getVisibleElement("net.per.month"); // Use Selenium object from injection
     String actual = netPerMonth.getText();
     Assertions.assertThat(actual).isEqualTo(expected);
     LOGGER.debug("Net Per Month={}", actual);
