@@ -13,17 +13,17 @@ Allows automation testers to write feature/gherkin files for Cucumber and implem
 ## How To Use
 Test script logic can be placed directly in step definitions (methods) to focus test automation on [developing tests instead of page objects](https://www.linkedin.com/pulse/dependency-injection-write-tests-page-objects-katherine-rollo/) with Dependency Injection (DI). A UI Map is used for central object repository of web elements.
 
-### ui-map.properties:
+### ui-map.properties
 ~~~
 net.per.month=binding:roundDown(monthlyNet())
 ~~~
 
-### Gherkin Syntax:
+### Gherkin Syntax
 ~~~
 Then I Should See Net Income Per Month: 23769
 ~~~
 
-### Step Definition:
+### Step Definition
 ~~~
 private Selenium selenium = null; // Extended Selenium API
 
