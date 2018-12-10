@@ -4,26 +4,26 @@
 Allows automation testers to write feature/gherkin files for Cucumber and implement step definitions in basic Java classes. ngWebDriver (Protractor) offers extended support for Angular/JS web applications.
 
 ### Table Of Contents
-1. [How To Use](#how-to-use)
+1. [How It Works](#how-it-works)
 2. [Technology Stack](#technology-stack)
 3. [What You Need](#what-you-need)
 4. [Running Tests](#running-tests)
 5. [Checking Results](#checking-results)
 
-## How To Use
-Test script logic can be placed directly in step definitions (methods) to focus test automation on [developing tests instead of page objects](https://www.linkedin.com/pulse/dependency-injection-write-tests-page-objects-katherine-rollo/) with Dependency Injection (DI). A UI Map is used for central object repository of web elements.
+## How It Works
+Test script logic can be placed directly in step definitions (methods) to focus test automation on [writing tests instead of page objects](https://www.linkedin.com/pulse/dependency-injection-write-tests-page-objects-katherine-rollo/) with Dependency Injection (DI). A UI Map is used for central object repository of web elements.
 
 ### ui-map.properties
 ~~~
 net.per.month=binding:roundDown(monthlyNet())
 ~~~
 
-### Gherkin Syntax
+### NetIncomeProjector.feature
 ~~~
 Then I Should See Net Income Per Month: 23769
 ~~~
 
-### Step Definition
+### NetIncomeProjectorSteps.java
 ~~~
 private Selenium selenium = null; // Extended Selenium API
 
@@ -38,6 +38,7 @@ public void I_Should_See_Net_Income_Per_Month(String expected) throws Throwable 
     String actual = netPerMonth.getText();
     Assertions.assertThat(actual).isEqualTo(expected);
     LOGGER.debug("Net Per Month={}", actual);
+    selenium.scrollToElement(netPerMonth);
 }
 ~~~
 
