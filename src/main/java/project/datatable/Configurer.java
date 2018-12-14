@@ -24,7 +24,10 @@ public class Configurer implements TypeRegistryConfigurer {
 	@Override
 	public void configureTypeRegistry(TypeRegistry registry) {
 
-		// With header row, multiple objects of Type<T>
+		/*
+		 * Maps DataTable with header row in feature file to multiple objects of
+		 * Type<T>. Each row below the header is an object.
+		 */
 		registry.defineDataTableType(new DataTableType(Transaction.class, new TableEntryTransformer<Transaction>() {
 			@Override
 			public Transaction transform(Map<String, String> map) {
@@ -32,7 +35,10 @@ public class Configurer implements TypeRegistryConfigurer {
 			}
 		}));
 
-		// With label column, single object of Type<T>
+		/*
+		 * Maps DataTable with label column in feature file to a single object of
+		 * Type<T>. Left column is field name, right column is value.
+		 */
 		registry.defineDataTableType(new DataTableType(Transaction.class, new TableTransformer<Transaction>() {
 			@Override
 			public Transaction transform(DataTable dataTable) throws Throwable {
