@@ -52,7 +52,7 @@ public void I_Should_See_Net_Income_Per_Month(String expected) throws Throwable 
 - [Cucumber-JVM 3](https://github.com/cucumber/cucumber-jvm) for behavior-driven testing
 - [PicoContainer](http://picocontainer.com/) for DI module
 - [AssertJ](http://joel-costigliola.github.io/assertj/) for fluent assertions
-- [Log4j2](https://logging.apache.org/log4j/2.x/) / [SLF4J](https://www.slf4j.org/) for logging mechanism
+- [SLF4J](https://www.slf4j.org/) / [Apache Log4j2](https://logging.apache.org/log4j/2.x/) for logging mechanism
 - [iText 5](https://developers.itextpdf.com/itext-java) for handling PDF files
 - [Apache POI](https://poi.apache.org/) for handling office documents (Word, PowerPoint, Excel)
 - [Fillo](https://codoid.com/fillo/) for SQL-like manipulation of Excel files
@@ -63,7 +63,7 @@ public void I_Should_See_Net_Income_Per_Month(String expected) throws Throwable 
 - [JDK 1.8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) or higher
 - [Eclipse IDE](http://www.eclipse.org/downloads/eclipse-packages/) / [VSCode](https://code.visualstudio.com/download) / [IntelliJ](https://www.jetbrains.com/idea/download/#section=windows) (install relevant Cucumber/Gherkin plugins)
 - [Git](https://git-scm.com/downloads)
-- [Maven](https://maven.apache.org/download.cgi)
+- [Apache Maven](https://maven.apache.org/download.cgi)
 - [Cmder](http://cmder.net/) (optional, includes Git for Windows)
 
 [ [Back](#table-of-contents) ]
@@ -101,10 +101,15 @@ Maven performs a one-time download of all dependencies. Execute `mvn verify` aga
 [ [Back](#table-of-contents) ]
 
 ## Checking Results
-HTML reports and logs are created in the `/target/` directory after the build is successful.
+HTML reports and logs are created in the `/target/` directory after the build.
 
 ### Static Reporting
-Cucumber-JVM ships with its native HTML reporter that can be found in `/target/cucumber-html-default/`. Best for debugging.
+Cucumber-JVM ships with its default HTML reporter. Best for debugging scripts.
+
+Generate report into directory: `/target/cucumber-html-default/`
+~~~
+mvn verify
+~~~
 
 **Output:**
 
@@ -114,7 +119,7 @@ Cucumber-JVM ships with its native HTML reporter that can be found in `/target/c
 Different reporting plugins generate animated visuals and colorful graphs/charts. Impressive for demos.
 
 #### [Maven Cucumber Reporting](https://github.com/damianszczepanik/maven-cucumber-reporting)
-> This report is standalone that can be zipped and emailed to clients. Any of the HTML files can be viewed locally using the browser.
+> This report is standalone and can be zipped/emailed to clients. HTML files can be viewed locally using the browser.
 
 Generate report into directory: `/target/cucumber-html-reports/`
 ~~~
@@ -126,7 +131,7 @@ mvn verify
 ![maven_cucumber_reporting](https://user-images.githubusercontent.com/28589393/44955736-de4d7a80-aeea-11e8-803c-1dced0499fda.gif)
 
 #### [Cucumber Extent Reports](https://github.com/extent-framework)
-> This report is standalone that can be zipped and emailed to clients. Any of the HTML files can be viewed locally using the browser.
+> This report is standalone and can be zipped/emailed to clients. HTML files can be viewed locally using the browser.
 
 Generate report into directory: `/target/extentreports-cucumber/`
 ~~~
@@ -140,7 +145,7 @@ mvn verify
 #### [Allure Test Report](https://github.com/allure-framework)
 > This report is a single page application (SPA). Dynamic attributes use AJAX and need to be launched from a [running web server](https://github.com/allure-framework/allure1/issues/896#issuecomment-271599716) to view.
 
-Choose any method to generate the report _after_ running the tests.
+Choose any method to generate the report **_after_** running the tests.
 
 **Method 1:** Generate report into temp folder and start local web server (opens browser)
 ~~~
@@ -152,7 +157,7 @@ mvn allure:serve
 mvn allure:report
 ~~~
 
-**Method 3:** Combine commands (invoke all 3 reporting plugins)
+**Method 3:** Combine commands (invoke all reporting plugins)
 ~~~
 mvn verify allure:serve
 ~~~
@@ -162,7 +167,7 @@ mvn verify allure:serve
 ![allure_report](https://user-images.githubusercontent.com/28589393/44995297-0913fd80-afd5-11e8-9519-850218d84e1e.gif)
 
 ### Logging
-Logs are written to a daily rolling file. Executions from the previous day are saved with a datestamp. Best for debugging.
+Logs are written to a daily rolling file. Executions from the previous day are saved with a datestamp. Best for debugging scripts.
 
 **Directory:**
 ~~~
