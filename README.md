@@ -54,8 +54,8 @@ public void I_Should_See_Net_Income_Per_Month(String expected) throws Throwable 
 - [AssertJ](http://joel-costigliola.github.io/assertj/) for fluent assertions
 - [Log4j2](https://logging.apache.org/log4j/2.x/) / [SLF4J](https://www.slf4j.org/) for logging mechanism
 - [iText 5](https://developers.itextpdf.com/itext-java) for handling PDF files
-- [Apache POI](https://poi.apache.org/) for handling office documents
-- [Fillo](https://codoid.com/fillo/) for SQL-like manipulation of xls and xlsx files
+- [Apache POI](https://poi.apache.org/) for handling office documents (Word, PowerPoint, Excel)
+- [Fillo](https://codoid.com/fillo/) for SQL-like manipulation of Excel files
 
 [ [Back](#table-of-contents) ]
 
@@ -168,11 +168,11 @@ Logs are written to a daily rolling file. Executions from the previous day are s
 **Directory:**
 ~~~
 target/
-|__ cucumber-logging/
-    |__ cucumber_2018-07-19.log
-    |__ cucumber_2018-07-20.log
-    |__ cucumber_2018-07-21.log
-    |__ cucumber.log
+|__ test-logs/
+    |__ jcucumberng_2018-07-19.log
+    |__ jcucumberng_2018-07-20.log
+    |__ jcucumberng_2018-07-21.log
+    |__ jcucumberng.log
 ~~~
 
 **Output:**
