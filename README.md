@@ -152,11 +152,10 @@ mvn allure:serve
 mvn allure:report
 ~~~
 
-**Method 3:** Combine commands
+**Method 3:** Combine commands (invoke all 3 reporting plugins)
 ~~~
 mvn verify allure:serve
 ~~~
-This invokes all 3 reporting plugins.
 
 **Output:**
 
