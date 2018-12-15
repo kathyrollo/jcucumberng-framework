@@ -21,6 +21,8 @@ import jcucumberng.api.selenium.Selenium;
  */
 public final class LocatorFactory {
 
+	private static final String NONE_SPECIFIED = "NONE SPECIFIED";
+
 	public enum Locator {
 		ID, NAME, LINK_TEXT, PARTIAL_LINK_TEXT, TAG, CLASS, CSS, XPATH, BY_ALL, BY_CHAINED, BY_ID_OR_NAME, BINDING,
 		MODEL, BUTTON_TEXT, CSS_CONTAINING_TEXT, EXACT_BINDING, EXACT_REPEATER, OPTIONS, PARTIAL_BUTTON_TEXT, REPEATER
@@ -47,7 +49,7 @@ public final class LocatorFactory {
 
 		String value = PropsLoader.uiMap(key);
 		if (StringUtils.isBlank(value)) {
-			value = "BLANK";
+			value = NONE_SPECIFIED;
 		}
 		if (!value.matches(".+:.+")) {
 			throw new InvalidPatternException("Does not match expected pattern in ui-map.properties: " + value);
@@ -143,7 +145,7 @@ public final class LocatorFactory {
 			}
 		} catch (IllegalArgumentException | NullPointerException e) {
 			if (StringUtils.isBlank(loc)) {
-				loc = "BLANK";
+				loc = NONE_SPECIFIED;
 			}
 			throw new UnsupportedLocatorException("Unsupported locator specified in ui-map.properties: " + loc);
 		}

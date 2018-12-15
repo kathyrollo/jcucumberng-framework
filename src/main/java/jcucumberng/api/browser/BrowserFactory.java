@@ -84,7 +84,7 @@ public final class BrowserFactory {
 			}
 		} catch (IllegalArgumentException | NullPointerException e) {
 			if (StringUtils.isBlank(webBrowser)) {
-				webBrowser = "BLANK";
+				webBrowser = "NONE SPECIFIED";
 			}
 			throw new UnsupportedBrowserException(
 					"Unsupported browser specified in framework.properties: " + webBrowser);
