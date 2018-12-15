@@ -345,7 +345,6 @@ public final class Selenium {
 	 * {@code /target/cucumber-sshots/}.
 	 * 
 	 * @return String - the absolute path to the saved screenshot
-	 * 
 	 * @throws IOException
 	 */
 	public String captureScreenshot() throws IOException {
