@@ -40,7 +40,7 @@ public class NetIncomeProjectorSteps {
 		selenium.type(transaction.getName(), "income.name");
 		selenium.type(transaction.getAmount(), "income.amount");
 		selenium.selectByVisibleText(transaction.getFrequency(), "income.freq");
-		LOGGER.debug(transaction.toString());
+		LOGGER.debug("{}", transaction);
 		selenium.scrollToElement(selenium.getVisibleElements(DIV_BOXES).get(1));
 	}
 
@@ -59,7 +59,7 @@ public class NetIncomeProjectorSteps {
 			selenium.type(transactions.get(ctr).getName(), names.get(ctr));
 			selenium.type(transactions.get(ctr).getAmount(), amounts.get(ctr));
 			selenium.selectByVisibleText(transactions.get(ctr).getFrequency(), freqs.get(ctr));
-			LOGGER.debug(transactions.get(ctr).toString());
+			LOGGER.debug("{}", transactions.get(ctr));
 		}
 		selenium.scrollToElement(selenium.getVisibleElements(DIV_BOXES).get(2));
 	}

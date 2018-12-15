@@ -1,12 +1,10 @@
 package runners;
 
-import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.SnippetType;
 import cucumber.api.junit.Cucumber;
-import jcucumberng.api.logger.Logger;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(features = { "src/main/resources/features" }, tags = { "not @ignore" }, glue = { "project.datatable",
@@ -17,18 +15,4 @@ import jcucumberng.api.logger.Logger;
 				"junit:target/cucumber-report.xml" }, snippets = SnippetType.UNDERSCORE, monochrome = true, strict = true, dryRun = false)
 
 public class RunCukesTest {
-
-	private static boolean isLoaded = false;
-
-	/**
-	 * This block executes before @Before.
-	 */
-	@BeforeClass
-	public static void beforeClass() {
-		if (!isLoaded) {
-			Logger.init();
-			isLoaded = true;
-		}
-	}
-
 }

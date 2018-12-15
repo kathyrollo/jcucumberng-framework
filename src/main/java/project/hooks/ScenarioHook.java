@@ -1,12 +1,9 @@
 package project.hooks;
 
 import org.openqa.selenium.Dimension;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.paulhammant.ngwebdriver.NgWebDriver;
 
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
@@ -26,14 +23,13 @@ public class ScenarioHook {
 		LOGGER.info("BEGIN TEST -> {}", scenario.getName());
 
 		String webBrowser = PropsLoader.framework("web.browser");
-		WebDriver driver = BrowserFactory.getInstance(webBrowser);
-		if (Boolean.parseBoolean(PropsLoader.framework("wait.for.angular"))) {
-			NgWebDriver ngWebDriver = new NgWebDriver((JavascriptExecutor) driver);
-			ngWebDriver.waitForAngularRequestsToFinish();
-		}
 		LOGGER.info("Browser={}", webBrowser);
 
+		WebDriver driver = BrowserFactory.getInstance(webBrowser);
 		selenium = new Selenium(driver, scenario);
+		if (Boolean.parseBoolean(PropsLoader.framework("wait.for.angular"))) {
+			selenium.getNgWebDriver().waitForAngularRequestsToFinish();
+		}
 
 		Dimension dimension = SystemUtil.getDimension();
 		selenium.getDriver().manage().window().setSize(dimension);

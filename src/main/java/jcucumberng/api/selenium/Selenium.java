@@ -19,6 +19,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.paulhammant.ngwebdriver.NgWebDriver;
+
 import cucumber.api.Scenario;
 import jcucumberng.api.locator.LocatorFactory;
 import jcucumberng.api.properties.PropsLoader;
@@ -33,6 +35,7 @@ public final class Selenium {
 
 	private int timeOut = 0;
 	private WebDriver driver = null;
+	private NgWebDriver ngWebDriver = null;
 	private Scenario scenario = null;
 
 	public Selenium() {
@@ -42,6 +45,7 @@ public final class Selenium {
 	public Selenium(WebDriver driver, Scenario scenario) throws Throwable {
 		this.timeOut = Integer.parseInt(PropsLoader.framework("webdriver.wait"));
 		this.driver = driver;
+		this.ngWebDriver = new NgWebDriver((JavascriptExecutor) driver);
 		this.scenario = scenario;
 	}
 
@@ -341,7 +345,6 @@ public final class Selenium {
 	 * {@code /target/cucumber-sshots/}.
 	 * 
 	 * @return String - the absolute path to the saved screenshot
-	 * 
 	 * @throws IOException
 	 */
 	public String captureScreenshot() throws IOException {
@@ -370,6 +373,10 @@ public final class Selenium {
 
 	public WebDriver getDriver() {
 		return driver;
+	}
+
+	public NgWebDriver getNgWebDriver() {
+		return ngWebDriver;
 	}
 
 	public Scenario getScenario() {
