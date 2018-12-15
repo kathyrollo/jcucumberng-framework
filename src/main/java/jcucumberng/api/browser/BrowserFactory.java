@@ -22,7 +22,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 public final class BrowserFactory {
 
 	public enum Browser {
-		CHROME32, CHROME32_NOHEAD, FF32, FF32_NOHEAD, FF64, FF64_NOHEAD, EDGE, IE32, IE64
+		CHROME32, CHROME32_NOHEAD, CHROME64, CHROME64_NOHEAD, FF32, FF32_NOHEAD, FF64, FF64_NOHEAD, EDGE, IE32, IE64
 	}
 
 	private BrowserFactory() {
@@ -43,14 +43,16 @@ public final class BrowserFactory {
 			Browser browser = Browser.valueOf(StringUtils.upperCase(webBrowser));
 			switch (browser) {
 			case CHROME32:
-				WebDriverManager.chromedriver().arch32().setup();
-				driver = new ChromeDriver();
+				driver = BrowserFactory.chromedriver(32, false);
 				break;
 			case CHROME32_NOHEAD:
-				WebDriverManager.chromedriver().arch32().setup();
-				ChromeOptions chromeOpts = new ChromeOptions();
-				chromeOpts.addArguments("--headless");
-				driver = new ChromeDriver(chromeOpts);
+				driver = BrowserFactory.chromedriver(32, true);
+				break;
+			case CHROME64:
+				driver = BrowserFactory.chromedriver(64, false);
+				break;
+			case CHROME64_NOHEAD:
+				driver = BrowserFactory.chromedriver(64, true);
 				break;
 			case FF32:
 				driver = BrowserFactory.firefoxdriver(32, false);
@@ -89,6 +91,31 @@ public final class BrowserFactory {
 		}
 
 		return driver;
+	}
+
+	/**
+	 * Instantiates the Chrome WebDriver.
+	 * 
+	 * @param arch     32bit or 64bit
+	 * @param headless run in headless mode
+	 * @return WebDriver - the Chrome WebDriver
+	 */
+	private static WebDriver chromedriver(int arch, boolean headless) {
+		if (32 == arch) {
+			WebDriverManager.chromedriver().arch32().setup();
+		}
+
+		if (64 == arch) {
+			WebDriverManager.chromedriver().arch64().setup();
+		}
+
+		if (headless) {
+			ChromeOptions chromeOpts = new ChromeOptions();
+			chromeOpts.addArguments("--headless");
+			return new ChromeDriver(chromeOpts);
+		}
+
+		return new ChromeDriver();
 	}
 
 	/**
