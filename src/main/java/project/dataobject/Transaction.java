@@ -1,4 +1,4 @@
-package project.domain;
+package project.dataobject;
 
 import java.util.Map;
 

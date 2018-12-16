@@ -9,7 +9,7 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.datatable.DataTableType;
 import io.cucumber.datatable.TableEntryTransformer;
 import io.cucumber.datatable.TableTransformer;
-import project.domain.Transaction;
+import project.dataobject.Transaction;
 
 /**
  * Maps DataTable in feature file to objects.
