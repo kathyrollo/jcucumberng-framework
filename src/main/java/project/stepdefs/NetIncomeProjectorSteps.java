@@ -45,8 +45,8 @@ public class NetIncomeProjectorSteps {
 	}
 
 	@When("I Enter My Regular Expenses")
-	public void I_Enter_My_Regular_Expenses(DataTable dataTable) throws Throwable {
-		List<Transaction> transactions = dataTable.asList(Transaction.class);
+	public void I_Enter_My_Regular_Expenses(DataTable table) throws Throwable {
+		List<Transaction> transactions = table.asList(Transaction.class);
 		// Click add button
 		for (int ctr = 0; ctr < transactions.size() - 1; ctr++) {
 			selenium.click("expense.add");
