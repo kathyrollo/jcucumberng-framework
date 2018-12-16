@@ -16,7 +16,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.parser.PdfTextExtractor;
 
-import jcucumberng.api.properties.PropsLoader;
+import jcucumberng.api.props.PropsLoader;
 
 /**
  * {@code FileUtil} handles actions for manipulating files or documents.

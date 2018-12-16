@@ -23,7 +23,7 @@ import com.paulhammant.ngwebdriver.NgWebDriver;
 
 import cucumber.api.Scenario;
 import jcucumberng.api.locator.LocatorFactory;
-import jcucumberng.api.properties.PropsLoader;
+import jcucumberng.api.props.PropsLoader;
 
 /**
  * {@code Selenium} handles actions for interacting with web applications using

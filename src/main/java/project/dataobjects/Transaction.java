@@ -1,4 +1,4 @@
-package project.dataobject;
+package project.dataobjects;
 
 import java.util.Map;
 
