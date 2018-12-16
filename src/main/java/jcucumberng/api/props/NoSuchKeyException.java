@@ -1,4 +1,4 @@
-package jcucumberng.api.properties;
+package jcucumberng.api.props;
 
 /**
  * {@code NoSuchKeyException} is thrown when the expected key is not found in a

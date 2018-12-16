@@ -1,4 +1,4 @@
-package project.datatable;
+package project.configurers;
 
 import java.util.Locale;
 import java.util.Map;
@@ -9,9 +9,9 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.datatable.DataTableType;
 import io.cucumber.datatable.TableEntryTransformer;
 import io.cucumber.datatable.TableTransformer;
-import project.dataobject.Transaction;
+import project.dataobjects.Transaction;
 
-public class Configurer implements TypeRegistryConfigurer {
+public class DataTableConfigurer implements TypeRegistryConfigurer {
 
 	@Override
 	public void configureTypeRegistry(TypeRegistry registry) {

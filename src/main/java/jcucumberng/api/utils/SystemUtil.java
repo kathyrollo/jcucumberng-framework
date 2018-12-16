@@ -7,7 +7,7 @@ import java.io.IOException;
 
 import org.openqa.selenium.Dimension;
 
-import jcucumberng.api.properties.PropsLoader;
+import jcucumberng.api.props.PropsLoader;
 
 /**
  * {@code SystemUtil} handles actions relating to the user's machine such as
