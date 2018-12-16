@@ -1,4 +1,4 @@
-package project.domain;
+package project.dataobject;
 
 import java.util.Map;
 
@@ -8,20 +8,6 @@ public class Transaction {
 	private String amount = null;
 	private String frequency = null;
 	private String month = null;
-
-	public Transaction(String name, String amount, String frequency, String month) {
-		this.name = name;
-		this.amount = amount;
-		this.frequency = frequency;
-		this.month = month;
-	}
-
-	public Transaction(Map<String, String> map) {
-		this.name = map.get("name");
-		this.amount = map.get("amount");
-		this.frequency = map.get("frequency");
-		this.month = map.get("month");
-	}
 
 	public String getName() {
 		return name;
@@ -53,6 +39,15 @@ public class Transaction {
 
 	public void setMonth(String month) {
 		this.month = month;
+	}
+
+	public static Transaction getInstance(Map<String, String> entry) {
+		Transaction transaction = new Transaction();
+		transaction.setName(entry.get("name"));
+		transaction.setAmount(entry.get("amount"));
+		transaction.setFrequency(entry.get("frequency"));
+		transaction.setMonth(entry.get("month"));
+		return transaction;
 	}
 
 	@Override
