@@ -14,8 +14,8 @@ import jcucumberng.api.props.PropsLoader;
 import jcucumberng.api.selenium.Selenium;
 
 /**
- * {@code LocatorFactory} handles actions for creating the Selenium {@code By}
- * object.
+ * {@code LocatorFactory} handles actions for instantiating the Selenium
+ * {@code By} object.
  * 
  * @author Kat Rollo {@literal <rollo.katherine@gmail.com>}
  */
