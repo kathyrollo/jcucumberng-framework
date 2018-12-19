@@ -159,8 +159,8 @@ public final class Selenium {
 	 * Checks if the element is found on the web page.
 	 * 
 	 * @param keys the key(s) from {@code ui-map.properties}
-	 * @return {@code true} - if at least one matching element is found on the web
-	 *         page
+	 * @return boolean - {@code true}, if at least one matching element is found on
+	 *         the web page
 	 * @throws IOException
 	 */
 	public boolean isElementPresent(String... keys) throws IOException {
@@ -323,11 +323,14 @@ public final class Selenium {
 	 * Scroll to specific element on the web page.
 	 * 
 	 * @param keys the key(s) from {@code ui-map.properties}
+	 * @return WebElement - the element
 	 * @throws IOException
 	 */
-	public void scrollToElement(String... keys) throws IOException {
+	public WebElement scrollToElement(String... keys) throws IOException {
+		WebElement element = getVisibleElement(keys);
 		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("arguments[0].scrollIntoView();", getVisibleElement(keys));
+		js.executeScript("arguments[0].scrollIntoView();", element);
+		return element;
 	}
 
 	/**
