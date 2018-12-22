@@ -53,7 +53,7 @@ public void I_Should_See_Net_Income_Per_Month(String expected) throws Throwable 
 - [PicoContainer](http://picocontainer.com/) for DI module
 - [AssertJ](http://joel-costigliola.github.io/assertj/) for fluent assertions
 - [SLF4J](https://www.slf4j.org/) / [Apache Log4j2](https://logging.apache.org/log4j/2.x/) for logging mechanism
-- [Maven Cucumber Reporting](https://github.com/damianszczepanik/maven-cucumber-reporting) / [Cucumber Extent Reports](https://github.com/extent-framework) / [Allure Test Report](https://github.com/allure-framework) for dynamic HTML test reports
+- [Cucumber Reporting](https://github.com/damianszczepanik/maven-cucumber-reporting) / [Extent Reports](https://github.com/extent-framework) / [Allure](https://github.com/allure-framework) for dynamic HTML test reports
 - [iText 5](https://developers.itextpdf.com/itext-java) for handling PDF files
 - [Apache POI](https://poi.apache.org/) for handling office documents (Word, PowerPoint, Excel)
 - [Fillo](https://codoid.com/fillo/) for SQL-like manipulation of Excel files
@@ -119,7 +119,7 @@ mvn verify
 ### Dyamic Reporting (3-in-1)
 Different reporting plugins generate animated visuals and colorful graphs/charts. Impressive for demos.
 
-### 1. Maven Cucumber Reporting
+### 1. Cucumber Reporting
 > This report is standalone and can be zipped/emailed to clients. HTML files can be viewed locally using the browser.
 
 Generate report into directory: `/target/cucumber-html-reports/`
@@ -131,7 +131,7 @@ mvn verify
 
 ![maven_cucumber_reporting](https://user-images.githubusercontent.com/28589393/44955736-de4d7a80-aeea-11e8-803c-1dced0499fda.gif)
 
-### 2. Cucumber Extent Reports
+### 2. Extent Reports
 > This report is standalone and can be zipped/emailed to clients. HTML files can be viewed locally using the browser.
 
 Generate report into directory: `/target/extentreports-cucumber/`
@@ -143,7 +143,7 @@ mvn verify
 
 ![extent_reports_cucumber](https://user-images.githubusercontent.com/28589393/49515372-b139ab00-f8d1-11e8-99b3-7b077e06d572.gif)
 
-### 3. Allure Test Report
+### 3. Allure
 > This report is a single page application (SPA). Dynamic attributes use AJAX and need to be launched from a [running web server](https://github.com/allure-framework/allure1/issues/896#issuecomment-271599716) to view.
 
 Choose any method to generate the report **_after_** running the tests.
