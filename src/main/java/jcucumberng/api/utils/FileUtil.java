@@ -16,8 +16,6 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.parser.PdfTextExtractor;
 
-import jcucumberng.api.props.PropsLoader;
-
 /**
  * {@code FileUtil} handles actions for manipulating files or documents.
  * 
@@ -30,18 +28,16 @@ public final class FileUtil {
 	}
 
 	/**
-	 * Checks if a file exists in a specified directory. Set {@code file.dir} in
-	 * {@code framework.properties}.
+	 * Checks if a file exists in a specified directory.
 	 * 
-	 * @param prefix the beginning of a filename, can be a substring
-	 * @param suffix can be the file extension (e.g. {@code .txt})
+	 * @param dirPath absolute path to directory
+	 * @param prefix  the beginning of a filename, can be a substring
+	 * @param suffix  can be the file extension (e.g. {@code .txt})
 	 * @return boolean - true if matching file is found using given prefix and
 	 *         suffix
-	 * @throws IOException
 	 */
-	public static boolean doesFileExist(String prefix, String suffix) throws IOException {
-		String directory = PropsLoader.framework("file.dir");
-		File[] files = new File(directory).listFiles();
+	public static boolean doesFileExist(String dirPath, String prefix, String suffix) {
+		File[] files = new File(dirPath).listFiles();
 
 		String fileName = null;
 		for (File file : files) {
@@ -59,14 +55,14 @@ public final class FileUtil {
 	}
 
 	/**
-	 * Extracts readable text from a specified PDF file. Set {@code pdf.file.path}
-	 * in {@code framework.properties}. File path must be absolute.
+	 * Extracts readable text from a specified PDF file.
 	 * 
+	 * @param filePath absolute path to PDF file
 	 * @return String - extracted text from PDF file
 	 * @throws IOException
 	 */
-	public static String extractPdfText() throws IOException {
-		PdfReader pdfReader = new PdfReader(PropsLoader.framework("pdf.file.path"));
+	public static String extractPdfText(String filePath) throws IOException {
+		PdfReader pdfReader = new PdfReader(filePath);
 		int pages = pdfReader.getNumberOfPages();
 
 		StringBuilder builder = new StringBuilder();
