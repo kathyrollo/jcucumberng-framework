@@ -14,10 +14,6 @@ import org.apache.commons.lang3.StringUtils;
  */
 public final class PropsLoader {
 
-	private static final String USER_DIR = "user.dir";
-	private static final String RESOURCES_DIR = "/src/main/resources/";
-	private static final String NO_SUCH_KEY = "Key not found in ";
-
 	private PropsLoader() {
 		// No instantiation
 	}
@@ -27,29 +23,12 @@ public final class PropsLoader {
 	 * 
 	 * @param key the config key (Example: {@code browser=CHROME32}, key =
 	 *            {@code browser})
-	 * @return String - the value corresponding to the given key (Example:
+	 * @return String - the value of the given key (Example:
 	 *         {@code browser=CHROME32}, value = {@code CHROME32})
 	 * @throws IOException
 	 */
 	public static String framework(String key) throws IOException {
-		String propsFileName = "framework.properties";
-		StringBuilder builder = new StringBuilder();
-		builder.append(StringUtils.replace(System.getProperty(USER_DIR), "\\", "/"));
-		builder.append(RESOURCES_DIR);
-		builder.append(propsFileName);
-
-		InputStream inputStream = new FileInputStream(builder.toString());
-		Properties props = new Properties();
-		props.load(inputStream);
-
-		String value = props.getProperty(key);
-		if (StringUtils.isBlank(value)) {
-			builder.setLength(0);
-			builder.append(propsFileName + ": " + key);
-			throw new NoSuchKeyException(NO_SUCH_KEY + builder.toString());
-		}
-
-		return StringUtils.trim(value);
+		return loadProps("framework.properties", key);
 	}
 
 	/**
@@ -57,29 +36,12 @@ public final class PropsLoader {
 	 * 
 	 * @param key the config key (Example: {@code base.url=www.google.com}, key =
 	 *            {@code base.url})
-	 * @return String - the value corresponding to the given key (Example:
+	 * @return String - the value of the given key (Example:
 	 *         {@code base.url=www.google.com}, value = {@code www.google.com})
 	 * @throws IOException
 	 */
 	public static String project(String key) throws IOException {
-		String propsFileName = "project.properties";
-		StringBuilder builder = new StringBuilder();
-		builder.append(StringUtils.replace(System.getProperty(USER_DIR), "\\", "/"));
-		builder.append(RESOURCES_DIR);
-		builder.append(propsFileName);
-
-		InputStream inputStream = new FileInputStream(builder.toString());
-		Properties props = new Properties();
-		props.load(inputStream);
-
-		String value = props.getProperty(key);
-		if (StringUtils.isBlank(value)) {
-			builder.setLength(0);
-			builder.append(propsFileName + ": " + key);
-			throw new NoSuchKeyException(NO_SUCH_KEY + builder.toString());
-		}
-
-		return StringUtils.trim(value);
+		return loadProps("project.properties", key);
 	}
 
 	/**
@@ -87,16 +49,28 @@ public final class PropsLoader {
 	 * 
 	 * @param key the element key (Example: {@code first.name=id:firstName}, key =
 	 *            {@code first.name})
-	 * @return String - the value corresponding to the given key (Example:
+	 * @return String - the value of the given key (Example:
 	 *         {@code first.name=id:firstName}, value = {@code id:firstName})
 	 * @throws IOException
 	 */
 	public static String uiMap(String key) throws IOException {
-		String propsFileName = "ui-map.properties";
+		return loadProps("ui-map.properties", key);
+	}
+
+	/**
+	 * Loads a {@code .properties} file.
+	 * 
+	 * @param propsFile the filename with extension (Example:
+	 *                  {@code config.properties})
+	 * @param key       the key from the given propsFile
+	 * @return String - the value of the given key
+	 * @throws IOException
+	 */
+	private static String loadProps(String propsFile, String key) throws IOException {
 		StringBuilder builder = new StringBuilder();
-		builder.append(StringUtils.replace(System.getProperty(USER_DIR), "\\", "/"));
-		builder.append(RESOURCES_DIR);
-		builder.append(propsFileName);
+		builder.append(StringUtils.replace(System.getProperty("user.dir"), "\\", "/"));
+		builder.append("/src/main/resources/");
+		builder.append(propsFile);
 
 		InputStream inputStream = new FileInputStream(builder.toString());
 		Properties props = new Properties();
@@ -105,8 +79,8 @@ public final class PropsLoader {
 		String value = props.getProperty(key);
 		if (StringUtils.isBlank(value)) {
 			builder.setLength(0);
-			builder.append(propsFileName + ": " + key);
-			throw new NoSuchKeyException(NO_SUCH_KEY + builder.toString());
+			builder.append(propsFile + ": " + key);
+			throw new NoSuchKeyException("Key not found in " + builder.toString());
 		}
 
 		return StringUtils.trim(value);
