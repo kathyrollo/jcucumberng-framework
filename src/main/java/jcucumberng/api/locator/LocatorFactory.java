@@ -10,7 +10,7 @@ import org.openqa.selenium.support.pagefactory.ByChained;
 
 import com.paulhammant.ngwebdriver.ByAngular;
 
-import jcucumberng.api.props.PropsLoader;
+import jcucumberng.api.config.PropsLoader;
 import jcucumberng.api.selenium.Selenium;
 
 /**

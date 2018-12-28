@@ -7,7 +7,7 @@ import cucumber.api.SnippetType;
 import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features = { "src/main/resources/features" }, tags = { "not @ignore" }, glue = { "project.configurers",
+@CucumberOptions(features = { "src/main/resources/features" }, tags = { "not @ignore" }, glue = { "project.datatables",
 		"project.hooks", "project.stepdefs" }, plugin = { "pretty",
 				"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
 				"io.qameta.allure.cucumber3jvm.AllureCucumber3Jvm", "html:target/cucumber-html-default",
