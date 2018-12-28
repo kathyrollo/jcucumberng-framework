@@ -1,4 +1,4 @@
-package project.configurers;
+package project.datatables;
 
 import java.util.Locale;
 import java.util.Map;
@@ -11,7 +11,12 @@ import io.cucumber.datatable.TableEntryTransformer;
 import io.cucumber.datatable.TableTransformer;
 import project.dataobjects.Transaction;
 
-public class DataTableConfigurer implements TypeRegistryConfigurer {
+public class Configurer implements TypeRegistryConfigurer {
+
+	@Override
+	public Locale locale() {
+		return Locale.ENGLISH;
+	}
 
 	@Override
 	public void configureTypeRegistry(TypeRegistry registry) {
@@ -38,11 +43,6 @@ public class DataTableConfigurer implements TypeRegistryConfigurer {
 			}
 		}));
 
-	}
-
-	@Override
-	public Locale locale() {
-		return Locale.ENGLISH;
 	}
 
 }

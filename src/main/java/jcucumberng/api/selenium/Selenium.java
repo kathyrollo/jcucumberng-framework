@@ -22,8 +22,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.paulhammant.ngwebdriver.NgWebDriver;
 
 import cucumber.api.Scenario;
+import jcucumberng.api.config.PropsLoader;
 import jcucumberng.api.locator.LocatorFactory;
-import jcucumberng.api.props.PropsLoader;
 
 /**
  * {@code Selenium} handles actions for interacting with web applications using
