@@ -135,7 +135,6 @@ public final class LocatorFactory {
 				by = ByAngular.repeater(selector);
 				break;
 			default:
-				// Handled in try-catch
 				break;
 			}
 		} catch (IllegalArgumentException e) {

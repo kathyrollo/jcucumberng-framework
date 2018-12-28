@@ -73,7 +73,6 @@ public final class BrowserFactory {
 				driver = new InternetExplorerDriver();
 				break;
 			default:
-				// Handled in try-catch
 				break;
 			}
 		} catch (IllegalArgumentException e) {
