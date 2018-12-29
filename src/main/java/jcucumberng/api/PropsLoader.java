@@ -1,4 +1,4 @@
-package jcucumberng.api.main;
+package jcucumberng.api;
 
 import java.io.FileInputStream;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package jcucumberng.api.utils;
+package jcucumberng.utils;
 
 /**
  * {@code TimeUtil} handles actions for manipulating time.

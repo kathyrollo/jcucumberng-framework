@@ -1,4 +1,4 @@
-package jcucumberng.api.utils;
+package jcucumberng.utils;
 
 import java.awt.AWTException;
 import java.awt.Robot;
@@ -7,7 +7,7 @@ import java.io.IOException;
 
 import org.openqa.selenium.Dimension;
 
-import jcucumberng.api.main.PropsLoader;
+import jcucumberng.api.PropsLoader;
 
 /**
  * {@code SystemUtil} handles actions relating to the user's machine such as

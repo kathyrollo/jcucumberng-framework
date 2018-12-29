@@ -1,8 +1,8 @@
 package project.hooks;
 
 import cucumber.api.java.AfterStep;
-import jcucumberng.api.main.PropsLoader;
-import jcucumberng.api.main.Selenium;
+import jcucumberng.api.PropsLoader;
+import jcucumberng.api.Selenium;
 
 public class StepHook {
 

@@ -1,4 +1,4 @@
-package jcucumberng.api.main;
+package jcucumberng.api;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,7 +22,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.paulhammant.ngwebdriver.NgWebDriver;
 
 import cucumber.api.Scenario;
-import jcucumberng.api.factories.LocatorFactory;
 
 /**
  * {@code Selenium} handles actions for interacting with web applications using
@@ -74,7 +73,7 @@ public final class Selenium {
 	 * @throws IOException
 	 */
 	public By by(String key) throws IOException {
-		return LocatorFactory.getInstance(key);
+		return Locator.getInstance(key);
 	}
 
 	/**

@@ -8,10 +8,10 @@ import org.slf4j.LoggerFactory;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
-import jcucumberng.api.factories.BrowserFactory;
-import jcucumberng.api.main.PropsLoader;
-import jcucumberng.api.main.Selenium;
-import jcucumberng.api.utils.SystemUtil;
+import jcucumberng.api.Browser;
+import jcucumberng.api.PropsLoader;
+import jcucumberng.api.Selenium;
+import jcucumberng.utils.SystemUtil;
 
 public class ScenarioHook {
 
@@ -25,7 +25,7 @@ public class ScenarioHook {
 		String webBrowser = PropsLoader.framework("web.browser");
 		LOGGER.info("Browser={}", webBrowser);
 
-		WebDriver driver = BrowserFactory.getInstance(webBrowser);
+		WebDriver driver = Browser.getInstance(webBrowser);
 		selenium = new Selenium(driver, scenario);
 		if (Boolean.parseBoolean(PropsLoader.framework("wait.for.angular"))) {
 			selenium.getNgWebDriver().waitForAngularRequestsToFinish();
