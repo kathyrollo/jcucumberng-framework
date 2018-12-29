@@ -75,8 +75,6 @@ public final class PropsLoader {
 		Properties properties = new Properties();
 		properties.load(inputStream);
 
-		builder.setLength(0); // Clear builder
-		builder.append(props + ": " + key);
 		String value = properties.getProperty(key);
 		if (StringUtils.isWhitespace(value)) {
 			throw new NullPointerException("Value for " + key + " is empty in " + props);
