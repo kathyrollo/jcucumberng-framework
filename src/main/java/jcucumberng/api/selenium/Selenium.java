@@ -22,8 +22,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.paulhammant.ngwebdriver.NgWebDriver;
 
 import cucumber.api.Scenario;
-import jcucumberng.api.config.PropsLoader;
 import jcucumberng.api.locator.LocatorFactory;
+import jcucumberng.api.properties.Loader;
 
 /**
  * {@code Selenium} handles actions for interacting with web applications using
@@ -43,7 +43,7 @@ public final class Selenium {
 	}
 
 	public Selenium(WebDriver driver, Scenario scenario) throws Throwable {
-		this.timeOut = Integer.parseInt(PropsLoader.framework("webdriver.wait"));
+		this.timeOut = Integer.parseInt(Loader.framework("webdriver.wait"));
 		this.driver = driver;
 		this.ngWebDriver = new NgWebDriver((JavascriptExecutor) driver);
 		this.scenario = scenario;

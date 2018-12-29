@@ -10,7 +10,7 @@ import org.openqa.selenium.support.pagefactory.ByChained;
 
 import com.paulhammant.ngwebdriver.ByAngular;
 
-import jcucumberng.api.config.PropsLoader;
+import jcucumberng.api.properties.Loader;
 import jcucumberng.api.selenium.Selenium;
 
 /**
@@ -45,7 +45,7 @@ public final class LocatorFactory {
 		By[] bys = null;
 		Selenium selenium = new Selenium();
 
-		String value = PropsLoader.uiMap(key);
+		String value = Loader.uiMap(key);
 		if (!value.matches(".+:.+")) {
 			throw new InvalidPatternException("Does not match expected pattern in ui-map.properties: " + value);
 		}
