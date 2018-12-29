@@ -14,8 +14,7 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 /**
- * {@code Browser} handles actions for instantiating the Selenium
- * WebDriver.
+ * {@code Browser} handles actions for instantiating the Selenium WebDriver.
  * 
  * @author Kat Rollo {@literal <rollo.katherine@gmail.com>}
  */
