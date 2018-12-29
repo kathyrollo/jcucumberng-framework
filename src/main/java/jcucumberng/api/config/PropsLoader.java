@@ -80,7 +80,7 @@ public final class PropsLoader {
 		if (StringUtils.isBlank(value)) {
 			builder.setLength(0);
 			builder.append(propsFile + ": " + key);
-			throw new NoSuchKeyOrValueException("Key not found or value is empty in " + builder.toString());
+			throw new NoSuchKeyException("Key not found or value is empty in " + builder.toString());
 		}
 
 		return StringUtils.trim(value);
