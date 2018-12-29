@@ -1,7 +1,7 @@
 package jcucumberng.api.config;
 
 /**
- * {@code NoSuchKeyException} is thrown when the expected key is not found in a
+ * {@code NoSuchKeyException} is thrown when the specified key is not found in a
  * {@code .properties} file.
  * 
  * @author Kat Rollo {@literal <rollo.katherine@gmail.com>}

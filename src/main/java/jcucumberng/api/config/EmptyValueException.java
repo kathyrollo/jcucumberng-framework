@@ -2,7 +2,7 @@ package jcucumberng.api.config;
 
 /**
  * {@code EmptyValueException} is thrown when the value of a specified key is
- * empty in a {@code .properties} file.
+ * empty or blank in a {@code .properties} file.
  * 
  * @author Kat Rollo {@literal <rollo.katherine@gmail.com>}
  */

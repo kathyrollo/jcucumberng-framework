@@ -73,14 +73,17 @@ public final class PropsLoader {
 		builder.append(propsFile);
 
 		InputStream inputStream = new FileInputStream(builder.toString());
+		builder.setLength(0); // Clear builder
+		builder.append(propsFile + ": " + key);
 		Properties props = new Properties();
 		props.load(inputStream);
 
 		String value = props.getProperty(key);
+		if (StringUtils.isWhitespace(value)) {
+			throw new EmptyValueException("Value is empty or blank in " + builder.toString());
+		}
 		if (StringUtils.isBlank(value)) {
-			builder.setLength(0);
-			builder.append(propsFile + ": " + key);
-			throw new NoSuchKeyException("Key not found or value is empty in " + builder.toString());
+			throw new NoSuchKeyException("Key not found in " + builder.toString());
 		}
 
 		return StringUtils.trim(value);
