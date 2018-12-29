@@ -35,7 +35,7 @@ public final class Locator {
 	 * @throws IOException
 	 */
 	public static By getInstance(String key) throws IOException {
-		String loc = null;
+		String locator = null;
 		String selector = null;
 		String text = null;
 		String[] keys = null;
@@ -47,7 +47,7 @@ public final class Locator {
 			throw new IllegalArgumentException("Invalid pattern syntax in ui-map.properties: " + value);
 		}
 
-		loc = StringUtils.substringBefore(value, ":");
+		locator = StringUtils.substringBefore(value, ":");
 
 		selector = StringUtils.substringAfter(value, ":");
 		if (StringUtils.contains(selector, "|")) {
@@ -69,7 +69,7 @@ public final class Locator {
 
 		By by = null;
 		try {
-			ByMethod byMethod = ByMethod.valueOf(StringUtils.upperCase(loc));
+			ByMethod byMethod = ByMethod.valueOf(StringUtils.upperCase(locator));
 			switch (byMethod) {
 			case ID:
 				by = By.id(selector);
@@ -135,7 +135,7 @@ public final class Locator {
 				break;
 			}
 		} catch (IllegalArgumentException e) {
-			throw new IllegalArgumentException("Unsupported locator in ui-map.properties: " + loc);
+			throw new IllegalArgumentException("Unsupported locator in ui-map.properties: " + locator);
 		}
 
 		return by;
