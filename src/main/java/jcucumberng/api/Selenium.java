@@ -1,4 +1,4 @@
-package jcucumberng.api.selenium;
+package jcucumberng.api;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,8 +22,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.paulhammant.ngwebdriver.NgWebDriver;
 
 import cucumber.api.Scenario;
-import jcucumberng.api.locator.LocatorFactory;
-import jcucumberng.api.properties.Loader;
 
 /**
  * {@code Selenium} handles actions for interacting with web applications using
@@ -43,7 +41,7 @@ public final class Selenium {
 	}
 
 	public Selenium(WebDriver driver, Scenario scenario) throws Throwable {
-		this.timeOut = Integer.parseInt(Loader.framework("webdriver.wait"));
+		this.timeOut = Integer.parseInt(PropsLoader.framework("webdriver.wait"));
 		this.driver = driver;
 		this.ngWebDriver = new NgWebDriver((JavascriptExecutor) driver);
 		this.scenario = scenario;
@@ -75,7 +73,7 @@ public final class Selenium {
 	 * @throws IOException
 	 */
 	public By by(String key) throws IOException {
-		return LocatorFactory.getInstance(key);
+		return Locator.getInstance(key);
 	}
 
 	/**
@@ -87,7 +85,7 @@ public final class Selenium {
 	 */
 	public By[] getBys(String... keys) throws IOException {
 		if (0 == keys.length) {
-			throw new MissingArgumentsException(
+			throw new NullPointerException(
 					"No arguments found for arbitrary parameters. Length must not be equal to 0.");
 		}
 		By[] bys = new By[keys.length];
