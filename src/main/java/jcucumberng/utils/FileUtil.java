@@ -1,4 +1,4 @@
-package jcucumberng.api.utils;
+package jcucumberng.utils;
 
 import java.io.File;
 import java.io.FileInputStream;

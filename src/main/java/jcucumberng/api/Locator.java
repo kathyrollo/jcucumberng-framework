@@ -1,4 +1,4 @@
-package jcucumberng.api.locator;
+package jcucumberng.api;
 
 import java.io.IOException;
 
@@ -10,23 +10,20 @@ import org.openqa.selenium.support.pagefactory.ByChained;
 
 import com.paulhammant.ngwebdriver.ByAngular;
 
-import jcucumberng.api.properties.Loader;
-import jcucumberng.api.selenium.Selenium;
-
 /**
- * {@code LocatorFactory} handles actions for instantiating the Selenium
- * {@code By} object.
+ * {@code Locator} handles actions for instantiating the Selenium {@code By}
+ * object.
  * 
  * @author Kat Rollo {@literal <rollo.katherine@gmail.com>}
  */
-public final class LocatorFactory {
+public final class Locator {
 
-	public enum Locator {
+	public enum ByMethod {
 		ID, NAME, LINK_TEXT, PARTIAL_LINK_TEXT, TAG, CLASS, CSS, XPATH, BY_ALL, BY_CHAINED, BY_ID_OR_NAME, BINDING,
 		MODEL, BUTTON_TEXT, CSS_CONTAINING_TEXT, EXACT_BINDING, EXACT_REPEATER, OPTIONS, PARTIAL_BUTTON_TEXT, REPEATER
 	}
 
-	private LocatorFactory() {
+	private Locator() {
 		// No instantiation
 	}
 
@@ -38,33 +35,33 @@ public final class LocatorFactory {
 	 * @throws IOException
 	 */
 	public static By getInstance(String key) throws IOException {
-		String loc = null;
+		String locator = null;
 		String selector = null;
 		String text = null;
 		String[] keys = null;
 		By[] bys = null;
 		Selenium selenium = new Selenium();
 
-		String value = Loader.uiMap(key);
+		String value = PropsLoader.uiMap(key);
 		if (!value.matches(".+:.+")) {
-			throw new InvalidPatternException("Does not match expected pattern in ui-map.properties: " + value);
+			throw new IllegalArgumentException("Invalid pattern syntax in ui-map.properties: " + value);
 		}
 
-		loc = StringUtils.substringBefore(value, ":");
+		locator = StringUtils.substringBefore(value, ":");
 
 		selector = StringUtils.substringAfter(value, ":");
 		if (StringUtils.contains(selector, "|")) {
-			if (StringUtils.containsIgnoreCase(value, Locator.BY_ALL.toString())) {
+			if (StringUtils.containsIgnoreCase(value, ByMethod.BY_ALL.toString())) {
 				keys = StringUtils.split(StringUtils.substringAfter(value, ":"), "|");
 				bys = selenium.getBys(keys);
 				selector = null;
 			}
-			if (StringUtils.containsIgnoreCase(value, Locator.BY_CHAINED.toString())) {
+			if (StringUtils.containsIgnoreCase(value, ByMethod.BY_CHAINED.toString())) {
 				keys = StringUtils.split(StringUtils.substringAfter(value, ":"), "|");
 				bys = selenium.getBys(keys);
 				selector = null;
 			}
-			if (StringUtils.containsIgnoreCase(value, Locator.CSS_CONTAINING_TEXT.toString())) {
+			if (StringUtils.containsIgnoreCase(value, ByMethod.CSS_CONTAINING_TEXT.toString())) {
 				text = StringUtils.substringAfter(selector, "|");
 				selector = StringUtils.substringBefore(selector, "|");
 			}
@@ -72,8 +69,8 @@ public final class LocatorFactory {
 
 		By by = null;
 		try {
-			Locator locator = Locator.valueOf(StringUtils.upperCase(loc));
-			switch (locator) {
+			ByMethod byMethod = ByMethod.valueOf(StringUtils.upperCase(locator));
+			switch (byMethod) {
 			case ID:
 				by = By.id(selector);
 				break;
@@ -138,7 +135,7 @@ public final class LocatorFactory {
 				break;
 			}
 		} catch (IllegalArgumentException e) {
-			throw new UnsupportedLocatorException("Unsupported locator specified in ui-map.properties: " + loc);
+			throw new IllegalArgumentException("Unsupported locator in ui-map.properties: " + locator);
 		}
 
 		return by;

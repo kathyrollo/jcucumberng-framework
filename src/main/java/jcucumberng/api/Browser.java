@@ -1,4 +1,4 @@
-package jcucumberng.api.browser;
+package jcucumberng.api;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebDriver;
@@ -14,18 +14,17 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 /**
- * {@code BrowserFactory} handles actions for instantiating the Selenium
- * WebDriver.
+ * {@code Browser} handles actions for instantiating the Selenium WebDriver.
  * 
  * @author Kat Rollo {@literal <rollo.katherine@gmail.com>}
  */
-public final class BrowserFactory {
+public final class Browser {
 
-	public enum Browser {
+	public enum WebBrowser {
 		CHROME32, CHROME32_NOHEAD, FF32, FF32_NOHEAD, FF64, FF64_NOHEAD, EDGE, IE32, IE64
 	}
 
-	private BrowserFactory() {
+	private Browser() {
 		// No instantiation
 	}
 
@@ -40,25 +39,25 @@ public final class BrowserFactory {
 		WebDriver driver = null;
 
 		try {
-			Browser browser = Browser.valueOf(StringUtils.upperCase(webBrowser));
-			switch (browser) {
+			WebBrowser wb = WebBrowser.valueOf(StringUtils.upperCase(webBrowser));
+			switch (wb) {
 			case CHROME32:
-				driver = BrowserFactory.chromedriver(32, false);
+				driver = Browser.chromedriver(32, false);
 				break;
 			case CHROME32_NOHEAD:
-				driver = BrowserFactory.chromedriver(32, true);
+				driver = Browser.chromedriver(32, true);
 				break;
 			case FF32:
-				driver = BrowserFactory.firefoxdriver(32, false);
+				driver = Browser.firefoxdriver(32, false);
 				break;
 			case FF32_NOHEAD:
-				driver = BrowserFactory.firefoxdriver(32, true);
+				driver = Browser.firefoxdriver(32, true);
 				break;
 			case FF64:
-				driver = BrowserFactory.firefoxdriver(64, false);
+				driver = Browser.firefoxdriver(64, false);
 				break;
 			case FF64_NOHEAD:
-				driver = BrowserFactory.firefoxdriver(64, true);
+				driver = Browser.firefoxdriver(64, true);
 				break;
 			case EDGE:
 				WebDriverManager.edgedriver().setup();
@@ -76,8 +75,7 @@ public final class BrowserFactory {
 				break;
 			}
 		} catch (IllegalArgumentException e) {
-			throw new UnsupportedBrowserException(
-					"Unsupported browser specified in framework.properties: " + webBrowser);
+			throw new IllegalArgumentException("Unsupported browser in framework.properties: " + webBrowser);
 		}
 
 		return driver;
