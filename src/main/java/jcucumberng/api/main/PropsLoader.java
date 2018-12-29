@@ -1,4 +1,4 @@
-package jcucumberng.api.properties;
+package jcucumberng.api.main;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -8,13 +8,13 @@ import java.util.Properties;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- * {@code Loader} handles actions for reading {@code .properties} files.
+ * {@code PropsLoader} handles actions for reading {@code .properties} files.
  * 
  * @author Kat Rollo {@literal <rollo.katherine@gmail.com>}
  */
-public final class Loader {
+public final class PropsLoader {
 
-	private Loader() {
+	private PropsLoader() {
 		// No instantiation
 	}
 
@@ -79,10 +79,10 @@ public final class Loader {
 		builder.append(props + ": " + key);
 		String value = properties.getProperty(key);
 		if (StringUtils.isWhitespace(value)) {
-			throw new EmptyValueException("Value is empty or blank in " + builder.toString());
+			throw new NullPointerException("Value for " + key + " is empty in " + props);
 		}
 		if (StringUtils.isBlank(value)) {
-			throw new NoSuchKeyException("Key not found in " + builder.toString());
+			throw new NullPointerException(key + " not found in " + props);
 		}
 
 		return StringUtils.trim(value);

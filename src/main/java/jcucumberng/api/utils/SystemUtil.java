@@ -7,7 +7,7 @@ import java.io.IOException;
 
 import org.openqa.selenium.Dimension;
 
-import jcucumberng.api.properties.Loader;
+import jcucumberng.api.main.PropsLoader;
 
 /**
  * {@code SystemUtil} handles actions relating to the user's machine such as
@@ -44,7 +44,7 @@ public final class SystemUtil {
 		Robot robot = new Robot();
 		robot.keyPress(key);
 		robot.keyRelease(key);
-		int waitTime = Integer.parseInt(Loader.framework("key.press.wait"));
+		int waitTime = Integer.parseInt(PropsLoader.framework("key.press.wait"));
 		int millis = TimeUtil.convertSecsToMillisWithRange(waitTime, 1, 60);
 		robot.delay(millis);
 	}
@@ -63,7 +63,7 @@ public final class SystemUtil {
 		for (int ctr = 0; ctr < keys.length; ctr++) {
 			robot.keyPress(keys[ctr]); // Press and hold keys
 		}
-		int waitTime = Integer.parseInt(Loader.framework("key.press.wait"));
+		int waitTime = Integer.parseInt(PropsLoader.framework("key.press.wait"));
 		int millis = TimeUtil.convertSecsToMillisWithRange(waitTime, 1, 60);
 		robot.delay(millis);
 		for (int ctr = keys.length - 1; ctr > -1; ctr--) {

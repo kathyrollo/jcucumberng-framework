@@ -76,7 +76,7 @@ public final class BrowserFactory {
 				break;
 			}
 		} catch (IllegalArgumentException e) {
-			throw new IllegalArgumentException("Unsupported browser specified in framework.properties: " + webBrowser);
+			throw new IllegalArgumentException("Unsupported browser in framework.properties: " + webBrowser);
 		}
 
 		return driver;

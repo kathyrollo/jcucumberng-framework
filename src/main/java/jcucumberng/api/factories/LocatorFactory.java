@@ -10,7 +10,7 @@ import org.openqa.selenium.support.pagefactory.ByChained;
 
 import com.paulhammant.ngwebdriver.ByAngular;
 
-import jcucumberng.api.properties.Loader;
+import jcucumberng.api.main.PropsLoader;
 import jcucumberng.api.selenium.Selenium;
 
 /**
@@ -45,9 +45,9 @@ public final class LocatorFactory {
 		By[] bys = null;
 		Selenium selenium = new Selenium();
 
-		String value = Loader.uiMap(key);
+		String value = PropsLoader.uiMap(key);
 		if (!value.matches(".+:.+")) {
-			throw new IllegalArgumentException("Does not match expected pattern in ui-map.properties: " + value);
+			throw new IllegalArgumentException("Invalid pattern syntax in ui-map.properties: " + value);
 		}
 
 		loc = StringUtils.substringBefore(value, ":");
@@ -138,7 +138,7 @@ public final class LocatorFactory {
 				break;
 			}
 		} catch (IllegalArgumentException e) {
-			throw new IllegalArgumentException("Unsupported locator specified in ui-map.properties: " + loc);
+			throw new IllegalArgumentException("Unsupported locator in ui-map.properties: " + loc);
 		}
 
 		return by;
