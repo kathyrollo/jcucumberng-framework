@@ -11,7 +11,7 @@ import org.openqa.selenium.support.pagefactory.ByChained;
 import com.paulhammant.ngwebdriver.ByAngular;
 
 import jcucumberng.api.main.PropsLoader;
-import jcucumberng.api.selenium.Selenium;
+import jcucumberng.api.main.Selenium;
 
 /**
  * {@code LocatorFactory} handles actions for instantiating the Selenium

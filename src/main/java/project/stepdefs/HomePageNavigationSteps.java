@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import jcucumberng.api.main.PropsLoader;
-import jcucumberng.api.selenium.Selenium;
+import jcucumberng.api.main.Selenium;
 import project.hooks.ScenarioHook;
 
 public class HomePageNavigationSteps {

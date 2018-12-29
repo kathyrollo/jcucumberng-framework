@@ -1,4 +1,4 @@
-package jcucumberng.api.selenium;
+package jcucumberng.api.main;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,7 +23,6 @@ import com.paulhammant.ngwebdriver.NgWebDriver;
 
 import cucumber.api.Scenario;
 import jcucumberng.api.factories.LocatorFactory;
-import jcucumberng.api.main.PropsLoader;
 
 /**
  * {@code Selenium} handles actions for interacting with web applications using
@@ -87,7 +86,7 @@ public final class Selenium {
 	 */
 	public By[] getBys(String... keys) throws IOException {
 		if (0 == keys.length) {
-			throw new MissingArgumentsException(
+			throw new NullPointerException(
 					"No arguments found for arbitrary parameters. Length must not be equal to 0.");
 		}
 		By[] bys = new By[keys.length];

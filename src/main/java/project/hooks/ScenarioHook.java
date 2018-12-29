@@ -10,7 +10,7 @@ import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import jcucumberng.api.factories.BrowserFactory;
 import jcucumberng.api.main.PropsLoader;
-import jcucumberng.api.selenium.Selenium;
+import jcucumberng.api.main.Selenium;
 import jcucumberng.api.utils.SystemUtil;
 
 public class ScenarioHook {
