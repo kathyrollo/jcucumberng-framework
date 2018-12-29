@@ -1,4 +1,4 @@
-package jcucumberng.api.browser;
+package jcucumberng.api.factories;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebDriver;
@@ -76,8 +76,7 @@ public final class BrowserFactory {
 				break;
 			}
 		} catch (IllegalArgumentException e) {
-			throw new UnsupportedBrowserException(
-					"Unsupported browser specified in framework.properties: " + webBrowser);
+			throw new IllegalArgumentException("Unsupported browser specified in framework.properties: " + webBrowser);
 		}
 
 		return driver;

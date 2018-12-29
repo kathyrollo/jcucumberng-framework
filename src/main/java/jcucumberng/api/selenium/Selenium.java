@@ -22,7 +22,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.paulhammant.ngwebdriver.NgWebDriver;
 
 import cucumber.api.Scenario;
-import jcucumberng.api.locator.LocatorFactory;
+import jcucumberng.api.factories.LocatorFactory;
 import jcucumberng.api.properties.Loader;
 
 /**

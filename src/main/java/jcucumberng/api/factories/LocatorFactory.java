@@ -1,4 +1,4 @@
-package jcucumberng.api.locator;
+package jcucumberng.api.factories;
 
 import java.io.IOException;
 
@@ -47,7 +47,7 @@ public final class LocatorFactory {
 
 		String value = Loader.uiMap(key);
 		if (!value.matches(".+:.+")) {
-			throw new InvalidPatternException("Does not match expected pattern in ui-map.properties: " + value);
+			throw new IllegalArgumentException("Does not match expected pattern in ui-map.properties: " + value);
 		}
 
 		loc = StringUtils.substringBefore(value, ":");
@@ -138,7 +138,7 @@ public final class LocatorFactory {
 				break;
 			}
 		} catch (IllegalArgumentException e) {
-			throw new UnsupportedLocatorException("Unsupported locator specified in ui-map.properties: " + loc);
+			throw new IllegalArgumentException("Unsupported locator specified in ui-map.properties: " + loc);
 		}
 
 		return by;

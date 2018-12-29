@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
-import jcucumberng.api.browser.BrowserFactory;
+import jcucumberng.api.factories.BrowserFactory;
 import jcucumberng.api.properties.Loader;
 import jcucumberng.api.selenium.Selenium;
 import jcucumberng.api.utils.SystemUtil;
