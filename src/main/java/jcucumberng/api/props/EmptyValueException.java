@@ -1,4 +1,4 @@
-package jcucumberng.api.config;
+package jcucumberng.api.props;
 
 /**
  * {@code EmptyValueException} is thrown when the value of a specified key is

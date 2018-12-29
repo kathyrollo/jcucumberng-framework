@@ -1,4 +1,4 @@
-package jcucumberng.api.config;
+package jcucumberng.api.props;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -8,13 +8,13 @@ import java.util.Properties;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- * {@code PropsLoader} handles actions for reading {@code .properties} files.
+ * {@code Loader} handles actions for reading {@code .properties} files.
  * 
  * @author Kat Rollo {@literal <rollo.katherine@gmail.com>}
  */
-public final class PropsLoader {
+public final class Loader {
 
-	private PropsLoader() {
+	private Loader() {
 		// No instantiation
 	}
 
@@ -28,7 +28,7 @@ public final class PropsLoader {
 	 * @throws IOException
 	 */
 	public static String framework(String key) throws IOException {
-		return loadProps("framework.properties", key);
+		return load("framework.properties", key);
 	}
 
 	/**
@@ -41,7 +41,7 @@ public final class PropsLoader {
 	 * @throws IOException
 	 */
 	public static String project(String key) throws IOException {
-		return loadProps("project.properties", key);
+		return load("project.properties", key);
 	}
 
 	/**
@@ -54,7 +54,7 @@ public final class PropsLoader {
 	 * @throws IOException
 	 */
 	public static String uiMap(String key) throws IOException {
-		return loadProps("ui-map.properties", key);
+		return load("ui-map.properties", key);
 	}
 
 	/**
@@ -66,7 +66,7 @@ public final class PropsLoader {
 	 * @return String - the value of the given key
 	 * @throws IOException
 	 */
-	private static String loadProps(String propsFile, String key) throws IOException {
+	private static String load(String propsFile, String key) throws IOException {
 		StringBuilder builder = new StringBuilder();
 		builder.append(StringUtils.replace(System.getProperty("user.dir"), "\\", "/"));
 		builder.append("/src/main/resources/");
