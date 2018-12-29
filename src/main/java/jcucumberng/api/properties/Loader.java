@@ -1,4 +1,4 @@
-package jcucumberng.api.props;
+package jcucumberng.api.properties;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -60,25 +60,24 @@ public final class Loader {
 	/**
 	 * Loads a {@code .properties} file.
 	 * 
-	 * @param propsFile the filename with extension (Example:
-	 *                  {@code config.properties})
-	 * @param key       the key from the given propsFile
+	 * @param props the filename with extension (Example: {@code config.properties})
+	 * @param key   the key from the given {@code .properties} file
 	 * @return String - the value of the given key
 	 * @throws IOException
 	 */
-	private static String load(String propsFile, String key) throws IOException {
+	private static String load(String props, String key) throws IOException {
 		StringBuilder builder = new StringBuilder();
 		builder.append(StringUtils.replace(System.getProperty("user.dir"), "\\", "/"));
 		builder.append("/src/main/resources/");
-		builder.append(propsFile);
+		builder.append(props);
 
 		InputStream inputStream = new FileInputStream(builder.toString());
-		builder.setLength(0); // Clear builder
-		builder.append(propsFile + ": " + key);
-		Properties props = new Properties();
-		props.load(inputStream);
+		Properties properties = new Properties();
+		properties.load(inputStream);
 
-		String value = props.getProperty(key);
+		builder.setLength(0); // Clear builder
+		builder.append(props + ": " + key);
+		String value = properties.getProperty(key);
 		if (StringUtils.isWhitespace(value)) {
 			throw new EmptyValueException("Value is empty or blank in " + builder.toString());
 		}
