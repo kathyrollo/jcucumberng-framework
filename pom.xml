@@ -72,7 +72,7 @@
 		<dependency>
 			<groupId>com.aventstack</groupId>
 			<artifactId>extentreports-cucumber3-adapter</artifactId>
-			<version>1.0.2-SNAPSHOT</version>
+			<version>1.0.2</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-cucumber3-jvm -->
 		<dependency>
