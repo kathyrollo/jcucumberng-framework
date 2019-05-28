@@ -1,5 +1,7 @@
 package jcucumberng.api;
 
+import java.io.IOException;
+
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -35,7 +37,7 @@ public final class Browser {
 	 *                   {@code framework.properties}
 	 * @return WebDriver - the Selenium WebDriver
 	 */
-	public static WebDriver getInstance(String webBrowser) {
+	public static WebDriver getInstance(String webBrowser) throws IOException {
 		WebDriver driver = null;
 
 		try {
@@ -88,9 +90,9 @@ public final class Browser {
 	 * @param headless run in headless mode
 	 * @return WebDriver - the Chrome WebDriver
 	 */
-	private static WebDriver chromedriver(int arch, boolean headless) {
+	private static WebDriver chromedriver(int arch, boolean headless) throws IOException {
 		if (32 == arch) {
-			WebDriverManager.chromedriver().arch32().setup();
+			WebDriverManager.chromedriver().version(PropsLoader.framework("chrome.driver.version")).setup();
 		}
 
 		if (headless) {
