@@ -20,8 +20,8 @@
 		<maven.build.timestamp.format>yyyyMMdd'T'HHmmss'Z'</maven.build.timestamp.format>
 		<!-- Versions -->
 		<cucumber.version>3.0.2</cucumber.version>
-		<aspectj.version>1.9.2</aspectj.version>
-		<allure.cucumber3.version>2.8.1</allure.cucumber3.version>
+		<aspectj.version>1.9.4</aspectj.version>
+		<allure.cucumber3.version>2.12.1</allure.cucumber3.version>
 		<java.version>1.8</java.version>
 	</properties>
 
