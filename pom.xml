@@ -21,7 +21,7 @@
 		
 		<!-- Dependencies -->
 		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-server -->
-		<selenium.server>3.141.59</selenium.server>
+		<selenium>3.141.59</selenium>
 		<!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
 		<webdrivermanager>3.6.0</webdrivermanager>
 		<!-- https://mvnrepository.com/artifact/com.paulhammant/ngwebdriver -->
@@ -36,16 +36,22 @@
 		<extentreports>1.0.2</extentreports>
 		<!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-cucumber3-jvm -->
 		<allure.cucumber>2.12.1</allure.cucumber>
-		<aspectj.version>1.9.4</aspectj.version>		
+		<!-- https://mvnrepository.com/artifact/com.itextpdf/itextpdf -->
+		<itextpdf>5.5.13</itextpdf>
+		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
+		<poi>4.1.0</poi>
+		<!-- https://mvnrepository.com/artifact/com.codoid.products/fillo -->
+		<fillo>1.21</fillo>
 		
 		<!-- Plugins -->
+		<aspectj>1.9.4</aspectj>
 	</properties>
 	
 	<dependencies>
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-server</artifactId>
-			<version>${selenium.server}</version>
+			<version>${selenium}</version>
 		</dependency>
 		<dependency>
 			<groupId>io.github.bonigarcia</groupId>
@@ -76,10 +82,10 @@
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-slf4j-impl</artifactId>
 			<version>${slf4j}</version>
-		</dependency>		
+		</dependency>
 		<dependency>
 			<groupId>com.aventstack</groupId>
-			<artifactId>extentreports-cucumber3-adapter</artifactId>			
+			<artifactId>extentreports-cucumber3-adapter</artifactId>
 			<version>${extentreports}</version>
 		</dependency>
 		<dependency>
@@ -87,23 +93,20 @@
 			<artifactId>allure-cucumber3-jvm</artifactId>
 			<version>${allure.cucumber}</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.itextpdf/itextpdf -->
 		<dependency>
 			<groupId>com.itextpdf</groupId>
 			<artifactId>itextpdf</artifactId>
-			<version>5.5.13</version>
+			<version>${itextpdf}</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml</artifactId>
-			<version>4.1.0</version>
+			<version>${poi}</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.codoid.products/fillo -->
 		<dependency>
 			<groupId>com.codoid.products</groupId>
 			<artifactId>fillo</artifactId>
-			<version>1.21</version>
+			<version>${fillo}</version>
 		</dependency>
 	</dependencies>
 	
@@ -142,7 +145,7 @@
 						<include>**/RunCukesTest.java</include>
 					</includes>
 					<argLine>
-						-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+						-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj}/aspectjweaver-${aspectj}.jar"
 					</argLine>
 					<reportsDirectory>${project.build.directory}/test-output/${timestamp}</reportsDirectory>
 				</configuration>
@@ -151,7 +154,7 @@
 					<dependency>
 						<groupId>org.aspectj</groupId>
 						<artifactId>aspectjweaver</artifactId>
-						<version>${aspectj.version}</version>
+						<version>${aspectj}</version>
 					</dependency>
 				</dependencies>
 			</plugin>
@@ -161,7 +164,7 @@
 				<artifactId>allure-maven</artifactId>
 				<version>2.10.0</version>
 				<configuration>
-					<reportVersion>${allure.cucumber3.version}</reportVersion>
+					<reportVersion>${allure.cucumber}</reportVersion>
 					<allureDownloadUrl>https://dl.bintray.com/qameta/maven/io/qameta/allure/allure-commandline/${allure.cucumber}/allure-commandline-${allure.cucumber}.zip</allureDownloadUrl>
 				</configuration>
 			</plugin>
