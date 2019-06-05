@@ -11,72 +11,81 @@
 	
 	<properties>
 		<!-- Project -->
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<app.name>Simply Do - Balance Projector</app.name>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java>1.8</java>
+		
 		<!-- Maven -->
 		<timestamp>${maven.build.timestamp}</timestamp>
 		<maven.build.timestamp.format>yyyyMMdd'T'HHmmss'Z'</maven.build.timestamp.format>
-		<!-- Versions -->
-		<cucumber.version>3.0.2</cucumber.version>
-		<aspectj.version>1.9.4</aspectj.version>
-		<allure.cucumber3.version>2.12.1</allure.cucumber3.version>
-		<java.version>1.8</java.version>
+		
+		<!-- Dependencies -->
+		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-server -->
+		<selenium.server>3.141.59</selenium.server>
+		<!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
+		<webdrivermanager>3.6.0</webdrivermanager>
+		<!-- https://mvnrepository.com/artifact/com.paulhammant/ngwebdriver -->
+		<ngwebdriver>1.1.4</ngwebdriver>
+		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
+		<cucumber>3.0.2</cucumber>
+		<!-- https://mvnrepository.com/artifact/org.assertj/assertj-core -->
+		<assertj>3.12.2</assertj>
+		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j-impl -->
+		<slf4j>2.11.2</slf4j>
+		<!-- https://mvnrepository.com/artifact/com.aventstack/extentreports-cucumber3-adapter -->
+		<extentreports>1.0.2</extentreports>
+		<!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-cucumber3-jvm -->
+		<allure.cucumber>2.12.1</allure.cucumber>
+		<aspectj.version>1.9.4</aspectj.version>		
+		
+		<!-- Plugins -->
 	</properties>
 	
 	<dependencies>
-		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-server -->
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-server</artifactId>
-			<version>3.141.59</version>
+			<version>${selenium.server}</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
 		<dependency>
 			<groupId>io.github.bonigarcia</groupId>
 			<artifactId>webdrivermanager</artifactId>
-			<version>3.6.0</version>
+			<version>${webdrivermanager}</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.paulhammant/ngwebdriver -->
 		<dependency>
 			<groupId>com.paulhammant</groupId>
 			<artifactId>ngwebdriver</artifactId>
-			<version>1.1.4</version>
+			<version>${ngwebdriver}</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
 		<dependency>
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-junit</artifactId>
-			<version>${cucumber.version}</version>
+			<version>${cucumber}</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-picocontainer -->
 		<dependency>
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-picocontainer</artifactId>
-			<version>${cucumber.version}</version>
+			<version>${cucumber}</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.assertj/assertj-core -->
 		<dependency>
 			<groupId>org.assertj</groupId>
 			<artifactId>assertj-core</artifactId>
-			<version>3.12.2</version>
+			<version>${assertj}</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j-impl -->
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-slf4j-impl</artifactId>
-			<version>2.11.2</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.aventstack/extentreports-cucumber3-adapter -->
+			<version>${slf4j}</version>
+		</dependency>		
 		<dependency>
 			<groupId>com.aventstack</groupId>
-			<artifactId>extentreports-cucumber3-adapter</artifactId>
-			<version>1.0.2</version>
+			<artifactId>extentreports-cucumber3-adapter</artifactId>			
+			<version>${extentreports}</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-cucumber3-jvm -->
 		<dependency>
 			<groupId>io.qameta.allure</groupId>
 			<artifactId>allure-cucumber3-jvm</artifactId>
-			<version>${allure.cucumber3.version}</version>
+			<version>${allure.cucumber}</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.itextpdf/itextpdf -->
 		<dependency>
@@ -106,8 +115,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.8.1</version>
 				<configuration>
-					<source>${java.version}</source>
-					<target>${java.version}</target>
+					<source>${java}</source>
+					<target>${java}</target>
 				</configuration>
 			</plugin>
 			<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-site-plugin -->
@@ -150,10 +159,10 @@
 			<plugin>
 				<groupId>io.qameta.allure</groupId>
 				<artifactId>allure-maven</artifactId>
-				<version>2.10</version>
+				<version>2.10.0</version>
 				<configuration>
 					<reportVersion>${allure.cucumber3.version}</reportVersion>
-					<allureDownloadUrl>https://dl.bintray.com/qameta/maven/io/qameta/allure/allure-commandline/${allure.cucumber3.version}/allure-commandline-${allure.cucumber3.version}.zip</allureDownloadUrl>
+					<allureDownloadUrl>https://dl.bintray.com/qameta/maven/io/qameta/allure/allure-commandline/${allure.cucumber}/allure-commandline-${allure.cucumber}.zip</allureDownloadUrl>
 				</configuration>
 			</plugin>
 			<!-- https://mvnrepository.com/artifact/net.masterthought/maven-cucumber-reporting -->
