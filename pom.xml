@@ -1,16 +1,14 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.kathyrollo</groupId>
 	<artifactId>jcucumberng-framework</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
-
+	
 	<name>jCucumberNG-Framework</name>
 	<description>A test framework using Selenium, Cucumber, and ngWebDriver (Protractor) in Java.</description>
 	<url>https://github.com/kathyrollo/jcucumberng-framework</url>
-
+	
 	<properties>
 		<!-- Project -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -24,7 +22,7 @@
 		<allure.cucumber3.version>2.12.1</allure.cucumber3.version>
 		<java.version>1.8</java.version>
 	</properties>
-
+	
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-server -->
 		<dependency>
@@ -99,7 +97,7 @@
 			<version>1.21</version>
 		</dependency>
 	</dependencies>
-
+	
 	<build>
 		<plugins>
 			<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
