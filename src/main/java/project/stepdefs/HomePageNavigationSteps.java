@@ -20,18 +20,18 @@ public class HomePageNavigationSteps {
 		selenium = scenarioHook.getSelenium();
 	}
 
-	@Given("I Am At The Home Page")
+	@Given("^I Am At The Home Page$")
 	public void I_Am_At_The_Home_Page() throws Throwable {
 		String baseUrl = PropsLoader.project("base.url");
 		selenium.getDriver().get(baseUrl);
 		LOGGER.debug("Base URL={}", baseUrl);
 	}
 
-	@Then("I Should See Page Title: {string}")
+	@Then("^I Should See Page Title: (.*)$")
 	public void I_Should_See_Page_Title(String pageTitle) throws Throwable {
 		String windowTitle = selenium.getDriver().getTitle();
 		Assertions.assertThat(windowTitle).isEqualTo(pageTitle);
 		LOGGER.debug("Window Title={}", windowTitle);
 	}
-
+  
 }
