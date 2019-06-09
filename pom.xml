@@ -44,7 +44,20 @@
 		<fillo>1.21</fillo>
 		
 		<!-- Plugins -->
+		<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
+		<mvn.compiler>3.8.1</mvn.compiler>
+		<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-site-plugin -->
+		<mvn.site>3.7.1</mvn.site>
+		<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-project-info-reports-plugin -->
+		<mvn.info>3.0.0</mvn.info>
+		<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
+		<mvn.surefire>3.0.0-M3</mvn.surefire>
+		<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
 		<aspectj>1.9.4</aspectj>
+		<!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-maven -->
+		<allure.mvn>2.10.0</allure.mvn>
+		<!-- https://mvnrepository.com/artifact/net.masterthought/maven-cucumber-reporting -->
+		<masterthought>4.7.0</masterthought>
 	</properties>
 	
 	<dependencies>
@@ -112,33 +125,29 @@
 	
 	<build>
 		<plugins>
-			<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.1</version>
+				<version>${mvn.compiler}</version>
 				<configuration>
 					<source>${java}</source>
 					<target>${java}</target>
 				</configuration>
 			</plugin>
-			<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-site-plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-site-plugin</artifactId>
-				<version>3.7.1</version>
+				<version>${mvn.site}</version>
 			</plugin>
-			<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-project-info-reports-plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-project-info-reports-plugin</artifactId>
-				<version>3.0.0</version>
+				<version>${mvn.info}</version>
 			</plugin>
-			<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>3.0.0-M3</version>
+				<version>${mvn.surefire}</version>
 				<configuration>
 					<testFailureIgnore>true</testFailureIgnore>
 					<includes>
@@ -150,7 +159,6 @@
 					<reportsDirectory>${project.build.directory}/test-output/${timestamp}</reportsDirectory>
 				</configuration>
 				<dependencies>
-					<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
 					<dependency>
 						<groupId>org.aspectj</groupId>
 						<artifactId>aspectjweaver</artifactId>
@@ -158,7 +166,6 @@
 					</dependency>
 				</dependencies>
 			</plugin>
-			<!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-maven -->
 			<plugin>
 				<groupId>io.qameta.allure</groupId>
 				<artifactId>allure-maven</artifactId>
@@ -168,11 +175,10 @@
 					<allureDownloadUrl>https://dl.bintray.com/qameta/maven/io/qameta/allure/allure-commandline/${allure.cucumber}/allure-commandline-${allure.cucumber}.zip</allureDownloadUrl>
 				</configuration>
 			</plugin>
-			<!-- https://mvnrepository.com/artifact/net.masterthought/maven-cucumber-reporting -->
 			<plugin>
 				<groupId>net.masterthought</groupId>
 				<artifactId>maven-cucumber-reporting</artifactId>
-				<version>4.7.0</version>
+				<version>${masterthought}</version>
 				<executions>
 					<execution>
 						<id>execution</id>
@@ -190,7 +196,7 @@
 								<param>**/classifications/*.properties</param>
 							</classificationFiles>
 							<parallelTesting>false</parallelTesting>
-							<!-- optional, set true to fail build on test failures -->
+							<!-- Optional, set true to fail build on test failures -->
 							<checkBuildResult>false</checkBuildResult>
 						</configuration>
 					</execution>
