@@ -33,7 +33,7 @@
 		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j-impl -->
 		<slf4j>2.11.2</slf4j>
 		<!-- https://mvnrepository.com/artifact/com.aventstack/extentreports-cucumber3-adapter -->
-		<extentreports>1.0.2</extentreports>
+		<extentreports>1.0.1</extentreports>
 		<!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-cucumber3-jvm -->
 		<allure.cucumber>2.12.1</allure.cucumber>
 		<!-- https://mvnrepository.com/artifact/com.itextpdf/itextpdf -->
