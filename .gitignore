@@ -4,6 +4,7 @@ target/
 
 ### Allure Test Report ###
 .allure/
+allure-results/
 
 
 ### Eclipse IDE ###

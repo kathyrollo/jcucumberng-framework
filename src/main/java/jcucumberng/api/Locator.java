@@ -42,7 +42,7 @@ public final class Locator {
 		By[] bys = null;
 		Selenium selenium = new Selenium();
 
-		String value = PropsLoader.uiMap(key);
+		String value = Configuration.uiMap(key);
 		if (!value.matches(".+:.+")) {
 			throw new IllegalArgumentException("Invalid pattern syntax in ui-map.properties: " + value);
 		}

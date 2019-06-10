@@ -1,168 +1,184 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.kathyrollo</groupId>
 	<artifactId>jcucumberng-framework</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
-
+	
 	<name>jCucumberNG-Framework</name>
 	<description>A test framework using Selenium, Cucumber, and ngWebDriver (Protractor) in Java.</description>
 	<url>https://github.com/kathyrollo/jcucumberng-framework</url>
-
+	
 	<properties>
 		<!-- Project -->
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<app.name>Simply Do - Balance Projector</app.name>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java>1.8</java>
+		
 		<!-- Maven -->
 		<timestamp>${maven.build.timestamp}</timestamp>
 		<maven.build.timestamp.format>yyyyMMdd'T'HHmmss'Z'</maven.build.timestamp.format>
-		<!-- Versions -->
-		<cucumber.version>3.0.2</cucumber.version>
-		<aspectj.version>1.9.2</aspectj.version>
-		<allure.cucumber3.version>2.8.1</allure.cucumber3.version>
-		<java.version>1.8</java.version>
-	</properties>
-
-	<dependencies>
+		
+		<!-- Dependencies -->
 		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-server -->
+		<selenium>3.141.59</selenium>
+		<!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
+		<webdrivermanager>3.6.0</webdrivermanager>
+		<!-- https://mvnrepository.com/artifact/com.paulhammant/ngwebdriver -->
+		<ngwebdriver>1.1.4</ngwebdriver>
+		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
+		<cucumber>3.0.2</cucumber>
+		<!-- https://mvnrepository.com/artifact/org.assertj/assertj-core -->
+		<assertj>3.12.2</assertj>
+		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j-impl -->
+		<slf4j>2.11.2</slf4j>
+		<!-- https://mvnrepository.com/artifact/com.aventstack/extentreports-cucumber3-adapter -->
+		<extentreports>1.0.1</extentreports>
+		<!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-cucumber3-jvm -->
+		<allure.cucumber>2.12.1</allure.cucumber>
+		<!-- https://mvnrepository.com/artifact/com.itextpdf/itextpdf -->
+		<itextpdf>5.5.13</itextpdf>
+		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
+		<poi>4.1.0</poi>
+		<!-- https://mvnrepository.com/artifact/com.codoid.products/fillo -->
+		<fillo>1.21</fillo>
+		
+		<!-- Plugins -->
+		<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
+		<mvn.compiler>3.8.1</mvn.compiler>
+		<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-site-plugin -->
+		<mvn.site>3.7.1</mvn.site>
+		<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-project-info-reports-plugin -->
+		<mvn.info>3.0.0</mvn.info>
+		<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
+		<mvn.surefire>3.0.0-M3</mvn.surefire>
+		<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
+		<aspectj>1.9.4</aspectj>
+		<!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-maven -->
+		<allure.mvn>2.10.0</allure.mvn>
+		<!-- https://mvnrepository.com/artifact/net.masterthought/maven-cucumber-reporting -->
+		<masterthought>4.7.0</masterthought>
+	</properties>
+	
+	<dependencies>
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-server</artifactId>
-			<version>3.141.59</version>
+			<version>${selenium}</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
 		<dependency>
 			<groupId>io.github.bonigarcia</groupId>
 			<artifactId>webdrivermanager</artifactId>
-			<version>3.1.1</version>
+			<version>${webdrivermanager}</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.paulhammant/ngwebdriver -->
 		<dependency>
 			<groupId>com.paulhammant</groupId>
 			<artifactId>ngwebdriver</artifactId>
-			<version>1.1.4</version>
+			<version>${ngwebdriver}</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
 		<dependency>
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-junit</artifactId>
-			<version>${cucumber.version}</version>
+			<version>${cucumber}</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-picocontainer -->
 		<dependency>
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-picocontainer</artifactId>
-			<version>${cucumber.version}</version>
+			<version>${cucumber}</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.assertj/assertj-core -->
 		<dependency>
 			<groupId>org.assertj</groupId>
 			<artifactId>assertj-core</artifactId>
-			<version>3.11.1</version>
+			<version>${assertj}</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j-impl -->
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-slf4j-impl</artifactId>
-			<version>2.11.1</version>
+			<version>${slf4j}</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.aventstack/extentreports-cucumber3-adapter -->
 		<dependency>
 			<groupId>com.aventstack</groupId>
 			<artifactId>extentreports-cucumber3-adapter</artifactId>
-			<version>1.0.2</version>
+			<version>${extentreports}</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-cucumber3-jvm -->
 		<dependency>
 			<groupId>io.qameta.allure</groupId>
 			<artifactId>allure-cucumber3-jvm</artifactId>
-			<version>${allure.cucumber3.version}</version>
+			<version>${allure.cucumber}</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.itextpdf/itextpdf -->
 		<dependency>
 			<groupId>com.itextpdf</groupId>
 			<artifactId>itextpdf</artifactId>
-			<version>5.5.13</version>
+			<version>${itextpdf}</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml</artifactId>
-			<version>4.0.1</version>
+			<version>${poi}</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.codoid.products/fillo -->
 		<dependency>
 			<groupId>com.codoid.products</groupId>
 			<artifactId>fillo</artifactId>
-			<version>1.18</version>
+			<version>${fillo}</version>
 		</dependency>
 	</dependencies>
-
+	
 	<build>
 		<plugins>
-			<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.0</version>
+				<version>${mvn.compiler}</version>
 				<configuration>
-					<source>${java.version}</source>
-					<target>${java.version}</target>
+					<source>${java}</source>
+					<target>${java}</target>
 				</configuration>
 			</plugin>
-			<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-site-plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-site-plugin</artifactId>
-				<version>3.7.1</version>
+				<version>${mvn.site}</version>
 			</plugin>
-			<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-project-info-reports-plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-project-info-reports-plugin</artifactId>
-				<version>3.0.0</version>
+				<version>${mvn.info}</version>
 			</plugin>
-			<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>3.0.0-M2</version>
+				<version>${mvn.surefire}</version>
 				<configuration>
 					<testFailureIgnore>true</testFailureIgnore>
 					<includes>
 						<include>**/RunCukesTest.java</include>
 					</includes>
 					<argLine>
-						-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+						-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj}/aspectjweaver-${aspectj}.jar"
 					</argLine>
 					<reportsDirectory>${project.build.directory}/test-output/${timestamp}</reportsDirectory>
 				</configuration>
 				<dependencies>
-					<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
 					<dependency>
 						<groupId>org.aspectj</groupId>
 						<artifactId>aspectjweaver</artifactId>
-						<version>${aspectj.version}</version>
+						<version>${aspectj}</version>
 					</dependency>
 				</dependencies>
 			</plugin>
-			<!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-maven -->
 			<plugin>
 				<groupId>io.qameta.allure</groupId>
 				<artifactId>allure-maven</artifactId>
-				<version>2.9</version>
+				<version>2.10.0</version>
 				<configuration>
-					<reportVersion>${allure.cucumber3.version}</reportVersion>
-					<allureDownloadUrl>https://dl.bintray.com/qameta/maven/io/qameta/allure/allure-commandline/${allure.cucumber3.version}/allure-commandline-${allure.cucumber3.version}.zip</allureDownloadUrl>
+					<reportVersion>${allure.cucumber}</reportVersion>
+					<allureDownloadUrl>https://dl.bintray.com/qameta/maven/io/qameta/allure/allure-commandline/${allure.cucumber}/allure-commandline-${allure.cucumber}.zip</allureDownloadUrl>
 				</configuration>
 			</plugin>
-			<!-- https://mvnrepository.com/artifact/net.masterthought/maven-cucumber-reporting -->
 			<plugin>
 				<groupId>net.masterthought</groupId>
 				<artifactId>maven-cucumber-reporting</artifactId>
-				<version>4.2.4</version>
+				<version>${masterthought}</version>
 				<executions>
 					<execution>
 						<id>execution</id>
@@ -180,7 +196,7 @@
 								<param>**/classifications/*.properties</param>
 							</classificationFiles>
 							<parallelTesting>false</parallelTesting>
-							<!-- optional, set true to fail build on test failures -->
+							<!-- Optional, set true to fail build on test failures -->
 							<checkBuildResult>false</checkBuildResult>
 						</configuration>
 					</execution>
