@@ -9,7 +9,7 @@ import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import jcucumberng.api.Browser;
-import jcucumberng.api.PropsLoader;
+import jcucumberng.api.Configuration;
 import jcucumberng.api.Selenium;
 import jcucumberng.utils.SystemUtil;
 
@@ -22,12 +22,12 @@ public class ScenarioHook {
 	public void beforeScenario(Scenario scenario) throws Throwable {
 		LOGGER.info("BEGIN TEST -> {}", scenario.getName());
 
-		String webBrowser = PropsLoader.framework("web.browser");
+		String webBrowser = Configuration.framework("web.browser");
 		LOGGER.info("Browser={}", webBrowser);
 
 		WebDriver driver = Browser.getInstance(webBrowser);
 		selenium = new Selenium(driver, scenario);
-		if (Boolean.parseBoolean(PropsLoader.framework("wait.for.angular"))) {
+		if (Boolean.parseBoolean(Configuration.framework("wait.for.angular"))) {
 			selenium.getNgWebDriver().waitForAngularRequestsToFinish();
 		}
 
@@ -38,8 +38,8 @@ public class ScenarioHook {
 
 	@After
 	public void afterScenario() throws Throwable {
-		if (!Boolean.parseBoolean(PropsLoader.framework("screenshot.off"))) {
-			if (Boolean.parseBoolean(PropsLoader.framework("screenshot.on.fail"))) {
+		if (!Boolean.parseBoolean(Configuration.framework("screenshot.off"))) {
+			if (Boolean.parseBoolean(Configuration.framework("screenshot.on.fail"))) {
 				if (selenium.getScenario().isFailed()) {
 					selenium.embedScreenshot();
 				}

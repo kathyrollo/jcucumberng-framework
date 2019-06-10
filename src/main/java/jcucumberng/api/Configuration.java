@@ -8,13 +8,13 @@ import java.util.Properties;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- * {@code PropsLoader} handles actions for reading {@code .properties} files.
+ * {@code Configuration} handles actions for reading {@code .properties} files.
  * 
  * @author Kat Rollo {@literal <rollo.katherine@gmail.com>}
  */
-public final class PropsLoader {
+public final class Configuration {
 
-	private PropsLoader() {
+	private Configuration() {
 		// No instantiation
 	}
 

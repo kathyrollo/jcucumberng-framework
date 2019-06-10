@@ -41,7 +41,7 @@ public final class Selenium {
 	}
 
 	public Selenium(WebDriver driver, Scenario scenario) throws Throwable {
-		this.timeOut = Integer.parseInt(PropsLoader.framework("webdriver.wait"));
+		this.timeOut = Integer.parseInt(Configuration.framework("webdriver.wait"));
 		this.driver = driver;
 		this.ngWebDriver = new NgWebDriver((JavascriptExecutor) driver);
 		this.scenario = scenario;
@@ -355,8 +355,8 @@ public final class Selenium {
 		builder.append(System.currentTimeMillis());
 		builder.append(".png");
 		String screenshot = builder.toString();
-		File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-		FileUtils.copyFile(srcFile, new File(screenshot));
+		File imgFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(imgFile, new File(screenshot));
 		return screenshot;
 	}
 
@@ -367,9 +367,9 @@ public final class Selenium {
 	 * @return byte[ ] - the screenshot in byte array
 	 */
 	public byte[] embedScreenshot() {
-		byte[] srcBytes = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-		scenario.embed(srcBytes, "image/png");
-		return srcBytes;
+		byte[] imgBytes = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+		scenario.embed(imgBytes, "image/png");
+		return imgBytes;
 	}
 
 	public WebDriver getDriver() {
