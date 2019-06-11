@@ -134,7 +134,7 @@ mvn verify
 ### 2. Extent Reports
 > This report is standalone and can be zipped/emailed to clients. HTML files can be viewed locally using the browser.
 
-Generate report into directory: `/target/extentreports-cucumber/`
+Generate report into directory: `/target/cucumber-extentreports/`
 ~~~
 mvn verify
 ~~~
