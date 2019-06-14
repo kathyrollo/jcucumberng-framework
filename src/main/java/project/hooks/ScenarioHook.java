@@ -19,7 +19,7 @@ public class ScenarioHook {
 	private Selenium selenium = null;
 
 	@Before
-	public void beforeScenario(Scenario scenario) throws Throwable {
+	public void setUp(Scenario scenario) throws Throwable {
 		LOGGER.info("BEGIN TEST -> {}", scenario.getName());
 
 		String webBrowser = Configuration.framework("web.browser");
@@ -37,7 +37,7 @@ public class ScenarioHook {
 	}
 
 	@After
-	public void afterScenario() throws Throwable {
+	public void tearDown() throws Throwable {
 		if (!Boolean.parseBoolean(Configuration.framework("screenshot.off"))) {
 			if (Boolean.parseBoolean(Configuration.framework("screenshot.on.fail"))) {
 				if (selenium.getScenario().isFailed()) {

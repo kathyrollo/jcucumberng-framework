@@ -14,7 +14,7 @@ public class StepHook {
 	}
 
 	@AfterStep
-	public void afterStep() throws Throwable {
+	public void capture() throws Throwable {
 		if (!Boolean.parseBoolean(Configuration.framework("screenshot.off"))) {
 			if (!Boolean.parseBoolean(Configuration.framework("screenshot.on.fail"))) {
 				selenium.embedScreenshot();
