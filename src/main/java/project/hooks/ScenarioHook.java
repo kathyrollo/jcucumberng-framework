@@ -1,5 +1,7 @@
 package project.hooks;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
@@ -26,6 +28,10 @@ public class ScenarioHook {
 		LOGGER.info("Browser={}", webBrowser);
 
 		WebDriver driver = Browser.getInstance(webBrowser);
+		if (Boolean.parseBoolean("implicit.wait")) {
+			long time = Long.valueOf(Configuration.framework("implicit.timeout"));
+			driver.manage().timeouts().implicitlyWait(time, TimeUnit.SECONDS);
+		}
 		selenium = new Selenium(driver, scenario);
 		if (Boolean.parseBoolean(Configuration.framework("wait.for.angular"))) {
 			selenium.getNgWebDriver().waitForAngularRequestsToFinish();

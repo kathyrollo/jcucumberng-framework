@@ -41,7 +41,7 @@ public final class Selenium {
 	}
 
 	public Selenium(WebDriver driver, Scenario scenario) throws Throwable {
-		this.timeOut = Integer.parseInt(Configuration.framework("webdriver.wait"));
+		this.timeOut = Integer.parseInt(Configuration.framework("explicit.timeout"));
 		this.driver = driver;
 		this.ngWebDriver = new NgWebDriver((JavascriptExecutor) driver);
 		this.scenario = scenario;
