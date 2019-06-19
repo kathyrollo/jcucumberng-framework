@@ -1,5 +1,7 @@
 package project.hooks;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
@@ -19,13 +21,17 @@ public class ScenarioHook {
 	private Selenium selenium = null;
 
 	@Before
-	public void beforeScenario(Scenario scenario) throws Throwable {
+	public void setUp(Scenario scenario) throws Throwable {
 		LOGGER.info("BEGIN TEST -> {}", scenario.getName());
 
 		String webBrowser = Configuration.framework("web.browser");
 		LOGGER.info("Browser={}", webBrowser);
 
 		WebDriver driver = Browser.getInstance(webBrowser);
+		if (Boolean.parseBoolean("implicit.wait")) {
+			long time = Long.valueOf(Configuration.framework("implicit.timeout"));
+			driver.manage().timeouts().implicitlyWait(time, TimeUnit.SECONDS);
+		}
 		selenium = new Selenium(driver, scenario);
 		if (Boolean.parseBoolean(Configuration.framework("wait.for.angular"))) {
 			selenium.getNgWebDriver().waitForAngularRequestsToFinish();
@@ -37,7 +43,7 @@ public class ScenarioHook {
 	}
 
 	@After
-	public void afterScenario() throws Throwable {
+	public void tearDown() throws Throwable {
 		if (!Boolean.parseBoolean(Configuration.framework("screenshot.off"))) {
 			if (Boolean.parseBoolean(Configuration.framework("screenshot.on.fail"))) {
 				if (selenium.getScenario().isFailed()) {

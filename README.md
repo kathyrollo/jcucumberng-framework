@@ -32,7 +32,7 @@ public NetIncomeProjectorSteps(ScenarioHook scenarioHook) {
     selenium = scenarioHook.getSelenium(); // Instantiate Selenium object with injected ScenarioHook
 }
 
-@Then("I Should See Net Income Per Month: {word}")
+@Then("^I Should See Net Income Per Month: (.*)$")
 public void I_Should_See_Net_Income_Per_Month(String expected) throws Throwable {
     WebElement netPerMonth = selenium.getVisibleElement("net.per.month"); // Use key from ui-map to get web element
     String actual = netPerMonth.getText();
@@ -134,7 +134,7 @@ mvn verify
 ### 2. Extent Reports
 > This report is standalone and can be zipped/emailed to clients. HTML files can be viewed locally using the browser.
 
-Generate report into directory: `/target/extentreports-cucumber/`
+Generate report into directory: `/target/cucumber-extentreports/`
 ~~~
 mvn verify
 ~~~
