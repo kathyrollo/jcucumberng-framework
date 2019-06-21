@@ -2,12 +2,11 @@
 target/
 
 
-### Allure Test Report ###
+### Allure ###
 .allure/
-allure-results/
 
 
-### Eclipse IDE ###
+### Eclipse ###
 .classpath
 .factorypath
 .settings/
@@ -17,7 +16,7 @@ allure-results/
 .vscode/
 
 
-### IntelliJ ###
+### JetBrains ###
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and WebStorm
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
@@ -27,6 +26,9 @@ allure-results/
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
+
+# Generated files
+.idea/**/contentModel.xml
 
 # Sensitive or high-churn files
 .idea/**/dataSources/
@@ -43,11 +45,13 @@ allure-results/
 
 # Gradle and Maven with auto-import
 # When using Gradle or Maven with auto-import, you should exclude module files,
-# since they will be recreated, and may cause churn. Uncomment if using
+# since they will be recreated, and may cause churn.  Uncomment if using
 # auto-import.
 # .idea/modules.xml
 # .idea/*.iml
 # .idea/modules
+# *.iml
+# *.ipr
 
 # CMake
 cmake-build-*/
@@ -79,12 +83,5 @@ fabric.properties
 # Editor-based Rest Client
 .idea/httpRequests
 
-### Intellij Patch ###
-# Comment Reason: https://github.com/joeblau/gitignore.io/issues/186#issuecomment-215987721
-*.iml
-modules.xml
-.idea/misc.xml
-*.ipr
-
-# Sonarlint plugin
-.idea/sonarlint
+# Android studio 3.1+ serialized cache file
+.idea/caches/build_file_checksums.ser
