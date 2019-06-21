@@ -92,7 +92,11 @@ public final class Browser {
 	 */
 	private static WebDriver chromedriver(int arch, boolean headless) throws IOException {
 		if (32 == arch) {
-			WebDriverManager.chromedriver().version(Configuration.framework("chrome.driver.version")).setup();
+			if (Boolean.parseBoolean(Configuration.framework("chromedriver.version.on"))) {
+				WebDriverManager.chromedriver().version(Configuration.framework("chromedriver.version")).setup();
+			} else {
+				WebDriverManager.chromedriver().setup();
+			}
 		}
 
 		if (headless) {
