@@ -4,6 +4,7 @@ target/
 
 ### Allure ###
 .allure/
+allure-results/
 
 
 ### Eclipse ###
