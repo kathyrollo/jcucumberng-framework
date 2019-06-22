@@ -343,7 +343,7 @@ public final class Selenium {
 
 	/**
 	 * Captures and saves screenshot in PNG format. Images are stored in
-	 * {@code /target/cucumber-sshots/}.
+	 * {@code /target/cucumber-screenshots/}.
 	 * 
 	 * @return String - the absolute path to the saved screenshot
 	 * @throws IOException
