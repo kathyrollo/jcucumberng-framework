@@ -21,7 +21,7 @@
 		
 		<!-- Dependencies -->
 		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-server -->
-		<selenium>3.141.59</selenium>
+		<selenium>4.0.0-alpha-1</selenium>
 		<!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
 		<webdrivermanager>3.6.0</webdrivermanager>
 		<!-- https://mvnrepository.com/artifact/com.paulhammant/ngwebdriver -->
