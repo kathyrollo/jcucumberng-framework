@@ -46,7 +46,7 @@ public void I_Should_See_Net_Income_Per_Month(String expected) throws Throwable 
 
 ## Technology Stack
 
-- [Selenium WebDriver 4 (alpha)](https://www.seleniumhq.org/) for browser automation with extended API
+- [Selenium WebDriver 4](https://www.seleniumhq.org/) (alpha) for browser automation with extended API
 - [WebDriverManager](https://github.com/bonigarcia/webdrivermanager) for automatic management of webdriver binaries (IE11, Edge, Chrome, Firefox)
 - [ngWebDriver](https://github.com/paul-hammant/ngWebDriver) (Protractor) for Angular/JS support
 - [Cucumber-JVM 4](https://github.com/cucumber/cucumber-jvm) for behavior-driven testing
