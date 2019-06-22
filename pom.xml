@@ -34,7 +34,7 @@
 		<slf4j>2.11.2</slf4j>
 		<!-- https://mvnrepository.com/artifact/com.aventstack/extentreports-cucumber4-adapter -->
 		<extentreports>1.0.5</extentreports>
-		<!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-cucumber3-jvm -->
+		<!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-cucumber4-jvm -->
 		<allure.cucumber>2.12.1</allure.cucumber>
 		<!-- https://mvnrepository.com/artifact/com.itextpdf/itextpdf -->
 		<itextpdf>5.5.13</itextpdf>
@@ -103,7 +103,7 @@
 		</dependency>
 		<dependency>
 			<groupId>io.qameta.allure</groupId>
-			<artifactId>allure-cucumber3-jvm</artifactId>
+			<artifactId>allure-cucumber4-jvm</artifactId>
 			<version>${allure.cucumber}</version>
 		</dependency>
 		<dependency>
