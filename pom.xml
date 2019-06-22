@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.kathyrollo</groupId>
 	<artifactId>jcucumberng-framework</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>4.0.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	
 	<name>jCucumberNG-Framework</name>
@@ -21,20 +21,20 @@
 		
 		<!-- Dependencies -->
 		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-server -->
-		<selenium>3.141.59</selenium>
+		<selenium>4.0.0-alpha-1</selenium>
 		<!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
 		<webdrivermanager>3.6.0</webdrivermanager>
 		<!-- https://mvnrepository.com/artifact/com.paulhammant/ngwebdriver -->
 		<ngwebdriver>1.1.4</ngwebdriver>
-		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
-		<cucumber>3.0.2</cucumber>
+		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
+		<cucumber>4.2.0</cucumber>
 		<!-- https://mvnrepository.com/artifact/org.assertj/assertj-core -->
 		<assertj>3.12.2</assertj>
 		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j-impl -->
 		<slf4j>2.11.2</slf4j>
-		<!-- https://mvnrepository.com/artifact/com.aventstack/extentreports-cucumber3-adapter -->
-		<extentreports>1.0.1</extentreports>
-		<!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-cucumber3-jvm -->
+		<!-- https://mvnrepository.com/artifact/com.aventstack/extentreports-cucumber4-adapter -->
+		<extentreports>1.0.5</extentreports>
+		<!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-cucumber4-jvm -->
 		<allure.cucumber>2.12.1</allure.cucumber>
 		<!-- https://mvnrepository.com/artifact/com.itextpdf/itextpdf -->
 		<itextpdf>5.5.13</itextpdf>
@@ -78,7 +78,7 @@
 		</dependency>
 		<dependency>
 			<groupId>io.cucumber</groupId>
-			<artifactId>cucumber-junit</artifactId>
+			<artifactId>cucumber-testng</artifactId>
 			<version>${cucumber}</version>
 		</dependency>
 		<dependency>
@@ -98,12 +98,12 @@
 		</dependency>
 		<dependency>
 			<groupId>com.aventstack</groupId>
-			<artifactId>extentreports-cucumber3-adapter</artifactId>
+			<artifactId>extentreports-cucumber4-adapter</artifactId>
 			<version>${extentreports}</version>
 		</dependency>
 		<dependency>
 			<groupId>io.qameta.allure</groupId>
-			<artifactId>allure-cucumber3-jvm</artifactId>
+			<artifactId>allure-cucumber4-jvm</artifactId>
 			<version>${allure.cucumber}</version>
 		</dependency>
 		<dependency>

@@ -29,7 +29,7 @@ public class ScenarioHook {
 
 		WebDriver driver = Browser.getInstance(webBrowser);
 		if (Boolean.parseBoolean("implicit.wait")) {
-			long time = Long.valueOf(Configuration.framework("implicit.timeout"));
+			long time = Long.parseLong(Configuration.framework("implicit.timeout"));
 			driver.manage().timeouts().implicitlyWait(time, TimeUnit.SECONDS);
 		}
 		selenium = new Selenium(driver, scenario);

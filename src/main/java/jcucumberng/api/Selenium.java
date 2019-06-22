@@ -351,7 +351,7 @@ public final class Selenium {
 	public String captureScreenshot() throws IOException {
 		StringBuilder builder = new StringBuilder();
 		builder.append(StringUtils.replace(System.getProperty("user.dir"), "\\", "/"));
-		builder.append("/target/cucumber-sshots/sshot_");
+		builder.append("/target/cucumber-screenshots/sshot_");
 		builder.append(System.currentTimeMillis());
 		builder.append(".png");
 		String screenshot = builder.toString();
