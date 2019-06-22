@@ -32,8 +32,8 @@
 		<assertj>3.12.2</assertj>
 		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j-impl -->
 		<slf4j>2.11.2</slf4j>
-		<!-- https://mvnrepository.com/artifact/com.aventstack/extentreports-cucumber3-adapter -->
-		<extentreports>1.0.1</extentreports>
+		<!-- https://mvnrepository.com/artifact/com.aventstack/extentreports-cucumber4-adapter -->
+		<extentreports>1.0.5</extentreports>
 		<!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-cucumber3-jvm -->
 		<allure.cucumber>2.12.1</allure.cucumber>
 		<!-- https://mvnrepository.com/artifact/com.itextpdf/itextpdf -->
@@ -98,7 +98,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.aventstack</groupId>
-			<artifactId>extentreports-cucumber3-adapter</artifactId>
+			<artifactId>extentreports-cucumber4-adapter</artifactId>
 			<version>${extentreports}</version>
 		</dependency>
 		<dependency>
