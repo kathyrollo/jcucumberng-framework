@@ -11,7 +11,7 @@ Allows automation testers to write feature/gherkin files for Cucumber and implem
 5. [Checking Results](#checking-results)
 
 ## How It Works
-Test script logic is placed directly in step definitions (methods) using Dependency Injection (DI) to focus test automation on [developing tests instead of keeping up with page objects](https://www.linkedin.com/pulse/dependency-injection-write-tests-page-objects-katherine-rollo/). A UI Map serves as a central object repository of web element locators.
+Test script logic is placed directly in step definitions (methods) using Dependency Injection (DI) to focus test automation on [developing tests instead of keeping up with page objects](https://www.linkedin.com/pulse/dependency-injection-write-tests-page-objects-katherine-rollo/). An intelligent UI Map serves as a central object repository of web element locators.
 
 ### ui-map.properties
 ~~~
