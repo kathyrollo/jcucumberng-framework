@@ -77,8 +77,8 @@ public class NetIncomeSteps {
 	public void I_Should_See_Net_Income_Per_Year(String expected) throws Throwable {
 		WebElement netPerYear = selenium.getVisibleElement("net.per.year");
 		String actual = netPerYear.getText();
-		Assertions.assertThat(actual).isEqualTo(expected);
 		LOGGER.debug("Net Per Year={}", actual);
+		Assertions.assertThat(actual).isEqualTo(expected);
 		selenium.scrollToElement(netPerYear);
 	}
 

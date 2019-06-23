@@ -18,6 +18,7 @@ import jcucumberng.utils.SystemUtil;
 public class ScenarioHook {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ScenarioHook.class);
+	private WebDriver driver = null;
 	private Selenium selenium = null;
 
 	@Before
@@ -27,32 +28,32 @@ public class ScenarioHook {
 		String webBrowser = Configuration.framework("web.browser");
 		LOGGER.info("Browser={}", webBrowser);
 
-		WebDriver driver = Browser.getInstance(webBrowser);
+		driver = Browser.getInstance(webBrowser);
 		if (Boolean.parseBoolean("implicit.wait")) {
 			long time = Long.parseLong(Configuration.framework("implicit.timeout"));
 			driver.manage().timeouts().implicitlyWait(time, TimeUnit.SECONDS);
 		}
 		selenium = new Selenium(driver, scenario);
 		if (Boolean.parseBoolean(Configuration.framework("wait.for.angular"))) {
-			selenium.getNgWebDriver().waitForAngularRequestsToFinish();
+			selenium.waitForAngular();
 		}
 
 		Dimension dimension = SystemUtil.getDimension();
-		selenium.getDriver().manage().window().setSize(dimension);
+		driver.manage().window().setSize(dimension);
 		LOGGER.info("Screen Resolution (WxH)={}x{}", dimension.getWidth(), dimension.getHeight());
 	}
 
 	@After
-	public void tearDown() throws Throwable {
+	public void tearDown(Scenario scenario) throws Throwable {
 		if (!Boolean.parseBoolean(Configuration.framework("screenshot.off"))) {
 			if (Boolean.parseBoolean(Configuration.framework("screenshot.on.fail"))) {
-				if (selenium.getScenario().isFailed()) {
+				if (scenario.isFailed()) {
 					selenium.embedScreenshot();
 				}
 			}
 		}
-		LOGGER.info("END TEST -> {} - {}", selenium.getScenario().getName(), selenium.getScenario().getStatus());
-		selenium.getDriver().quit();
+		LOGGER.info("END TEST -> {} - {}", scenario.getName(), scenario.getStatus());
+		driver.quit();
 	}
 
 	public Selenium getSelenium() {
