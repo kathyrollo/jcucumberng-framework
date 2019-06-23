@@ -216,12 +216,12 @@ target/
 
 **Output:**
 ~~~
-[INFO ] 2019-06-23 22:02:40,107 ScenarioHook.setUp() - BEGIN TEST -> Verify Page Title
-[INFO ] 2019-06-23 22:02:44,191 ScenarioHook.setUp() - Browser=CHROME32_NOHEAD
-[INFO ] 2019-06-23 22:02:45,387 ScenarioHook.setUp() - Screen Resolution (WxH)=1366x768
-[DEBUG] 2019-06-23 22:02:49,642 HomePageNavigationSteps.I_Am_At_The_Home_Page() - Base URL=http://simplydo.com/projector/
-[DEBUG] 2019-06-23 22:02:50,095 HomePageNavigationSteps.I_Should_See_Page_Title() - Window Title=Simply Do - Balance Projector
-[INFO ] 2019-06-23 22:02:50,413 ScenarioHook.tearDown() - END TEST -> Verify Page Title - PASSED
+[INFO ] 2019-06-23 21:26:09,741 ScenarioHook.setUp() - BEGIN TEST -> Verify Page Title
+[INFO ] 2019-06-23 21:26:09,764 ScenarioHook.setUp() - Browser=CHROME32_NOHEAD
+[INFO ] 2019-06-23 21:26:12,959 ScenarioHook.setUp() - Screen Resolution (WxH)=1366x768
+[DEBUG] 2019-06-23 21:27:41,896 HomePageNavigationSteps.I_Am_At_The_Home_Page() - Base URL=http://simplydo.com/projector/
+[DEBUG] 2019-06-23 21:27:42,369 HomePageNavigationSteps.I_Should_See_Page_Title() - Window Title=Simply Do - Balance Projector
+[INFO ] 2019-06-23 21:27:42,691 ScenarioHook.tearDown() - END TEST -> Verify Page Title - PASSED
 ~~~
 
 [ [Back](#table-of-contents) ]

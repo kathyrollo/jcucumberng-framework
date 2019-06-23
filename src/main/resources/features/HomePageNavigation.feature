@@ -7,4 +7,4 @@ Feature: Home Page Navigation
 	@fail
 	Scenario: Verify Page Title
 		Given I Am At The Home Page
-		Then I Should See Page Title: 'Simply Do - Balance Project'
+		Then I Should See Page Title: Simply Do - Balance Project
