@@ -37,19 +37,19 @@ start.balance=model:startBalance
 net.per.month=binding:roundDown(monthlyNet())
 ~~~
 
-### NetIncomeProjector.feature
+### NetIncome.feature
 ~~~
 Given I Am At The Home Page
 When I Enter My Start Balance: 348000
 Then I Should See Net Income Per Month: 23769
 ~~~
 
-### NetIncomeProjectorSteps.java
+### NetIncomeSteps.java
 ~~~
 private Selenium selenium = null; // Extended Selenium API
 
 // PicoContainer injects ScenarioHook object
-public NetIncomeProjectorSteps(ScenarioHook scenarioHook) {
+public NetIncomeSteps(ScenarioHook scenarioHook) {
     selenium = scenarioHook.getSelenium(); // Instantly begin using API
 }
 
@@ -125,7 +125,7 @@ Maven performs a one-time download of all dependencies. Execute `mvn verify` aga
 Expecting:
  <"Simply Do - Balance Projector">
 to be equal to:
- <"'Simply Do - Balance Project'">
+ <"Simply Do - Balance Project">
 but was not.
 [INFO]   Run 2: PASS
 [INFO]   Run 3: PASS

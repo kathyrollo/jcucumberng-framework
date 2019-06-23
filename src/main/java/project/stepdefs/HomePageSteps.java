@@ -10,13 +10,13 @@ import jcucumberng.api.Configuration;
 import jcucumberng.api.Selenium;
 import project.hooks.ScenarioHook;
 
-public class HomePageNavigationSteps {
+public class HomePageSteps {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(HomePageNavigationSteps.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(HomePageSteps.class);
 	private Selenium selenium = null;
 
 	// PicoContainer injects ScenarioHook object
-	public HomePageNavigationSteps(ScenarioHook scenarioHook) {
+	public HomePageSteps(ScenarioHook scenarioHook) {
 		selenium = scenarioHook.getSelenium();
 	}
 

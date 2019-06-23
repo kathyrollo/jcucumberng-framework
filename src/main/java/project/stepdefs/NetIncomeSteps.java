@@ -16,15 +16,15 @@ import jcucumberng.api.Selenium;
 import project.dataobjects.Transaction;
 import project.hooks.ScenarioHook;
 
-public class NetIncomeProjectorSteps {
+public class NetIncomeSteps {
 
 	private static final String DIV_BOXES = "div.boxes";
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(NetIncomeProjectorSteps.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(NetIncomeSteps.class);
 	private Selenium selenium = null;
 
 	// PicoContainer injects ScenarioHook object
-	public NetIncomeProjectorSteps(ScenarioHook scenarioHook) {
+	public NetIncomeSteps(ScenarioHook scenarioHook) {
 		selenium = scenarioHook.getSelenium();
 	}
 
