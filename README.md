@@ -1,9 +1,9 @@
 ![java_selenium_cucumber_protractor](https://user-images.githubusercontent.com/28589393/49656394-38288800-fa78-11e8-9e1b-d828342d2aca.png)
 
 # jCucumberNG-Framework
-Allows automation testers to write feature/gherkin files for Cucumber and implement step definitions in basic Java classes. ngWebDriver (Protractor) offers extended support for Angular/JS web applications.
+Allows automation testers to write feature files for Cucumber and implement step definitions in basic Java classes. ngWebDriver (Protractor) offers extended support for Angular/JS web applications.
 
-### Table Of Contents
+### Contents
 1. [How It Works](#how-it-works)
 2. [Technology Stack](#technology-stack)
 3. [What You Need](#what-you-need)
@@ -11,9 +11,12 @@ Allows automation testers to write feature/gherkin files for Cucumber and implem
 5. [Checking Results](#checking-results)
 
 ## How It Works
-Test script logic is placed directly in step definitions (methods) using Dependency Injection (DI) to focus test automation on [developing tests instead of keeping up with page objects](https://www.linkedin.com/pulse/dependency-injection-write-tests-page-objects-katherine-rollo/). An intelligent UI Map serves as a central object repository of web element locators.
+Test script logic is implemented directly in step definitions (methods) using Dependency Injection (DI) to focus test automation on [developing tests instead of keeping up with page objects](https://www.linkedin.com/pulse/dependency-injection-write-tests-page-objects-katherine-rollo/). An intelligent UI Map serves as the central object repository of web element locators.
 
-### ui-map.properties
+### Basic Usage
+Test scripts can be quickly written by manipulating only 3 objects: ui-map, feature file, and steps class.
+
+**ui-map.properties**
 ~~~
 # User Interface (UI) Map
 
@@ -37,14 +40,14 @@ start.balance=model:startBalance
 net.per.month=binding:roundDown(monthlyNet())
 ~~~
 
-### NetIncome.feature
+**NetIncome.feature**
 ~~~
 Given I Am At The Home Page
 When I Enter My Start Balance: 348000
 Then I Should See Net Income Per Month: 23769
 ~~~
 
-### NetIncomeSteps.java
+**NetIncomeSteps.java**
 ~~~
 private Selenium selenium = null; // Extended Selenium API
 
