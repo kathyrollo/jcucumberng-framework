@@ -11,15 +11,35 @@ Allows automation testers to write feature/gherkin files for Cucumber and implem
 5. [Checking Results](#checking-results)
 
 ## How It Works
-Test script logic can be placed directly in step definitions (methods) to focus test automation on [developing tests instead of keeping up with page objects](https://www.linkedin.com/pulse/dependency-injection-write-tests-page-objects-katherine-rollo/) using Dependency Injection (DI). A UI Map serves as a central object repository of web elements for easier maintenance.
+Test script logic is placed directly in step definitions (methods) using Dependency Injection (DI) to focus test automation on [developing tests instead of keeping up with page objects](https://www.linkedin.com/pulse/dependency-injection-write-tests-page-objects-katherine-rollo/). A UI Map serves as a central object repository of web element locators.
 
 ### ui-map.properties
 ~~~
+# User Interface (UI) Map
+
+# Patterns
+# ui.element.key=locator:selector
+# ui.element.key=css_containing_text:selector|text
+# ui.element.key=by_all:key1|key2|keyN
+# ui.element.key=by_chained:key1|key2|keyN
+
+# Selenium Locators
+# id, name, link_text, partial_link_text, tag, class, css, xpath, by_all,
+# by_id_or_name, by_chained
+
+# ngWebDriver (Protractor) Locators
+# binding, model, button_text, css_containing_text, exact_binding,
+# exact_repeater, options, partial_button_text, repeater
+
+#------------------------------------------------------------------------------#
+
+start.balance=model:startBalance
 net.per.month=binding:roundDown(monthlyNet())
 ~~~
 
 ### NetIncomeProjector.feature
 ~~~
+When I Enter My Start Balance: 348000
 Then I Should See Net Income Per Month: 23769
 ~~~
 
@@ -29,16 +49,19 @@ private Selenium selenium = null; // Extended Selenium API
 
 // PicoContainer injects ScenarioHook object
 public NetIncomeProjectorSteps(ScenarioHook scenarioHook) {
-    selenium = scenarioHook.getSelenium(); // Instantiate Selenium object with injected ScenarioHook
+    selenium = scenarioHook.getSelenium(); // Instantly begin using API
+}
+
+@When("^I Enter My Start Balance: (.*)$")
+public void I_Enter_My_Start_Balance(String startBalance) throws Throwable {
+    selenium.type(startBalance, "start.balance"); // Use key from ui-map to get web element
 }
 
 @Then("^I Should See Net Income Per Month: (.*)$")
 public void I_Should_See_Net_Income_Per_Month(String expected) throws Throwable {
-    WebElement netPerMonth = selenium.getVisibleElement("net.per.month"); // Use key from ui-map to get web element
+    WebElement netPerMonth = selenium.getVisibleElement("net.per.month");
     String actual = netPerMonth.getText();
-    Assertions.assertThat(actual).isEqualTo(expected);
-    LOGGER.debug("Net Per Month={}", actual);
-    selenium.scrollToElement(netPerMonth);
+    Assertions.assertThat(actual).isEqualTo(expected); // Use fluent assertion
 }
 ~~~
 
