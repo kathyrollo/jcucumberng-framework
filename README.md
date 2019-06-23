@@ -11,34 +11,63 @@ Allows automation testers to write feature/gherkin files for Cucumber and implem
 5. [Checking Results](#checking-results)
 
 ## How It Works
-Test script logic can be placed directly in step definitions (methods) to focus test automation on [developing tests instead of keeping up with page objects](https://www.linkedin.com/pulse/dependency-injection-write-tests-page-objects-katherine-rollo/) using Dependency Injection (DI). A UI Map serves as a central object repository of web elements for easier maintenance.
+Test script logic is placed directly in step definitions (methods) using Dependency Injection (DI) to focus test automation on [developing tests instead of keeping up with page objects](https://www.linkedin.com/pulse/dependency-injection-write-tests-page-objects-katherine-rollo/). An intelligent UI Map serves as a central object repository of web element locators.
 
 ### ui-map.properties
 ~~~
+# User Interface (UI) Map
+
+# Patterns
+# ui.element.key=locator:selector
+# ui.element.key=css_containing_text:selector|text
+# ui.element.key=by_all:key1|key2|keyN
+# ui.element.key=by_chained:key1|key2|keyN
+
+# Selenium Locators
+# id, name, link_text, partial_link_text, tag, class, css, xpath, by_all,
+# by_id_or_name, by_chained
+
+# ngWebDriver (Protractor) Locators
+# binding, model, button_text, css_containing_text, exact_binding,
+# exact_repeater, options, partial_button_text, repeater
+
+#------------------------------------------------------------------------------#
+
+start.balance=model:startBalance
 net.per.month=binding:roundDown(monthlyNet())
 ~~~
 
-### NetIncomeProjector.feature
+### NetIncome.feature
 ~~~
+Given I Am At The Home Page
+When I Enter My Start Balance: 348000
 Then I Should See Net Income Per Month: 23769
 ~~~
 
-### NetIncomeProjectorSteps.java
+### NetIncomeSteps.java
 ~~~
 private Selenium selenium = null; // Extended Selenium API
 
 // PicoContainer injects ScenarioHook object
-public NetIncomeProjectorSteps(ScenarioHook scenarioHook) {
-    selenium = scenarioHook.getSelenium(); // Instantiate Selenium object with injected ScenarioHook
+public NetIncomeSteps(ScenarioHook scenarioHook) {
+    selenium = scenarioHook.getSelenium(); // Instantly begin using API
+}
+
+@Given("^I Am At The Home Page$")
+public void I_Am_At_The_Home_Page() throws Throwable {
+    selenium.navigate("base.url"); // Use key from project.properties for global settings
+}
+
+@When("^I Enter My Start Balance: (.*)$")
+public void I_Enter_My_Start_Balance(String startBalance) throws Throwable {
+    selenium.type(startBalance, "start.balance"); // Use key from ui-map.properties for web elements
 }
 
 @Then("^I Should See Net Income Per Month: (.*)$")
 public void I_Should_See_Net_Income_Per_Month(String expected) throws Throwable {
-    WebElement netPerMonth = selenium.getVisibleElement("net.per.month"); // Use key from ui-map to get web element
+    WebElement netPerMonth = selenium.getVisibleElement("net.per.month");
     String actual = netPerMonth.getText();
-    Assertions.assertThat(actual).isEqualTo(expected);
-    LOGGER.debug("Net Per Month={}", actual);
-    selenium.scrollToElement(netPerMonth);
+    Assertions.assertThat(actual).isEqualTo(expected); // Use fluent assertion
 }
 ~~~
 
@@ -62,7 +91,7 @@ public void I_Should_See_Net_Income_Per_Month(String expected) throws Throwable 
 
 ## What You Need
 - [JDK 1.8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) or higher
-- [Eclipse IDE](http://www.eclipse.org/downloads/eclipse-packages/) / [VSCode](https://code.visualstudio.com/download) / [IntelliJ](https://www.jetbrains.com/idea/download/#section=windows) (install relevant Cucumber/Gherkin plugins)
+- [Eclipse IDE](http://www.eclipse.org/downloads/eclipse-packages/) / [VSCode](https://code.visualstudio.com/download) / [IntelliJ](https://www.jetbrains.com/idea/download/#section=windows) (install relevant Cucumber plugins)
 - [Git](https://git-scm.com/downloads)
 - [Maven](https://maven.apache.org/download.cgi)
 - [Cmder](http://cmder.net/) (optional, includes Git for Windows)
@@ -84,16 +113,25 @@ $ cd jcucumberng-framework/
 $ mvn verify
 ~~~
 
-Maven performs a one-time download of all dependencies. Execute `mvn verify` again after the downloads complete to begin running the tests.
+Maven performs a one-time download of all dependencies. Execute `mvn verify` again if needed after the downloads complete to begin running the tests.
 
 **Output:**
 ~~~
 [INFO] Results:
 [INFO]
 [ERROR] Failures:
-[ERROR]   expected:<...Do - Balance Project[]"> but was:<...Do - Balance Project[or]">
+[ERROR] runners.RunCukesTest.runScenario(runners.RunCukesTest)
+[ERROR]   Run 1: RunCukesTest.runScenario
+Expecting:
+ <"Simply Do - Balance Projector">
+to be equal to:
+ <"Simply Do - Balance Project">
+but was not.
+[INFO]   Run 2: PASS
+[INFO]   Run 3: PASS
 [INFO]
-[ERROR] Tests run: 3, Failures: 1, Errors: 0, Skipped: 0
+[INFO]
+[ERROR] Tests run: 1, Failures: 1, Errors: 0, Skipped: 0
 [INFO]
 [ERROR] There are test failures.
 ~~~
@@ -117,10 +155,10 @@ mvn verify
 ![static_report](https://user-images.githubusercontent.com/28589393/44956144-d5ac7280-aef1-11e8-80ed-ccfeb9d2aaef.png)
 
 ### Dyamic Reporting (3-in-1)
-Animated visuals and colorful graphs/charts are generated by 3 different reporting plugins. Impressive for demos.
+Animated visuals with colorful graphs and charts are generated by 3 different reporting plugins. Best for stakeholder demos.
 
 ### 1. Masterthought
-> This report is standalone and can be zipped/emailed to clients. HTML files can be viewed locally using the browser.
+> This report is standalone that can be zipped and emailed to clients. HTML files can be viewed locally using any browser.
 
 Generate report into directory: `/target/cucumber-html-reports/`
 ~~~
@@ -132,12 +170,14 @@ mvn verify
 ![maven_cucumber_reporting](https://user-images.githubusercontent.com/28589393/44955736-de4d7a80-aeea-11e8-803c-1dced0499fda.gif)
 
 ### 2. Extent Reports
-> This report is standalone and can be zipped/emailed to clients. HTML files can be viewed locally using the browser.
+> This report is standalone that can be zipped and emailed to clients. HTML files can be viewed locally using any browser.
 
 Generate report into directory: `/target/cucumber-extentreports/`
 ~~~
 mvn verify
 ~~~
+
+The same command generates Masterthought and Extent Reports.
 
 **Output:**
 
@@ -146,19 +186,13 @@ mvn verify
 ### 3. Allure
 > This report is a single page application (SPA). Dynamic attributes use AJAX and need to be launched from a [running web server](https://github.com/allure-framework/allure1/issues/896#issuecomment-271599716) to view.
 
-Choose any method to generate the report **_after_** running the tests.
-
-**Method 1:** Generate report into temp folder and start local web server (opens browser)
+**Method 1:** Generate report into temp folder and start local web server (launches browser)
 ~~~
+mvn verify
 mvn allure:serve
 ~~~
 
-**Method 2:** Generate report in `/target/site/allure-maven-plugin/`
-~~~
-mvn allure:report
-~~~
-
-**Method 3:** Combine commands (run tests and invoke all reporting plugins)
+**Method 2:** Combine commands (run tests and invoke all reporting plugins)
 ~~~
 mvn verify allure:serve
 ~~~
@@ -174,27 +208,27 @@ Logs are written to a daily rolling file. Executions from the previous day are s
 ~~~
 target/
 |__ test-logs/
-    |__ jcucumberng_2018-07-19.log
-    |__ jcucumberng_2018-07-20.log
-    |__ jcucumberng_2018-07-21.log
+    |__ jcucumberng_2019-06-21.log
+    |__ jcucumberng_2019-06-22.log
+    |__ jcucumberng_2019-06-23.log
     |__ jcucumberng.log
 ~~~
 
 **Output:**
 ~~~
-[INFO ] 2018-07-21 22:02:40,107 ScenarioHook.beforeScenario() - BEGIN TEST -> Verify Page Title
-[INFO ] 2018-07-21 22:02:44,191 ScenarioHook.beforeScenario() - Browser=CHROME32_NOHEAD
-[INFO ] 2018-07-21 22:02:45,387 ScenarioHook.beforeScenario() - Screen Resolution (WxH)=1366x768
-[DEBUG] 2018-07-21 22:02:49,642 HomePageNavigationSteps.I_Am_At_The_Home_Page() - Base URL=http://simplydo.com/projector/
-[DEBUG] 2018-07-21 22:02:50,095 HomePageNavigationSteps.I_Should_See_Page_Title() - Window Title=Simply Do - Balance Projector
-[INFO ] 2018-07-21 22:02:50,413 ScenarioHook.afterScenario() - END TEST -> Verify Page Title - PASSED
+[INFO ] 2019-06-23 21:26:09,741 ScenarioHook.setUp() - BEGIN TEST -> Verify Page Title
+[INFO ] 2019-06-23 21:26:09,764 ScenarioHook.setUp() - Browser=CHROME32_NOHEAD
+[INFO ] 2019-06-23 21:26:12,959 ScenarioHook.setUp() - Screen Resolution (WxH)=1366x768
+[DEBUG] 2019-06-23 21:27:41,896 HomePageNavigationSteps.I_Am_At_The_Home_Page() - Base URL=http://simplydo.com/projector/
+[DEBUG] 2019-06-23 21:27:42,369 HomePageNavigationSteps.I_Should_See_Page_Title() - Window Title=Simply Do - Balance Projector
+[INFO ] 2019-06-23 21:27:42,691 ScenarioHook.tearDown() - END TEST -> Verify Page Title - PASSED
 ~~~
 
 [ [Back](#table-of-contents) ]
 
 ## LICENSE
 
-Copyright 2018 Katherine L. Rollo
+Copyright 2019 Katherine L. Rollo
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 ```

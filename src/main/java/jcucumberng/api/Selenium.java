@@ -166,6 +166,33 @@ public final class Selenium {
 	}
 
 	/**
+	 * Wait for Angular requests to finish.
+	 */
+	public void waitForAngular() {
+		ngWebDriver.waitForAngularRequestsToFinish();
+	}
+
+	/**
+	 * Navigates to specified URL.
+	 * 
+	 * @param key the key from {@code project.properties}
+	 * @return String - the URL
+	 * @throws IOException
+	 */
+	public String navigate(String key) throws IOException {
+		String url = Configuration.project(key);
+		driver.navigate().to(url);
+		return url;
+	}
+
+	/**
+	 * Get page title of current window.
+	 */
+	public String getPageTitle() {
+		return driver.getTitle();
+	}
+
+	/**
 	 * Clicks an element on the web page.
 	 * 
 	 * @param keys the key(s) from {@code ui-map.properties}
@@ -343,7 +370,7 @@ public final class Selenium {
 
 	/**
 	 * Captures and saves screenshot in PNG format. Images are stored in
-	 * {@code /target/cucumber-sshots/}.
+	 * {@code /target/cucumber-screenshots/}.
 	 * 
 	 * @return String - the absolute path to the saved screenshot
 	 * @throws IOException
@@ -370,18 +397,6 @@ public final class Selenium {
 		byte[] imgBytes = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
 		scenario.embed(imgBytes, "image/png");
 		return imgBytes;
-	}
-
-	public WebDriver getDriver() {
-		return driver;
-	}
-
-	public NgWebDriver getNgWebDriver() {
-		return ngWebDriver;
-	}
-
-	public Scenario getScenario() {
-		return scenario;
 	}
 
 }
