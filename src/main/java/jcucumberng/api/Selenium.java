@@ -186,7 +186,33 @@ public final class Selenium {
 	}
 
 	/**
-	 * Get page title of current window.
+	 * Waits for a web element to refresh and become visible.
+	 * 
+	 * @param keys the key(s) from {@code ui-map.properties}
+	 * @return WebElement - the refreshed element
+	 * @throws IOException
+	 */
+	public WebElement waitForRefreshAndVisibleElement(String... keys) throws IOException {
+		WebElement element = explicitWait().until(ExpectedConditions
+				.refreshed(ExpectedConditions.visibilityOfElementLocated(new ByChained(getBys(keys)))));
+		return element;
+	}
+
+	/**
+	 * Waits for a web element to refresh and become clickable.
+	 * 
+	 * @param keys the key(s) from {@code ui-map.properties}
+	 * @return WebElement - the refreshed element
+	 * @throws IOException
+	 */
+	public WebElement waitForRefreshAndClickableElement(String... keys) throws IOException {
+		WebElement element = explicitWait().until(
+				ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(new ByChained(getBys(keys)))));
+		return element;
+	}
+
+	/**
+	 * Gets the page title of the current window.
 	 */
 	public String getPageTitle() {
 		return driver.getTitle();
