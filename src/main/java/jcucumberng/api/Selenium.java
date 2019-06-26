@@ -15,6 +15,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.pagefactory.ByChained;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -183,6 +184,19 @@ public final class Selenium {
 		String url = Configuration.project(key);
 		driver.navigate().to(url);
 		return url;
+	}
+
+	/**
+	 * Waits for a web element to refresh and become visible.
+	 * 
+	 * @param keys the key(s) from {@code ui-map.properties}
+	 * @return WebElement - the refreshed element
+	 * @throws IOException
+	 */
+	public WebElement waitForRefreshAndVisibleElement(String... keys) throws IOException {
+		WebElement element = explicitWait().until(ExpectedConditions
+				.refreshed(ExpectedConditions.visibilityOfElementLocated(new ByChained(getBys(keys)))));
+		return element;
 	}
 
 	/**
