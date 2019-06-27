@@ -1,5 +1,7 @@
 package project.stepdefs;
 
+import java.io.IOException;
+
 import org.assertj.core.api.Assertions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,21 +23,18 @@ public class CreateAccountSteps {
 	}
 
 	@Given("I Am At The Authentication Page")
-	public void I_Am_At_The_Authentication_Page() {
-		// Write code here that turns the phrase above into concrete actions
-		throw new cucumber.api.PendingException();
+	public void I_Am_At_The_Authentication_Page() throws Throwable {
+		selenium.navigate("authentication.page");
 	}
 
 	@When("I Enter A Valid Email: {word}")
-	public void I_Enter_A_Valid_Email(String email) {
-		// Write code here that turns the phrase above into concrete actions
-		throw new cucumber.api.PendingException();
+	public void I_Enter_A_Valid_Email(String email) throws Throwable {
+		selenium.type(email, "email.create");
 	}
 
 	@Then("I Should See The Create An Account Page")
-	public void I_Should_See_The_Create_An_Account_Page() {
-		// Write code here that turns the phrase above into concrete actions
-		throw new cucumber.api.PendingException();
+	public void I_Should_See_The_Create_An_Account_Page() throws Throwable {
+		selenium.click("submit.create");
 	}
 
 }
