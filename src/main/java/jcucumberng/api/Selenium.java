@@ -111,7 +111,7 @@ public final class Selenium {
 	 * Returns a visible web element. Uses explicit wait.
 	 * 
 	 * @param keys the key(s) from {@code ui-map.properties}
-	 * @return WebElement - the web element found
+	 * @return WebElement - the visible web element
 	 * @throws IOException
 	 */
 	public WebElement getVisibleElement(String... keys) throws IOException {
@@ -122,11 +122,22 @@ public final class Selenium {
 	 * Returns visible web elements. Uses explicit wait.
 	 * 
 	 * @param keys the key(s) from {@code ui-map.properties}
-	 * @return List - the List of web elements found
+	 * @return List - the List of visible web elements
 	 * @throws IOException
 	 */
 	public List<WebElement> getVisibleElements(String... keys) throws IOException {
 		return explicitWait().until(ExpectedConditions.visibilityOfAllElementsLocatedBy(new ByChained(getBys(keys))));
+	}
+
+	/**
+	 * Returns a clickable element. Uses explicit wait.
+	 * 
+	 * @param keys the key(s) from {@code ui-map.properties}
+	 * @return WebElement - the clickable web element
+	 * @throws IOException
+	 */
+	public WebElement getClickableElement(String... keys) throws IOException {
+		return explicitWait().until(ExpectedConditions.elementToBeClickable(new ByChained(getBys(keys))));
 	}
 
 	/**
@@ -226,7 +237,7 @@ public final class Selenium {
 	 * @throws IOException
 	 */
 	public WebElement click(String... keys) throws IOException {
-		WebElement element = getVisibleElement(keys);
+		WebElement element = getClickableElement(keys);
 		element.click();
 		return element;
 	}
