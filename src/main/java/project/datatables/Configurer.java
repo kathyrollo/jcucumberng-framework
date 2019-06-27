@@ -28,7 +28,7 @@ public class Configurer implements TypeRegistryConfigurer {
 		registry.defineDataTableType(new DataTableType(Transaction.class, new TableEntryTransformer<Transaction>() {
 			@Override
 			public Transaction transform(Map<String, String> entry) {
-				return Transaction.getInstance(entry);
+				return new Transaction(entry);
 			}
 		}));
 
@@ -39,7 +39,7 @@ public class Configurer implements TypeRegistryConfigurer {
 		registry.defineDataTableType(new DataTableType(Transaction.class, new TableTransformer<Transaction>() {
 			@Override
 			public Transaction transform(DataTable table) throws Throwable {
-				return Transaction.getInstance(table.asMaps().get(0));
+				return new Transaction(table.asMaps().get(0));
 			}
 		}));
 
