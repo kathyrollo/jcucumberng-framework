@@ -1,4 +1,4 @@
-package project.dataobjects;
+package project.dataobjects.balanceprojector;
 
 import java.util.Map;
 

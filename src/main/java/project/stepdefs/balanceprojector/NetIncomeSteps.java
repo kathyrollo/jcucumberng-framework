@@ -13,7 +13,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import io.cucumber.datatable.DataTable;
 import jcucumberng.api.Selenium;
-import project.dataobjects.Transaction;
+import project.dataobjects.balanceprojector.Transaction;
 import project.hooks.ScenarioHook;
 
 public class NetIncomeSteps {
