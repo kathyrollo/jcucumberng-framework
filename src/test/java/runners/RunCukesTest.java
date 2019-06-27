@@ -4,7 +4,7 @@ import cucumber.api.CucumberOptions;
 import cucumber.api.SnippetType;
 import cucumber.api.testng.AbstractTestNGCucumberTests;
 
-@CucumberOptions(features = { "src/main/resources/features" }, tags = { "@automationPractice" }, glue = { "project.datatables",
+@CucumberOptions(features = { "src/main/resources/features" }, tags = { "not @ignore" }, glue = { "project.datatables",
 		"project.hooks", "project.stepdefs" }, plugin = { "pretty",
 				"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
 				"io.qameta.allure.cucumber4jvm.AllureCucumber4Jvm", "html:target/cucumber-html-default",

@@ -1,4 +1,4 @@
-package project.stepdefs;
+package project.stepdefs.automationpractice;
 
 import org.assertj.core.api.Assertions;
 import org.slf4j.Logger;

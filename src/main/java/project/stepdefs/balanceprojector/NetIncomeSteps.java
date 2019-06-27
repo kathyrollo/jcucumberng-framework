@@ -1,4 +1,4 @@
-package project.stepdefs;
+package project.stepdefs.balanceprojector;
 
 import java.util.List;
 
