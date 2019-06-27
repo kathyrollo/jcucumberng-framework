@@ -1,4 +1,4 @@
-@sample @homePage
+@balanceProjector @homePage
 Feature: Home Page Navigation
 	As a user
 	I want to visit the home page
@@ -7,4 +7,4 @@ Feature: Home Page Navigation
 	@fail
 	Scenario: Verify Page Title
 		Given I Am At The Home Page
-		Then I Should See Page Title: Simply Do - Balance Project
+		Then I Should See Page Title: 'Simply Do - Balance Project'
