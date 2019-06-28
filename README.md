@@ -120,25 +120,31 @@ Maven performs a one-time download of all dependencies. Execute `mvn verify` aga
 
 **Output:**
 ~~~
+5 Scenarios (5 passed)
+18 Steps (18 passed)
+9m12.749s
+
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 555.177 s - in runners.RunCukesTest
+[INFO]
 [INFO] Results:
 [INFO]
-[ERROR] Failures:
-[ERROR] runners.RunCukesTest.runScenario(runners.RunCukesTest)
-[ERROR]   Run 1: RunCukesTest.runScenario
-Expecting:
- <"Simply Do - Balance Projector">
-to be equal to:
- <"Simply Do - Balance Project">
-but was not.
-[INFO]   Run 2: PASS
-[INFO]   Run 3: PASS
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0
 [INFO]
 [INFO]
-[ERROR] Tests run: 1, Failures: 1, Errors: 0, Skipped: 0
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ jcucumberng-framework ---
+[INFO] Building jar: D:\dev\automation-testing\java\jCucumberNG-Framework\target\jcucumberng-framework-4.0.0-SNAPSHOT.jar
 [INFO]
-[ERROR] There are test failures.
+[INFO] --- maven-cucumber-reporting:4.7.0:generate (execution) @ jcucumberng-framework ---
+[INFO] About to generate Cucumber report.
+Jun 28, 2019 5:02:44 PM net.masterthought.cucumber.ReportParser parseJsonFiles
+INFO: File 'D:\dev\automation-testing\java\jCucumberNG-Framework\target\cucumber-report.json' contains 3 features
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  09:25 min
+[INFO] Finished at: 2019-06-28T17:02:46+10:00
+[INFO] ------------------------------------------------------------------------
 ~~~
-1 scenario is purposely failed to produce variance in the test reports.
 
 [ [Back](#table-of-contents) ]
 
@@ -219,12 +225,12 @@ target/
 
 **Output:**
 ~~~
-[INFO ] 2019-06-23 21:26:09,741 ScenarioHook.setUp() - BEGIN TEST -> Verify Page Title
-[INFO ] 2019-06-23 21:26:09,764 ScenarioHook.setUp() - Browser=CHROME32_NOHEAD
-[INFO ] 2019-06-23 21:26:12,959 ScenarioHook.setUp() - Screen Resolution (WxH)=1366x768
-[DEBUG] 2019-06-23 21:27:41,896 HomePageNavigationSteps.I_Am_At_The_Home_Page() - Base URL=http://simplydo.com/projector/
-[DEBUG] 2019-06-23 21:27:42,369 HomePageNavigationSteps.I_Should_See_Page_Title() - Window Title=Simply Do - Balance Projector
-[INFO ] 2019-06-23 21:27:42,691 ScenarioHook.tearDown() - END TEST -> Verify Page Title - PASSED
+[INFO ] 2019-06-28 16:58:28,920 ScenarioHook.setUp() - BEGIN TEST -> Verify Page Title
+[INFO ] 2019-06-28 16:58:28,921 ScenarioHook.setUp() - Browser=CHROME32_NOHEAD
+[INFO ] 2019-06-28 16:58:30,618 ScenarioHook.setUp() - Screen Resolution (WxH)=1366x768
+[DEBUG] 2019-06-28 16:59:49,148 GlobalSteps.I_Am_At_Page() - Page URL=http://simplydo.com/projector/
+[DEBUG] 2019-06-28 16:59:49,505 GlobalSteps.I_Should_See_Page_Title() - Page Title=Simply Do - Balance Projector
+[INFO ] 2019-06-28 16:59:49,863 ScenarioHook.tearDown() - END TEST -> Verify Page Title - PASSED
 ~~~
 
 [ [Back](#table-of-contents) ]

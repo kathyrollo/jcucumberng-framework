@@ -7,4 +7,4 @@ Feature: Navigation
 	@pageTitle @fail
 	Scenario: Verify Page Title
 		Given I Am At Page: simplydo.home
-		Then I Should See Page Title: 'Simply Do - Balance Project'
+		Then I Should See Page Title: 'Simply Do - Balance Projector'
