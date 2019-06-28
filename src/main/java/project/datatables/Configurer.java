@@ -25,10 +25,10 @@ public class Configurer implements TypeRegistryConfigurer {
 	@Override
 	public void configureTypeRegistry(TypeRegistry registry) {
 
-		JacksonTableTransformer jtt = new JacksonTableTransformer();
-		registry.setDefaultParameterTransformer(jtt);
-		registry.setDefaultDataTableCellTransformer(jtt);
-		registry.setDefaultDataTableEntryTransformer(jtt);
+		JacksonTableTransformer transformer = new JacksonTableTransformer();
+		registry.setDefaultParameterTransformer(transformer);
+		registry.setDefaultDataTableCellTransformer(transformer);
+		registry.setDefaultDataTableEntryTransformer(transformer);
 
 		/*
 		 * Maps DataTable with label column to a single object of Type<T>. Left column
@@ -46,22 +46,22 @@ public class Configurer implements TypeRegistryConfigurer {
 	private static final class JacksonTableTransformer
 			implements ParameterByTypeTransformer, TableCellByTypeTransformer, TableEntryByTypeTransformer {
 
-		private final ObjectMapper objMapper = new ObjectMapper();
+		private final ObjectMapper mapper = new ObjectMapper();
 
 		@Override
 		public Object transform(String fromValue, Type toValueType) throws Throwable {
-			return objMapper.convertValue(fromValue, objMapper.constructType(toValueType));
+			return mapper.convertValue(fromValue, mapper.constructType(toValueType));
 		}
 
 		@Override
 		public <T> T transform(String value, Class<T> cellType) throws Throwable {
-			return objMapper.convertValue(value, cellType);
+			return mapper.convertValue(value, cellType);
 		}
 
 		@Override
 		public <T> T transform(Map<String, String> entry, Class<T> type, TableCellByTypeTransformer cellTransformer)
 				throws Throwable {
-			return objMapper.convertValue(entry, type);
+			return mapper.convertValue(entry, type);
 		}
 
 	}
