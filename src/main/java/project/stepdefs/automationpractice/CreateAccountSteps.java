@@ -1,6 +1,7 @@
 package project.stepdefs.automationpractice;
 
 import org.assertj.core.api.Assertions;
+import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,6 +30,13 @@ public class CreateAccountSteps {
 	@Then("I Should See Page Heading: {string}")
 	public void I_Should_See_Page_Heading(String expected) throws Throwable {
 		Assertions.assertThat(selenium.refreshAndTextToBePresent(expected, "ap.page.heading")).isTrue();
+	}
+
+	@Then("I Should See Error Message: {string}")
+	public void I_Should_See_Error_Message(String expected) throws Throwable {
+		String actual = selenium.getVisibleElement("ap.create.acct.err").getText();
+		LOGGER.debug("Error Message={}", actual);
+		Assertions.assertThat(actual).isEqualTo(expected);
 	}
 
 }
