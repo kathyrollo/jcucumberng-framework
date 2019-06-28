@@ -28,7 +28,7 @@ Test scripts can be quickly written by manipulating only 3 objects: ui-map, feat
 
 # Selenium Locators
 # id, name, link_text, partial_link_text, tag, class, css, xpath, by_all,
-# by_id_or_name, by_chained
+# by_chained, by_id_or_name
 
 # ngWebDriver (Protractor) Locators
 # binding, model, button_text, css_containing_text, exact_binding,
