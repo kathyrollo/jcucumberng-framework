@@ -1,7 +1,6 @@
 package project.stepdefs.automationpractice;
 
 import org.assertj.core.api.Assertions;
-import org.openqa.selenium.WebElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

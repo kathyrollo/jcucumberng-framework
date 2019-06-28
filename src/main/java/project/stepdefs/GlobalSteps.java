@@ -9,6 +9,9 @@ import cucumber.api.java.en.Then;
 import jcucumberng.api.Selenium;
 import project.hooks.ScenarioHook;
 
+/*
+ * Define steps reusable for any application.
+ */
 public class GlobalSteps {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(GlobalSteps.class);
