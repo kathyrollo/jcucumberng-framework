@@ -1,9 +1,11 @@
 package project.stepdefs;
 
+import org.assertj.core.api.Assertions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
 import jcucumberng.api.Selenium;
 import project.hooks.ScenarioHook;
 
@@ -21,6 +23,13 @@ public class GlobalSteps {
 	public void I_Am_At_Page(String key) throws Throwable {
 		String url = selenium.navigate(key);
 		LOGGER.debug("Page URL={}", url);
+	}
+
+	@Then("I Should See Page Title: {string}")
+	public void I_Should_See_Page_Title(String expected) throws Throwable {
+		String actual = selenium.getPageTitle();
+		LOGGER.debug("Page Title={}", actual);
+		Assertions.assertThat(actual).isEqualTo(expected);
 	}
 
 }

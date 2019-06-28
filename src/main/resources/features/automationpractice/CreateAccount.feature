@@ -4,7 +4,7 @@ Feature: Create Account
 	I want to create an account
 	So that I can start online shopping
 
-	@pass
+	@validEmail
 	Scenario: Valid Email
 		Given I Am At Page: ap.authentication
 		When I Enter Email: rollo.katherine@yopmail.com
