@@ -42,7 +42,7 @@ net.per.month=binding:roundDown(monthlyNet())
 
 **NetIncome.feature**
 ~~~
-Given I Am At The Home Page
+Given I Am At Page: simplydo.home
 When I Enter My Start Balance: 348000
 Then I Should See Net Income Per Month: 23769
 ~~~
@@ -56,17 +56,17 @@ public NetIncomeSteps(ScenarioHook scenarioHook) {
     selenium = scenarioHook.getSelenium(); // Instantly begin using API
 }
 
-@Given("^I Am At The Home Page$")
-public void I_Am_At_The_Home_Page() throws Throwable {
-    selenium.navigate("base.url"); // Use key from project.properties for global settings
+@Given("I Am At Page: {word}")
+public void I_Am_At_Page(String key) throws Throwable {
+    selenium.navigate(key); // Use key from project.properties for global settings
 }
 
-@When("^I Enter My Start Balance: (.*)$")
+@When("I Enter My Start Balance: {word}")
 public void I_Enter_My_Start_Balance(String startBalance) throws Throwable {
     selenium.type(startBalance, "start.balance"); // Use key from ui-map.properties for web elements
 }
 
-@Then("^I Should See Net Income Per Month: (.*)$")
+@Then("I Should See Net Income Per Month: {word}")
 public void I_Should_See_Net_Income_Per_Month(String expected) throws Throwable {
     WebElement netPerMonth = selenium.getVisibleElement("net.per.month");
     String actual = netPerMonth.getText();

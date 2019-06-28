@@ -1,10 +1,9 @@
-package project.stepdefs.balanceprojector;
+package project.stepdefs.simplydo;
 
 import org.assertj.core.api.Assertions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import jcucumberng.api.Selenium;
 import project.hooks.ScenarioHook;
@@ -19,16 +18,10 @@ public class HomePageSteps {
 		selenium = scenarioHook.getSelenium();
 	}
 
-	@Given("I Am At The Home Page")
-	public void I_Am_At_The_Home_Page() throws Throwable {
-		String baseUrl = selenium.navigate("base.url");
-		LOGGER.debug("Base URL={}", baseUrl);
-	}
-
 	@Then("I Should See Page Title: {string}")
 	public void I_Should_See_Page_Title(String expected) throws Throwable {
 		String actual = selenium.getPageTitle();
-		LOGGER.debug("Window Title={}", actual);
+		LOGGER.debug("Page Title={}", actual);
 		Assertions.assertThat(actual).isEqualTo(expected);
 	}
 

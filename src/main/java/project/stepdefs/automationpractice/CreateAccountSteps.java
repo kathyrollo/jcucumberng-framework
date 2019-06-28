@@ -20,21 +20,16 @@ public class CreateAccountSteps {
 		selenium = scenarioHook.getSelenium();
 	}
 
-	@Given("I Am At The Authentication Page")
-	public void I_Am_At_The_Authentication_Page() throws Throwable {
-		selenium.navigate("authentication.page");
+	@When("I Enter Email: {word}")
+	public void I_Enter_Email(String email) throws Throwable {
+		selenium.type(email, "ap.email.create");
+		selenium.click("ap.submit.create");
 	}
 
-	@When("I Enter A Valid Email: {word}")
-	public void I_Enter_A_Valid_Email(String email) throws Throwable {
-		selenium.type(email, "email.create");
-		selenium.click("submit.create");
-	}
-
-	@Then("I Should See Header: {string}")
-	public void I_Should_See_Header(String expected) throws Throwable {
-		String actual = selenium.waitForRefreshAndVisibleElement("header").getText();
-		LOGGER.debug("Header={}", actual);
+	@Then("I Should See Page Heading: {string}")
+	public void I_Should_See_Page_Heading(String expected) throws Throwable {
+		String actual = selenium.waitForRefreshAndVisibleElement("ap.page.heading").getText();
+		LOGGER.debug("Page Heading={}", actual);
 		Assertions.assertThat(actual).isEqualToIgnoringCase(expected);
 	}
 

@@ -6,6 +6,6 @@ Feature: Create Account
 
 	@pass
 	Scenario: Valid Email
-		Given I Am At The Authentication Page
-		When I Enter A Valid Email: rollo.katherine@yopmail.com
-		Then I Should See Header: 'Create An Account'
+		Given I Am At Page: ap.authentication
+		When I Enter Email: rollo.katherine@yopmail.com
+		Then I Should See Page Heading: 'Create An Account'

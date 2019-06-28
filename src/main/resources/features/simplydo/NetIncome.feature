@@ -6,7 +6,7 @@ So that I can see my net income per month and per year
 
 	@netPerMonth
 	Scenario: Calculate Net Income Per Month
-		Given I Am At The Home Page
+		Given I Am At Page: simplydo.home
 		When I Enter My Start Balance: 348000
 		And I Enter My Regular Income Sources
 			| name      | Salary        |
@@ -22,7 +22,7 @@ So that I can see my net income per month and per year
 
 	@netPerYear
 	Scenario: Calculate Net Income Per Year
-		Given I Am At The Home Page
+		Given I Am At Page: simplydo.home
 		When I Enter My Start Balance: 353000
 		And I Enter My Regular Income Sources
 			| name      | Salary    |

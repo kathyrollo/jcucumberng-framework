@@ -9,7 +9,7 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.datatable.DataTableType;
 import io.cucumber.datatable.TableEntryTransformer;
 import io.cucumber.datatable.TableTransformer;
-import project.dataobjects.balanceprojector.Transaction;
+import project.domain.simplydo.Transaction;
 
 public class Configurer implements TypeRegistryConfigurer {
 

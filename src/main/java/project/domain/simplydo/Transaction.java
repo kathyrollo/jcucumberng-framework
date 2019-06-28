@@ -1,4 +1,4 @@
-package project.dataobjects.balanceprojector;
+package project.domain.simplydo;
 
 import java.util.Map;
 
