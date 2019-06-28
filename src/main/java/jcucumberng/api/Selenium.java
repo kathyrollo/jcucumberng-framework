@@ -203,10 +203,9 @@ public final class Selenium {
 	 * @return WebElement - the refreshed element
 	 * @throws IOException
 	 */
-	public WebElement waitForRefreshAndVisibleElement(String... keys) throws IOException {
-		WebElement element = explicitWait().until(ExpectedConditions
+	public WebElement refreshAndVisible(String... keys) throws IOException {
+		return explicitWait().until(ExpectedConditions
 				.refreshed(ExpectedConditions.visibilityOfElementLocated(new ByChained(getBys(keys)))));
-		return element;
 	}
 
 	/**
@@ -216,10 +215,22 @@ public final class Selenium {
 	 * @return WebElement - the refreshed element
 	 * @throws IOException
 	 */
-	public WebElement waitForRefreshAndClickableElement(String... keys) throws IOException {
-		WebElement element = explicitWait().until(
+	public WebElement refreshAndClickable(String... keys) throws IOException {
+		return explicitWait().until(
 				ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(new ByChained(getBys(keys)))));
-		return element;
+	}
+
+	/**
+	 * Waits for a web element to refresh and text to be present.
+	 * 
+	 * @param text the expected text, case sensitive
+	 * @param keys the key(s) from {@code ui-map.properties}
+	 * @return Boolean - true if text is found
+	 * @throws IOException
+	 */
+	public Boolean refreshAndTextToBePresent(String text, String... keys) throws IOException {
+		return explicitWait().until(ExpectedConditions
+				.refreshed(ExpectedConditions.textToBePresentInElementLocated(new ByChained(getBys(keys)), text)));
 	}
 
 	/**

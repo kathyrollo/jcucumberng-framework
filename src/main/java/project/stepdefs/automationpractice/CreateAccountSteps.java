@@ -23,13 +23,12 @@ public class CreateAccountSteps {
 	public void I_Enter_Email(String email) throws Throwable {
 		selenium.type(email, "ap.email.create");
 		selenium.click("ap.submit.create");
+		LOGGER.debug("Email={}", email);
 	}
 
 	@Then("I Should See Page Heading: {string}")
 	public void I_Should_See_Page_Heading(String expected) throws Throwable {
-		String actual = selenium.waitForRefreshAndVisibleElement("ap.page.heading").getText();
-		LOGGER.debug("Page Heading={}", actual);
-		Assertions.assertThat(actual).isEqualToIgnoringCase(expected);
+		Assertions.assertThat(selenium.refreshAndTextToBePresent(expected, "ap.page.heading")).isTrue();
 	}
 
 }
