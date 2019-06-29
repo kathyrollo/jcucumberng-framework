@@ -9,26 +9,29 @@ import cucumber.api.java.en.Then;
 import jcucumberng.api.Selenium;
 import project.hooks.ScenarioHook;
 
-public class HomePageSteps {
+/*
+ * Define steps reusable for any application.
+ */
+public class GlobalSteps {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(HomePageSteps.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(GlobalSteps.class);
 	private Selenium selenium = null;
 
 	// PicoContainer injects ScenarioHook object
-	public HomePageSteps(ScenarioHook scenarioHook) {
+	public GlobalSteps(ScenarioHook scenarioHook) {
 		selenium = scenarioHook.getSelenium();
 	}
 
-	@Given("^I Am At The Home Page$")
-	public void I_Am_At_The_Home_Page() throws Throwable {
-		String baseUrl = selenium.navigate("base.url");
-		LOGGER.debug("Base URL={}", baseUrl);
+	@Given("I Am At Page: {word}")
+	public void I_Am_At_Page(String key) throws Throwable {
+		String url = selenium.navigate(key);
+		LOGGER.debug("Page URL={}", url);
 	}
 
-	@Then("^I Should See Page Title: (.*)$")
+	@Then("I Should See Page Title: {string}")
 	public void I_Should_See_Page_Title(String expected) throws Throwable {
 		String actual = selenium.getPageTitle();
-		LOGGER.debug("Window Title={}", actual);
+		LOGGER.debug("Page Title={}", actual);
 		Assertions.assertThat(actual).isEqualTo(expected);
 	}
 
