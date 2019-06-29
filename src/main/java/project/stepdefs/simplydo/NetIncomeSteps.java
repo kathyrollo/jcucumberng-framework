@@ -1,4 +1,4 @@
-package project.stepdefs;
+package project.stepdefs.simplydo;
 
 import java.util.List;
 
@@ -13,12 +13,10 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import io.cucumber.datatable.DataTable;
 import jcucumberng.api.Selenium;
-import project.dataobjects.Transaction;
+import project.domain.simplydo.Transaction;
 import project.hooks.ScenarioHook;
 
 public class NetIncomeSteps {
-
-	private static final String DIV_BOXES = "div.boxes";
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(NetIncomeSteps.class);
 	private Selenium selenium = null;
@@ -28,23 +26,23 @@ public class NetIncomeSteps {
 		selenium = scenarioHook.getSelenium();
 	}
 
-	@When("^I Enter My Start Balance: (.*)$")
+	@When("I Enter My Start Balance: {word}")
 	public void I_Enter_My_Start_Balance(String startBalance) throws Throwable {
 		selenium.type(startBalance, "start.balance");
 		LOGGER.debug("Start Balance={}", startBalance);
-		selenium.scrollToElement(selenium.getVisibleElements(DIV_BOXES).get(0));
+		selenium.scrollToElement(selenium.getVisibleElements("div.boxes").get(0));
 	}
 
-	@When("^I Enter My Regular Income Sources$")
+	@When("I Enter My Regular Income Sources")
 	public void I_Enter_My_Regular_Income_Sources(@Transpose Transaction transaction) throws Throwable {
 		selenium.type(transaction.getName(), "income.name");
 		selenium.type(transaction.getAmount(), "income.amount");
 		selenium.selectByVisibleText(transaction.getFrequency(), "income.freq");
 		LOGGER.debug("{}", transaction);
-		selenium.scrollToElement(selenium.getVisibleElements(DIV_BOXES).get(1));
+		selenium.scrollToElement(selenium.getVisibleElements("div.boxes").get(1));
 	}
 
-	@When("^I Enter My Regular Expenses$")
+	@When("I Enter My Regular Expenses")
 	public void I_Enter_My_Regular_Expenses(DataTable table) throws Throwable {
 		List<Transaction> transactions = table.asList(Transaction.class);
 		// Click add button
@@ -61,10 +59,10 @@ public class NetIncomeSteps {
 			selenium.selectByVisibleText(transactions.get(ctr).getFrequency(), freqs.get(ctr));
 			LOGGER.debug("{}", transactions.get(ctr));
 		}
-		selenium.scrollToElement(selenium.getVisibleElements(DIV_BOXES).get(2));
+		selenium.scrollToElement(selenium.getVisibleElements("div.boxes").get(2));
 	}
 
-	@Then("^I Should See Net Income Per Month: (.*)$")
+	@Then("I Should See Net Income Per Month: {word}")
 	public void I_Should_See_Net_Income_Per_Month(String expected) throws Throwable {
 		WebElement netPerMonth = selenium.getVisibleElement("net.per.month");
 		String actual = netPerMonth.getText();
@@ -73,7 +71,7 @@ public class NetIncomeSteps {
 		selenium.scrollToElement(netPerMonth);
 	}
 
-	@Then("^I Should See Net Income Per Year: (.*)$")
+	@Then("I Should See Net Income Per Year: {word}")
 	public void I_Should_See_Net_Income_Per_Year(String expected) throws Throwable {
 		WebElement netPerYear = selenium.getVisibleElement("net.per.year");
 		String actual = netPerYear.getText();

@@ -21,7 +21,7 @@ public class ScenarioHook {
 	private WebDriver driver = null;
 	private Selenium selenium = null;
 
-	@Before
+	@Before(order = 1)
 	public void setUp(Scenario scenario) throws Throwable {
 		LOGGER.info("BEGIN TEST -> {}", scenario.getName());
 
@@ -43,7 +43,7 @@ public class ScenarioHook {
 		LOGGER.info("Screen Resolution (WxH)={}x{}", dimension.getWidth(), dimension.getHeight());
 	}
 
-	@After
+	@After(order = 1)
 	public void tearDown(Scenario scenario) throws Throwable {
 		if (!Boolean.parseBoolean(Configuration.framework("screenshot.off"))) {
 			if (Boolean.parseBoolean(Configuration.framework("screenshot.on.fail"))) {

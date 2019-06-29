@@ -14,7 +14,11 @@ Allows automation testers to write feature files for Cucumber and implement step
 Test script logic is implemented directly in step definitions (methods) using Dependency Injection (DI) to focus test automation on [developing tests instead of keeping up with page objects](https://www.linkedin.com/pulse/dependency-injection-write-tests-page-objects-katherine-rollo/). An intelligent UI Map serves as the central object repository of web element locators.
 
 ### Basic Usage
-Test scripts can be quickly written by manipulating only 3 objects: ui-map, feature file, and steps class.
+
+**project.properties**
+~~~
+ap.authentication=http://automationpractice.com/index.php?controller=authentication&back=my-account
+~~~
 
 **ui-map.properties**
 ~~~
@@ -28,7 +32,7 @@ Test scripts can be quickly written by manipulating only 3 objects: ui-map, feat
 
 # Selenium Locators
 # id, name, link_text, partial_link_text, tag, class, css, xpath, by_all,
-# by_id_or_name, by_chained
+# by_chained, by_id_or_name
 
 # ngWebDriver (Protractor) Locators
 # binding, model, button_text, css_containing_text, exact_binding,
@@ -36,18 +40,19 @@ Test scripts can be quickly written by manipulating only 3 objects: ui-map, feat
 
 #------------------------------------------------------------------------------#
 
-start.balance=model:startBalance
-net.per.month=binding:roundDown(monthlyNet())
+ap.email.create=by_id_or_name:email_create
+ap.submit.create=by_id_or_name:SubmitCreate
+ap.page.heading=xpath://h1[@class='page-heading']
 ~~~
 
-**NetIncome.feature**
+**Feature**
 ~~~
-Given I Am At The Home Page
-When I Enter My Start Balance: 348000
-Then I Should See Net Income Per Month: 23769
+Given I Am At Page: ap.authentication
+When I Enter Email: username@xyz.com
+Then I Should See Page Heading: 'CREATE AN ACCOUNT'
 ~~~
 
-**NetIncomeSteps.java**
+**StepDef**
 ~~~
 private Selenium selenium = null; // Extended Selenium API
 
@@ -56,29 +61,32 @@ public NetIncomeSteps(ScenarioHook scenarioHook) {
     selenium = scenarioHook.getSelenium(); // Instantly begin using API
 }
 
-@Given("^I Am At The Home Page$")
-public void I_Am_At_The_Home_Page() throws Throwable {
-    selenium.navigate("base.url"); // Use key from project.properties for global settings
+@Given("I Am At Page: {word}")
+public void I_Am_At_Page(String key) throws Throwable {
+	// Use key from project.properties for app settings
+	selenium.navigate(key); // 1
 }
 
-@When("^I Enter My Start Balance: (.*)$")
-public void I_Enter_My_Start_Balance(String startBalance) throws Throwable {
-    selenium.type(startBalance, "start.balance"); // Use key from ui-map.properties for web elements
+@When("I Enter Email: {word}")
+public void I_Enter_Email(String email) throws Throwable {
+	// Use key from ui-map.properties for web elements
+	selenium.type(email, "ap.email.create"); // 2
+	selenium.click("ap.submit.create"); // 3
 }
 
-@Then("^I Should See Net Income Per Month: (.*)$")
-public void I_Should_See_Net_Income_Per_Month(String expected) throws Throwable {
-    WebElement netPerMonth = selenium.getVisibleElement("net.per.month");
-    String actual = netPerMonth.getText();
-    Assertions.assertThat(actual).isEqualTo(expected); // Use fluent assertion
+@Then("I Should See Page Heading: {string}")
+public void I_Should_See_Page_Heading(String expected) throws Throwable {
+	// Use fluent assertion
+	Assertions.assertThat(selenium.refreshAndTextToBePresent(expected, "ap.page.heading")).isTrue(); // 4
 }
 ~~~
+4 lines of actual test script, 1 class.
 
 [ [Back](#table-of-contents) ]
 
 ## Technology Stack
 
-- [Selenium WebDriver 4](https://www.seleniumhq.org/) (alpha) for browser automation with extended API
+- [Selenium WebDriver 4](https://www.seleniumhq.org/) for browser automation with extended API
 - [WebDriverManager](https://github.com/bonigarcia/webdrivermanager) for automatic management of webdriver binaries (IE11, Edge, Chrome, Firefox)
 - [ngWebDriver](https://github.com/paul-hammant/ngWebDriver) (Protractor) for Angular/JS support
 - [Cucumber-JVM 4](https://github.com/cucumber/cucumber-jvm) for behavior-driven testing
@@ -102,9 +110,11 @@ public void I_Should_See_Net_Income_Per_Month(String expected) throws Throwable 
 [ [Back](#table-of-contents) ]
 
 ## Running Tests
-Visit the application under test (AUT) here: http://simplydo.com/projector/
+The framework is running tests against 2 applications:
+- http://automationpractice.com/index.php
+- http://simplydo.com/projector/
 
-No further configurations needed at this point. The tests will run against the AUT in [headless browser](https://en.wikipedia.org/wiki/Headless_browser) mode using ChromeDriver as defined in `framework.properties`.
+No further configurations needed at this point. The tests will run against the application under test (AUT) in [headless browser](https://en.wikipedia.org/wiki/Headless_browser) mode using ChromeDriver as defined in `framework.properties`.
 
 **To run the tests:**
 
@@ -120,25 +130,31 @@ Maven performs a one-time download of all dependencies. Execute `mvn verify` aga
 
 **Output:**
 ~~~
+5 Scenarios (5 passed)
+18 Steps (18 passed)
+9m12.749s
+
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 555.177 s - in runners.RunCukesTest
+[INFO]
 [INFO] Results:
 [INFO]
-[ERROR] Failures:
-[ERROR] runners.RunCukesTest.runScenario(runners.RunCukesTest)
-[ERROR]   Run 1: RunCukesTest.runScenario
-Expecting:
- <"Simply Do - Balance Projector">
-to be equal to:
- <"Simply Do - Balance Project">
-but was not.
-[INFO]   Run 2: PASS
-[INFO]   Run 3: PASS
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0
 [INFO]
 [INFO]
-[ERROR] Tests run: 1, Failures: 1, Errors: 0, Skipped: 0
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ jcucumberng-framework ---
+[INFO] Building jar: \path\to\jCucumberNG-Framework\target\jcucumberng-framework-4.0.0-SNAPSHOT.jar
 [INFO]
-[ERROR] There are test failures.
+[INFO] --- maven-cucumber-reporting:4.7.0:generate (execution) @ jcucumberng-framework ---
+[INFO] About to generate Cucumber report.
+Jun 28, 2019 5:02:44 PM net.masterthought.cucumber.ReportParser parseJsonFiles
+INFO: File '\path\to\jCucumberNG-Framework\target\cucumber-report.json' contains 3 features
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  09:25 min
+[INFO] Finished at: 2019-06-28T17:02:46+10:00
+[INFO] ------------------------------------------------------------------------
 ~~~
-1 scenario is purposely failed to produce variance in the test reports.
 
 [ [Back](#table-of-contents) ]
 
@@ -219,12 +235,12 @@ target/
 
 **Output:**
 ~~~
-[INFO ] 2019-06-23 21:26:09,741 ScenarioHook.setUp() - BEGIN TEST -> Verify Page Title
-[INFO ] 2019-06-23 21:26:09,764 ScenarioHook.setUp() - Browser=CHROME32_NOHEAD
-[INFO ] 2019-06-23 21:26:12,959 ScenarioHook.setUp() - Screen Resolution (WxH)=1366x768
-[DEBUG] 2019-06-23 21:27:41,896 HomePageNavigationSteps.I_Am_At_The_Home_Page() - Base URL=http://simplydo.com/projector/
-[DEBUG] 2019-06-23 21:27:42,369 HomePageNavigationSteps.I_Should_See_Page_Title() - Window Title=Simply Do - Balance Projector
-[INFO ] 2019-06-23 21:27:42,691 ScenarioHook.tearDown() - END TEST -> Verify Page Title - PASSED
+[INFO ] 2019-06-28 16:58:28,920 ScenarioHook.setUp() - BEGIN TEST -> Verify Page Title
+[INFO ] 2019-06-28 16:58:28,921 ScenarioHook.setUp() - Browser=CHROME32_NOHEAD
+[INFO ] 2019-06-28 16:58:30,618 ScenarioHook.setUp() - Screen Resolution (WxH)=1366x768
+[DEBUG] 2019-06-28 16:59:49,148 GlobalSteps.I_Am_At_Page() - Page URL=http://simplydo.com/projector/
+[DEBUG] 2019-06-28 16:59:49,505 GlobalSteps.I_Should_See_Page_Title() - Page Title=Simply Do - Balance Projector
+[INFO ] 2019-06-28 16:59:49,863 ScenarioHook.tearDown() - END TEST -> Verify Page Title - PASSED
 ~~~
 
 [ [Back](#table-of-contents) ]

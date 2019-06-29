@@ -1,4 +1,4 @@
-package project.dataobjects;
+package project.domain.simplydo;
 
 import java.util.Map;
 
@@ -8,6 +8,17 @@ public class Transaction {
 	private String amount = null;
 	private String frequency = null;
 	private String month = null;
+
+	public Transaction() {
+		// Empty constructor
+	}
+
+	public Transaction(Map<String, String> entry) {
+		this.name = entry.get("name");
+		this.amount = entry.get("amount");
+		this.frequency = entry.get("frequency");
+		this.month = entry.get("month");
+	}
 
 	public String getName() {
 		return name;
@@ -39,15 +50,6 @@ public class Transaction {
 
 	public void setMonth(String month) {
 		this.month = month;
-	}
-
-	public static Transaction getInstance(Map<String, String> entry) {
-		Transaction transaction = new Transaction();
-		transaction.setName(entry.get("name"));
-		transaction.setAmount(entry.get("amount"));
-		transaction.setFrequency(entry.get("frequency"));
-		transaction.setMonth(entry.get("month"));
-		return transaction;
 	}
 
 	@Override

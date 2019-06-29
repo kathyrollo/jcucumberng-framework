@@ -1,12 +1,12 @@
-@sample @netIncome
-Feature: Net Income Projector
-As a user
-I want to enter my income and expenses
-So that I can see my net income per month and per year
+@balanceProjector @netIncome
+Feature: Net Income
+	As a user
+	I want to enter my income and expenses
+	So that I can see my net income per month and per year
 
-	@netPerMonth
-	Scenario: Calculate Net Income Per Month
-		Given I Am At The Home Page
+	@perMonth
+	Scenario: Calculate Per Month
+		Given I Am At Page: simplydo.home
 		When I Enter My Start Balance: 348000
 		And I Enter My Regular Income Sources
 			| name      | Salary        |
@@ -20,9 +20,9 @@ So that I can see my net income per month and per year
 			| Cable TV    | 555    | Daily         |
 		Then I Should See Net Income Per Month: 23769
 
-	@netPerYear
-	Scenario: Calculate Net Income Per Year
-		Given I Am At The Home Page
+	@perYear
+	Scenario: Calculate Per Year
+		Given I Am At Page: simplydo.home
 		When I Enter My Start Balance: 353000
 		And I Enter My Regular Income Sources
 			| name      | Salary    |

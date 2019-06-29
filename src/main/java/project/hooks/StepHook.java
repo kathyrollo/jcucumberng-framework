@@ -13,7 +13,7 @@ public class StepHook {
 		selenium = scenarioHook.getSelenium();
 	}
 
-	@AfterStep
+	@AfterStep(order = 1)
 	public void capture() throws Throwable {
 		if (!Boolean.parseBoolean(Configuration.framework("screenshot.off"))) {
 			if (!Boolean.parseBoolean(Configuration.framework("screenshot.on.fail"))) {
