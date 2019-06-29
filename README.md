@@ -14,7 +14,11 @@ Allows automation testers to write feature files for Cucumber and implement step
 Test script logic is implemented directly in step definitions (methods) using Dependency Injection (DI) to focus test automation on [developing tests instead of keeping up with page objects](https://www.linkedin.com/pulse/dependency-injection-write-tests-page-objects-katherine-rollo/). An intelligent UI Map serves as the central object repository of web element locators.
 
 ### Basic Usage
-Test scripts can be quickly written by manipulating only 3 objects: ui-map, feature file, and steps class.
+
+**project.properties**
+~~~
+ap.authentication=http://automationpractice.com/index.php?controller=authentication&back=my-account
+~~~
 
 **ui-map.properties**
 ~~~
@@ -36,18 +40,19 @@ Test scripts can be quickly written by manipulating only 3 objects: ui-map, feat
 
 #------------------------------------------------------------------------------#
 
-start.balance=model:startBalance
-net.per.month=binding:roundDown(monthlyNet())
+ap.email.create=by_id_or_name:email_create
+ap.submit.create=by_id_or_name:SubmitCreate
+ap.page.heading=xpath://h1[@class='page-heading']
 ~~~
 
-**NetIncome.feature**
+**Feature**
 ~~~
-Given I Am At Page: simplydo.home
-When I Enter My Start Balance: 348000
-Then I Should See Net Income Per Month: 23769
+Given I Am At Page: ap.authentication
+When I Enter Email: username@xyz.com
+Then I Should See Page Heading: 'CREATE AN ACCOUNT'
 ~~~
 
-**NetIncomeSteps.java**
+**StepDef**
 ~~~
 private Selenium selenium = null; // Extended Selenium API
 
@@ -58,27 +63,30 @@ public NetIncomeSteps(ScenarioHook scenarioHook) {
 
 @Given("I Am At Page: {word}")
 public void I_Am_At_Page(String key) throws Throwable {
-    selenium.navigate(key); // Use key from project.properties for global settings
+	// Use key from project.properties for app settings
+	selenium.navigate(key); // 1
 }
 
-@When("I Enter My Start Balance: {word}")
-public void I_Enter_My_Start_Balance(String startBalance) throws Throwable {
-    selenium.type(startBalance, "start.balance"); // Use key from ui-map.properties for web elements
+@When("I Enter Email: {word}")
+public void I_Enter_Email(String email) throws Throwable {
+	// Use key from ui-map.properties for web elements
+	selenium.type(email, "ap.email.create"); // 2
+	selenium.click("ap.submit.create"); // 3
 }
 
-@Then("I Should See Net Income Per Month: {word}")
-public void I_Should_See_Net_Income_Per_Month(String expected) throws Throwable {
-    WebElement netPerMonth = selenium.getVisibleElement("net.per.month");
-    String actual = netPerMonth.getText();
-    Assertions.assertThat(actual).isEqualTo(expected); // Use fluent assertion
+@Then("I Should See Page Heading: {string}")
+public void I_Should_See_Page_Heading(String expected) throws Throwable {
+	// Use fluent assertion
+	Assertions.assertThat(selenium.refreshAndTextToBePresent(expected, "ap.page.heading")).isTrue(); // 4
 }
 ~~~
+4 lines of actual test script, 1 class.
 
 [ [Back](#table-of-contents) ]
 
 ## Technology Stack
 
-- [Selenium WebDriver 4](https://www.seleniumhq.org/) (alpha) for browser automation with extended API
+- [Selenium WebDriver 4](https://www.seleniumhq.org/) for browser automation with extended API
 - [WebDriverManager](https://github.com/bonigarcia/webdrivermanager) for automatic management of webdriver binaries (IE11, Edge, Chrome, Firefox)
 - [ngWebDriver](https://github.com/paul-hammant/ngWebDriver) (Protractor) for Angular/JS support
 - [Cucumber-JVM 4](https://github.com/cucumber/cucumber-jvm) for behavior-driven testing
@@ -102,9 +110,11 @@ public void I_Should_See_Net_Income_Per_Month(String expected) throws Throwable 
 [ [Back](#table-of-contents) ]
 
 ## Running Tests
-Visit the application under test (AUT) here: http://simplydo.com/projector/
+The framework is running tests against 2 applications:
+- http://automationpractice.com/index.php
+- http://simplydo.com/projector/
 
-No further configurations needed at this point. The tests will run against the AUT in [headless browser](https://en.wikipedia.org/wiki/Headless_browser) mode using ChromeDriver as defined in `framework.properties`.
+No further configurations needed at this point. The tests will run against the application under test (AUT) in [headless browser](https://en.wikipedia.org/wiki/Headless_browser) mode using ChromeDriver as defined in `framework.properties`.
 
 **To run the tests:**
 
@@ -132,12 +142,12 @@ Maven performs a one-time download of all dependencies. Execute `mvn verify` aga
 [INFO]
 [INFO]
 [INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ jcucumberng-framework ---
-[INFO] Building jar: D:\dev\automation-testing\java\jCucumberNG-Framework\target\jcucumberng-framework-4.0.0-SNAPSHOT.jar
+[INFO] Building jar: \path\to\jCucumberNG-Framework\target\jcucumberng-framework-4.0.0-SNAPSHOT.jar
 [INFO]
 [INFO] --- maven-cucumber-reporting:4.7.0:generate (execution) @ jcucumberng-framework ---
 [INFO] About to generate Cucumber report.
 Jun 28, 2019 5:02:44 PM net.masterthought.cucumber.ReportParser parseJsonFiles
-INFO: File 'D:\dev\automation-testing\java\jCucumberNG-Framework\target\cucumber-report.json' contains 3 features
+INFO: File '\path\to\jCucumberNG-Framework\target\cucumber-report.json' contains 3 features
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
