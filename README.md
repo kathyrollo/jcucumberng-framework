@@ -11,7 +11,7 @@ Allows automation testers to write feature files for Cucumber and implement step
 5. [Checking Results](#checking-results)
 
 ## How It Works
-Test script logic is implemented directly in step definitions (methods) using Dependency Injection (DI) to focus test automation on [developing tests instead of keeping up with page objects](https://www.linkedin.com/pulse/dependency-injection-write-tests-page-objects-katherine-rollo/). An intelligent UI Map serves as the central object repository of web element locators.
+Test script logic is implemented directly in step definitions using Dependency Injection (DI) to focus test automation on [developing tests instead of keeping up with page objects](https://www.linkedin.com/pulse/dependency-injection-write-tests-page-objects-katherine-rollo/). An intelligent UI Map serves as the central object repository of web element locators.
 
 ### Basic Usage
 
@@ -114,7 +114,7 @@ The framework is running tests against 2 applications:
 - http://automationpractice.com/index.php
 - http://simplydo.com/projector/
 
-No further configurations needed at this point. The tests will run against the application under test (AUT) in [headless browser](https://en.wikipedia.org/wiki/Headless_browser) mode using ChromeDriver as defined in `framework.properties`.
+No further configurations needed at this point. The tests will run in [headless browser](https://en.wikipedia.org/wiki/Headless_browser) mode using ChromeDriver as defined in `framework.properties`.
 
 **To run the tests:**
 
