@@ -33,6 +33,7 @@ import cucumber.api.Scenario;
 public final class Selenium {
 
 	private int timeOut = 0;
+
 	private WebDriver driver = null;
 	private NgWebDriver ngWebDriver = null;
 	private Scenario scenario = null;
@@ -464,6 +465,14 @@ public final class Selenium {
 
 	public WebDriver getDriver() {
 		return driver;
+	}
+
+	public NgWebDriver getNgWebDriver() {
+		return ngWebDriver;
+	}
+
+	public Scenario getScenario() {
+		return scenario;
 	}
 
 }

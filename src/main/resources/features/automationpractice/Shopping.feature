@@ -7,3 +7,5 @@ Feature: Shopping
 	@cartSummary
 	Scenario: Cart Summary
 		Given I Am At Page: ap.summer.dresses
+		When I Add Item To Cart: 'Printed Chiffon Dress'
+		And I Proceed To Checkout
