@@ -6,4 +6,4 @@ Feature: Shopping
 
 	@cartSummary
 	Scenario: Cart Summary
-		Given I Navigate To Dresses > Summer Dress
+		Given I Am At Page: ap.summer.dresses
