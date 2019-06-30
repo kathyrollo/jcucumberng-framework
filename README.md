@@ -42,7 +42,7 @@ ap.auth=http://automationpractice.com/index.php?controller=authentication&back=m
 
 ap.email.create=by_id_or_name:email_create
 ap.submit.create=by_id_or_name:SubmitCreate
-ap.page.heading=xpath://h1[@class='page-heading']
+ap.page.heading=class:page-heading
 ~~~
 
 **Feature**
@@ -133,27 +133,6 @@ Maven performs a one-time download of all dependencies. Execute `mvn verify` aga
 5 Scenarios (5 passed)
 18 Steps (18 passed)
 9m12.749s
-
-[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 555.177 s - in runners.RunCukesTest
-[INFO]
-[INFO] Results:
-[INFO]
-[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0
-[INFO]
-[INFO]
-[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ jcucumberng-framework ---
-[INFO] Building jar: \path\to\jCucumberNG-Framework\target\jcucumberng-framework-4.0.0-SNAPSHOT.jar
-[INFO]
-[INFO] --- maven-cucumber-reporting:4.7.0:generate (execution) @ jcucumberng-framework ---
-[INFO] About to generate Cucumber report.
-Jun 28, 2019 5:02:44 PM net.masterthought.cucumber.ReportParser parseJsonFiles
-INFO: File '\path\to\jCucumberNG-Framework\target\cucumber-report.json' contains 3 features
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD SUCCESS
-[INFO] ------------------------------------------------------------------------
-[INFO] Total time:  09:25 min
-[INFO] Finished at: 2019-06-28T17:02:46+10:00
-[INFO] ------------------------------------------------------------------------
 ~~~
 
 [ [Back](#table-of-contents) ]
