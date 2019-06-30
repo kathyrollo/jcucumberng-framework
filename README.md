@@ -17,7 +17,7 @@ Test script logic is implemented directly in step definitions using Dependency I
 
 **project.properties**
 ~~~
-ap.authentication=http://automationpractice.com/index.php?controller=authentication&back=my-account
+ap.auth=http://automationpractice.com/index.php?controller=authentication&back=my-account
 ~~~
 
 **ui-map.properties**
@@ -47,7 +47,7 @@ ap.page.heading=xpath://h1[@class='page-heading']
 
 **Feature**
 ~~~
-Given I Am At Page: ap.authentication
+Given I Am At Page: ap.auth
 When I Enter Email: username@xyz.com
 Then I Should See Page Heading: 'CREATE AN ACCOUNT'
 ~~~
