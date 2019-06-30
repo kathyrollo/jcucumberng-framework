@@ -462,4 +462,8 @@ public final class Selenium {
 		return imgBytes;
 	}
 
+	public WebDriver getDriver() {
+		return driver;
+	}
+
 }
