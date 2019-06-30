@@ -14,6 +14,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.pagefactory.ByChained;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -156,6 +157,13 @@ public final class Selenium {
 	}
 
 	/**
+	 * Gets the page title of the current window.
+	 */
+	public String getPageTitle() {
+		return driver.getTitle();
+	}
+
+	/**
 	 * Returns all text inside the body tag in HTML.
 	 * 
 	 * @return String - the text within HTML body tags
@@ -234,10 +242,17 @@ public final class Selenium {
 	}
 
 	/**
-	 * Gets the page title of the current window.
+	 * Hovers on a web element.
+	 * 
+	 * @param keys the key(s) from {@code ui-map.properties}
+	 * @return WebElement - the hovered element
+	 * @throws IOException
 	 */
-	public String getPageTitle() {
-		return driver.getTitle();
+	public WebElement hover(String... keys) throws IOException {
+		Actions actions = new Actions(driver);
+		WebElement element = getVisibleElement(keys);
+		actions.moveToElement(element).perform();
+		return element;
 	}
 
 	/**
