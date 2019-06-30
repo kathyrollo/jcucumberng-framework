@@ -22,11 +22,11 @@ public class ShoppingSteps {
 	public void I_Add_Item_To_Cart(String itemName) throws Throwable {
 		selenium.getDriver().findElement(By.partialLinkText(itemName)).click();
 		selenium.click("ap.add.to.cart");
+		LOGGER.debug("Items={}", selenium.getVisibleElement("ap.checkout.items").getText());
 	}
 
 	@When("I Proceed To Checkout")
-	public void I_Proceed_To_Checkout() throws Throwable {
-		LOGGER.debug("Items={}", selenium.getVisibleElement("ap.checkout.items").getText());
+	public void I_Proceed_To_Checkout() throws Throwable {		
 		selenium.click("ap.checkout");
 	}
 
