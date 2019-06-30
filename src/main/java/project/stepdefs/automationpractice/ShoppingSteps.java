@@ -1,5 +1,7 @@
 package project.stepdefs.automationpractice;
 
+import java.io.IOException;
+
 import org.assertj.core.api.Assertions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,9 +23,9 @@ public class ShoppingSteps {
 	}
 
 	@Given("I Navigate To Dresses > Summer Dress")
-	public void I_Navigate_To_Dresses_Summer_Dress() {
-		// Write code here that turns the phrase above into concrete actions
-		throw new cucumber.api.PendingException();
+	public void I_Navigate_To_Dresses_Summer_Dress() throws Throwable {
+		selenium.navigate("ap.menu.dresses");
+		selenium.click("ap.dresses.summer");
 	}
 
 }
