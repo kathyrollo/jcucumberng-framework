@@ -19,19 +19,19 @@ public class CreateAccountSteps {
 		selenium = scenarioHook.getSelenium();
 	}
 
-	@When("I Enter Email: {word}")
+	@When("^I Enter Email: (.*)$")
 	public void I_Enter_Email(String email) throws Throwable {
 		selenium.type(email, "ap.email.create");
 		selenium.click("ap.submit.create");
 		LOGGER.debug("Email={}", email);
 	}
 
-	@Then("I Should See Page Heading: {string}")
+	@Then("^I Should See Page Heading: (.*)$")
 	public void I_Should_See_Page_Heading(String expected) throws Throwable {
 		Assertions.assertThat(selenium.refreshAndTextToBePresent(expected, "ap.page.heading")).isTrue();
 	}
 
-	@Then("I Should See Error Message: {string}")
+	@Then("^I Should See Error Message: (.*)$")
 	public void I_Should_See_Error_Message(String expected) throws Throwable {
 		String actual = selenium.getVisibleElement("ap.create.acct.err").getText();
 		LOGGER.debug("Error Message={}", actual);
