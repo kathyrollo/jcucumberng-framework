@@ -1,5 +1,6 @@
 package project.stepdefs.automationpractice;
 
+import org.assertj.core.api.Assertions;
 import org.openqa.selenium.By;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,8 +21,8 @@ public class ShoppingSteps {
 	}
 
 	@When("^I Add Item To Cart: (.*)$")
-	public void I_Add_Item_To_Cart(String itemName) throws Throwable {
-		selenium.getDriver().findElement(By.partialLinkText(itemName)).click();
+	public void I_Add_Item_To_Cart(String name) throws Throwable {
+		selenium.getDriver().findElement(By.partialLinkText(name)).click();
 		selenium.click("ap.add.to.cart");
 		LOGGER.debug("Items={}", selenium.getVisibleElement("ap.checkout.items").getText());
 	}
@@ -31,12 +32,19 @@ public class ShoppingSteps {
 		selenium.click("ap.checkout");
 	}
 
-	@Then("^I Should See The Cart Summary: (.*) (.*) (.*) (.*)$")
-	public void I_Should_See_The_Cart_Summary(String name, String color, String size, String qty) {
-		LOGGER.debug("Name={}", name);
-		LOGGER.debug("Color={}", color);
-		LOGGER.debug("Size={}", size);
-		LOGGER.debug("Qty={}", qty);
+	@Then("^I Should See The Cart Summary: (.*) (.*) (.*)$")
+	public void I_Should_See_The_Cart_Summary(String name, String color, String qty) throws Throwable {
+		String prodName = selenium.getVisibleElement("ap.cart.name").getText();
+		LOGGER.debug("Name={}", prodName);
+		Assertions.assertThat(prodName).isEqualTo(name);
+
+		String prodColor = selenium.getVisibleElement("ap.cart.color").getText();
+		LOGGER.debug("Color={}", prodColor);
+		Assertions.assertThat(prodColor).contains(color);
+
+		String prodQty = selenium.getVisibleElement("ap.cart.qty").getAttribute("value");
+		LOGGER.debug("Qty={}", prodQty);
+		Assertions.assertThat(prodQty).isEqualTo(qty);
 	}
 
 }
