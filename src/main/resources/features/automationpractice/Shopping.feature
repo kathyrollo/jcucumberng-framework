@@ -9,7 +9,8 @@ Feature: Shopping
 		Given I Am At Page: ap.summer.dresses
 		When I Add Item To Cart: <name>
 		And I Proceed To Checkout
-#		Then I Should See The Cart Summary: <name> <color> <size> <qty>
+		Then I Should See The Cart Summary: <name> <color> <size> <qty>
+
 		Examples:
 			| name                  | color  | size | qty |
 			| Printed Chiffon Dress | Yellow | S    | 1   |

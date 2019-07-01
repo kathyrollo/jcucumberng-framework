@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import jcucumberng.api.Selenium;
 import project.hooks.ScenarioHook;
@@ -26,8 +27,16 @@ public class ShoppingSteps {
 	}
 
 	@When("^I Proceed To Checkout$")
-	public void I_Proceed_To_Checkout() throws Throwable {		
+	public void I_Proceed_To_Checkout() throws Throwable {
 		selenium.click("ap.checkout");
+	}
+
+	@Then("^I Should See The Cart Summary: (.*) (.*) (.*) (.*)$")
+	public void I_Should_See_The_Cart_Summary(String name, String color, String size, String qty) {
+		LOGGER.debug("Name={}", name);
+		LOGGER.debug("Color={}", color);
+		LOGGER.debug("Size={}", size);
+		LOGGER.debug("Qty={}", qty);
 	}
 
 }
