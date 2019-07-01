@@ -5,7 +5,11 @@ Feature: Shopping
 	So that I can proceed to payment
 
 	@cartSummary
-	Scenario: Cart Summary
+	Scenario Outline: Cart Summary
 		Given I Am At Page: ap.summer.dresses
-		When I Add Item To Cart: 'Printed Chiffon Dress'
+		When I Add Item To Cart: <name>
 		And I Proceed To Checkout
+		Then I Should See The Cart Summary: <name> <color> <size> <qty>
+		Examples:
+			| name                  | color  | size | qty |
+			| Printed Chiffon Dress | Yellow | S    | 1   |
