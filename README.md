@@ -47,8 +47,8 @@ ap.page.heading=class:page-heading
 
 **Feature**
 ~~~
-Given I Am At Page: ap.auth
-When I Enter Email: username@xyz.com
+Given I Am At Page: 'ap.auth'
+When I Enter Email: 'username@xyz.com'
 Then I Should See Page Heading: 'CREATE AN ACCOUNT'
 ~~~
 
@@ -61,13 +61,13 @@ public NetIncomeSteps(ScenarioHook scenarioHook) {
     selenium = scenarioHook.getSelenium(); // Instantly begin using API
 }
 
-@Given("I Am At Page: {word}")
+@Given("I Am At Page: {string}")
 public void I_Am_At_Page(String key) throws Throwable {
 	// Use key from project.properties for app settings
 	selenium.navigate(key); // 1
 }
 
-@When("I Enter Email: {word}")
+@When("I Enter Email: {string}")
 public void I_Enter_Email(String email) throws Throwable {
 	// Use key from ui-map.properties for web elements
 	selenium.type(email, "ap.email.create"); // 2
