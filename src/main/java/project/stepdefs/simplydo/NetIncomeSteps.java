@@ -26,14 +26,14 @@ public class NetIncomeSteps {
 		selenium = scenarioHook.getSelenium();
 	}
 
-	@When("^I Enter My Start Balance: (.*)$")
+	@When("I Enter My Start Balance: {string}")
 	public void I_Enter_My_Start_Balance(String startBalance) throws Throwable {
 		selenium.type(startBalance, "start.balance");
 		LOGGER.debug("Start Balance={}", startBalance);
 		selenium.scrollToElement(selenium.getVisibleElements("div.boxes").get(0));
 	}
 
-	@When("^I Enter My Regular Income Sources$")
+	@When("I Enter My Regular Income Sources")
 	public void I_Enter_My_Regular_Income_Sources(@Transpose Transaction transaction) throws Throwable {
 		selenium.type(transaction.getName(), "income.name");
 		selenium.type(transaction.getAmount(), "income.amount");
@@ -42,7 +42,7 @@ public class NetIncomeSteps {
 		selenium.scrollToElement(selenium.getVisibleElements("div.boxes").get(1));
 	}
 
-	@When("^I Enter My Regular Expenses$")
+	@When("I Enter My Regular Expenses")
 	public void I_Enter_My_Regular_Expenses(DataTable table) throws Throwable {
 		List<Transaction> transactions = table.asList(Transaction.class);
 		// Click add button
@@ -62,7 +62,7 @@ public class NetIncomeSteps {
 		selenium.scrollToElement(selenium.getVisibleElements("div.boxes").get(2));
 	}
 
-	@Then("^I Should See Net Income Per Month: (.*)$")
+	@Then("I Should See Net Income Per Month: {string}")
 	public void I_Should_See_Net_Income_Per_Month(String expected) throws Throwable {
 		WebElement netPerMonth = selenium.getVisibleElement("net.per.month");
 		String actual = netPerMonth.getText();
@@ -71,7 +71,7 @@ public class NetIncomeSteps {
 		selenium.scrollToElement(netPerMonth);
 	}
 
-	@Then("^I Should See Net Income Per Year: (.*)$")
+	@Then("I Should See Net Income Per Year: {string}")
 	public void I_Should_See_Net_Income_Per_Year(String expected) throws Throwable {
 		WebElement netPerYear = selenium.getVisibleElement("net.per.year");
 		String actual = netPerYear.getText();

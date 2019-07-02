@@ -6,10 +6,10 @@ Feature: Shopping
 
 	@cartSummary
 	Scenario Outline: Cart Summary
-		Given I Am At Page: ap.summer.dresses
-		When I Add Item To Cart: <name>
+		Given I Am At Page: 'ap.summer.dresses'
+		When I Add Item To Cart: '<name>'
 		And I Proceed To Checkout
-		Then I Should See The Cart Summary: <name> <color> <qty>
+		Then I Should See The Cart Summary: '<name>' '<color>' '<qty>'
 
 		Examples:
 			| name                  | color  | qty |

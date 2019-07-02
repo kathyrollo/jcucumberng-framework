@@ -20,19 +20,19 @@ public class ShoppingSteps {
 		selenium = scenarioHook.getSelenium();
 	}
 
-	@When("^I Add Item To Cart: (.*)$")
+	@When("I Add Item To Cart: {string}")
 	public void I_Add_Item_To_Cart(String name) throws Throwable {
 		selenium.getDriver().findElement(By.partialLinkText(name)).click();
 		selenium.click("ap.add.to.cart");
 		LOGGER.debug("Items={}", selenium.getVisibleElement("ap.checkout.items").getText());
 	}
 
-	@When("^I Proceed To Checkout$")
+	@When("I Proceed To Checkout")
 	public void I_Proceed_To_Checkout() throws Throwable {
 		selenium.click("ap.checkout");
 	}
 
-	@Then("^I Should See The Cart Summary: (.*) (.*) (.*)$")
+	@Then("I Should See The Cart Summary: {string} {string} {string}")
 	public void I_Should_See_The_Cart_Summary(String name, String color, String qty) throws Throwable {
 		String prodName = selenium.getVisibleElement("ap.cart.name").getText();
 		LOGGER.debug("Name={}", prodName);

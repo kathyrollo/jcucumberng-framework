@@ -22,13 +22,13 @@ public class GlobalSteps {
 		selenium = scenarioHook.getSelenium();
 	}
 
-	@Given("^I Am At Page: (.*)$")
+	@Given("I Am At Page: {string}")
 	public void I_Am_At_Page(String key) throws Throwable {
 		String url = selenium.navigate(key);
 		LOGGER.debug("Page URL={}", url);
 	}
 
-	@Then("^I Should See Page Title: (.*)$")
+	@Then("I Should See Page Title: {string}")
 	public void I_Should_See_Page_Title(String expected) throws Throwable {
 		String actual = selenium.getPageTitle();
 		LOGGER.debug("Page Title={}", actual);
