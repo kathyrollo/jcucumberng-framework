@@ -10,6 +10,5 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 				"io.qameta.allure.cucumber4jvm.AllureCucumber4Jvm", "html:target/cucumber-html-default",
 				"json:target/cucumber-report.json",
 				"junit:target/cucumber-report.xml" }, snippets = SnippetType.UNDERSCORE, monochrome = true, strict = true, dryRun = false)
-
 public class RunCukesTest extends AbstractTestNGCucumberTests {
 }

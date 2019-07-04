@@ -26,7 +26,7 @@ public class NetIncomeSteps {
 		selenium = scenarioHook.getSelenium();
 	}
 
-	@When("I Enter My Start Balance: {word}")
+	@When("I Enter My Start Balance: {string}")
 	public void I_Enter_My_Start_Balance(String startBalance) throws Throwable {
 		selenium.type(startBalance, "start.balance");
 		LOGGER.debug("Start Balance={}", startBalance);
@@ -62,7 +62,7 @@ public class NetIncomeSteps {
 		selenium.scrollToElement(selenium.getVisibleElements("div.boxes").get(2));
 	}
 
-	@Then("I Should See Net Income Per Month: {word}")
+	@Then("I Should See Net Income Per Month: {string}")
 	public void I_Should_See_Net_Income_Per_Month(String expected) throws Throwable {
 		WebElement netPerMonth = selenium.getVisibleElement("net.per.month");
 		String actual = netPerMonth.getText();
@@ -71,7 +71,7 @@ public class NetIncomeSteps {
 		selenium.scrollToElement(netPerMonth);
 	}
 
-	@Then("I Should See Net Income Per Year: {word}")
+	@Then("I Should See Net Income Per Year: {string}")
 	public void I_Should_See_Net_Income_Per_Year(String expected) throws Throwable {
 		WebElement netPerYear = selenium.getVisibleElement("net.per.year");
 		String actual = netPerYear.getText();
