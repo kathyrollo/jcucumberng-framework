@@ -11,13 +11,13 @@ Allows automation testers to write feature files for Cucumber and implement step
 5. [Checking Results](#checking-results)
 
 ## How It Works
-Test script logic is implemented directly in step definitions (methods) using Dependency Injection (DI) to focus test automation on [developing tests instead of keeping up with page objects](https://www.linkedin.com/pulse/dependency-injection-write-tests-page-objects-katherine-rollo/). An intelligent UI Map serves as the central object repository of web element locators.
+Test script logic is implemented directly in step definitions using Dependency Injection (DI) to focus test automation on [developing tests instead of keeping up with page objects](https://www.linkedin.com/pulse/dependency-injection-write-tests-page-objects-katherine-rollo/). An intelligent UI Map serves as the central object repository of web element locators.
 
 ### Basic Usage
 
 **project.properties**
 ~~~
-ap.authentication=http://automationpractice.com/index.php?controller=authentication&back=my-account
+ap.auth=http://automationpractice.com/index.php?controller=authentication&back=my-account
 ~~~
 
 **ui-map.properties**
@@ -42,13 +42,13 @@ ap.authentication=http://automationpractice.com/index.php?controller=authenticat
 
 ap.email.create=by_id_or_name:email_create
 ap.submit.create=by_id_or_name:SubmitCreate
-ap.page.heading=xpath://h1[@class='page-heading']
+ap.page.heading=class:page-heading
 ~~~
 
 **Feature**
 ~~~
-Given I Am At Page: ap.authentication
-When I Enter Email: username@xyz.com
+Given I Am At Page: 'ap.auth'
+When I Enter Email: 'username@xyz.com'
 Then I Should See Page Heading: 'CREATE AN ACCOUNT'
 ~~~
 
@@ -61,13 +61,13 @@ public NetIncomeSteps(ScenarioHook scenarioHook) {
     selenium = scenarioHook.getSelenium(); // Instantly begin using API
 }
 
-@Given("I Am At Page: {word}")
+@Given("I Am At Page: {string}")
 public void I_Am_At_Page(String key) throws Throwable {
 	// Use key from project.properties for app settings
 	selenium.navigate(key); // 1
 }
 
-@When("I Enter Email: {word}")
+@When("I Enter Email: {string}")
 public void I_Enter_Email(String email) throws Throwable {
 	// Use key from ui-map.properties for web elements
 	selenium.type(email, "ap.email.create"); // 2
@@ -114,7 +114,7 @@ The framework is running tests against 2 applications:
 - http://automationpractice.com/index.php
 - http://simplydo.com/projector/
 
-No further configurations needed at this point. The tests will run against the application under test (AUT) in [headless browser](https://en.wikipedia.org/wiki/Headless_browser) mode using ChromeDriver as defined in `framework.properties`.
+No further configurations needed at this point. The tests will run in [headless browser](https://en.wikipedia.org/wiki/Headless_browser) mode using ChromeDriver as defined in `framework.properties`.
 
 **To run the tests:**
 
@@ -133,27 +133,6 @@ Maven performs a one-time download of all dependencies. Execute `mvn verify` aga
 5 Scenarios (5 passed)
 18 Steps (18 passed)
 9m12.749s
-
-[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 555.177 s - in runners.RunCukesTest
-[INFO]
-[INFO] Results:
-[INFO]
-[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0
-[INFO]
-[INFO]
-[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ jcucumberng-framework ---
-[INFO] Building jar: \path\to\jCucumberNG-Framework\target\jcucumberng-framework-4.0.0-SNAPSHOT.jar
-[INFO]
-[INFO] --- maven-cucumber-reporting:4.7.0:generate (execution) @ jcucumberng-framework ---
-[INFO] About to generate Cucumber report.
-Jun 28, 2019 5:02:44 PM net.masterthought.cucumber.ReportParser parseJsonFiles
-INFO: File '\path\to\jCucumberNG-Framework\target\cucumber-report.json' contains 3 features
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD SUCCESS
-[INFO] ------------------------------------------------------------------------
-[INFO] Total time:  09:25 min
-[INFO] Finished at: 2019-06-28T17:02:46+10:00
-[INFO] ------------------------------------------------------------------------
 ~~~
 
 [ [Back](#table-of-contents) ]

@@ -19,7 +19,7 @@ public class CreateAccountSteps {
 		selenium = scenarioHook.getSelenium();
 	}
 
-	@When("I Enter Email: {word}")
+	@When("I Enter Email: {string}")
 	public void I_Enter_Email(String email) throws Throwable {
 		selenium.type(email, "ap.email.create");
 		selenium.click("ap.submit.create");

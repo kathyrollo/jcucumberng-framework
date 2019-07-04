@@ -6,8 +6,8 @@ Feature: Net Income
 
 	@perMonth
 	Scenario: Calculate Per Month
-		Given I Am At Page: simplydo.home
-		When I Enter My Start Balance: 348000
+		Given I Am At Page: 'simplydo.home'
+		When I Enter My Start Balance: '348000'
 		And I Enter My Regular Income Sources
 			| name      | Salary        |
 			| amount    | 25000         |
@@ -18,12 +18,12 @@ Feature: Net Income
 			| Water       | 900    | Weekly        |
 			| Internet    | 1900   | Every 2 Weeks |
 			| Cable TV    | 555    | Daily         |
-		Then I Should See Net Income Per Month: 23769
+		Then I Should See Net Income Per Month: '23769'
 
 	@perYear
 	Scenario: Calculate Per Year
-		Given I Am At Page: simplydo.home
-		When I Enter My Start Balance: 353000
+		Given I Am At Page: 'simplydo.home'
+		When I Enter My Start Balance: '353000'
 		And I Enter My Regular Income Sources
 			| name      | Salary    |
 			| amount    | 2180      |
@@ -34,4 +34,4 @@ Feature: Net Income
 			| Water       | 900    | Weekly        |
 			| Internet    | 1900   | Every 2 Weeks |
 			| Cable TV    | 555    | Daily         |
-		Then I Should See Net Income Per Year: 202025
+		Then I Should See Net Income Per Year: '202025'

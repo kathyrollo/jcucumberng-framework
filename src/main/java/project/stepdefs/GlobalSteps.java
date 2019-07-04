@@ -22,7 +22,7 @@ public class GlobalSteps {
 		selenium = scenarioHook.getSelenium();
 	}
 
-	@Given("I Am At Page: {word}")
+	@Given("I Am At Page: {string}")
 	public void I_Am_At_Page(String key) throws Throwable {
 		String url = selenium.navigate(key);
 		LOGGER.debug("Page URL={}", url);
