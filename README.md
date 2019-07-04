@@ -45,7 +45,7 @@ ap.submit.create=by_id_or_name:SubmitCreate
 ap.page.heading=class:page-heading
 ~~~
 
-**Feature**
+**Feature/Gherkin**
 ~~~
 Given I Am At Page: 'ap.auth'
 When I Enter Email: 'username@xyz.com'
