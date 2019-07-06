@@ -130,9 +130,9 @@ Maven performs a one-time download of all dependencies. Execute `mvn verify` aga
 
 **Output:**
 ~~~
-5 Scenarios (5 passed)
-18 Steps (18 passed)
-9m12.749s
+6 Scenarios (6 passed)
+22 Steps (22 passed)
+13m39.526s
 ~~~
 
 [ [Back](#table-of-contents) ]
