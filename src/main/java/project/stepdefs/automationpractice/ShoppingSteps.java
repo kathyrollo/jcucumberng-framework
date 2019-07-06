@@ -34,17 +34,15 @@ public class ShoppingSteps {
 
 	@Then("I Should See The Cart Summary: {string} {string} {string}")
 	public void I_Should_See_The_Cart_Summary(String name, String color, String qty) throws Throwable {
-		String prodName = selenium.getVisibleElement("ap.cart.name").getText();
-		LOGGER.debug("Name={}", prodName);
-		Assertions.assertThat(prodName).isEqualTo(name);
+		String cartDesc = selenium.getVisibleElement("ap.cart.desc").getText().replaceAll("[\r\n]+", " | ");
+		String itemQty = selenium.getVisibleElement("ap.cart.qty").getAttribute("value");
 
-		String prodColor = selenium.getVisibleElement("ap.cart.color").getText();
-		LOGGER.debug("Color={}", prodColor);
-		Assertions.assertThat(prodColor).contains(color);
+		LOGGER.debug("Cart Desc={}", cartDesc);
+		LOGGER.debug("Qty={}", itemQty);
 
-		String prodQty = selenium.getVisibleElement("ap.cart.qty").getAttribute("value");
-		LOGGER.debug("Qty={}", prodQty);
-		Assertions.assertThat(prodQty).isEqualTo(qty);
+		Assertions.assertThat(cartDesc).contains(name);
+		Assertions.assertThat(cartDesc).contains(color);
+		Assertions.assertThat(itemQty).isEqualTo(qty);
 	}
 
 }
