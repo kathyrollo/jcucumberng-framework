@@ -29,14 +29,21 @@ public class ScenarioHook {
 		LOGGER.info("Browser={}", webBrowser);
 
 		driver = Browser.getInstance(webBrowser);
+		long time = 0;
 		if (Boolean.parseBoolean("implicit.wait")) {
-			long time = Long.parseLong(Configuration.framework("implicit.timeout"));
+			time = Long.parseLong(Configuration.framework("implicit.timeout"));
 			driver.manage().timeouts().implicitlyWait(time, TimeUnit.SECONDS);
+		}
+		if (Boolean.parseBoolean("wait.for.pageload")) {
+			time = Long.parseLong(Configuration.framework("pageload.timeout"));
+			driver.manage().timeouts().pageLoadTimeout(time, TimeUnit.SECONDS);
 		}
 		selenium = new Selenium(driver, scenario);
 		if (Boolean.parseBoolean(Configuration.framework("wait.for.angular"))) {
 			selenium.waitForAngular();
 		}
+
+		driver.manage().deleteAllCookies();
 
 		Dimension dimension = SystemUtil.getDimension();
 		driver.manage().window().setSize(dimension);
