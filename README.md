@@ -52,7 +52,7 @@ When I Enter Email: 'username@xyz.com'
 Then I Should See Page Heading: 'CREATE AN ACCOUNT'
 ~~~
 
-**StepDef**
+**Step Definition**
 ~~~
 private Selenium selenium = null; // Extended Selenium API
 
