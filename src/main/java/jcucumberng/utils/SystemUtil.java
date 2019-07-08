@@ -45,8 +45,8 @@ public final class SystemUtil {
 		robot.keyPress(key);
 		robot.keyRelease(key);
 		int waitTime = Integer.parseInt(Configuration.framework("key.press.wait"));
-		int millis = TimeUtil.convertSecsToMillisWithRange(waitTime, 1, 60);
-		robot.delay(millis);
+		int ms = TimeUtil.convertSecsToMillisWithRange(waitTime, 1, 60);
+		robot.delay(ms);
 	}
 
 	/**
