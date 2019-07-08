@@ -45,7 +45,7 @@ ap.submit.create=by_id_or_name:SubmitCreate
 ap.page.heading=class:page-heading
 ~~~
 
-**Feature/Gherkin**
+**Feature / Gherkin**
 ~~~
 Given I Am At Page: 'ap.auth'
 When I Enter Email: 'username@xyz.com'
@@ -132,7 +132,7 @@ Maven performs a one-time download of all dependencies. Execute `mvn verify` aga
 ~~~
 6 Scenarios (6 passed)
 22 Steps (22 passed)
-13m39.526s
+1m37.038s
 ~~~
 
 [ [Back](#table-of-contents) ]
