@@ -8,16 +8,16 @@ import org.slf4j.LoggerFactory;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import jcucumberng.api.Selenium;
-import project.hooks.ScenarioHook;
+import project.stepdefs.BaseSteps;
 
 public class ShoppingSteps {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ShoppingSteps.class);
 	private Selenium selenium = null;
 
-	// PicoContainer injects ScenarioHook object
-	public ShoppingSteps(ScenarioHook scenarioHook) {
-		selenium = scenarioHook.getSelenium();
+	// PicoContainer injects BaseSteps object
+	public ShoppingSteps(BaseSteps baseSteps) {
+		selenium = baseSteps.getSelenium();
 	}
 
 	@When("I Add Item To Cart: {string}")

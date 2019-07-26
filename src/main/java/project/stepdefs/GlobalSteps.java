@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import jcucumberng.api.Selenium;
-import project.hooks.ScenarioHook;
 
 /*
  * Define steps reusable for any application.
@@ -17,9 +16,9 @@ public class GlobalSteps {
 	private static final Logger LOGGER = LoggerFactory.getLogger(GlobalSteps.class);
 	private Selenium selenium = null;
 
-	// PicoContainer injects ScenarioHook object
-	public GlobalSteps(ScenarioHook scenarioHook) {
-		selenium = scenarioHook.getSelenium();
+	// PicoContainer injects BaseSteps object
+	public GlobalSteps(BaseSteps baseSteps) {
+		selenium = baseSteps.getSelenium();
 	}
 
 	@Given("I Am At Page: {string}")

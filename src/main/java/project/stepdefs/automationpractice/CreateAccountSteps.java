@@ -7,16 +7,16 @@ import org.slf4j.LoggerFactory;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import jcucumberng.api.Selenium;
-import project.hooks.ScenarioHook;
+import project.stepdefs.BaseSteps;
 
 public class CreateAccountSteps {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(CreateAccountSteps.class);
 	private Selenium selenium = null;
 
-	// PicoContainer injects ScenarioHook object
-	public CreateAccountSteps(ScenarioHook scenarioHook) {
-		selenium = scenarioHook.getSelenium();
+	// PicoContainer injects BaseSteps object
+	public CreateAccountSteps(BaseSteps baseSteps) {
+		selenium = baseSteps.getSelenium();
 	}
 
 	@When("I Enter Email: {string}")

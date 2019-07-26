@@ -1,4 +1,4 @@
-package project.hooks;
+package project.stepdefs;
 
 import java.util.concurrent.TimeUnit;
 
@@ -9,15 +9,16 @@ import org.slf4j.LoggerFactory;
 
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
+import cucumber.api.java.AfterStep;
 import cucumber.api.java.Before;
 import jcucumberng.api.Browser;
 import jcucumberng.api.Configuration;
 import jcucumberng.api.Selenium;
 import jcucumberng.utils.SystemUtil;
 
-public class ScenarioHook {
+public class BaseSteps {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(ScenarioHook.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(BaseSteps.class);
 	private WebDriver driver = null;
 	private Selenium selenium = null;
 
@@ -56,6 +57,15 @@ public class ScenarioHook {
 		}
 		LOGGER.info("END TEST -> {} - {}", scenario.getName(), scenario.getStatus());
 		driver.quit();
+	}
+
+	@AfterStep(order = 1)
+	public void capture() throws Throwable {
+		if (!Boolean.parseBoolean(Configuration.framework("screenshot.off"))) {
+			if (!Boolean.parseBoolean(Configuration.framework("screenshot.on.fail"))) {
+				selenium.embedScreenshot();
+			}
+		}
 	}
 
 	public Selenium getSelenium() {
