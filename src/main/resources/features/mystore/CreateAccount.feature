@@ -1,4 +1,4 @@
-@automationPractice @createAccount
+@myStore @createAccount
 Feature: Create Account
 	As a user
 	I want to create an account

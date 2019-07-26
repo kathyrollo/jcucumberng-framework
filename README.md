@@ -45,20 +45,20 @@ ap.submit.create=by_id_or_name:SubmitCreate
 ap.page.heading=class:page-heading
 ~~~
 
-**Feature/Gherkin**
+**Feature / Gherkin**
 ~~~
 Given I Am At Page: 'ap.auth'
 When I Enter Email: 'username@xyz.com'
 Then I Should See Page Heading: 'CREATE AN ACCOUNT'
 ~~~
 
-**StepDef**
+**Step Definition**
 ~~~
 private Selenium selenium = null; // Extended Selenium API
 
-// PicoContainer injects ScenarioHook object
-public NetIncomeSteps(ScenarioHook scenarioHook) {
-    selenium = scenarioHook.getSelenium(); // Instantly begin using API
+// PicoContainer injects shared context
+public NetIncomeSteps(ContextSteps contextSteps) {
+    selenium = contextSteps.getSelenium(); // Instantly begin using API
 }
 
 @Given("I Am At Page: {string}")
@@ -132,7 +132,7 @@ Maven performs a one-time download of all dependencies. Execute `mvn verify` aga
 ~~~
 6 Scenarios (6 passed)
 22 Steps (22 passed)
-13m39.526s
+1m37.038s
 ~~~
 
 [ [Back](#table-of-contents) ]
@@ -214,12 +214,12 @@ target/
 
 **Output:**
 ~~~
-[INFO ] 2019-06-28 16:58:28,920 ScenarioHook.setUp() - BEGIN TEST -> Verify Page Title
-[INFO ] 2019-06-28 16:58:28,921 ScenarioHook.setUp() - Browser=CHROME32_NOHEAD
-[INFO ] 2019-06-28 16:58:30,618 ScenarioHook.setUp() - Screen Resolution (WxH)=1366x768
+[INFO ] 2019-06-28 16:58:28,920 ContextSteps.setUp() - BEGIN TEST -> Verify Page Title
+[INFO ] 2019-06-28 16:58:28,921 ContextSteps.setUp() - Browser=CHROME32_NOHEAD
+[INFO ] 2019-06-28 16:58:30,618 ContextSteps.setUp() - Screen Resolution (WxH)=1366x768
 [DEBUG] 2019-06-28 16:59:49,148 GlobalSteps.I_Am_At_Page() - Page URL=http://simplydo.com/projector/
 [DEBUG] 2019-06-28 16:59:49,505 GlobalSteps.I_Should_See_Page_Title() - Page Title=Simply Do - Balance Projector
-[INFO ] 2019-06-28 16:59:49,863 ScenarioHook.tearDown() - END TEST -> Verify Page Title - PASSED
+[INFO ] 2019-06-28 16:59:49,863 ContextSteps.tearDown() - END TEST -> Verify Page Title - PASSED
 ~~~
 
 [ [Back](#table-of-contents) ]

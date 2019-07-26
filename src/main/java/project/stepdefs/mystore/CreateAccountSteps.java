@@ -1,4 +1,4 @@
-package project.stepdefs.automationpractice;
+package project.stepdefs.mystore;
 
 import org.assertj.core.api.Assertions;
 import org.slf4j.Logger;
@@ -7,16 +7,15 @@ import org.slf4j.LoggerFactory;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import jcucumberng.api.Selenium;
-import project.hooks.ScenarioHook;
+import project.stepdefs.ContextSteps;
 
 public class CreateAccountSteps {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(CreateAccountSteps.class);
 	private Selenium selenium = null;
 
-	// PicoContainer injects ScenarioHook object
-	public CreateAccountSteps(ScenarioHook scenarioHook) {
-		selenium = scenarioHook.getSelenium();
+	public CreateAccountSteps(ContextSteps contextSteps) {
+		selenium = contextSteps.getSelenium();
 	}
 
 	@When("I Enter Email: {string}")

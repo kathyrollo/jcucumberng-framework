@@ -1,4 +1,4 @@
-package project.datatables;
+package project.stepdefs;
 
 import java.lang.reflect.Type;
 import java.util.Locale;
@@ -15,10 +15,10 @@ import io.cucumber.datatable.TableTransformer;
 import io.cucumber.datatable.dependency.com.fasterxml.jackson.databind.ObjectMapper;
 import project.domain.simplydo.Transaction;
 
-/*
+/**
  * Single configurer for all datatables.
  */
-public class Configurer implements TypeRegistryConfigurer {
+public class DataTableConfigurer implements TypeRegistryConfigurer {
 
 	@Override
 	public Locale locale() {
@@ -33,7 +33,7 @@ public class Configurer implements TypeRegistryConfigurer {
 		registry.setDefaultDataTableCellTransformer(transformer);
 		registry.setDefaultDataTableEntryTransformer(transformer);
 
-		/*
+		/**
 		 * Maps DataTable with label column to a single object of Type<T>. Left column
 		 * is field name, right column is value.
 		 */

@@ -8,7 +8,6 @@ package jcucumberng.utils;
 public final class TimeUtil {
 
 	private TimeUtil() {
-		// No instantiation
 	}
 
 	/**
