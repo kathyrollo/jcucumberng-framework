@@ -1,4 +1,4 @@
-@balanceProjector @navigation
+@simplyDo @navigation
 Feature: Navigation
 	As a user
 	I want to visit the home page

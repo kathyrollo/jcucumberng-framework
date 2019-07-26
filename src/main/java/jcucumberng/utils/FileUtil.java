@@ -24,7 +24,6 @@ import com.itextpdf.text.pdf.parser.PdfTextExtractor;
 public final class FileUtil {
 
 	private FileUtil() {
-		// No instantiation
 	}
 
 	/**

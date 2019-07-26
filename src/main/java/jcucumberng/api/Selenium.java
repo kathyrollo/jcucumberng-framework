@@ -230,7 +230,7 @@ public final class Selenium {
 	}
 
 	/**
-	 * Waits for a web element to refresh and text to be present.
+	 * Waits for a web element to refresh and text to be present in element.
 	 * 
 	 * @param text the expected text, case sensitive
 	 * @param keys the key(s) from {@code ui-map.properties}

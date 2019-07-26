@@ -1,4 +1,4 @@
-@balanceProjector @netIncome
+@simplyDo @netIncome
 Feature: Net Income
 	As a user
 	I want to enter my income and expenses

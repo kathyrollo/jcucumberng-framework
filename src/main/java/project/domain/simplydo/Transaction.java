@@ -10,7 +10,6 @@ public class Transaction {
 	private String month = null;
 
 	public Transaction() {
-		// Empty constructor
 	}
 
 	public Transaction(Map<String, String> entry) {

@@ -1,4 +1,4 @@
-@automationPractice @shopping
+@myStore @shopping
 Feature: Shopping
 	As a user
 	I want to add items to my cart

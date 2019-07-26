@@ -17,11 +17,11 @@ import jcucumberng.api.Selenium;
 import jcucumberng.utils.SystemUtil;
 
 /**
- * Define hooks for scenarios and steps.
+ * Define hooks for scenarios and steps. Shared objects can be created here.
  */
-public class BaseSteps {
+public class ContextSteps {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(BaseSteps.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ContextSteps.class);
 	private WebDriver driver = null;
 	private Selenium selenium = null;
 

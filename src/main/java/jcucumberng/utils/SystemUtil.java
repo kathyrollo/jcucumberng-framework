@@ -18,7 +18,6 @@ import jcucumberng.api.Configuration;
 public final class SystemUtil {
 
 	private SystemUtil() {
-		// No instantiation
 	}
 
 	/**

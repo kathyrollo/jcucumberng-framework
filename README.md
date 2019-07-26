@@ -56,9 +56,9 @@ Then I Should See Page Heading: 'CREATE AN ACCOUNT'
 ~~~
 private Selenium selenium = null; // Extended Selenium API
 
-// PicoContainer injects ScenarioHook object
-public NetIncomeSteps(ScenarioHook scenarioHook) {
-    selenium = scenarioHook.getSelenium(); // Instantly begin using API
+// PicoContainer injects shared context
+public NetIncomeSteps(ContextSteps contextSteps) {
+    selenium = contextSteps.getSelenium(); // Instantly begin using API
 }
 
 @Given("I Am At Page: {string}")

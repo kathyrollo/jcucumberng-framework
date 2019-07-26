@@ -14,16 +14,15 @@ import cucumber.api.java.en.When;
 import io.cucumber.datatable.DataTable;
 import jcucumberng.api.Selenium;
 import project.domain.simplydo.Transaction;
-import project.stepdefs.BaseSteps;
+import project.stepdefs.ContextSteps;
 
 public class NetIncomeSteps {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(NetIncomeSteps.class);
 	private Selenium selenium = null;
 
-	// PicoContainer injects BaseSteps object
-	public NetIncomeSteps(BaseSteps baseSteps) {
-		selenium = baseSteps.getSelenium();
+	public NetIncomeSteps(ContextSteps contextSteps) {
+		selenium = contextSteps.getSelenium();
 	}
 
 	@When("I Enter My Start Balance: {string}")

@@ -16,9 +16,8 @@ public class GlobalSteps {
 	private static final Logger LOGGER = LoggerFactory.getLogger(GlobalSteps.class);
 	private Selenium selenium = null;
 
-	// PicoContainer injects BaseSteps object
-	public GlobalSteps(BaseSteps baseSteps) {
-		selenium = baseSteps.getSelenium();
+	public GlobalSteps(ContextSteps contextSteps) {
+		selenium = contextSteps.getSelenium();
 	}
 
 	@Given("I Am At Page: {string}")
