@@ -16,6 +16,9 @@ import jcucumberng.api.Configuration;
 import jcucumberng.api.Selenium;
 import jcucumberng.utils.SystemUtil;
 
+/**
+ * Define hooks for scenarios and steps.
+ */
 public class BaseSteps {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(BaseSteps.class);
@@ -38,8 +41,6 @@ public class BaseSteps {
 			long time = Long.parseLong(Configuration.framework("pageload.timeout"));
 			driver.manage().timeouts().pageLoadTimeout(time, TimeUnit.SECONDS);
 		}
-
-		driver.manage().deleteAllCookies();
 
 		Dimension dimension = SystemUtil.getDimension();
 		driver.manage().window().setSize(dimension);

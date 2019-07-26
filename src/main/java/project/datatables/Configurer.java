@@ -15,7 +15,7 @@ import io.cucumber.datatable.TableTransformer;
 import io.cucumber.datatable.dependency.com.fasterxml.jackson.databind.ObjectMapper;
 import project.domain.simplydo.Transaction;
 
-/*
+/**
  * Single configurer for all datatables.
  */
 public class Configurer implements TypeRegistryConfigurer {
