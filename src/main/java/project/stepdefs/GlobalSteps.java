@@ -9,7 +9,7 @@ import cucumber.api.java.en.Then;
 import jcucumberng.api.Selenium;
 
 /**
- * Define steps reusable for any application.
+ * Define reusable steps for any application.
  */
 public class GlobalSteps {
 

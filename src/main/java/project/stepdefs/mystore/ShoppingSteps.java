@@ -1,4 +1,4 @@
-package project.stepdefs.automationpractice;
+package project.stepdefs.mystore;
 
 import org.assertj.core.api.Assertions;
 import org.openqa.selenium.By;
