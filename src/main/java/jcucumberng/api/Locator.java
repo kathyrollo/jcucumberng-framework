@@ -24,7 +24,6 @@ public final class Locator {
 	}
 
 	private Locator() {
-		// No instantiation
 	}
 
 	/**
