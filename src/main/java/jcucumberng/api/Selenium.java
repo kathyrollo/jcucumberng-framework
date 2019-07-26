@@ -39,7 +39,6 @@ public final class Selenium {
 	private Scenario scenario = null;
 
 	public Selenium() {
-		// Empty constructor
 	}
 
 	public Selenium(WebDriver driver, Scenario scenario) throws Throwable {

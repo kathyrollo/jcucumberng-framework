@@ -27,7 +27,6 @@ public final class Browser {
 	}
 
 	private Browser() {
-		// No instantiation
 	}
 
 	/**
