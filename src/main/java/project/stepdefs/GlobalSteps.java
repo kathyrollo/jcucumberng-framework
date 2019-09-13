@@ -33,4 +33,9 @@ public class GlobalSteps {
 		Assertions.assertThat(actual).isEqualTo(expected);
 	}
 
+	@Then("I Should See Text: {string}")
+	public void I_Should_See_Text(String text) {
+		Assertions.assertThat(selenium.getBodyText().contains(text)).isTrue();
+	}
+
 }
