@@ -2,6 +2,10 @@
 
 # jCucumberNG-Framework
 
+> **MAINTENANCE MODE**
+>
+> Project is no longer being updated but will stay here as a portfolio artefact and implementation reference.
+
 Allows automation testers to write feature files for Cucumber and implement step definitions in basic Java classes. ngWebDriver (Protractor) offers extended support for Angular/JS web applications.
 
 ### Contents
@@ -253,7 +257,7 @@ target/
 
 ## LICENSE
 
-Copyright 2019 Katherine L. Rollo
+Copyright 2018 Katherine Rollo
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 
