@@ -4,7 +4,7 @@
 
 > **MAINTENANCE MODE**
 >
-> Project is no longer being updated but will stay here as a portfolio artefact and implementation reference.
+> Project is no longer being updated but will stay here as portfolio artefact and implementation reference.
 
 Allows automation testers to write feature files for Cucumber and implement step definitions in basic Java classes. ngWebDriver (Protractor) offers extended support for Angular/JS web applications.
 
