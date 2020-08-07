@@ -98,7 +98,7 @@ public void I_Should_See_Page_Heading(String expected) throws Throwable {
 
 ## Technology Stack
 
-- [Selenium WebDriver 4](https://www.seleniumhq.org/) for browser automation with extended API
+- [Selenium WebDriver 3](https://www.seleniumhq.org/) for browser automation with extended API
 - [WebDriverManager](https://github.com/bonigarcia/webdrivermanager) for automatic management of webdriver binaries (IE11, Edge, Chrome, Firefox)
 - [ngWebDriver](https://github.com/paul-hammant/ngWebDriver) (Protractor) for Angular/JS support
 - [Cucumber-JVM 4](https://github.com/cucumber/cucumber-jvm) for behavior-driven testing
@@ -106,7 +106,7 @@ public void I_Should_See_Page_Heading(String expected) throws Throwable {
 - [AssertJ](http://joel-costigliola.github.io/assertj/) for fluent assertions
 - [SLF4J](https://www.slf4j.org/) / [Log4j2](https://logging.apache.org/log4j/2.x/) for logging mechanism
 - [Masterthought](https://github.com/damianszczepanik/maven-cucumber-reporting) / [Extent Reports](https://github.com/extent-framework) / [Allure](https://github.com/allure-framework) for dynamic HTML test reports
-- [iText 5](https://developers.itextpdf.com/itext-java) for handling PDF files
+- [iText](https://developers.itextpdf.com/itext-java) for handling PDF files
 - [POI](https://poi.apache.org/) for handling office documents (Word, PowerPoint, Excel)
 - [Fillo](https://codoid.com/fillo/) for SQL-like manipulation of Excel files
 
