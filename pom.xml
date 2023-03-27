@@ -37,7 +37,7 @@
 		<!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-cucumber4-jvm -->
 		<allure.cucumber>2.12.1</allure.cucumber>
 		<!-- https://mvnrepository.com/artifact/com.itextpdf/itextpdf -->
-		<itextpdf>5.5.13.1</itextpdf>
+		<itextpdf>5.5.13.3</itextpdf>
 		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
 		<poi>4.1.0</poi>
 		<!-- https://mvnrepository.com/artifact/com.codoid.products/fillo -->
